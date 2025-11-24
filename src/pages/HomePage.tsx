@@ -3,7 +3,8 @@ import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { getCuisines, getMainIngredients } from '@/utils/backend/api/filters';
 import { PageContainer, Heading, LoadingComponent, ErrorComponent } from "@/components";
 import { RecipeList } from "@/features/recipeList";
-import { setFilterList, setActiveFilter, setActiveSorting, Filters, type SortingFilterKey, FilterOptionType } from '@/features/filters';
+import { setFilterList, setActiveFilter, setActiveSorting, Filters, type SortingFilterKey } from '@/features/filters';
+import { FilterOptionType } from '@/types';
 import { useLanguage, } from '@/contexts';
 import { translateText } from '@/utils';
 

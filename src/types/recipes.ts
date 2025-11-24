@@ -1,5 +1,4 @@
 import { Tables } from "./database.types"
-import { FilterOptionType } from "@/features/filters/types";
 import { UNITS } from "@/utils"
 
 export type RecipeDbType = Tables<"recipes">

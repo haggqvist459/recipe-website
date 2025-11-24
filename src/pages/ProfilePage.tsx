@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { PageContainer, Heading, LoadingComponent, Input, SignOut } from "@/components";
+import { PageContainer, Heading, LoadingComponent, SignOut } from "@/components";
 import { FavouriteListItem } from "@/features/favourites";
 import { SettingsSection } from "@/features/settings";
 import { useLanguage } from "@/contexts";

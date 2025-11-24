@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { ArrowIcon } from '@/components'
 import { SORTING_FILTERS } from '../constants'
-import { SortingFilterKey, FilterOptionType } from '../types'
+import { SortingFilterKey } from '../types'
+import { FilterOptionType } from '@/types'
 import { useLanguage } from '@/contexts'
 import { translateText } from '@/utils'
 
