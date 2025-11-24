@@ -70,14 +70,7 @@ const CreateRecipeDesktop = () => {
         />
       </form>
       <Modal
-        title={modalState.title}
-        description={modalState.message}
-        isOpen={modalState.isOpen}
-        onConfirm={() => {
-          modalState.onConfirm();
-          setViewMode("Edit");
-        }}
-        onCancel={modalState.onCancel}
+        modalState={modalState}
       />
     </div>
   );

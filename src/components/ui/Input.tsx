@@ -7,7 +7,7 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   onFocus?: () => void,
   onBlur?: () => void,
-  inputType?: 'text' | 'number'
+  inputType?: 'text' | 'number' | 'email' | 'password'
   required?: boolean
   allowDecimals?: boolean
   autoComplete?: string

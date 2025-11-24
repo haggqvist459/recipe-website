@@ -27,11 +27,7 @@ const CreateRecipeMobile = () => {
         />
       </form>
       <Modal
-        title={modalState.title}
-        description={modalState.message}
-        isOpen={modalState.isOpen}
-        onConfirm={modalState.onConfirm}
-        onCancel={modalState.onCancel}
+        modalState={modalState}
       />
     </div>
   );

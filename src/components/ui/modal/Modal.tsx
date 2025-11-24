@@ -1,42 +1,33 @@
 import { Heading } from "@/components";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
+import { ModalStateType } from "./types";
 
 type Props = {
-  title: string
-  description: string
-  isOpen: boolean
-  onCancel?: () => void
-  onConfirm: () => void
+  modalState: ModalStateType
 }
 
-const Modal = ({
-  title,
-  description,
-  isOpen,
-  onCancel,
-  onConfirm
-}: Props) => {
+const Modal = ({ modalState }: Props) => {
 
   const { language } = useLanguage()
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${modalState.isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         } bg-black/20`}
-      onClick={onCancel}
+      onClick={modalState.onCancel}
     >
       <div
         className="bg-white p-5 rounded shadow-lg w-full max-w-md mx-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <Heading title={title} />
-        <p className="my-2">{description}</p>
+        <Heading title={modalState.title} />
+        <p className="my-2">{modalState.message}</p>
         <div className="flex justify-end space-x-2">
-          {onCancel && (
-            <button onClick={onCancel} className="px-4 py-2 bg-secondary text-primary-text rounded">{translateText('modal', 'cancel', language)}</button>
+          {modalState.onCancel && (
+            <button onClick={modalState.onCancel} className="px-4 py-2 bg-secondary text-primary-text rounded">{translateText('modal', 'cancel', language)}</button>
           )}
-          <button onClick={onConfirm} className="px-4 py-2 bg-primary text-primary-text rounded">{translateText('modal', 'confirm', language)}</button>
+          <button onClick={modalState.onConfirm} className="px-4 py-2 bg-primary text-primary-text rounded">{translateText('modal', 'confirm', language)}</button>
         </div>
       </div>
     </div>
