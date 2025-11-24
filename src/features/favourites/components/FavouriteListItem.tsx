@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react'
 import { FavouriteType } from "../types";
 import { Trashcan } from '@/components';
+import { removeFavouriteAPI } from '@/utils/backend/api/favourites';
+import { useAppDispatch } from '@/redux/hooks';
+import { removeFavourite, addFavourite } from '../slice';
 
 type Props = {
   favourite: FavouriteType
@@ -8,6 +11,7 @@ type Props = {
 
 const FavouriteListItem = ({ favourite }: Props) => {
 
+  const dispatch = useAppDispatch()
   const [showDelete, setShowDelete] = useState(false)
   const touchStartX = useRef(0);
 
@@ -28,23 +32,36 @@ const FavouriteListItem = ({ favourite }: Props) => {
     touchStartX.current = 0;
   };
 
+  const handleDelete = async () => {
+    try {
+
+      dispatch(removeFavourite(favourite.recipeId))
+
+      await removeFavouriteAPI(favourite.userId, favourite.recipeId)
+    } catch (error) {
+      console.error('Failed to delete favourite:', error)
+      dispatch(addFavourite(favourite))
+    }
+  }
 
   return (
-    <div className="w-full flex justify-between items-baselin"
+    <div className="w-full flex justify-between border-b"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="w-full flex flex-col border-b my-2">
+      <div className="w-full flex flex-col my-2">
         <span className="font-medium text-primary-text">{favourite.title}</span>
         <span className="font-light text-primary-text">
           {new Date(favourite.createdAt).toLocaleDateString()}
         </span>
       </div>
-      {showDelete &&
-        <div className="">
-          <Trashcan />
-        </div>
-      }
+      <div
+        className={`self-center transition-all duration-300 ease-out overflow-hidden ${showDelete ? 'w-auto opacity-100 translate-x-0' : 'w-0 opacity-0 translate-x-full'
+          }`}
+          onClick={() => handleDelete()}
+      >
+        <Trashcan />
+      </div>
     </div>
   )
 }

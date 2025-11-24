@@ -31,3 +31,10 @@ export type RecipeType = {
   instructions: InstructionType[]
   createdAt: Date
 }
+
+
+
+export type FilterOptionType = {
+  id: string
+  text: string
+}

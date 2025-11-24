@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import * as filtersApi from "@/utils/backend/api/";
-import { FilterOptionType } from "@/types";
 import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/recipeForm";
-import { setFilterList } from "@/features/filters";
+import { setFilterList, FilterOptionType, ButtonRow } from "@/features/filters";
 import SectionWrapper from "../shared/SectionWrapper";
 import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent } from "@/components";
-import { ButtonRow } from '@/features/filters/components';
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 

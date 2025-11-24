@@ -9,9 +9,3 @@ export type FilterStateType = {
   selectedCuisineFilters: FilterOptionType[] | []
   selectedSortingFilter: SortingFilterKey
 }
-
-
-export type FilterOptionType = {
-  id: string
-  text: string
-}

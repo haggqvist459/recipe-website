@@ -11,6 +11,7 @@
 - [x] Preview section output validation
 - [x] Simplify ingredients and instruction input - copy paste friendly
 - [x] Form validation, ensure non-empty fields are not left empty for required inputs
+- [ ] For how many people are the recipe for? 
 
 ## Edit Form 
 - [ ] Edit, remove & Add for metadata
@@ -34,7 +35,7 @@
 - [x] List all recipes 
 - [x] Add the filters as dropdowns 
 - [x] Details view 
-  - [ ] Link to edit form for admins 
+  - [ ] Link to edit form for admins ?
   - [x] Mark recipe as favorite for users 
 
 ### Profile Page: 
@@ -67,3 +68,5 @@
   - [ ] Naming standards 
 - [ ] Review error handling across pages and components 
   - [ ] Admin Page must redirect to error in case of non admin roles 
+- [ ] Small toast component for undo actions / success messages 
+- [ ] Refactor RecipeDetails.tsx - remove double markup

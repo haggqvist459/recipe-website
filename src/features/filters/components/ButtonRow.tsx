@@ -1,4 +1,4 @@
-import { FilterOptionType } from "@/types";
+import { FilterOptionType } from "../types";
 
 const BG_CLASSES = [
   "bg-lightblue",

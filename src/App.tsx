@@ -4,7 +4,6 @@ import { MainLayout, AuthLayout } from '@/layouts';
 import { HomePage, AdminPage, ErrorPage, DetailsPage, ProfilePage, AuthPage } from '@/pages';
 
 
-
 function App() {
 
   return (

@@ -104,6 +104,7 @@ export const UIText = {
       currentPassword: 'Current password',
       validateChanges: 'Validate changes',
       favouriteRecipes: 'Favourite recipes',
+      settings: 'Settings',
     },
   },
   sv: {
@@ -201,6 +202,7 @@ export const UIText = {
       currentPassword: 'Nuvarande lösenord',
       validateChanges: 'Bekräfta ändringar',
       favouriteRecipes: 'Favoriter',
+      settings: 'Inställningar ',
     },
   }
 } as const
