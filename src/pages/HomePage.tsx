@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import { useAppSelector, useAppDispatch } from '@/redux';
 import { getCuisines, getMainIngredients } from '@/utils/backend/api/filters';
 import { PageContainer, Heading, LoadingComponent, ErrorComponent } from "@/components";
 import { RecipeList } from "@/features/recipeList";

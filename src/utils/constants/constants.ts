@@ -5,7 +5,8 @@ export const ROUTES = {
   DETAILS: "/recipes/:id",
   DETAILS_PAGE: '/recipes/',
   PROFILE: '/profile',
-  SIGN_IN: '/signin'
+  SIGN_IN: '/signin',
+  GROCERY_LIST: '/groceries'
 } as const;
 
 export const NAVBAR_OPTIONS = {
@@ -28,10 +29,16 @@ export const NAVBAR_OPTIONS = {
     route: ROUTES.SIGN_IN,
     id: 4,
     labelKey: 'signIn'
+  },
+  GROCERY_LIST: {
+    route: ROUTES.GROCERY_LIST,
+    id: 5, 
+    labelKey: 'groceries'
   }
 } as const ;
 
 
 export const LOCALSTORAGE_KEYS = { 
-  LANGUAGE_OPTION: 'languageOption'
+  LANGUAGE_OPTION: 'languageOption',
+  GROCERY_LIST: 'groceryList'
 } as const;

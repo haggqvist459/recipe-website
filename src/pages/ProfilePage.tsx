@@ -6,6 +6,7 @@ import { SettingsSection } from "@/features/settings";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 import { useFavourites } from "@/features/favourites";
+import { signOut } from "@/utils/backend/api";
 
 const ProfilePageTest = () => {
 
@@ -31,7 +32,9 @@ const ProfilePageTest = () => {
       </div>
       <div className="my-5 px-5 flex justify-between items-center">
         <Heading title={translateText("profile", 'title', language)} />
-        <div onClick={() => { }}>
+        <div onClick={async () => {
+          await signOut()
+        }}>
           <SignOut />
         </div>
       </div>
@@ -59,7 +62,7 @@ const ProfilePageTest = () => {
             lg:block
           `}
         >
-         <SettingsSection />
+          <SettingsSection />
         </section>
       </div>
     </PageContainer>

@@ -21,13 +21,13 @@ const NavMenu = ({ isExpanded, onClick }: Props) => {
 
   switch (userRole) {
     case 'admin':
-     menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.ADMIN]   
+      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.ADMIN]
       break;
     case 'user':
-      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.PROFILE]
+      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE]
       break;
     default:
-      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.SIGN_IN]
+      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.SIGN_IN]
       break;
   }
 
@@ -46,8 +46,8 @@ const NavMenu = ({ isExpanded, onClick }: Props) => {
         >
           {menuItems}
         </div>
-        {/* <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-primary/80 to-transparent" />  */}
-        {/* <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-primary/80 to-transparent" /> */}
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-primary/80 to-transparent" /> 
+        <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-primary/80 to-transparent" />
       </div>
     </div>
   );

@@ -3,12 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import recipeFormReducer from '@/features/recipeForm';
 import filterReducer from '@/features/filters';
 import favouriteReducer from '@/features/favourites';
+import groceryListReducer from '@/features/groceryList';
 
 export const store = configureStore({
   reducer: {
     recipeForm: recipeFormReducer,
     filters: filterReducer,
-    favourites: favouriteReducer
+    favourites: favouriteReducer,
+    groceryList: groceryListReducer
   }
 })
 

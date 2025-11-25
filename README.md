@@ -72,3 +72,5 @@
   - [ ] Admin Page must redirect to error in case of non admin roles 
 - [ ] Small toast component for undo actions / success messages 
 - [ ] Refactor RecipeDetails.tsx - remove double markup
+- [ ] Look into FadeWrappers dubious useEffect 
+- [ ] Fix the empty favourite list use case on profile page 

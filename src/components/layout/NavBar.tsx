@@ -8,7 +8,7 @@ const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <header className='bg-primary'>
+    <header className='bg-primary' id='navBar'>
       <div className='flex items-center justify-between px-5'>
         <NavLink className='py-3' to={ROUTES.HOME}>
           <div className='flex flex-col text-primary-text'>
