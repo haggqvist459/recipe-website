@@ -19,16 +19,13 @@ const HomePage = () => {
   const selectedTypeFilters = useAppSelector(state => state.filters.selectedTypeFilters);
   const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters);
   const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter);
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     setError(false);
-    setLoading(false);
 
     const loadFilters = async () => {
-      setLoading(true);
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
@@ -46,7 +43,7 @@ const HomePage = () => {
         }
         setError(true);
       } finally {
-        setLoading(false);
+        setError(false)
       }
     };
 
@@ -60,10 +57,6 @@ const HomePage = () => {
   const handleSetSorting = (sorting: SortingFilterKey) => {
     dispatch(setActiveSorting(sorting));
   };
-
-  if (loading) {
-    return <LoadingComponent />;
-  }
 
   if (error) {
     return <ErrorComponent errorMessage={errorMessage} />;

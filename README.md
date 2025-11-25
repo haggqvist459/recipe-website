@@ -53,10 +53,13 @@
  - [ ] Add filter options here too 
  
 ### Grocery list: 
-- [ ] Re-use previous list project, add here 
+- [x] Re-use previous list project, add here 
  - [ ] Localstorage persist grocery list
- - [ ] Add new items to list 
+ - [x] Add new items to list 
  - [ ] share lists?
+ - [ ] Add ingredients from recipes to list 
+ - [ ] Backup list to database if authenticated 
+ - [ ] 
 
  ### MISC:
  - [x] Language options
@@ -74,3 +77,5 @@
 - [ ] Refactor RecipeDetails.tsx - remove double markup
 - [ ] Look into FadeWrappers dubious useEffect 
 - [ ] Fix the empty favourite list use case on profile page 
+- [ ] Fix placement of favourite icon on RecipeDetail.tsx
+- [ ] Lock favourite icon size on RecipeCard.tsx

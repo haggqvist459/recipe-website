@@ -8,7 +8,7 @@ const MainLayout = () => {
 
 
   return (
-    <div className="bg-primary-bg min-h-[100dvh] flex flex-col">
+    <div className="bg-primary-bg min-h-screen flex flex-col">
       <NavBar />
       <div className="flex-grow">
         <FadeWrapper key={location.pathname}>
