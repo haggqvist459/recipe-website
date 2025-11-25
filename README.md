@@ -11,7 +11,7 @@
 - [x] Preview section output validation
 - [x] Simplify ingredients and instruction input - copy paste friendly
 - [x] Form validation, ensure non-empty fields are not left empty for required inputs
-- [ ] For how many people are the recipe for? 
+- [ ] For how many people are the recipe? 
 
 ## Edit Form 
 - [ ] Edit, remove & Add for metadata
@@ -37,11 +37,13 @@
 - [x] Details view 
   - [ ] Link to edit form for admins ?
   - [x] Mark recipe as favorite for users 
+  - [ ] Add ingredients to grocery list
+  - [ ] Modify the number of people the recipe is for 
 
 ### Profile Page: 
-- [ ] Change email
-- [ ] Change password 
-- [ ] Edit favorite lists 
+- [x] Change email
+- [x] Change password 
+- [x] Edit favorite lists - view / delete
 - [ ]
 
 ### Weekly lists: 

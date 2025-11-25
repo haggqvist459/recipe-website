@@ -2,12 +2,13 @@
 import { useState } from "react";
 import { Heading, Input, } from "@/components";
 import { Modal, type ModalStateType } from '@/components'
-import { useLanguage } from "@/contexts";
+import { useLanguage, useAuth } from "@/contexts";
 import { translateText } from "@/utils";
-
+import { updateUserCredentialsAPI } from "@/utils/backend/api/auth/updateUserAPI";
 
 const SettingsSection = () => {
 
+  const { user } = useAuth()
   const { language } = useLanguage()
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -21,47 +22,85 @@ const SettingsSection = () => {
     title: '',
     showCancel: false
   })
-  const [errors, setErrors] = useState({
-    email: '',
-    newPassword: '',
-    confirmPassword: '',
-    currentPassword: ''
-  })
 
 
-  const validateEmail = (email: string): boolean => {
+  const validateEmail = (email: string): void => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    return emailRegex.test(email)
+    if (!emailRegex.test(email)) {
+      throw new Error('Invalid email format')
+    }
   }
 
-  const validatePasswordLength = (password: string): boolean => {
-    return password.length >= 8
+  const validatePasswordStrength = (password: string): void => {
+    if (password.length < 8) {
+      throw new Error('Password must be at least 8 characters')
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      throw new Error('Password must contain at least one uppercase letter')
+    }
+
+    if (!/[a-z]/.test(password)) {
+      throw new Error('Password must contain at least one lowercase letter')
+    }
+
+    if (!/[0-9]/.test(password)) {
+      throw new Error('Password must contain at least one number')
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      throw new Error('Password must contain at least one special character')
+    }
   }
 
-  const validatePasswordStrength = (password: string): boolean => {
-    const hasUppercase = /[A-Z]/.test(password)
-    const hasLowercase = /[a-z]/.test(password)
-    const hasNumber = /[0-9]/.test(password)
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
-
-    return hasUppercase && hasLowercase && hasNumber && hasSpecialChar
-  }
-
-  const validatePasswordMatch = (password: string, confirmPassword: string): boolean => {
-    return password === confirmPassword && password.length > 0
-  }
-
-
-  const updateEmail = () => {
-
-  }
-
-  const updatePassword = () => {
-
+  const validatePasswordMatch = (): void => {
+    if (newPassword !== confirmPassword) {
+      throw new Error('Passwords do not match')
+    }
   }
 
   const handleSubmit = async () => {
-    
+    try {
+      if (!currentPassword) throw new Error('Current password is required')
+      if (!newEmail && !newPassword) throw new Error('Please enter email or password to update')
+
+      if (newEmail) validateEmail(newEmail)
+      if (newPassword) {
+        validatePasswordStrength(newPassword)
+        validatePasswordMatch()
+      }
+
+      if (!user?.email) throw new Error('User not authenticated')
+      await updateUserCredentialsAPI(user.email, currentPassword, newEmail || undefined, newPassword || undefined)
+
+      setModalState({
+        isOpen: true,
+        title: 'Success',
+        message: 'Email and password has been changed.',
+        showCancel: false,
+        onConfirm: () => setModalState({
+          title: '',
+          message: '',
+          onConfirm: () => { },
+          isOpen: false
+        }),
+      })
+
+    } catch (error) {
+
+      setModalState({
+        isOpen: true,
+        title: 'Error updating credentials.',
+        message: error instanceof Error ? error.message : 'An unknown error occurred',
+        showCancel: false,
+        onConfirm: () => setModalState({
+          title: '',
+          message: '',
+          onConfirm: () => { },
+          isOpen: false
+        }),
+      })
+    }
   }
 
   return (
@@ -113,7 +152,9 @@ const SettingsSection = () => {
         />
       </div>
       <button
-        className="w-full mt-5 rounded bg-primary border border-primary hover:border-primary-text"
+        className="w-full mt-5 rounded bg-primary border border-primary hover:border-primary-text disabled:opacity-50"
+        onClick={() => handleSubmit()}
+        disabled={(!currentPassword && (!newEmail || (!newPassword && !confirmPassword)))}
       >
         {translateText('buttons', 'confirm', language)}
       </button>

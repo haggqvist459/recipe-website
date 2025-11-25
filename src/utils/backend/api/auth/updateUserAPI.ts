@@ -1,16 +1,17 @@
-import { updateEmailService, updatePasswordService, updateUserCredentialsService } from "../../services/auth/updateUserService";
+// import { updateEmailService, updatePasswordService } from "../../services/auth/updateUserService";
+import { updateUserCredentialsService } from "../../services/auth/updateUserService";
 
-export const updateEmailAPI = async (newEmail: string): Promise<void> => {
-  await updateEmailService(newEmail)
-}
+// export const updateEmailAPI = async (newEmail: string): Promise<void> => {
+//   await updateEmailService(newEmail)
+// }
 
-export const updatePasswordAPI = async (
-  currentEmail: string,
-  currentPassword: string,
-  newPassword: string
-): Promise<void> => {
-  await updatePasswordService(currentEmail, currentPassword, newPassword)
-}
+// export const updatePasswordAPI = async (
+//   currentEmail: string,
+//   currentPassword: string,
+//   newPassword: string
+// ): Promise<void> => {
+//   await updatePasswordService(currentEmail, currentPassword, newPassword)
+// }
 
 export const updateUserCredentialsAPI = async (
   currentEmail: string,

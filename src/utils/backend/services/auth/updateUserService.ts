@@ -1,49 +1,49 @@
 import { supabase } from "@/utils/backend/db/client";
 
 
-export const updateEmailService = async (newEmail: string): Promise<void> => {
-  if (!newEmail || !newEmail.includes('@')) {
-    throw new Error('Invalid email format')
-  }
+// export const updateEmailService = async (newEmail: string): Promise<void> => {
+//   if (!newEmail || !newEmail.includes('@')) {
+//     throw new Error('Invalid email format')
+//   }
 
-  const { error } = await supabase.auth.updateUser({
-    email: newEmail
-  })
+//   const { error } = await supabase.auth.updateUser({
+//     email: newEmail
+//   })
 
-  if (error) throw error
-}
+//   if (error) throw error
+// }
 
-export const updatePasswordService = async (
-  currentEmail: string,
-  currentPassword: string,
-  newPassword: string
-): Promise<void> => {
+// export const updatePasswordService = async (
+//   currentEmail: string,
+//   currentPassword: string,
+//   newPassword: string
+// ): Promise<void> => {
 
-  if (!currentPassword) {
-    throw new Error('Current password is required')
-  }
+//   if (!currentPassword) {
+//     throw new Error('Current password is required')
+//   }
 
-  validatePasswordStrength(newPassword)
+//   validatePasswordStrength(newPassword)
 
-  if (currentPassword === newPassword) {
-    throw new Error('New password must be different from current password')
-  }
+//   if (currentPassword === newPassword) {
+//     throw new Error('New password must be different from current password')
+//   }
 
-  const { error: signInError } = await supabase.auth.signInWithPassword({
-    email: currentEmail,
-    password: currentPassword
-  })
+//   const { error: signInError } = await supabase.auth.signInWithPassword({
+//     email: currentEmail,
+//     password: currentPassword
+//   })
 
-  if (signInError) {
-    throw new Error('Current password is incorrect')
-  }
+//   if (signInError) {
+//     throw new Error('Current password is incorrect')
+//   }
 
-  const { error: updateError } = await supabase.auth.updateUser({
-    password: newPassword
-  })
+//   const { error: updateError } = await supabase.auth.updateUser({
+//     password: newPassword
+//   })
 
-  if (updateError) throw updateError
-}
+//   if (updateError) throw updateError
+// }
 
 export const updateUserCredentialsService = async (
   currentEmail: string,
