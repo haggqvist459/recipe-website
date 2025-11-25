@@ -28,7 +28,6 @@ const Footer = () => {
         </div>
         <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-primary-text'>{translateText("footer", "codeGitHub", language)}</a>
       </div>
-
     </footer>
   )
 }
