@@ -14,7 +14,7 @@ const Footer = () => {
       (window.navigator as any).standalone === true);
 
   return (
-    <footer id='footer' className={`bg-primary relative ${isStandalone ? 'h-15 pb-2 ' : 'h-10'}`}>
+    <footer id='footer' className={`bg-primary relative ${isStandalone ? 'h-15 pb-2' : 'h-10'}`}>
       <div className="absolute bottom-full w-full">
         <Settings handleClose={() => setShowSettings(!showSettings)} isOpen={showSettings} />
       </div>
