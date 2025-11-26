@@ -5,10 +5,10 @@ import { NavBar, Footer, FadeWrapper, } from '@/components';
 const MainLayout = () => {
 
   const location = useLocation()
-
+  
 
   return (
-    <div className="bg-primary-bg min-h-screen flex flex-col">
+    <div className="bg-primary-bg min-h-screen flex flex-col relative">
       <NavBar />
       <div className="flex-grow">
         <FadeWrapper key={location.pathname}>

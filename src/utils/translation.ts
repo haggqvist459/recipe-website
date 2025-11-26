@@ -1,5 +1,3 @@
-import VisibilityFilters from "@/features/groceryList/components/VisibilityFilters";
-
 export const translateText = <
   Lang extends keyof typeof UIText,
   Component extends keyof typeof UIText[Lang],
@@ -93,7 +91,8 @@ export const UIText = {
     recipeDetailCard: {
       ingredients: 'Ingredients',
       instructions: 'Instructions',
-      of: 'of'
+      of: 'of',
+      addGroceries: 'Add to grocery list',
     },
     homePage: {
       recipe: 'Recipes'
@@ -117,7 +116,7 @@ export const UIText = {
     },
     groceryPage: {
       title: 'Grocery list',
-
+      emptyList: 'The grocery list is empty',
     }
   },
   sv: {
@@ -201,7 +200,8 @@ export const UIText = {
     recipeDetailCard: {
       ingredients: 'Ingredienser',
       instructions: 'Instruktioner',
-      of: ''
+      of: '',
+      addGroceries: 'Lägg till i inköpslistan',
     },
     homePage: {
       recipe: 'Recept'
@@ -225,7 +225,7 @@ export const UIText = {
     },
     groceryPage: {
       title: 'Inköpslista',
-
+      emptyList: 'Inköpslistan är tom',
     }
   }
 } as const

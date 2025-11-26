@@ -1,5 +1,5 @@
 import { selectAllFavourites } from "../../db/favourites/";
-import { FavouriteType } from "../../types";
+import { FavouriteType } from "../../types/";
 
 
 export const getAllFavouritesService = async (uid: string): Promise<FavouriteType[]> => {

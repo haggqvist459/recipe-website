@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
+import { loadData, LOCALSTORAGE_KEYS } from '@/utils'
 import { VISIBILITY_FILTERS } from './constants'
-import { ListState, VisibilityFilterData } from './types'
+import type { ListState, VisibilityFilterData } from './types'
+import type { IngredientType } from '@/types'
 
-
-const initialState: ListState = {
+const initialState: ListState = loadData<ListState>(LOCALSTORAGE_KEYS.GROCERY_LIST) ?? {
   visibilityFilter: VISIBILITY_FILTERS.UNMARKED,
   items: []
 }
@@ -16,9 +17,31 @@ const groceryListSlice = createSlice({
     addItem: (state, action: PayloadAction<string>) => {
       state.items.push({
         id: uuidv4(),
-        text: action.payload,
+        text: action.payload.trim(),
         completed: false
       })
+    },
+    addIngredients: (state, action: PayloadAction<IngredientType[]>
+    ) => {
+      action.payload.forEach((ingredient) => {
+        const existingItem = state.items.find(
+          (item) => item.text === ingredient.name && item.unit === ingredient.unit
+        );
+
+        if (existingItem) {
+          const currentAmount = parseFloat(existingItem.amount || '0');
+          const newAmount = parseFloat(ingredient.amount);
+          existingItem.amount = (currentAmount + newAmount).toString();
+        } else {
+          state.items.push({
+            id: uuidv4(),
+            text: ingredient.name.trim(),
+            amount: ingredient.amount,
+            unit: ingredient.unit,
+            completed: false
+          });
+        }
+      });
     },
     toggleCompletion: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.id === action.payload)
@@ -38,5 +61,5 @@ const groceryListSlice = createSlice({
   }
 })
 
-export const { addItem, toggleCompletion, deleteItem, clearList, setVisibilityFilter } = groceryListSlice.actions;
+export const { addItem, addIngredients, toggleCompletion, deleteItem, clearList, setVisibilityFilter } = groceryListSlice.actions;
 export default groceryListSlice.reducer;

@@ -1,6 +1,6 @@
 import { selectSingleRecipe } from "../../db";
 import { mapRecipeDbToUI } from "./mapRecipeUI";
-import { LanguageType, RecipeType } from "../../types";
+import { LanguageType, RecipeType } from "../../types/index.ts";
 
 
 export const fetchSingleRecipeService = async (id: string, language: LanguageType): Promise<RecipeType> => {

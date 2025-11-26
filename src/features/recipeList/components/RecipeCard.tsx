@@ -21,7 +21,9 @@ const RecipeCard = ({ recipe }: Props) => {
     >
       <div className="flex justify-between">
         <span className="label line-clamp-2">{recipe.title}</span>
-        <Favourite isToggled={isFavourite}/>
+        <div className="flex-shrink-0 self-start">
+          <Favourite isToggled={isFavourite} />
+        </div>
       </div>
       <span className="line-clamp-3 mt-1">{recipe.description}</span>
     </NavLink>

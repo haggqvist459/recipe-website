@@ -40,7 +40,7 @@ const ProfilePageTest = () => {
       </div>
 
       <div className="lg:flex lg:space-x-5 justify-start px-5">
-        <section
+        <div
           className={`
             lg:w-1/3 
             ${activeSection === "favourites" ? "block" : "hidden"} 
@@ -53,9 +53,9 @@ const ProfilePageTest = () => {
           ) : (
             favourites.map(favourite => <FavouriteListItem favourite={favourite} key={favourite.recipeId} />)
           )}
-        </section>
+        </div>
 
-        <section
+        <div
           className={`
             lg:w-1/3 
             ${activeSection === "settings" ? "block" : "hidden"} 
@@ -63,7 +63,7 @@ const ProfilePageTest = () => {
           `}
         >
           <SettingsSection />
-        </section>
+        </div>
       </div>
     </PageContainer>
   );

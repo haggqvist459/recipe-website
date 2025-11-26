@@ -1,6 +1,6 @@
 import { supabase } from "../client";
 import { DB_TABLES, DB_COLUMNS } from "@/utils/backend/constants";
-import { DbRecipeWithRelations, SortingFilterKey, LanguageType } from "../../types";
+import { DbRecipeWithRelations, SortingFilterKey, LanguageType } from "../../types/index.ts";
 
 const sortConfigMap: Record<SortingFilterKey, { column?: string; ascending?: boolean }> = {
   "a_z": { column: DB_COLUMNS.RECIPES.TITLE, ascending: true },

@@ -1,5 +1,5 @@
 import { insertFavourite } from "../../db/favourites";
-import { FavouriteType } from "../../types";
+import type { FavouriteType } from "../../types";
 
 export const setFavouriteService = async (uid: string, recipeId: string): Promise<FavouriteType> => {
 

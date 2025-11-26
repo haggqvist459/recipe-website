@@ -1,6 +1,6 @@
 import { insertRecipe } from "@/utils/backend/db";
 import { mapRecipeDraftToDb } from "./mapRecipeDraft";
-import { RecipeDraftType } from "../../types";
+import { RecipeDraftType } from "../../types/index.ts";
 import { attachRecipeCuisines, attachRecipeMainIngredients } from "../filters";
 import { selectUserRole } from "../../db/auth/getUserRole";
 

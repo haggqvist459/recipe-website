@@ -58,6 +58,65 @@ export type Database = {
           },
         ]
       }
+      grocery_list_items: {
+        Row: {
+          amount: string | null
+          completed: boolean | null
+          created_at: string
+          id: number
+          list_id: string | null
+          text: string
+          unit: string | null
+        }
+        Insert: {
+          amount?: string | null
+          completed?: boolean | null
+          created_at?: string
+          id?: number
+          list_id?: string | null
+          text: string
+          unit?: string | null
+        }
+        Update: {
+          amount?: string | null
+          completed?: boolean | null
+          created_at?: string
+          id?: number
+          list_id?: string | null
+          text?: string
+          unit?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "grocery_list_items_list_id_fkey"
+            columns: ["list_id"]
+            isOneToOne: false
+            referencedRelation: "grocery_lists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      grocery_lists: {
+        Row: {
+          created_at: string
+          id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       main_ingredients: {
         Row: {
           en_text: string | null

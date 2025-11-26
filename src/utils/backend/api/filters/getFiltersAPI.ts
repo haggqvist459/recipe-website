@@ -1,5 +1,5 @@
 import { getCuisinesService, getMainIngredientsService } from "@/utils/backend/services/";
-import { FilterOptionType, LanguageType } from "../../types";
+import { FilterOptionType, LanguageType } from "../../types/index.ts";
 
 
 export const getMainIngredients = async (language: LanguageType): Promise<FilterOptionType[]> => {

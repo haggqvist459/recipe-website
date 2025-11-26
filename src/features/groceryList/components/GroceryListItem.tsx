@@ -60,9 +60,9 @@ const GroceryListItem = ({ item, activeFilter }: Props) => {
       <div
         className="flex flex-grow space-x-1 items-center"
         onClick={() => handleToggle(item.id)}
-        >
+      >
         {item.completed ? <CheckSolidCircle /> : <Circle />}
-        <span className={`text-primary-text ${item.completed ? 'line-through' : ''}`}>{item.text}</span>
+        <span className={`text-primary-text ${item.completed ? 'line-through' : ''}`}>{item.text}{item.amount && `, ${item.amount} ${item.unit}`}</span>
       </div>
       <div
         className={`transition-all duration-300 overflow-hidden ${showDelete ? 'opacity-100' : 'opacity-0'}`}

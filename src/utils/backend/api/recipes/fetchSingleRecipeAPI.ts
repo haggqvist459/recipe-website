@@ -1,5 +1,5 @@
 import { fetchSingleRecipeService } from "../../services";
-import { LanguageType, RecipeType } from "../../types";
+import { LanguageType, RecipeType } from "../../types/index.ts";
 
 export const fetchSingleRecipeAPI = async (id: string, language: LanguageType): Promise<RecipeType> => {
 

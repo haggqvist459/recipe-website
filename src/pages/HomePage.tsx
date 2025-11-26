@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux';
 import { getCuisines, getMainIngredients } from '@/utils/backend/api/filters';
-import { PageContainer, Heading, LoadingComponent, ErrorComponent } from "@/components";
+import { PageContainer, Heading, ErrorComponent } from "@/components";
 import { RecipeList } from "@/features/recipeList";
 import { setFilterList, setActiveFilter, setActiveSorting, Filters, type SortingFilterKey } from '@/features/filters';
 import { FilterOptionType } from '@/types';

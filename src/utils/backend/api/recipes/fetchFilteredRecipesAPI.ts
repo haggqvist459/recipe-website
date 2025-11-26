@@ -1,4 +1,4 @@
-import { SortingFilterKey, FilterOptionType, RecipeType, LanguageType } from "../../types"
+import { SortingFilterKey, FilterOptionType, RecipeType, LanguageType } from "../../types/index.ts"
 import { fetchFilteredRecipesService } from "../../services/recipes/fetchFilteredRecipesService"
 
 export const fetchFilteredRecipesAPI = async (

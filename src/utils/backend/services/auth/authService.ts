@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/backend/db/client";
-import { UserRoleType } from "../../types";
+import { UserRoleType } from "../../types/index.ts";
 import { selectUserRole } from "../../db/auth/getUserRole";
 import type { AuthChangeEvent, Session } from "@supabase/supabase-js";
 

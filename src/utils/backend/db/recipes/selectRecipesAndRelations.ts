@@ -1,6 +1,6 @@
 import { supabase } from "../client";
 import { DB_TABLES, DB_COLUMNS } from "@/utils/backend/constants";
-import { DbRecipeWithRelations, LanguageType } from "../../types";
+import { DbRecipeWithRelations, LanguageType } from "../../types/index.ts";
 
 
 export const fetchRecipesWithRelationsFromDB = async (language: LanguageType): Promise<DbRecipeWithRelations[]> => {

@@ -1,6 +1,6 @@
 import type { AuthChangeEvent, Session } from "@supabase/supabase-js";
 import * as authService from "@/utils/backend/services/auth";
-import { UserRoleType } from "../../types";
+import { UserRoleType } from "../../types/index.ts";
 
 export const signIn = async (email: string, password: string) => {
   try {

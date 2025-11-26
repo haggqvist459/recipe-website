@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import { saveData, LOCALSTORAGE_KEYS } from "@/utils";
+import { saveData, LOCALSTORAGE_KEYS } from "@/utils";
 import recipeFormReducer from '@/features/recipeForm';
 import filterReducer from '@/features/filters';
 import favouriteReducer from '@/features/favourites';
@@ -14,14 +14,16 @@ export const store = configureStore({
   }
 })
 
-// store.subscribe(() => {
-//   const state = store.getState();
+store.subscribe(() => {
+  const state = store.getState();
 
-//   // Object.values(LOCALSTORAGE_KEYS).forEach((key) => {
-//   //   saveData(key, state.appState[key]);
-//   // });
+  // Object.values(LOCALSTORAGE_KEYS).forEach((key) => {
+  //   saveData(key, state.appState[key]);
+  // });
 
-// });
+  saveData(LOCALSTORAGE_KEYS.GROCERY_LIST, state.groceryList)
+
+});
 
 
 export type RootState = ReturnType<typeof store.getState>;

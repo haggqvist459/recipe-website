@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/backend/db/client";
-import { FilterOptionType, LanguageType } from "../../types/types";
+import { FilterOptionType, LanguageType } from "../../types/";
 import { DB_COLUMNS } from "@/utils/backend/constants";
 
 export const selectMainIngredients = async (language: LanguageType): Promise<FilterOptionType[]> => {

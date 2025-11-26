@@ -7,7 +7,9 @@ export const DB_TABLES = {
   CUISINES: 'cuisines',
   MAIN_INGREDIENTS: 'main_ingredients',
   USER_ROLES: 'user_role',
-  FAVOURITES: 'favourites'
+  FAVOURITES: 'favourites',
+  GROCERY_LIST: 'grocery_lists',
+  GROCERY_LIST_ITEMS: 'grocery_list_items',
 } as const
 
 export const DB_COLUMNS = {
@@ -51,6 +53,21 @@ export const DB_COLUMNS = {
     RECIPE_ID: 'recipe_id',
     CREATED_AT: 'created_at'
   },
+  GROCERY_LISTS: {
+    ID: 'id',
+    CREATED_AT: 'created_at',
+    UPDATED_AT: 'updated_at',
+    USER_ID: 'user_id'
+  },
+  GROCERY_LIST_ITEMS: {
+    ID: 'id',
+    CREATED_AT: 'created_at',
+    LIST_ID: 'list_id',
+    AMOUNT: 'amount',
+    TEXT: 'text',
+    UNIT: 'unit', 
+    COMPLETED: 'completed'
+  }
 } as const
 
 export const LANGUAGES = [
