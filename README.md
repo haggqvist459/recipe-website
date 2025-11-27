@@ -83,3 +83,4 @@
 - [ ] Button highlights 
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [ ] Refactor ButtonRow component - use Tailwind instead of JavaScript
+- [ ] Inspect sync of local and remote grocery lists

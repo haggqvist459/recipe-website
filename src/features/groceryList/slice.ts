@@ -80,5 +80,5 @@ const groceryListSlice = createSlice({
   }
 })
 
-export const { addItem, addIngredients, loadListFromDB, toggleCompletion, deleteItem, clearList, setVisibilityFilter } = groceryListSlice.actions;
+export const { addItem, addIngredients, loadListFromDB, toggleCompletion, deleteItem, clearList, setVisibilityFilter, resetState } = groceryListSlice.actions;
 export default groceryListSlice.reducer;

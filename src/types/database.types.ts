@@ -67,6 +67,7 @@ export type Database = {
           list_id: string | null
           text: string
           unit: string | null
+          user_id: string
         }
         Insert: {
           amount?: string | null
@@ -76,6 +77,7 @@ export type Database = {
           list_id?: string | null
           text: string
           unit?: string | null
+          user_id: string
         }
         Update: {
           amount?: string | null
@@ -85,6 +87,7 @@ export type Database = {
           list_id?: string | null
           text?: string
           unit?: string | null
+          user_id?: string
         }
         Relationships: [
           {

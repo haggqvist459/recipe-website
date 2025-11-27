@@ -10,7 +10,7 @@ export const saveGroceryListService = async (uid: string, list: ListItemData[]) 
     }
 
     // Step 2: Only if parent insert succeeds, insert all items
-    await insertGroceryListItems(parentRecord.id, list)
+    await insertGroceryListItems(uid, parentRecord.id, list)
 
   } catch (error) {
     throw error

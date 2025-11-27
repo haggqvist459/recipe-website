@@ -63,6 +63,7 @@ export const DB_COLUMNS = {
     ID: 'id',
     CREATED_AT: 'created_at',
     LIST_ID: 'list_id',
+    USER_ID: 'user_id',
     AMOUNT: 'amount',
     TEXT: 'text',
     UNIT: 'unit', 

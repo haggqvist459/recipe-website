@@ -2,7 +2,7 @@ import { useLanguage, useAuth } from "@/contexts";
 import { useAppSelector, useAppDispatch } from "@/redux";
 import { translateText } from "@/utils";
 import { getGroceryListAPI, setGroceryListAPI, deleteGroceryListAPI } from "@/utils/backend/api/groceries";
-import { loadListFromDB } from "@/features/groceryList";
+import { loadListFromDB, resetState, } from "@/features/groceryList";
 import { CloudArrowDown, CloudArrowUp, Trashcan } from "@/components";
 
 
@@ -30,8 +30,12 @@ const GroceryListSettings = () => {
     try {
       if (user) {
         const dbList = await getGroceryListAPI(user.id)
+        console.log("handleLoadList dbList: ", dbList)
+        console.log("handleLoadList dbList.updatedAt: ", dbList?.updatedAt)
+        console.log('handleLoadList groceryState.lastModified', groceryState.lastModified)
         if (!dbList) return // when toast exist, display 'no list in database or some such' 
         if (dbList.updatedAt > groceryState.lastModified) {
+          console.log('handleLoadList dbList.updateAt true ')
           dispatch(loadListFromDB(dbList.listItems))
         }
       }
@@ -45,6 +49,7 @@ const GroceryListSettings = () => {
     try {
       if (user) {
         await deleteGroceryListAPI(user.id)
+        dispatch(resetState())
         // add successmessage to toast confirming action 
       }
     } catch (error) {
