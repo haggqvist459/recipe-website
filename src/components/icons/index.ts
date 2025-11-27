@@ -6,10 +6,16 @@ export { default as CheckCross } from './CheckCross';
 export { default as CheckSolidCircle } from './CheckSolidCircle'
 export { default as Circle } from './Circle';
 export { default as Close } from './Close';
+export { default as CloudArrowDown } from './CloudArrowDown';
+export { default as CloudArrowUp } from './CloudArrowUp';
 export { default as CogWheel } from './CogWheel';
 export { default as EditIcon } from './EditIcon';
 export { default as ErrorIcon } from './ErrorIcon';
 export { default as Favourite } from './Favourite'
 export { default as Info } from './Info';
+export { default as ListArrowDown } from './ListArrowDown';
+export { default as ListArrowUp } from './ListArrowUp';
+export { default as SettingsCircle } from './SettingsCircle';
+export { default as SettingsSolidCircle } from './SettingsSolidCircle';
 export { default as SignOut } from './SignOut';
 export { default as Trashcan } from './Trashcan';

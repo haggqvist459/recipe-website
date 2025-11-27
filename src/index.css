@@ -18,6 +18,11 @@ textarea {
   box-sizing: border-box;
 }
 
+p,
+span {
+  color: #262626;
+}
+
 @font-face {
   font-family: 'Rubik';
   src: url('./assets/fonts/Rubik-VariableFont_wght.ttf') format('truetype');
@@ -100,6 +105,10 @@ textarea {
 
   .section-form {
     @apply w-full flex flex-col items-center space-y-2
+  }
+
+  .button-click {
+    @apply transition-opacity duration-100 active:opacity-50
   }
 }
 

@@ -13,6 +13,7 @@ export type ListItemData = {
 export type ListState = {
   visibilityFilter: VisibilityFilterData
   items: ListItemData[]
+  lastModified: string
 }
 
 export type VisibilityFilterData = typeof VISIBILITY_FILTERS[keyof typeof VISIBILITY_FILTERS];

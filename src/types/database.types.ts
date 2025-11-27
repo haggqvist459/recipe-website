@@ -63,7 +63,7 @@ export type Database = {
           amount: string | null
           completed: boolean | null
           created_at: string
-          id: number
+          id: string
           list_id: string | null
           text: string
           unit: string | null
@@ -72,7 +72,7 @@ export type Database = {
           amount?: string | null
           completed?: boolean | null
           created_at?: string
-          id?: number
+          id: string
           list_id?: string | null
           text: string
           unit?: string | null
@@ -81,7 +81,7 @@ export type Database = {
           amount?: string | null
           completed?: boolean | null
           created_at?: string
-          id?: number
+          id?: string
           list_id?: string | null
           text?: string
           unit?: string | null
@@ -100,19 +100,19 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          updated_at: string | null
+          updated_at: string
           user_id: string
         }
         Insert: {
           created_at?: string
           id?: string
-          updated_at?: string | null
+          updated_at?: string
           user_id?: string
         }
         Update: {
           created_at?: string
           id?: string
-          updated_at?: string | null
+          updated_at?: string
           user_id?: string
         }
         Relationships: []

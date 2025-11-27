@@ -117,7 +117,12 @@ export const UIText = {
     groceryPage: {
       title: 'Grocery list',
       emptyList: 'The grocery list is empty',
-    }
+    },
+    grocerySettings: {
+      save: 'Save list',
+      load: 'Load list',
+      delete: 'Delete list'
+    },
   },
   sv: {
     navMenu: {
@@ -226,7 +231,12 @@ export const UIText = {
     groceryPage: {
       title: 'Inköpslista',
       emptyList: 'Inköpslistan är tom',
-    }
+    },
+    grocerySettings: {
+      save: 'Spara listan',
+      load: 'Hämta listan',
+      delete: 'Radera listan'
+    },
   }
 } as const
 

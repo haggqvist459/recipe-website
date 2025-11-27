@@ -94,7 +94,7 @@ const RecipeDetails = ({ recipe }: Props) => {
                 ))}
               </ul>
               <button
-                className="absolute bottom-0 right-0 p-1 bg-lightblue rounded-full"
+                className="absolute bottom-0 right-0 p-1 bg-lightblue rounded-full button-click"
                 onClick={() => dispatch(addIngredients(recipe.ingredients))}
               >
                 <AddListItem size="size-8" />

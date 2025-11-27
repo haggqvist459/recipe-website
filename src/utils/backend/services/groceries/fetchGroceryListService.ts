@@ -12,7 +12,7 @@ export const fetchGroceryListService = async (uid: string): Promise<GroceryListT
         updatedAt: dbData.updated_at,
         userId: dbData.user_id,
         listItems: dbData.grocery_list_items.map(item => ({
-          id: item.id.toString(),
+          id: item.id,
           text: item.text,
           amount: item.amount || undefined,
           unit: (item.unit as Unit | '') || '',

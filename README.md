@@ -79,3 +79,7 @@
 - [ ] Fix the empty favourite list use case on profile page 
 - [ ] Fix placement of favourite icon on RecipeDetail.tsx
 - [ ] Lock favourite icon size on RecipeCard.tsx
+- [ ] hover: border on buttons in CreateRecipe components 
+- [ ] Button highlights 
+- [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
+- [ ] Refactor ButtonRow component - use Tailwind instead of JavaScript

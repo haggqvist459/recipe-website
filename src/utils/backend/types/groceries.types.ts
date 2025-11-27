@@ -11,7 +11,7 @@ export type ListItemData = {
 export type GroceryListType = { 
   id: string,
   createdAt: string, 
-  updatedAt: string | null,
+  updatedAt: string,
   userId: string,
   listItems: ListItemData[]
 }
