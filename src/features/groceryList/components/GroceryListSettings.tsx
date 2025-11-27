@@ -7,7 +7,6 @@ import { CloudArrowDown, CloudArrowUp, Trashcan } from "@/components";
 
 
 
-
 const GroceryListSettings = () => {
 
   const { language } = useLanguage()
