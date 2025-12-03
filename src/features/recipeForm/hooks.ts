@@ -1,23 +1,14 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { resetState } from "@/features/recipeForm";
 import { createRecipe } from "@/utils/backend/api";
-import { useState } from "react";
-import { ModalStateType } from "@/components";
-import { useAuthenticatedUser } from "@/contexts";
+import { useAuthenticatedUser, useNotification } from "@/contexts";
 
 export const useRecipeFormHandlers = () => {
   
-  const user = useAuthenticatedUser()
-
+  const user = useAuthenticatedUser();
+  const { setModalState } = useNotification();
   const recipeDraft = useAppSelector(state => state.recipeForm.recipeDraft);
   const dispatch = useAppDispatch();
-  const [modalState, setModalState] = useState<ModalStateType>({
-    isOpen: false,
-    title: "",
-    message: "",
-    onConfirm: () => { },
-    onCancel: undefined,
-  });
 
   const handleNavigation = (action: () => void) => {
     const formElement = document.querySelector("form");
@@ -39,7 +30,7 @@ export const useRecipeFormHandlers = () => {
           message: "Your recipe was successfully saved!",
           onConfirm: () => {
             dispatch(resetState());
-            setModalState(prev => ({ ...prev, isOpen: false }));
+            setModalState({ isOpen: false, title: '', message: '', onConfirm: () => {} });
           },
           onCancel: undefined,
         });
@@ -54,11 +45,11 @@ export const useRecipeFormHandlers = () => {
         isOpen: true,
         title: "Error Creating Recipe",
         message,
-        onConfirm: () => setModalState(prev => ({ ...prev, isOpen: false })),
+        onConfirm: () => setModalState({ isOpen: false, title: '', message: '', onConfirm: () => {} }),
         onCancel: undefined,
       });
     }
   };
 
-  return { handleNavigation, handleSubmit, modalState, setModalState };
+  return { handleNavigation, handleSubmit };
 };

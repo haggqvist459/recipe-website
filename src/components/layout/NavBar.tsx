@@ -23,6 +23,3 @@ const NavBar = () => {
 }
 
 export default NavBar;
-
-
-/* Replace text with a tilted mug */

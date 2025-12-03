@@ -25,7 +25,7 @@ const SlideWrapper = ({ activeKey, slides }: Props) => {
       setDirection(nextIndex > prevIndex ? 'right' : 'left');
       setPhase('exiting');
     }
-    // eslint-disable-next-line
+    
   }, [activeKey]);
 
   // Handle exit animation end: show entering component

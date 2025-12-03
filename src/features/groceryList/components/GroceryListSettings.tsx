@@ -1,4 +1,4 @@
-import { useLanguage, useAuth } from "@/contexts";
+import { useLanguage, useAuth, useNotification } from "@/contexts";
 import { useAppSelector, useAppDispatch } from "@/redux";
 import { translateText } from "@/utils";
 import { getGroceryListAPI, setGroceryListAPI, deleteGroceryListAPI } from "@/utils/backend/api/groceries";
@@ -14,6 +14,7 @@ type Props = {
 const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) => {
   const { language } = useLanguage()
   const { user } = useAuth()
+  const { showToast } = useNotification()
   const dispatch = useAppDispatch()
   const groceryState = useAppSelector(state => state.groceryList)
 
@@ -21,9 +22,10 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
     try {
       if (user) {
         await setGroceryListAPI(user.id, groceryState.items)
-        // add successmessage to toast confirming action 
+        showToast(translateText('grocerySettings', 'saveToastSuccess', language), 'success')
       }
     } catch (error) {
+      showToast(translateText('grocerySettings', 'saveToastError', language), 'error')
       throw error // implement proper error handling with error component
     }
   }
@@ -35,14 +37,18 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         console.log("handleLoadList dbList: ", dbList)
         console.log("handleLoadList dbList.updatedAt: ", dbList?.updatedAt)
         console.log('handleLoadList groceryState.lastModified', groceryState.lastModified)
-        if (!dbList) return // when toast exist, display 'no list in database or some such' 
-        if (dbList.updatedAt > groceryState.lastModified) {
+        if (!dbList) {
+          showToast(translateText('grocerySettings', 'loadToastNoList', language), 'info')
+        } 
+        else if (dbList.updatedAt > groceryState.lastModified) {
           console.log('handleLoadList dbList.updateAt true ')
           dispatch(loadListFromDB(dbList.listItems))
+          showToast(translateText('grocerySettings', 'loadToastSuccess', language), 'success')
         }
       }
     } catch (error) {
-      throw error // implement proper error handling with error component
+      showToast(translateText('grocerySettings', 'loadToastError', language), 'error')
+      throw error
     }
   }
 
@@ -51,10 +57,11 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
       if (user) {
         await deleteGroceryListAPI(user.id)
         dispatch(resetState())
-        // add successmessage to toast confirming action 
+        showToast(translateText('grocerySettings', 'deleteToastSuccess', language), 'success')
       }
     } catch (error) {
-      throw error // implement proper error handling with error component
+      showToast(translateText('grocerySettings', 'deleteToastError', language), 'error')
+      throw error 
     }
   }
 

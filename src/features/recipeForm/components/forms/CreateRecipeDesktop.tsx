@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";
-import { SlideWrapper, Modal } from "@/components";
+import { SlideWrapper } from "@/components";
 import { useRecipeFormHandlers } from "../../hooks";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
@@ -9,7 +9,7 @@ const CreateRecipeDesktop = () => {
 
 
   const { language } = useLanguage()
-  const { handleNavigation, handleSubmit, modalState } = useRecipeFormHandlers();
+  const { handleNavigation, handleSubmit } = useRecipeFormHandlers();
   const [viewMode, setViewMode] = useState<"Edit" | "Preview">("Edit");
 
   const desktopSlides = [
@@ -69,9 +69,6 @@ const CreateRecipeDesktop = () => {
           slides={desktopSlides}
         />
       </form>
-      <Modal
-        modalState={modalState}
-      />
     </div>
   );
 }

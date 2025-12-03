@@ -42,7 +42,7 @@ const GroceryListItem = ({ item, activeFilter }: Props) => {
     setTimeout(() => {
       setIsSliding(false);
       dispatch(toggleCompletion(id))
-    }, 300); // match your transition duration
+    }, 300); // match transition duration
   };
 
   return (

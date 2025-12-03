@@ -66,21 +66,26 @@
   - [x] Translate web elements between ENG/SWE (headings, menu labels etc)
   - [ ] Translate recipes between ENG/SWE
   - [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
-- [ ] Output.tsx too tightly coupled to single parent. Perhaps not a useful component in this project?
+- [ ] Refactor Output.tsx to include FadeInOutWrapper - allow fade effect on language change
+- [ ] Include FadeInOutWrapper on Heading.tsx - allow fade effect on language change 
 - [ ] Ensure similar structure on the backend layers 
   - [ ] Same try / catch principles 
   - [ ] Same import / export principles
   - [ ] Naming standards 
 - [ ] Review error handling across pages and components 
   - [ ] Admin Page must redirect to error in case of non admin roles 
-- [ ] Small toast component for undo actions / success messages 
-- [ ] Refactor RecipeDetails.tsx - remove double markup
+- [ ] Small toast component for success / error messages.
+  - [ ] Finalise the toast styling
+  - [ ] Add undo functionality?
+- [x] Refactor RecipeDetails.tsx - remove double markup
 - [ ] Look into FadeWrappers dubious useEffect 
-- [ ] Fix the empty favourite list use case on profile page 
-- [ ] Fix placement of favourite icon on RecipeDetail.tsx
-- [ ] Lock favourite icon size on RecipeCard.tsx
+- [x] Fix the empty favourite list use case on profile page 
+- [x] Fix placement of favourite icon on RecipeDetail.tsx
+- [x] Lock favourite icon size on RecipeCard.tsx
 - [ ] hover: border on buttons in CreateRecipe components 
-- [ ] Button highlights 
+- [ ] Button highlights - apply new utility from index.css on buttons
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [ ] Refactor ButtonRow component - use Tailwind instead of JavaScript
 - [ ] Inspect sync of local and remote grocery lists
+- [ ] Add null checks to grocery list db actions for more precise toast messages
+- [ ] Refactor all Modal usage to use the new Context 

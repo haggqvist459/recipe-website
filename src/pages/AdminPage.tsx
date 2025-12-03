@@ -18,10 +18,10 @@ const AdminPage = () => {
 
   return (
     <PageContainer>
-      {isLargeScreen ? 
-      <CreateRecipeDesktop />
-      : <CreateRecipeMobile />  
-    }
+      {isLargeScreen ?
+        <CreateRecipeDesktop />
+        : <CreateRecipeMobile />
+      }
     </PageContainer>
   );
 }

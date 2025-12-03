@@ -4,17 +4,19 @@ import './index.css'
 import App from './App.tsx'
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { AuthProvider, LanguageProvider } from '@/contexts';
+import { AuthProvider, LanguageProvider, NotificationProvider } from '@/contexts';
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <AuthProvider>
-        <LanguageProvider>
-          <App />
-        </LanguageProvider>
-      </AuthProvider>
+      <LanguageProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </NotificationProvider>
+      </LanguageProvider>
     </Provider>
-  </StrictMode>
+  </StrictMode >
 )

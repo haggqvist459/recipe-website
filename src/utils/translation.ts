@@ -121,7 +121,14 @@ export const UIText = {
     grocerySettings: {
       save: 'Save list',
       load: 'Load list',
-      delete: 'Delete list'
+      delete: 'Delete list',
+      loadToastSuccess: 'List successfully loaded.',
+      loadToastError: 'List did not load. Something went wrong.',
+      loadToastNoList: 'No list stored in database.',
+      saveToastSuccess: 'List successfully saved.',
+      saveToastError: 'List was not saved. Something went wrong.',
+      deleteToastSuccess: 'List successfully deleted.',
+      deleteToastError: 'List was not deleted. Something went wrong.',
     },
   },
   sv: {
@@ -235,7 +242,14 @@ export const UIText = {
     grocerySettings: {
       save: 'Spara listan',
       load: 'Hämta listan',
-      delete: 'Radera listan'
+      delete: 'Radera listan',
+      loadToastSuccess: 'Listan har laddats.',
+      loadToastError: 'Listan har inte laddats, något gick fel.',
+      loadToastNoList: 'Ingen lista sparad i databasen finns att hämta.',
+      saveToastSuccess: 'Listan har sparats.',
+      saveToastError: 'Listan har inte sparats, något gick fel.',
+      deleteToastSuccess: 'Listan har raderats.',
+      deleteToastError: 'Listan har inte raderats, något gick fel.',
     },
   }
 } as const

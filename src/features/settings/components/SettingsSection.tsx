@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Heading, Input, } from "@/components";
 import { Modal, type ModalStateType } from '@/components'
-import { useLanguage, useAuth } from "@/contexts";
+import { useLanguage, useAuth, useNotification } from "@/contexts";
 import { translateText } from "@/utils";
 import { updateUserCredentialsAPI } from "@/utils/backend/api/auth/updateUserAPI";
 
@@ -10,18 +10,11 @@ const SettingsSection = () => {
 
   const { user } = useAuth()
   const { language } = useLanguage()
+  const { setModalState } = useNotification()
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [currentPassword, setCurrentPassword] = useState('')
-  const [modalState, setModalState] = useState<ModalStateType>({
-    isOpen: false,
-    message: '',
-    onConfirm: () => { },
-    onCancel: () => { },
-    title: '',
-    showCancel: false
-  })
 
 
   const validateEmail = (email: string): void => {
@@ -158,7 +151,6 @@ const SettingsSection = () => {
       >
         {translateText('buttons', 'confirm', language)}
       </button>
-      <Modal modalState={modalState} />
     </div>
   )
 }
