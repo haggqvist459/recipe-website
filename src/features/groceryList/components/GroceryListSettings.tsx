@@ -3,12 +3,15 @@ import { useAppSelector, useAppDispatch } from "@/redux";
 import { translateText } from "@/utils";
 import { getGroceryListAPI, setGroceryListAPI, deleteGroceryListAPI } from "@/utils/backend/api/groceries";
 import { loadListFromDB, resetState, } from "@/features/groceryList";
-import { CloudArrowDown, CloudArrowUp, Trashcan } from "@/components";
+import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle, FadeInOutWrapper } from "@/components";
 
 
+type Props = {
+  showListSettings: boolean,
+  setShowListSettings: () => void
+}
 
-const GroceryListSettings = () => {
-
+const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) => {
   const { language } = useLanguage()
   const { user } = useAuth()
   const dispatch = useAppDispatch()
@@ -38,7 +41,6 @@ const GroceryListSettings = () => {
           dispatch(loadListFromDB(dbList.listItems))
         }
       }
-
     } catch (error) {
       throw error // implement proper error handling with error component
     }
@@ -57,28 +59,44 @@ const GroceryListSettings = () => {
   }
 
   return (
-    <div className="w-36">
+
+    <div className="relative">
       <button
-        className="w-full flex justify-between px-2 py-1 border-b-[1px] button-click"
-        onClick={() => handleSaveList()}
+        className="button-click p-2"
+        onClick={() => setShowListSettings()}
       >
-        <span className="font-light">{translateText('grocerySettings', 'save', language)}</span>
-        <CloudArrowUp />
+        <SettingsCircle />
       </button>
-      <button
-        className="w-full flex justify-between px-2 py-1 border-b-[1px] button-click"
-        onClick={() => handleLoadList()}
-      >
-        <span className="font-light">{translateText('grocerySettings', 'load', language)}</span>
-        <CloudArrowDown />
-      </button>
-      <button
-        className="w-full flex justify-between px-2 py-1 border-b-[1px] button-click"
-        onClick={() => handleDeleteList()}
-      >
-        <span className="font-light">{translateText('grocerySettings', 'delete', language)}</span>
-        <Trashcan />
-      </button>
+      <FadeInOutWrapper isVisible={showListSettings}>
+          <div
+            className="absolute top-full right-0 z-50 inset-shadow-md/15 shadow-md/15"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-36 bg-primary-bg">
+              <button
+                className="w-full flex justify-between px-2 py-1 border-b-[1px] button-click"
+                onClick={() => handleSaveList()}
+              >
+                <span className="font-light">{translateText('grocerySettings', 'save', language)}</span>
+                <CloudArrowUp />
+              </button>
+              <button
+                className="w-full flex justify-between px-2 py-1 border-b-[1px] button-click"
+                onClick={() => handleLoadList()}
+              >
+                <span className="font-light">{translateText('grocerySettings', 'load', language)}</span>
+                <CloudArrowDown />
+              </button>
+              <button
+                className="w-full flex justify-between px-2 py-1 border-b-[1px] button-click"
+                onClick={() => handleDeleteList()}
+              >
+                <span className="font-light">{translateText('grocerySettings', 'delete', language)}</span>
+                <Trashcan />
+              </button>
+            </div>
+          </div>
+      </FadeInOutWrapper>
     </div>
   );
 }
