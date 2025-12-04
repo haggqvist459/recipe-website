@@ -88,4 +88,4 @@
 - [ ] Refactor ButtonRow component - use Tailwind instead of JavaScript
 - [ ] Inspect sync of local and remote grocery lists
 - [ ] Add null checks to grocery list db actions for more precise toast messages
-- [ ] Refactor all Modal usage to use the new Context 
+- [x] Refactor all Modal usage to use the new Context 
