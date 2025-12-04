@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { saveData, LOCALSTORAGE_KEYS } from "@/utils";
-import recipeFormReducer from '@/features/createRecipe';
+import createRecipeReducer from '@/features/recipeForms';
 import filterReducer from '@/features/filters';
 import favouriteReducer from '@/features/favourites';
 import groceryListReducer from '@/features/groceryList';
 
 export const store = configureStore({
   reducer: {
-    recipeForm: recipeFormReducer,
+    createRecipe: createRecipeReducer,
     filters: filterReducer,
     favourites: favouriteReducer,
     groceryList: groceryListReducer

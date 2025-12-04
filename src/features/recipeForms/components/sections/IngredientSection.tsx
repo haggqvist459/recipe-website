@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { UNITS, translateText } from "@/utils";
 import { Input, Dropdown, createDropdownOptions, Heading, Trashcan, ToggleButton, FadeWrapper } from "@/components";
-import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/createRecipe";
+import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/recipeForms";
 import { parseIngredientList } from "../../utils/parseIngredients";
 import SectionWrapper from "../shared/SectionWrapper";
 import { useLanguage } from "@/contexts";

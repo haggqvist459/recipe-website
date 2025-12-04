@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { PageContainer, Heading, LoadingComponent, SignOut } from "@/components";
+import { PageContainer, Heading, LoadingComponent, SignOut, HorizontalMenuWrapper } from "@/components";
 import { FavouriteListItem } from "@/features/favourites";
 import { SettingsSection } from "@/features/settings";
 import { useLanguage } from "@/contexts";
@@ -16,20 +16,20 @@ const ProfilePageTest = () => {
 
   return (
     <PageContainer>
-      <div className="lg:hidden h-9 bg-primary flex items-center justify-center space-x-5 font-medium">
-        <button
-          onClick={() => setActiveSection("favourites")}
-          className={`text-primary-text ${activeSection === "favourites" ? "underline decoration-2" : "font-light"}`}
-        >
-          {translateText('profile', 'favouriteRecipes', language)}
-        </button>
-        <button
-          onClick={() => setActiveSection("settings")}
-          className={`text-primary-text ${activeSection === "settings" ? "underline decoration-2" : "font-light"}`}
-        >
-          {translateText('profile', 'settings', language)}
-        </button>
-      </div>
+      <HorizontalMenuWrapper lgHidden={true}>
+          <button
+            onClick={() => setActiveSection("favourites")}
+            className={`text-primary-text ${activeSection === "favourites" ? "underline decoration-2" : "font-light"}`}
+          >
+            {translateText('profile', 'favouriteRecipes', language)}
+          </button>
+          <button
+            onClick={() => setActiveSection("settings")}
+            className={`text-primary-text ${activeSection === "settings" ? "underline decoration-2" : "font-light"}`}
+          >
+            {translateText('profile', 'settings', language)}
+          </button>
+      </HorizontalMenuWrapper>
       <div className="my-5 px-5 flex justify-between items-center">
         <Heading title={translateText("profile", 'title', language)} />
         <div onClick={async () => {

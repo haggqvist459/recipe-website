@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { resetState } from "@/features/createRecipe";
+import { resetState } from "@/features/recipeForms";
 import { createRecipe } from "@/utils/backend/api";
 import { useAuthenticatedUser, useNotification } from "@/contexts";
 
@@ -7,7 +7,7 @@ export const useRecipeFormHandlers = () => {
   
   const user = useAuthenticatedUser();
   const { setModalState } = useNotification();
-  const recipeDraft = useAppSelector(state => state.recipeForm.recipeDraft);
+  const recipeDraft = useAppSelector(state => state.createRecipe.recipeDraft);
   const dispatch = useAppDispatch();
 
   const handleNavigation = (action: () => void) => {

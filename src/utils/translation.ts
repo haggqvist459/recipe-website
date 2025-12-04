@@ -46,6 +46,12 @@ export const UIText = {
       category: 'Category',
       sort: 'Sort By'
     },
+    createRecipe: {
+      ingredients: 'Ingredients',
+      instructions: 'Instructions',
+      metadata: 'Details',
+      preview: 'Preview',
+    },
     metadata: {
       create: 'Create recipe',
       weekly: 'Weekly list inclusion',
@@ -167,6 +173,12 @@ export const UIText = {
       cuisines: 'Kök',
       category: 'Kategori',
       sort: 'Sortera'
+    },
+    createRecipe: {
+      ingredients: 'Ingredienser',
+      instructions: 'Instruktioner',
+      metadata: 'Detaljer',
+      preview: 'Förhandsgranskning',
     },
     metadata: {
       create: 'Skapa recept',

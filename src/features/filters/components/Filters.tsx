@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowIcon } from '@/components'
+import { ArrowIcon, HorizontalMenuWrapper } from '@/components'
 import { SORTING_FILTERS } from '../constants'
 import { SortingFilterKey } from '../types'
 import { FilterOptionType } from '@/types'
@@ -33,47 +33,46 @@ const Filters = ({
 
   return (
     <div className="px-3 w-full bg-primary flex flex-col items-center mx-auto">
-      <div className="h-9 flex items-center justify-center space-x-5 font-medium">
-        <button
-          className="flex space-x-1 items-center"
-          onClick={() => setShowTypes(prev => !prev)}
-          disabled={typeFilters.length === 0}
-        >
-          {translateText('filter', 'category', language)}
-          <div
-            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showTypes ? 'rotate-0' : '-rotate-90'
-              }`}
+      <HorizontalMenuWrapper>
+          <button
+            className="flex space-x-1 items-center"
+            onClick={() => setShowTypes(prev => !prev)}
+            disabled={typeFilters.length === 0}
           >
-            <ArrowIcon strokeWidth={3} />
-          </div>
-        </button>
-        <button
-          className="flex space-x-1 items-center"
-          onClick={() => setShowCuisines(prev => !prev)}
-          disabled={cuisineFilters.length === 0}
-        >
-          {translateText('filter', 'cuisines', language)}
-          <div
-            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showCuisines ? 'rotate-0' : '-rotate-90'
-              }`}
+            {translateText('filter', 'category', language)}
+            <div
+              className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showTypes ? 'rotate-0' : '-rotate-90'
+                }`}
+            >
+              <ArrowIcon strokeWidth={3} />
+            </div>
+          </button>
+          <button
+            className="flex space-x-1 items-center"
+            onClick={() => setShowCuisines(prev => !prev)}
+            disabled={cuisineFilters.length === 0}
           >
-            <ArrowIcon strokeWidth={3} />
-          </div>
-        </button>
-        <button
-          className="flex space-x-1 items-center"
-          onClick={() => setShowSort(prev => !prev)}
-        >
-          {translateText('filter', 'sort', language)}
-          <div
-            className={`transform transition-transform duration-300 ease-in-out ${showSort ? 'rotate-0' : '-rotate-90'
-              }`}
+            {translateText('filter', 'cuisines', language)}
+            <div
+              className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showCuisines ? 'rotate-0' : '-rotate-90'
+                }`}
+            >
+              <ArrowIcon strokeWidth={3} />
+            </div>
+          </button>
+          <button
+            className="flex space-x-1 items-center"
+            onClick={() => setShowSort(prev => !prev)}
           >
-            <ArrowIcon strokeWidth={3} />
-          </div>
-        </button>
-      </div>
-
+            {translateText('filter', 'sort', language)}
+            <div
+              className={`transform transition-transform duration-300 ease-in-out ${showSort ? 'rotate-0' : '-rotate-90'
+                }`}
+            >
+              <ArrowIcon strokeWidth={3} />
+            </div>
+          </button>
+      </HorizontalMenuWrapper>
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
         <div className={`flex px-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap space-x-4 duration-300 ease-in-out ${showTypes ? 'translate-y-0 h-[32px]' : '-translate-y-full h-0'}`}>
           {typeFilters.map(typeFilter => (

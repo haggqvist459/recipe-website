@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { PageContainer } from "@/components";
-import { CreateRecipeMobile, CreateRecipeDesktop } from "@/features/createRecipe/components";
+import { CreateRecipeMobile, CreateRecipeDesktop } from "@/features/recipeForms/components";
 
 const AdminPage = () => {
 

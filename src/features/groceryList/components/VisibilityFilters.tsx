@@ -3,6 +3,7 @@ import { VISIBILITY_FILTERS } from "../constants";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 import { setVisibilityFilter } from "../slice";
+import { HorizontalMenuWrapper } from "@/components";
 
 const VisibilityFilters = () => {
 
@@ -11,7 +12,7 @@ const VisibilityFilters = () => {
   const { language } = useLanguage()
 
   return (
-    <div className="h-9 bg-primary flex items-center justify-center space-x-5 font-medium">
+    <HorizontalMenuWrapper>
       {Object.values(VISIBILITY_FILTERS).map(filter => (
         <button
           key={filter}
@@ -21,7 +22,7 @@ const VisibilityFilters = () => {
           {translateText('visibilityFilters', filter, language)}
         </button>
       ))}
-    </div>
+    </HorizontalMenuWrapper>
   );
 }
 
