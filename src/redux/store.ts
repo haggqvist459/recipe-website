@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { saveData, LOCALSTORAGE_KEYS } from "@/utils";
-import recipeFormReducer from '@/features/recipeForm';
+import recipeFormReducer from '@/features/createRecipe';
 import filterReducer from '@/features/filters';
 import favouriteReducer from '@/features/favourites';
 import groceryListReducer from '@/features/groceryList';

@@ -16,7 +16,7 @@ export const UIText = {
       profile: 'Profile',
       signIn: 'Sign in',
       groceries: 'Grocery List',
-
+      createRecipe: 'Add Recipe',
     },
     buttons: {
       next: "Next",
@@ -138,6 +138,7 @@ export const UIText = {
       profile: 'Profil',
       signIn: 'Logga in',
       groceries: 'Inköpslista',
+      createRecipe: 'Skapa Recept',
     },
     buttons: {
       next: "Nästa",

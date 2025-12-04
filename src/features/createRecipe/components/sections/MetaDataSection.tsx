@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import * as filtersApi from "@/utils/backend/api/";
-import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/recipeForm";
+import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/createRecipe";
 import { setFilterList, ButtonRow } from "@/features/filters";
 import { FilterOptionType } from '@/types';
 import SectionWrapper from "../shared/SectionWrapper";

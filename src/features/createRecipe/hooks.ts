@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { resetState } from "@/features/recipeForm";
+import { resetState } from "@/features/createRecipe";
 import { createRecipe } from "@/utils/backend/api";
 import { useAuthenticatedUser, useNotification } from "@/contexts";
 

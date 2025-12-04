@@ -46,7 +46,8 @@ export const DB_COLUMNS = {
     ID: 'id',
     CREATED_AT: 'created_at',
     USER_ID: 'user_id',
-    ROLE: 'role'
+    ROLE: 'role',
+    RANK: 'rank'
   },
   FAVOURITES: {
     USER_ID: 'user_id',

@@ -6,7 +6,8 @@ export const ROUTES = {
   DETAILS_PAGE: '/recipes/',
   PROFILE: '/profile',
   SIGN_IN: '/signin',
-  GROCERY_LIST: '/groceries'
+  GROCERY_LIST: '/groceries',
+  CREATE_RECIPE: '/create',
 } as const;
 
 export const NAVBAR_OPTIONS = {
@@ -34,7 +35,13 @@ export const NAVBAR_OPTIONS = {
     route: ROUTES.GROCERY_LIST,
     id: 5, 
     labelKey: 'groceries'
+  },
+  CREATE_RECIPE: {
+    route: ROUTES.CREATE_RECIPE,
+    id: 6,
+    labelKey: 'createRecipe'
   }
+
 } as const ;
 
 

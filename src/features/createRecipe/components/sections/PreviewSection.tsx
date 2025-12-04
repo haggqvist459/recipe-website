@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { selectIngredients, selectInstructions, selectMetadata, setCurrentSection } from "@/features/recipeForm";
+import { selectIngredients, selectInstructions, selectMetadata, setCurrentSection } from "@/features/createRecipe";
 import SectionWrapper from "../shared/SectionWrapper";
 import { Heading, Output } from '@/components'
 import { useLanguage } from "@/contexts";

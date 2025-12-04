@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { Heading, Input, } from "@/components";
-import { Modal, type ModalStateType } from '@/components'
 import { useLanguage, useAuth, useNotification } from "@/contexts";
 import { translateText } from "@/utils";
 import { updateUserCredentialsAPI } from "@/utils/backend/api/auth/updateUserAPI";

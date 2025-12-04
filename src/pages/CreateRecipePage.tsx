@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PageContainer } from "@/components";
 import { CreateRecipeMobile, CreateRecipeDesktop } from "@/features/createRecipe/components";
 
-const AdminPage = () => {
+const CreateRecipePage = () => {
 
   const [isLargeScreen, setIsLargeScreen] = useState(() =>
     window.matchMedia('(min-width: 1024px)').matches
@@ -26,5 +26,4 @@ const AdminPage = () => {
   );
 }
 
-export default AdminPage;
-
+export default CreateRecipePage;

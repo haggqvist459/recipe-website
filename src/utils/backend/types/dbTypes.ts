@@ -19,4 +19,7 @@ export type DbRecipeWithRelations = Tables<'recipes'> & {
   }[]
 }
 
-export type UserRoleType = 'admin' | 'user'
+export type UserRoleType = {
+  role: 'admin' | 'user' | 'webmaster',
+  rank: number
+}

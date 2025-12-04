@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/recipeForm";
+import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/createRecipe";
 import { Input, Heading, Trashcan, ToggleButton, FadeWrapper } from "@/components";
 import SectionWrapper from "../shared/SectionWrapper";
 import { parseInstructionList } from "../../utils/parseInstructions";

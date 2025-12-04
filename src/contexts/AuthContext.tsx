@@ -2,7 +2,10 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import { User } from "@supabase/supabase-js";
 import * as authApi from "@/utils/backend/api/auth";
 
-type UserRoleType = 'admin' | 'user'
+type UserRoleType = {
+  role: 'admin' | 'user' | 'webmaster',
+  rank: number
+}
 type AuthContextType = {
   user: User | null
   isSignedIn: boolean
