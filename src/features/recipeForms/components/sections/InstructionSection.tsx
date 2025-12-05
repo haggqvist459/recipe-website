@@ -9,15 +9,16 @@ import { translateText } from "@/utils";
 
 type Props = {
   handleNavigation?: (action: () => void) => void;
+  toggleButtonState?: boolean
 };
 
 
-const InstructionSection = ({ handleNavigation }: Props) => {
+const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Props) => {
 
   const { language } = useLanguage()
   const instructions = useAppSelector(selectInstructions);
   const [localInstructions, setLocalInstructions] = useState(instructions);
-  const [displayPasteView, setDisplayPasteView] = useState(true)
+  const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
   const [pastedText, setPastedText] = useState("");
   const dispatch = useAppDispatch();
 

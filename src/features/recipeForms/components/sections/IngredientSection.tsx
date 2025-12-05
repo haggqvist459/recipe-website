@@ -9,17 +9,18 @@ import { useLanguage } from "@/contexts";
 
 
 type Props = {
-  handleNavigation?: (action: () => void) => void;
+  handleNavigation?: (action: () => void) => void,
+  toggleButtonState?: boolean
 };
 
-const IngredientSection = ({ handleNavigation }: Props) => {
+const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props) => {
 
 
   const { language } = useLanguage()
   const ingredients = useAppSelector(selectIngredients)
   const dispatch = useAppDispatch()
   const [localIngredients, setLocalIngredients] = useState(ingredients)
-  const [displayPasteView, setDisplayPasteView] = useState(true)
+  const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
   const [pastedText, setPastedText] = useState("");
 
   const unitOptions = createDropdownOptions(UNITS)

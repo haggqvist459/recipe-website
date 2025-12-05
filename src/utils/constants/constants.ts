@@ -8,6 +8,7 @@ export const ROUTES = {
   SIGN_IN: '/signin',
   GROCERY_LIST: '/groceries',
   CREATE_RECIPE: '/create',
+  EDIT_RECIPE: ':id',
 } as const;
 
 export const NAVBAR_OPTIONS = {

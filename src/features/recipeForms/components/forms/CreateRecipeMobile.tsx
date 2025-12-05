@@ -26,39 +26,7 @@ const CreateRecipeMobile = () => {
 
 
   return (
-    <div className="">
-      <HorizontalMenuWrapper>
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Metadata" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Metadata")))
-            setActiveSection('Metadata')
-          }}
-        >
-          {translateText('createRecipe', 'metadata', language)}
-        </button>
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Ingredients" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Ingredients")))
-            setActiveSection('Ingredients')
-          }}
-        >
-          {translateText('createRecipe', 'ingredients', language)}
-        </button>
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Instructions" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Instructions")))
-            setActiveSection('Instructions')
-          }}
-        >
-          {translateText('createRecipe', 'instructions', language)}
-        </button>
-      </HorizontalMenuWrapper>
+    <div className="my-2">
       <form onSubmit={handleSubmit} id="create-recipe-form">
         <SlideWrapper
           activeKey={currentSection}

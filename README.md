@@ -89,3 +89,4 @@
 - [ ] Inspect sync of local and remote grocery lists
 - [ ] Add null checks to grocery list db actions for more precise toast messages
 - [x] Refactor all Modal usage to use the new Context 
+- [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
