@@ -2,8 +2,8 @@ export const ROUTES = {
   HOME: '/',
   ADMIN: '/admin',
   ERROR: '/*',
-  DETAILS: "/recipes/:id",
-  DETAILS_PAGE: '/recipes/',
+  RECIPES: '/recipes',
+  DETAILS: ":id",
   PROFILE: '/profile',
   SIGN_IN: '/signin',
   GROCERY_LIST: '/groceries',
@@ -14,32 +14,44 @@ export const NAVBAR_OPTIONS = {
   HOME: {
     route: ROUTES.HOME,
     id: 1,
-    labelKey: 'home'
+    labelKey: 'home',
+    end: true,
+  },
+  RECIPES: {
+    route: ROUTES.RECIPES,
+    id: 2,
+    labelKey: 'recipes',
+    end: false,
   },
   ADMIN: {
     route: ROUTES.ADMIN,
-    id: 2,
-    labelKey: 'admin'
+    id: 3,
+    labelKey: 'admin',
+    end: true,
   },
   PROFILE: {
     route: ROUTES.PROFILE,
-    id: 3,
-    labelKey: 'profile'
+    id: 4,
+    labelKey: 'profile',
+    end: true,
   },
   SIGN_IN: {
     route: ROUTES.SIGN_IN,
-    id: 4,
-    labelKey: 'signIn'
+    id: 5,
+    labelKey: 'signIn',
+    end: true,
   },
   GROCERY_LIST: {
     route: ROUTES.GROCERY_LIST,
-    id: 5, 
-    labelKey: 'groceries'
+    id: 6, 
+    labelKey: 'groceries',
+    end: true,
   },
   CREATE_RECIPE: {
     route: ROUTES.CREATE_RECIPE,
-    id: 6,
-    labelKey: 'createRecipe'
+    id: 7,
+    labelKey: 'createRecipe',
+    end: true,
   }
 
 } as const ;

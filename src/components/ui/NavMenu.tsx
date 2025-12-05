@@ -14,29 +14,29 @@ const NavMenu = ({ isExpanded, onClick }: Props) => {
   const { language } = useLanguage()
   const { userRole } = useAuth();
   const linkClass = ({ isActive }: { isActive: boolean }) => isActive
-    ? 'text-primary-text underline decoration-2 hover:text-primary-text' //active link classes 
-    : 'text-primary-text' //inactive link classes 
+    ? 'underline decoration-2' //active link classes 
+    : '' //inactive link classes 
 
   let menuOptions;
 
   switch (userRole?.role) {
     case 'webmaster':
-      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.CREATE_RECIPE, NAVBAR_OPTIONS.ADMIN]
+      menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.CREATE_RECIPE, NAVBAR_OPTIONS.ADMIN]
       break;
     case 'admin':
-      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.CREATE_RECIPE]
+      menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.CREATE_RECIPE]
       break;
     case 'user':
-      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE]
+      menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE]
       break;
     default:
-      menuOptions = [NAVBAR_OPTIONS.HOME, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.SIGN_IN]
+      menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.SIGN_IN]
       break;
   }
 
-  const menuItems = menuOptions.map(({ route, id, labelKey }) => (
-    <NavLink to={route} key={id} className={linkClass} onClick={onClick}>
-      <span className="text-lg font-semibold hover:font-bold">{translateText('navMenu', labelKey, language)}</span>
+  const menuItems = menuOptions.map(({ route, id, labelKey, end }) => (
+    <NavLink to={route} key={id} className={linkClass} onClick={onClick} end={end}>
+      <span className="font-semibold hover:font-bold">{translateText('navMenu', labelKey, language)}</span>
     </NavLink>
   ))
 
@@ -44,7 +44,7 @@ const NavMenu = ({ isExpanded, onClick }: Props) => {
   return (
     <div className="overflow-hidden transition-all duration-500 ease-in-out" style={{ height: isExpanded ? '36px' : '0px' }}>
       <div className="relative w-full mx-auto">
-        <div className={`flex px-3 items-center justify-start md:justify-end overflow-x-auto whitespace-nowrap space-x-4 duration-500 ease-in-out ${isExpanded ? "translate-y-0" : "-translate-y-full"
+        <div className={`flex px-5 items-center justify-start md:justify-end overflow-x-auto whitespace-nowrap space-x-4 duration-500 ease-in-out ${isExpanded ? "translate-y-0" : "-translate-y-full"
           }`}
         >
           {menuItems}

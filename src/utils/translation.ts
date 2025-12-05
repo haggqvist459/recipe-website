@@ -11,7 +11,8 @@ export const translateText = <
 export const UIText = {
   en: {
     navMenu: {
-      home: 'Recipes',
+      home: 'Home',
+      recipes: 'Recipes',
       admin: 'Admin',
       profile: 'Profile',
       signIn: 'Sign in',
@@ -139,7 +140,8 @@ export const UIText = {
   },
   sv: {
     navMenu: {
-      home: 'Recept',
+      home: 'Hem',
+      recipes: 'Recept',
       admin: 'Admin',
       profile: 'Profil',
       signIn: 'Logga in',
