@@ -1,21 +1,13 @@
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { HorizontalMenuWrapper, SlideWrapper } from "@/components";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { useAppSelector } from "@/redux/hooks";
+import { SlideWrapper } from "@/components";
 import { useRecipeFormHandlers } from "@/features/recipeForms/hooks";
 import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";
-import { setCurrentSection } from "../../slice";
-import { SECTIONS } from "../../constants";
 
 
 const CreateRecipeMobile = () => {
 
-  const { language } = useLanguage();
-  const currentSection = useAppSelector(state => state.createRecipe.currentSection)
-  const dispatch = useAppDispatch()
+  const currentSection = useAppSelector(state => state.recipeForms.currentSection)
   const { handleNavigation, handleSubmit } = useRecipeFormHandlers();
-  const [activeSection, setActiveSection] = useState<(typeof SECTIONS)[number]>('Metadata')
 
   const mobileSlides = [
     { key: "Metadata", component: <MetaDataSection handleNavigation={handleNavigation} /> },

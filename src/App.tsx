@@ -22,7 +22,7 @@ const App = () => {
           <Route element={<AuthLayout />}>
             <Route path={ROUTES.ADMIN}>
               <Route index element={<AdminPage />} />
-              <Route element={<EditRecipePage />}/>
+              <Route path={ROUTES.EDIT_RECIPE} element={<EditRecipePage />}/>
             </Route>
 
             <Route path={ROUTES.CREATE_RECIPE} element={<CreateRecipePage />} />

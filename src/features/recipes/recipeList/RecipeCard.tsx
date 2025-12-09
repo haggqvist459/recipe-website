@@ -15,7 +15,7 @@ const RecipeCard = ({ recipe }: Props) => {
   return (
     <NavLink
       key={recipe.id}
-      to={ROUTES.RECIPES +  '/' + recipe.id}
+      to={ROUTES.RECIPES + '/' + recipe.id}
       state={{ recipe }}
       className="flex flex-col bg-white p-2 rounded-sm inset-shadow-xs/15 shadow-sm/15"
     >
@@ -30,4 +30,4 @@ const RecipeCard = ({ recipe }: Props) => {
   )
 }
 
-export default RecipeCard;
+export default RecipeCard; 

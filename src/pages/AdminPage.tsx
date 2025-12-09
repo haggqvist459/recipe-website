@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
 import { PageContainer } from "@/components";
-import EditRecipePage from './EditRecipePage'
+import { RecipeManagementList } from "@/features/recipes/recipeManagement";
+
 
 const AdminPage = () => {
 
   return (
     <PageContainer>
-      <EditRecipePage />
+      <RecipeManagementList />
     </PageContainer>
   );
 }

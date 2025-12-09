@@ -1,22 +1,19 @@
 import { useState, useEffect } from 'react'
-import { useAppSelector } from '@/redux/hooks';
-import { fetchFilteredRecipesAPI } from '@/utils/backend/api/recipes';
+import { fetchRecipesAPI } from '@/utils/backend/api/recipes';
 import { RecipeType, } from '@/types';
-import RecipeCard from './RecipeCard';
 import { LoadingComponent, ErrorComponent } from "@/components";
 import { useLanguage, } from '@/contexts';
+import RecipeManagementCard from './RecipeManagementCard';
 
-const RecipeList = () => {
+const RecipeManagementList = () => {
 
   const { language } = useLanguage()
-  const selectedTypeFilters = useAppSelector(state => state.filters.selectedTypeFilters);
-  const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters);
-  const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter);
 
   const [recipeList, setRecipeList] = useState<RecipeType[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+
 
   useEffect(() => {
     setLoading(true);
@@ -24,14 +21,8 @@ const RecipeList = () => {
 
     const loadRecipes = async () => {
       try {
-        const fetchedRecipes = await fetchFilteredRecipesAPI({
-          sortingFilter: selectedSortingFilter,
-          typeFilters: selectedTypeFilters,
-          cuisineFilters: selectedCuisineFilters,
-          language
-        });
-
-        setRecipeList(fetchedRecipes);
+        const fetchedRecipes = await fetchRecipesAPI(language)
+        setRecipeList(fetchedRecipes)
 
       } catch (error) {
         if (error instanceof Error) {
@@ -45,8 +36,7 @@ const RecipeList = () => {
     };
 
     loadRecipes();
-  }, [selectedCuisineFilters, selectedTypeFilters, selectedSortingFilter]);
-
+  }, []);
 
   if (loading) {
     return <LoadingComponent />;
@@ -58,13 +48,11 @@ const RecipeList = () => {
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-10'>
-      {recipeList.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
+      {recipeList.map(recipe => (
+        <RecipeManagementCard key={recipe.id} recipe={recipe}/>
       ))}
-    </div >
-  )
+    </div>
+  );
 }
 
-export default RecipeList;
-
-
+export default RecipeManagementList;

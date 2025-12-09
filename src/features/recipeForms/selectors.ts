@@ -2,7 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/store";
 
 export const selectMetadata = createSelector(
-  (state: RootState) => state.createRecipe.recipeDraft,
+  (state: RootState) => state.recipeForms.recipeDraft,
   (recipeDraft) => ({
     title: recipeDraft.title,
     description: recipeDraft.description,
@@ -13,7 +13,7 @@ export const selectMetadata = createSelector(
 );
 
 export const selectIngredients = (state: RootState) =>
-  state.createRecipe.recipeDraft.ingredients;
+  state.recipeForms.recipeDraft.ingredients;
 
 export const selectInstructions = (state: RootState) =>
-  state.createRecipe.recipeDraft.instructions;
+  state.recipeForms.recipeDraft.instructions;

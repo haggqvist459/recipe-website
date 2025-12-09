@@ -90,3 +90,4 @@
 - [ ] Add null checks to grocery list db actions for more precise toast messages
 - [x] Refactor all Modal usage to use the new Context 
 - [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
+- [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 

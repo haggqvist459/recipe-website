@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { PageContainer, ErrorComponent, LoadingComponent } from "@/components";
 import { useLocation, useParams } from "react-router-dom";
 import { RecipeType } from "@/types";
-import { RecipeDetails } from "@/features/recipeList/components";
+import { RecipeDetails } from "@/features/recipes/recipeList";
 import { fetchSingleRecipeAPI } from "@/utils/backend/api/recipes/fetchSingleRecipeAPI";
 import { useLanguage } from "@/contexts";
 

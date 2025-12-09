@@ -12,7 +12,7 @@ import { SECTIONS } from "../../constants";
 const EditRecipeMobile = () => {
 
   const { language } = useLanguage();
-  const currentSection = useAppSelector(state => state.createRecipe.currentSection)
+  const currentSection = useAppSelector(state => state.recipeForms.currentSection)
   const dispatch = useAppDispatch()
   const { handleNavigation, handleSubmit } = useRecipeFormHandlers();
   const [activeSection, setActiveSection] = useState<(typeof SECTIONS)[number]>('Metadata')

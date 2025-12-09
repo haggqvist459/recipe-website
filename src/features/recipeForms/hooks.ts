@@ -7,7 +7,7 @@ export const useRecipeFormHandlers = () => {
   
   const user = useAuthenticatedUser();
   const { setModalState } = useNotification();
-  const recipeDraft = useAppSelector(state => state.createRecipe.recipeDraft);
+  const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
   const dispatch = useAppDispatch();
 
   const handleNavigation = (action: () => void) => {
