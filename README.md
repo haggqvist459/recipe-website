@@ -35,10 +35,8 @@
 - [x] List all recipes 
 - [x] Add the filters as dropdowns 
 - [x] Details view 
-  - [ ] Link to edit form for admins ?
-  - [x] Mark recipe as favorite for users 
-  - [ ] Add ingredients to grocery list
-  - [ ] Modify the number of people the recipe is for 
+- [x] Mark recipe as favorite for users 
+- [ ] Modify the number of people the recipe is for 
 
 ### Profile Page: 
 - [x] Change email
@@ -54,19 +52,26 @@
  
 ### Grocery list: 
 - [x] Re-use previous list project, add here 
- - [ ] Localstorage persist grocery list
+ - [x] Localstorage persist grocery list
  - [x] Add new items to list 
- - [ ] share lists?
- - [ ] Add ingredients from recipes to list 
- - [ ] Backup list to database if authenticated 
- - [ ] 
+ - [ ] share lists
+ - [x] Add ingredients from recipes to list 
+ - [x] Backup list to database if authenticated 
+ - [ ] Finalise null checks 
 
- ### MISC:
+### Success / Error Toast & Modal
+- [ ] Ensure dynamic time before disappearing
+- [ ] Add on successful favourite marking / removal 
+- [ ] Database actions should have either Modal or Toast confirmation/errors 
+
+ ### MISC / TO DO:
  - [x] Language options
   - [x] Translate web elements between ENG/SWE (headings, menu labels etc)
   - [ ] Translate recipes between ENG/SWE
-  - [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
-- [ ] Refactor Output.tsx to include FadeInOutWrapper - allow fade effect on language change
+- [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
+- [ ] Refactor Output.tsx 
+ - [ ] Ensure full reusability 
+ - [ ] Include FadeInOutWrapper - allow fade effect on language change
 - [ ] Include FadeInOutWrapper on Heading.tsx - allow fade effect on language change 
 - [ ] Ensure similar structure on the backend layers 
   - [ ] Same try / catch principles 
@@ -82,7 +87,10 @@
 - [x] Fix the empty favourite list use case on profile page 
 - [x] Fix placement of favourite icon on RecipeDetail.tsx
 - [x] Lock favourite icon size on RecipeCard.tsx
-- [ ] hover: border on buttons in CreateRecipe components 
+- [ ] Finalise CreateRecipe forms:
+  - [ ] hover: border on buttons in CreateRecipe components 
+  - [ ] State is cleared after successful recipe insertion but no re-direct from preview page
+  - [ ] Must also trigger a new fetch of recipes 
 - [ ] Button highlights - apply new utility from index.css on buttons
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [ ] Refactor ButtonRow component - use Tailwind instead of JavaScript

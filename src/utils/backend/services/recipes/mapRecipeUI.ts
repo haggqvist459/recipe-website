@@ -29,7 +29,7 @@ export const mapRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): RecipeType
 
     return {
       id: dbRecipe.id,
-      createdAt: new Date(dbRecipe.created_at),
+      createdAt: dbRecipe.created_at,
       title: dbRecipe.title,
       description: dbRecipe.description ?? '',
       includeWeekly: dbRecipe.include_weekly,
@@ -69,7 +69,7 @@ export const mapRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeType => 
 
   return {
     id: dbRecipe.id,
-    createdAt: new Date(dbRecipe.created_at),
+    createdAt: dbRecipe.created_at,
     title: dbRecipe.title,
     description: dbRecipe.description ?? '',
     includeWeekly: dbRecipe.include_weekly,

@@ -23,7 +23,9 @@ export const processRecipe = async (draft: RecipeDraftType, uid: string): Promis
   try {
     const dbRecipe = mapRecipeDraftToDb(draft);
     const userRole = await selectUserRole(uid);
-    if (userRole.rank >= 2){
+    console.log('userRole rank: ', userRole.rank)
+    console.log('userRole role: ', userRole.role)
+    if (userRole.rank < 2){
       throw new Error('[processRecipe] - Error creating recipe, insufficient permissions.')
     }
       const recipeId = await insertRecipe(dbRecipe);
