@@ -29,6 +29,6 @@ export type RecipeType = {
   includeWeekly: boolean
   ingredients: IngredientType[]
   instructions: InstructionType[]
-  createdAt: Date
+  createdAt: string
 }
 

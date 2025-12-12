@@ -23,7 +23,7 @@ const RecipeManagementCard = ({ recipe }: Props) => {
         </div>
       </div>
       <span className="text-sm">
-        {recipe.createdAt.toLocaleDateString()}
+        {new Date(recipe.createdAt).toLocaleDateString()}
       </span>
     </div>
   );

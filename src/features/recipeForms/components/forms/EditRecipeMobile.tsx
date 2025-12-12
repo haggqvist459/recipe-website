@@ -27,7 +27,7 @@ const EditRecipeMobile = () => {
 
   return (
     <div className="">
-      <HorizontalMenuWrapper>
+      <HorizontalMenuWrapper justify="justify-start">
         <button
           type="button"
           className={`text-primary-text ${activeSection === "Metadata" ? "underline decoration-2" : "font-light"}`}

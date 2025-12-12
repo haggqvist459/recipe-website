@@ -4,5 +4,6 @@ export { default as Footer } from './Footer';
 export { default as HorizontalMenuWrapper } from './HorizontalMenuWrapper'
 export { default as NavBar } from './NavBar';
 export { default as PageContainer } from './PageContainer';
+export { default as ResponsiveWrapper } from './ResponsiveWrapper'
 export { default as RowWrapper } from './RowWrapper';
 export { default as SlideWrapper } from './SlideWrapper';

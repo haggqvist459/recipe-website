@@ -5,6 +5,7 @@ export * from './modal';
 // file exports
 export { default as ErrorComponent } from './ErrorComponent';
 export { default as Heading } from './Heading';
+export { default as HorizontalMenuButton } from './HorizontalMenuButton'
 export { default as Input } from './Input';
 export { default as LoadingComponent } from './LoadingComponent'
 export { default as NavButton } from './NavButton';

@@ -64,10 +64,11 @@
 - [ ] Add on successful favourite marking / removal 
 - [ ] Database actions should have either Modal or Toast confirmation/errors 
 
- ### MISC / TO DO:
+ ### MISC:
  - [x] Language options
   - [x] Translate web elements between ENG/SWE (headings, menu labels etc)
   - [ ] Translate recipes between ENG/SWE
+  - [ ] Proper unit translations for ingredients
 - [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
 - [ ] Refactor Output.tsx 
  - [ ] Ensure full reusability 
@@ -84,6 +85,7 @@
   - [ ] Add undo functionality?
 - [x] Refactor RecipeDetails.tsx - remove double markup
 - [ ] Look into FadeWrappers dubious useEffect 
+- [ ] Look into Fading in / out the recipe list once filters are applied 
 - [x] Fix the empty favourite list use case on profile page 
 - [x] Fix placement of favourite icon on RecipeDetail.tsx
 - [x] Lock favourite icon size on RecipeCard.tsx
