@@ -42,7 +42,7 @@
 - [x] Change email
 - [x] Change password 
 - [x] Edit favorite lists - view / delete
-- [ ]
+- [ ] Meal planner settings
 
 ### Weekly lists: 
 - [ ] Generate lists based on full randomisation 
@@ -101,3 +101,5 @@
 - [x] Refactor all Modal usage to use the new Context 
 - [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
 - [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
+- [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
+

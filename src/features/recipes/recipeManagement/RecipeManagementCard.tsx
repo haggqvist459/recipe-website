@@ -15,7 +15,7 @@ const RecipeManagementCard = ({ recipe }: Props) => {
         <div className="flex space-x-2">
           <NavLink
             to={ROUTES.ADMIN + '/' + recipe.id}
-            state={recipe.id}
+            state={recipe}
           >
             <EditIcon />
           </NavLink>

@@ -9,7 +9,7 @@ const SettingsSection = () => {
 
   const { user } = useAuth()
   const { language } = useLanguage()
-  const { setModalState } = useNotification()
+  const { setModalState, resetModalState } = useNotification()
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -70,12 +70,7 @@ const SettingsSection = () => {
         title: 'Success',
         message: 'Email and password has been changed.',
         showCancel: false,
-        onConfirm: () => setModalState({
-          title: '',
-          message: '',
-          onConfirm: () => { },
-          isOpen: false
-        }),
+        onConfirm: () => resetModalState(),
       })
 
     } catch (error) {
@@ -85,12 +80,7 @@ const SettingsSection = () => {
         title: 'Error updating credentials.',
         message: error instanceof Error ? error.message : 'An unknown error occurred',
         showCancel: false,
-        onConfirm: () => setModalState({
-          title: '',
-          message: '',
-          onConfirm: () => { },
-          isOpen: false
-        }),
+        onConfirm: () => resetModalState()
       })
     }
   }

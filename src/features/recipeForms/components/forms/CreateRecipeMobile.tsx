@@ -19,7 +19,7 @@ const CreateRecipeMobile = () => {
 
   return (
     <div className="my-2">
-      <form onSubmit={handleSubmit} id="create-recipe-form">
+      <form onSubmit={handleSubmit} id="recipe-form">
         <SlideWrapper
           activeKey={currentSection}
           slides={mobileSlides}

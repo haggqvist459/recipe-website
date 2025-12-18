@@ -37,7 +37,7 @@ const ProfilePageTest = () => {
         <ResponsiveWrapper isActive={activeSection === "favourites"}>
           <Heading title={translateText('profile', 'favouriteRecipes', language)} headingType="sub-heading" />
           {favourites.length === 0 ? (
-            <LoadingComponent height="" />
+            <LoadingComponent />
           ) : (
             favourites.map(favourite => <FavouriteListItem favourite={favourite} key={favourite.recipeId} />)
           )}

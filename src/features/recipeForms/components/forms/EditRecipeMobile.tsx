@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { HorizontalMenuWrapper, SlideWrapper } from "@/components";
+import { HorizontalMenuWrapper, HorizontalMenuButton, SlideWrapper } from "@/components";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 import { useRecipeFormHandlers } from "@/features/recipeForms/hooks";
@@ -14,12 +14,12 @@ const EditRecipeMobile = () => {
   const { language } = useLanguage();
   const currentSection = useAppSelector(state => state.recipeForms.currentSection)
   const dispatch = useAppDispatch()
-  const { handleNavigation, handleSubmit } = useRecipeFormHandlers();
+  const { handleNavigation, handleUpdate } = useRecipeFormHandlers();
   const [activeSection, setActiveSection] = useState<(typeof SECTIONS)[number]>('Metadata')
 
   const mobileSlides = [
     { key: "Metadata", component: <MetaDataSection /> },
-    { key: "Ingredients", component: <IngredientSection toggleButtonState={false}/> },
+    { key: "Ingredients", component: <IngredientSection toggleButtonState={false} /> },
     { key: "Instructions", component: <InstructionSection toggleButtonState={false} /> },
     { key: "Preview", component: <PreviewSection /> },
   ];
@@ -28,48 +28,40 @@ const EditRecipeMobile = () => {
   return (
     <div className="">
       <HorizontalMenuWrapper justify="justify-start">
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Metadata" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Metadata")))
+        <HorizontalMenuButton isActive={activeSection === "Metadata"} onClick={() => {
+          handleNavigation(() => {
+            dispatch(setCurrentSection("Metadata"))
             setActiveSection('Metadata')
-          }}
-        >
+          })
+        }}>
           {translateText('createRecipe', 'metadata', language)}
-        </button>
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Ingredients" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Ingredients")))
+        </HorizontalMenuButton>
+        <HorizontalMenuButton isActive={activeSection === "Ingredients"} onClick={() => {
+          handleNavigation(() => {
+            dispatch(setCurrentSection("Ingredients"))
             setActiveSection('Ingredients')
-          }}
-        >
+          })
+        }}>
           {translateText('createRecipe', 'ingredients', language)}
-        </button>
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Instructions" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Instructions")))
+        </HorizontalMenuButton>
+        <HorizontalMenuButton isActive={activeSection === "Instructions"} onClick={() => {
+          handleNavigation(() => {
+            dispatch(setCurrentSection("Instructions"))
             setActiveSection('Instructions')
-          }}
-        >
+          })
+        }}>
           {translateText('createRecipe', 'instructions', language)}
-        </button>
-        <button
-          type="button"
-          className={`text-primary-text ${activeSection === "Preview" ? "underline decoration-2" : "font-light"}`}
-          onClick={() => {
-            handleNavigation(() => dispatch(setCurrentSection("Preview")))
+        </HorizontalMenuButton>
+        <HorizontalMenuButton isActive={activeSection === "Preview"} onClick={() => {
+          handleNavigation(() => {
+            dispatch(setCurrentSection("Preview"))
             setActiveSection('Preview')
-          }}
-        >
+          })
+        }}>
           {translateText('createRecipe', 'preview', language)}
-        </button>
+        </HorizontalMenuButton>
       </HorizontalMenuWrapper>
-      <form onSubmit={handleSubmit} id="create-recipe-form">
+      <form onSubmit={handleUpdate} id="recipe-form">
         <SlideWrapper
           activeKey={currentSection}
           slides={mobileSlides}

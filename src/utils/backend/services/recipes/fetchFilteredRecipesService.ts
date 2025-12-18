@@ -1,6 +1,6 @@
 import { FilterOptionType, RecipeType, SortingFilterKey, LanguageType } from "../../types/index.ts";
 import { selectFilteredRecipes } from "@/utils/backend/db/recipes";
-import { mapRecipesDbToUI } from './mapRecipeUI'
+import { mapRecipesDbToUI } from './utils'
 
 export const fetchFilteredRecipesService = async ({
   typeFilters,

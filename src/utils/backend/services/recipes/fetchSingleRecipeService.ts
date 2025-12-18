@@ -1,5 +1,5 @@
 import { selectSingleRecipe } from "../../db";
-import { mapRecipeDbToUI } from "./mapRecipeUI";
+import { mapRecipeDbToUI } from "./utils";
 import { LanguageType, RecipeType } from "../../types/index.ts";
 
 

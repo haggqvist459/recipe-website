@@ -1,4 +1,4 @@
-import { RecipeType, DbRecipeWithRelations, InstructionType, IngredientType } from '../../types/index.ts'
+import { RecipeType, DbRecipeWithRelations, InstructionType, IngredientType } from '../../../types/index.ts'
 
 export const mapRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): RecipeType[] => {
   return dbRecipes.map((dbRecipe) => {

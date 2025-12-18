@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PageContainer, HorizontalMenuWrapper } from "@/components";
+import { PageContainer, HorizontalMenuWrapper, HorizontalMenuButton, ResponsiveWrapper } from "@/components";
 import { RecipeManagementList } from "@/features/recipes/recipeManagement";
 
 
@@ -9,24 +9,22 @@ const AdminPage = () => {
 
   return (
     <PageContainer>
-      <HorizontalMenuWrapper lgHidden={true}>
-        <button
-          type="button"
-          className={`${activeSection === 'recipes' ? 'underline decoration-2' : 'font-light'}`}
-          onClick={() => setActiveSection('recipes')}
-        >
+      <HorizontalMenuWrapper>
+        <HorizontalMenuButton isActive={activeSection === 'recipes'} onClick={() => setActiveSection('recipes')}>
           Recipes
-        </button>
-        <button
-          type="button"
-          className={`${activeSection === 'filters' ? 'underline decoration-2' : 'font-light'}`}
-          onClick={() => setActiveSection('filters')}
-        >
+        </HorizontalMenuButton>
+        <HorizontalMenuButton isActive={activeSection === 'filters'} onClick={() => setActiveSection('filters')}>
           Filters
-        </button>
+        </HorizontalMenuButton>
       </HorizontalMenuWrapper>
-      
-      <RecipeManagementList />
+      <ResponsiveWrapper isActive={activeSection === 'recipes'}>
+        <RecipeManagementList />
+      </ResponsiveWrapper>
+      <ResponsiveWrapper isActive={activeSection === 'filters'}>
+        <>
+        </>
+      </ResponsiveWrapper>
+
     </PageContainer>
   );
 }

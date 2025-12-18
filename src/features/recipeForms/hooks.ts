@@ -4,14 +4,14 @@ import { createRecipe } from "@/utils/backend/api";
 import { useAuthenticatedUser, useNotification } from "@/contexts";
 
 export const useRecipeFormHandlers = () => {
-  
+
   const user = useAuthenticatedUser();
-  const { setModalState } = useNotification();
+  const { setModalState, resetModalState } = useNotification();
   const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
   const dispatch = useAppDispatch();
 
   const handleNavigation = (action: () => void) => {
-    const formElement = document.querySelector("form");
+    const formElement = document.getElementById("recipe-form") as HTMLFormElement | null;
     if (formElement && !formElement.checkValidity()) {
       formElement.reportValidity();
       return;
@@ -30,9 +30,8 @@ export const useRecipeFormHandlers = () => {
           message: "Your recipe was successfully saved!",
           onConfirm: () => {
             dispatch(resetState());
-            setModalState({ isOpen: false, title: '', message: '', onConfirm: () => {} });
+            resetModalState()
           },
-          onCancel: undefined,
         });
       }
     } catch (error) {
@@ -45,11 +44,40 @@ export const useRecipeFormHandlers = () => {
         isOpen: true,
         title: "Error Creating Recipe",
         message,
-        onConfirm: () => setModalState({ isOpen: false, title: '', message: '', onConfirm: () => {} }),
-        onCancel: undefined,
+        onConfirm: () => resetModalState(),
       });
     }
   };
 
-  return { handleNavigation, handleSubmit };
+  const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const result = 1
+      if (result) {
+        setModalState({
+          isOpen: true,
+          title: 'Recipe Updated',
+          message: 'Your recipe has been successfully updated',
+          onConfirm: () => {
+            dispatch(resetState())
+            resetModalState()
+          }
+        })
+      }
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred while creating the recipe.";
+
+      setModalState({
+        isOpen: true,
+        title: "Error Updating Recipe",
+        message,
+        onConfirm: () => resetModalState(),
+      })
+    }
+  }
+
+  return { handleNavigation, handleSubmit, handleUpdate };
 };

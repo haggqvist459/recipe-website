@@ -1,5 +1,5 @@
 import { insertRecipe } from "@/utils/backend/db";
-import { mapRecipeDraftToDb } from "./mapRecipeDraft";
+import { mapRecipeDraftToDb } from "./utils";
 import { RecipeDraftType } from "../../types/index.ts";
 import { attachRecipeCuisines, attachRecipeMainIngredients } from "../filters";
 import { selectUserRole } from "../../db/auth/getUserRole";
@@ -23,8 +23,6 @@ export const processRecipe = async (draft: RecipeDraftType, uid: string): Promis
   try {
     const dbRecipe = mapRecipeDraftToDb(draft);
     const userRole = await selectUserRole(uid);
-    console.log('userRole rank: ', userRole.rank)
-    console.log('userRole role: ', userRole.role)
     if (userRole.rank < 2){
       throw new Error('[processRecipe] - Error creating recipe, insufficient permissions.')
     }

@@ -1,4 +1,3 @@
-// components/layout/ResponsiveSection.tsx
 import { ReactNode, useState, useEffect } from 'react';
 import { FadeInOutWrapper } from '@/components';
 
@@ -16,10 +15,18 @@ const ResponsiveSection = ({
   children
 }: Props) => {
   const [shouldShow, setShouldShow] = useState(isActive);
+  const [isLargeScreen, setIsLargeScreen] = useState(
+    () => window.matchMedia('(min-width: 1024px)').matches
+  );
+
+  useEffect(() => {
+    const handler = () => setIsLargeScreen(window.matchMedia('(min-width: 1024px)').matches);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
 
   useEffect(() => {
     if (isActive) {
-      // Delay showing new section until previous has faded out
       const timeout = setTimeout(() => setShouldShow(true), fadeDuration);
       return () => clearTimeout(timeout);
     } else {
@@ -28,16 +35,14 @@ const ResponsiveSection = ({
   }, [isActive, fadeDuration]);
 
   return (
-    <div className={`${lgWidth} lg:block`}>
-      <div className="lg:hidden">
+    <div className={`${lgWidth} ${isLargeScreen ? 'block' : ''}`}>
+      {isLargeScreen ? (
+        children
+      ) : (
         <FadeInOutWrapper isVisible={shouldShow} duration={fadeDuration}>
           {children}
         </FadeInOutWrapper>
-      </div>
-
-      <div className="hidden lg:block">
-        {children}
-      </div>
+      )}
     </div>
   );
 };

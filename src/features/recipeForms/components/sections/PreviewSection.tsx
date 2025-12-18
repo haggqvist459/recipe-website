@@ -80,7 +80,7 @@ const PreviewSection = () => {
             ))}
           </div>
         </div>
-        <div className="w-full mt-2 flex space-x-2 md:hidden">
+        <div className="w-full mt-2 flex space-x-2 lg:hidden">
           <button
             type="button"
             className="w-1/2 bg-secondary font-medium text-primary-text rounded"
@@ -90,7 +90,7 @@ const PreviewSection = () => {
           </button>
           <button
             type="submit"
-            form="create-recipe-form"
+            form="recipe-form"
             className="w-1/2 bg-primary font-medium text-primary-text rounded"
           >
             {translateText('buttons', 'submit', language)}

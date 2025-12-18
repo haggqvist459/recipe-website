@@ -4,8 +4,9 @@ import { Toast, type ToastType } from '@/components/ui/toast'
 
 
 type NotificationContextType = {
-  showToast: (message: string, type: 'success' | 'error' | 'info') => void;
-  setModalState: (state: ModalStateType) => void;
+  showToast: (message: string, type: 'success' | 'error' | 'info') => void
+  setModalState: (state: ModalStateType) => void
+  resetModalState: () => void
 };
 
 
@@ -15,6 +16,7 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
   const [modalState, setModalState] = useState<ModalStateType>({
     isOpen: false,
+    showCancel: false,
     title: '',
     message: '',
     onConfirm: () => { },
@@ -29,9 +31,18 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
     }, 3000);
   };
 
+  const resetModalState = () => {
+    setModalState({
+      isOpen: false,
+      showCancel: false,
+      title: '',
+      message: '',
+      onConfirm: () => {}
+    })
+  }
 
   return (
-    <NotificationContext.Provider value={{ showToast, setModalState }}>
+    <NotificationContext.Provider value={{ showToast, setModalState, resetModalState }}>
       {children}
 
       <div className="fixed top-4 right-4 z-50 space-y-2">

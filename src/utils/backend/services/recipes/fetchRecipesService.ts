@@ -1,4 +1,4 @@
-import { mapRecipesDbToUI } from './mapRecipeUI'
+import { mapRecipesDbToUI } from './utils'
 import { fetchRecipesWithRelationsFromDB } from '../../db'
 import { RecipeType, LanguageType } from '../../types/index.ts'
 

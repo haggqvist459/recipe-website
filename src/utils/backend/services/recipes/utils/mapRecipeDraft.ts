@@ -1,4 +1,4 @@
-import type { RecipeDraftType } from "../../types"
+import type { RecipeDraftType } from "../../../types"
 
 export const mapRecipeDraftToDb = (draft: RecipeDraftType) => {
   return {

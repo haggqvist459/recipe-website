@@ -1,8 +1,13 @@
 import type { TablesInsert, Tables } from "@/types/database.types";
+import { TablesUpdate } from "./database.types";
 
 export type InsertRecipeType = TablesInsert<"recipes">;
 export type InsertRecipeCuisine = TablesInsert<"recipe_cuisines">;
 export type InsertRecipeMainIngredient = TablesInsert<"recipe_main_ingredients">;
+
+export type UpdateRecipeType = TablesUpdate<'recipes'>
+export type UpdateRecipeCuisine = TablesUpdate<'cuisines'>
+export type UpdateRecipeMainIngredient = TablesUpdate<'main_ingredients'>
 
 export type DbRecipeWithRelations = Tables<'recipes'> & {
   recipe_cuisines: {

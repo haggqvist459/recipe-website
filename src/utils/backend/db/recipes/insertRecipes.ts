@@ -1,6 +1,6 @@
 import { supabase } from "../client";
 import { DB_TABLES, DB_COLUMNS } from "@/utils/backend/constants";
-import { InsertRecipeType } from "../../types/index.ts";
+import { InsertRecipeType } from "../../types/";
 
 export const insertRecipe = async (recipe: InsertRecipeType): Promise<string> => {
 

@@ -68,6 +68,12 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
     loadFilters();
   }, [typeFilters, cuisineFilters]);
 
+  useEffect(() => {
+    setLocalMetadata({
+      title: metadata.title,
+      description: metadata.description,
+    });
+  }, [metadata.title, metadata.description])
 
   return (
     <SectionWrapper>
