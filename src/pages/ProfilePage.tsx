@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { PageContainer, Heading, LoadingComponent, SignOut, HorizontalMenuWrapper, ResponsiveWrapper, HorizontalMenuButton } from "@/components";
 import { FavouriteListItem } from "@/features/favourites";
@@ -6,7 +5,7 @@ import { SettingsSection } from "@/features/settings";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 import { useFavourites } from "@/features/favourites";
-import { signOut } from "@/utils/backend/api";
+import { signOut } from "@/api/auth";
 
 const ProfilePageTest = () => {
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Heading } from "@/components";
-import * as authApi from "@/utils/backend/api/auth";
+import { signIn } from "@/api/auth";
 import { useAuth } from '@/contexts'
 import { ROUTES } from "@/utils";
 
@@ -19,7 +19,7 @@ const AuthPage = () => {
     setError(null);
 
     try {
-      await authApi.signIn(email, password);
+      await signIn(email, password);
       refreshAuth()
     } catch (error) {
       if (error instanceof Error) {
