@@ -29,8 +29,9 @@ export const signOut = async () => {
       'Content-Type': 'application/json',
     },
   });
-
+  console.log("signOut response: ", response)
   const json = await response.json();
+
 
   if (!response.ok) {
     throw new Error(json.error || 'Sign out failed');
