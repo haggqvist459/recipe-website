@@ -9,15 +9,21 @@ type UserRoleType = {
 type AuthContextType = {
   user: User | null
   isSignedIn: boolean
+  loading: boolean
   userRole: UserRoleType | null
   refreshAuth: () => Promise<void>
+  handleSignIn: (email: string, password: string) => Promise<void>;
+  handleSignOut: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   userRole: null,
   isSignedIn: false,
-  refreshAuth: async () => { }
+  loading: false,
+  refreshAuth: async () => { },
+  handleSignIn: async () => { },
+  handleSignOut: async () => { }, 
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
