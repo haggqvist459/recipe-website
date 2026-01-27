@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux';
-import { getCuisines, getMainIngredients } from '@/utils/backend/api/filters';
+import { fetchCuisines, fetchMainIngredients } from '@/supabase/services';
 import { ArrowIcon, HorizontalMenuWrapper, ErrorComponent } from '@/components'
 import { SORTING_FILTERS } from '../constants'
 import { setFilterList, setActiveFilter, setActiveSorting } from '../slice';
@@ -35,8 +35,8 @@ const Filters = () => {
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
-          getMainIngredients(language),
-          getCuisines(language),
+          fetchMainIngredients(language),
+          fetchCuisines(language),
         ]);
 
         dispatch(setFilterList({ filterCategory: "types", list: typesResult }));

@@ -3,9 +3,9 @@ import { Heading, Favourite, AddListItem } from "@/components";
 import { RecipeType } from "@/types";
 import { useAuth, useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
-import { setFavouriteAPI, removeFavouriteAPI } from "@/utils/backend/api/favourites";
+import { setFavourite, removeFavourite } from "@/supabase/services";
 import { useAppDispatch } from "@/redux/hooks";
-import { addFavourite, removeFavourite, useIsFavourited } from "@/features/favourites";
+import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites";
 import { addIngredients } from "@/features/groceryList";
 
 type Props = {
@@ -37,10 +37,10 @@ const RecipeDetails = ({ recipe }: Props) => {
 
     try {
       if (isFavourite) {
-        await removeFavouriteAPI(user.id, recipe.id)
-        dispatch(removeFavourite(recipe.id))
+        await removeFavourite(user.id, recipe.id)
+        dispatch(deleteFavourite(recipe.id))
       } else {
-        const newFavourite = await setFavouriteAPI(user.id, recipe.id)
+        const newFavourite = await setFavourite(user.id, recipe.id)
         dispatch(addFavourite(newFavourite))
       }
     } catch (error) {

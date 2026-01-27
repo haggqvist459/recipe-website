@@ -1,4 +1,4 @@
-import { Constants } from "@/types/database.types";
+import { Constants } from "@/types/database.schema";
 
 export const CUISINE_OPTIONS = Constants.public.Enums.cuisine
 

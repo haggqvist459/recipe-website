@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { fetchRecipesAPI } from '@/utils/backend/api/recipes';
+import { fetchAllRecipes } from '@/supabase/services';
 import { useLanguage } from '@/contexts';
 import { selectFilteredRecipes } from '../selectors';
 import { setRecipes } from '../slice';
@@ -28,7 +28,7 @@ const RecipeList = () => {
 
     const loadRecipes = async () => {
       try {
-        const fetchedRecipes = await fetchRecipesAPI(language)
+        const fetchedRecipes = await fetchAllRecipes(language)
 
         dispatch(setRecipes(fetchedRecipes))
 

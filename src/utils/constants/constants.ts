@@ -44,7 +44,7 @@ export const NAVBAR_OPTIONS = {
   },
   GROCERY_LIST: {
     route: ROUTES.GROCERY_LIST,
-    id: 6, 
+    id: 6,
     labelKey: 'groceries',
     end: true,
   },
@@ -55,10 +55,15 @@ export const NAVBAR_OPTIONS = {
     end: true,
   }
 
-} as const ;
+} as const;
 
 
-export const LOCALSTORAGE_KEYS = { 
+export const LOCALSTORAGE_KEYS = {
   LANGUAGE_OPTION: 'languageOption',
   GROCERY_LIST: 'groceryList'
 } as const;
+
+export const LANGUAGES = [
+  { code: 'sv', label: 'Svenska' },
+  { code: 'en', label: 'English' }
+] as const;

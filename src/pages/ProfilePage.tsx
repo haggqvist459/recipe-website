@@ -6,7 +6,7 @@ import { SettingsSection } from "@/features/settings";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 import { useFavourites } from "@/features/favourites";
-import { signOut } from "@/utils/backend/api";
+import { signOut } from "@/supabase/services";
 
 const ProfilePageTest = () => {
 

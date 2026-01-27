@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAuth } from '@/contexts';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setFavourites } from '@/features/favourites';
-import { getAllFavouritesAPI } from '@/utils/backend/api/favourites';
+import { fetchAllFavourites } from '@/supabase/services';
 
 export const useFavourites = () => {
   const { user } = useAuth();
@@ -12,7 +12,7 @@ export const useFavourites = () => {
   
   useEffect(() => {
     if (user && !isLoaded) {
-      getAllFavouritesAPI(user.id)
+      fetchAllFavourites(user.id)
         .then(data => dispatch(setFavourites(data)))
         .catch(err => console.error('Load favourites error:', err));
     }

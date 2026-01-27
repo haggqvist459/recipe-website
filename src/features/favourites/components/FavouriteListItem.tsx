@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react'
 import { FavouriteType } from "../types";
 import { Trashcan } from '@/components';
-import { removeFavouriteAPI } from '@/utils/backend/api/favourites';
+import { removeFavourite } from '@/supabase/services';
 import { useAppDispatch } from '@/redux/hooks';
-import { removeFavourite, addFavourite } from '../slice';
+import { deleteFavourite, addFavourite } from '../slice';
 
 type Props = {
   favourite: FavouriteType
@@ -35,9 +35,9 @@ const FavouriteListItem = ({ favourite }: Props) => {
   const handleDelete = async () => {
     try {
 
-      dispatch(removeFavourite(favourite.recipeId))
+      dispatch(deleteFavourite(favourite.recipeId))
 
-      await removeFavouriteAPI(favourite.userId, favourite.recipeId)
+      await removeFavourite(favourite.userId, favourite.recipeId)
     } catch (error) {
       console.error('Failed to delete favourite:', error)
       dispatch(addFavourite(favourite))

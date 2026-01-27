@@ -1,7 +1,7 @@
 import { useLanguage, useAuth, useNotification } from "@/contexts";
 import { useAppSelector, useAppDispatch } from "@/redux";
 import { translateText } from "@/utils";
-import { getGroceryListAPI, setGroceryListAPI, deleteGroceryListAPI } from "@/utils/backend/api/groceries";
+import { fetchGroceryList, saveGroceryList, deleteGroceryList } from "@/supabase/services";
 import { loadListFromDB, resetState, } from "@/features/groceryList";
 import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle, FadeInOutWrapper } from "@/components";
 
@@ -21,7 +21,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
   const handleSaveList = async () => {
     try {
       if (user) {
-        await setGroceryListAPI(user.id, groceryState.items)
+        await saveGroceryList(user.id, groceryState.items)
         showToast(translateText('grocerySettings', 'saveToastSuccess', language), 'success')
       }
     } catch (error) {
@@ -33,7 +33,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
   const handleLoadList = async () => {
     try {
       if (user) {
-        const dbList = await getGroceryListAPI(user.id)
+        const dbList = await fetchGroceryList(user.id)
         console.log("handleLoadList dbList: ", dbList)
         console.log("handleLoadList dbList.updatedAt: ", dbList?.updatedAt)
         console.log('handleLoadList groceryState.lastModified', groceryState.lastModified)
@@ -55,7 +55,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
   const handleDeleteList = async () => {
     try {
       if (user) {
-        await deleteGroceryListAPI(user.id)
+        await deleteGroceryList(user.id)
         dispatch(resetState())
         showToast(translateText('grocerySettings', 'deleteToastSuccess', language), 'success')
       }

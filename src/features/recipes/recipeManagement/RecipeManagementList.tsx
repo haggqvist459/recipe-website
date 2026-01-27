@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { fetchRecipesAPI } from '@/utils/backend/api/recipes';
+import { fetchAllRecipes } from '@/supabase/services';
 import { RecipeType, } from '@/types';
 import { LoadingComponent, ErrorComponent } from "@/components";
 import { useLanguage, } from '@/contexts';
@@ -21,7 +21,7 @@ const RecipeManagementList = () => {
 
     const loadRecipes = async () => {
       try {
-        const fetchedRecipes = await fetchRecipesAPI(language)
+        const fetchedRecipes = await fetchAllRecipes(language)
         setRecipeList(fetchedRecipes)
 
       } catch (error) {

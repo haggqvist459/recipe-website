@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { Heading, Input, } from "@/components";
 import { useLanguage, useAuth, useNotification } from "@/contexts";
 import { translateText } from "@/utils";
-import { updateUserCredentialsAPI } from "@/utils/backend/api/auth/updateUserAPI";
+import { updateUserCredentials } from "@/supabase/services/auth/updateUserService";
 
 const SettingsSection = () => {
 
@@ -63,7 +62,7 @@ const SettingsSection = () => {
       }
 
       if (!user?.email) throw new Error('User not authenticated')
-      await updateUserCredentialsAPI(user.email, currentPassword, newEmail || undefined, newPassword || undefined)
+      await updateUserCredentials(user.email, currentPassword, newEmail || undefined, newPassword || undefined)
 
       setModalState({
         isOpen: true,

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import * as filtersApi from "@/utils/backend/api/";
+import { fetchMainIngredients, fetchCuisines } from "@/supabase/services";
 import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/recipeForms";
 import { setFilterList, ButtonRow } from "@/features/filters";
 import { FilterOptionType } from '@/types';
@@ -51,8 +51,8 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
-          filtersApi.getMainIngredients(language),
-          filtersApi.getCuisines(language),
+          fetchMainIngredients(language),
+          fetchCuisines(language),
         ]);
         dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));

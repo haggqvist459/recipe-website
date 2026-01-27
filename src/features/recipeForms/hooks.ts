@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { resetState } from "@/features/recipeForms";
-import { createRecipe } from "@/utils/backend/api";
+import { processRecipe } from "@/supabase/services";
 import { useAuthenticatedUser, useNotification } from "@/contexts";
 
 export const useRecipeFormHandlers = () => {
@@ -22,7 +22,7 @@ export const useRecipeFormHandlers = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const result = await createRecipe(recipeDraft, user.id);
+      const result = await processRecipe(recipeDraft, user.id);
       if (result) {
         setModalState({
           isOpen: true,
