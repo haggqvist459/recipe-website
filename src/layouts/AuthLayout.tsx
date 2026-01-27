@@ -5,8 +5,9 @@ import { useAuth } from "@/contexts";
 
 const AuthLayout = () => {
   const location = useLocation();
-  const { isSignedIn } = useAuth()
-  if (isSignedIn === null) return null;
+  const { isSignedIn, loading } = useAuth()
+  
+  if (loading) return null; // TODO proper loading UI 
 
   return (
     <div className="bg-primary-bg min-h-screen flex flex-col relative">

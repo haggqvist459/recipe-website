@@ -38,7 +38,7 @@ export const onAuthStateChange = (
   return () => data.subscription.unsubscribe();
 };
 
-export const getUserRoleService = async (uid: string): Promise<UserRoleType> => {
+export const getUserRole = async (uid: string): Promise<UserRoleType> => {
 
   try {
     const data = await selectUserRole(uid)

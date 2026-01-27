@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { User } from "@supabase/supabase-js";
-import * as authApi from "@/utils/backend/api/auth";
+import { signIn, signOut, getSession, getCurrentUser, getUserRole, onAuthStateChange } from "@/supabase/services";
 
 type UserRoleType = {
   role: 'admin' | 'user' | 'webmaster',
@@ -23,26 +23,53 @@ const AuthContext = createContext<AuthContextType>({
   loading: false,
   refreshAuth: async () => { },
   handleSignIn: async () => { },
-  handleSignOut: async () => { }, 
+  handleSignOut: async () => { },
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userRole, setUserRole] = useState<UserRoleType | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  const handleSignIn = async (email: string, password: string) => {
+    setLoading(true)
+    try {
+      await signIn(email, password);
+      await loadUserState();
+    } catch (error) {
+      console.log("handleSignIn error: ", error)
+      //NotifcationProvider error handling 
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  const handleSignOut = async () => {
+    setLoading(true)
+    try {
+      await signOut();
+      setUser(null);
+      setUserRole(null);
+      setIsSignedIn(false);
+    } catch (error) {
+      console.log("handleSignOut error: ", error)
+      //NotifcationProvider error handling 
+    } finally {
+      setLoading(false)
+    }
+  };
+
 
   const loadUserState = async () => {
-    console.log("loadUserState triggered")
     try {
-      const session = await authApi.getSession()
-      const currentUser = session?.user ?? null
+      const currentUser = await getCurrentUser()
 
       setUser(currentUser)
-      setIsSignedIn(!!session)
+      setIsSignedIn(!!currentUser)
 
       if (currentUser) {
-        console.log("about to make two DB calls")
-        const fetchedUserRole = await authApi.getUserRoleAPI(currentUser.id)
+        const fetchedUserRole = await getUserRole(currentUser.id)
         setUserRole(fetchedUserRole)
       }
 
@@ -53,7 +80,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   useEffect(() => {
-    const unsubscribe = authApi.onAuthStateChange((event, session) => {
+    const unsubscribe = onAuthStateChange((event, session) => {
       console.log('AUTH EVENT:', event, 'User ID:', session?.user?.id)
 
       switch (event) {
@@ -88,7 +115,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, isSignedIn, userRole, refreshAuth: loadUserState }}>
+    <AuthContext.Provider value={{ user, isSignedIn, userRole, loading, handleSignIn, handleSignOut, refreshAuth: loadUserState }}>
       {children}
     </AuthContext.Provider>
   );
