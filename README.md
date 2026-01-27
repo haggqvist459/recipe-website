@@ -73,6 +73,8 @@
 ### Error Handling: 
 - [ ] Review error handling across pages and components 
 - [ ] Admin Page must redirect to error in case of non admin roles 
+- [ ] Have the AuthContext display error messages in case of failed authentication 
+
 ## Success / Error Toast & Modal
 - [ ] Ensure dynamic time before disappearing
 - [ ] Add on successful favourite marking / removal 

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { User } from "@supabase/supabase-js";
-import * as authApi from "@/utils/backend/api/auth";
+import { signIn, signOut } from "@/api/auth";
 
 type UserRoleType = {
   role: 'admin' | 'user' | 'webmaster',
@@ -9,7 +9,10 @@ type UserRoleType = {
 type AuthContextType = {
   user: User | null
   isSignedIn: boolean
+  loading: boolean
   userRole: UserRoleType | null
+  handleSignIn: (email: string, password: string) => Promise<void>;
+  handleSignOut: () => Promise<void>;
   refreshAuth: () => Promise<void>
 };
 
@@ -17,13 +20,48 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   userRole: null,
   isSignedIn: false,
+  loading: false,
+  handleSignIn: async () => { },
+  handleSignOut: async () => { },
   refreshAuth: async () => { }
 });
+
+
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userRole, setUserRole] = useState<UserRoleType | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  const handleSignIn = async (email: string, password: string) => {
+    setLoading(true)
+    try {
+      await signIn(email, password);
+      await loadUserState();
+    } catch (error) {
+      console.log("handleSignIn error: ", error)
+      //NotifcationProvider error handling 
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  const handleSignOut = async () => {
+    setLoading(true)
+    try {
+      await signOut();
+      setUser(null);
+      setUserRole(null);
+      setIsSignedIn(false);
+    } catch (error) {
+      console.log("handleSignOut error: ", error)
+      //NotifcationProvider error handling 
+    } finally {
+      setLoading(false)
+    }
+  };
+
 
   const loadUserState = async () => {
     console.log("loadUserState triggered")
@@ -82,7 +120,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, isSignedIn, userRole, refreshAuth: loadUserState }}>
+    <AuthContext.Provider value={{ user, isSignedIn, userRole, loading, handleSignIn, handleSignOut, refreshAuth: loadUserState }}>
       {children}
     </AuthContext.Provider>
   );

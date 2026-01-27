@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Heading } from "@/components";
-import { signIn } from "@/api/auth";
 import { useAuth } from '@/contexts'
 import { ROUTES } from "@/utils";
 
@@ -11,16 +10,15 @@ const AuthPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(false);
-  const { user, refreshAuth } = useAuth();
+  const { user, handleSignIn} = useAuth();
 
-  async function handleSignIn(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      await signIn(email, password);
-      refreshAuth()
+      await handleSignIn(email, password);
     } catch (error) {
       if (error instanceof Error) {
         setError(error)
@@ -35,7 +33,7 @@ const AuthPage = () => {
   }
 
   return (
-    <form onSubmit={handleSignIn} className="max-w-sm mx-auto mt-10">
+    <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-10">
       <div className="border rounded border-neutral-800 bg-white shadow-sm flex flex-col gap-3 p-5 items-center">
         <Heading title="Sign In" />
         <input
@@ -64,3 +62,5 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
+
+// Todo: remove error handling once moved to AuthContext 
