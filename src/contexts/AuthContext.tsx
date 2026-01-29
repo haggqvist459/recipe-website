@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { User } from "@supabase/supabase-js";
-import { signIn, signOut, getSession, getCurrentUser, getUserRole, onAuthStateChange } from "@/supabase/services";
+import { signIn, signOut, getCurrentUser, getUserRole, onAuthStateChange } from "@/supabase/services";
 
 type UserRoleType = {
   role: 'admin' | 'user' | 'webmaster',
