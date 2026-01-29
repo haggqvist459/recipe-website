@@ -98,7 +98,9 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
         onConfirm: () => resetModalState(),
       })
 
-      // TODO VERIFY ERROR HANDLING
+      // TODO VERIFY ERROR HANDLING - E.G. MODAL MESSAGE FOR NO CHANGES DETECTED 
+      // TODO ADD REDIRECT AFTER EDITING COMPLETE, REDUX STATE IS RESET - NO POINT IN REMAINING ON PAGE
+
     }
   }
 
