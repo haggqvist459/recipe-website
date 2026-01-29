@@ -1,28 +1,37 @@
 import { useState, useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '@/redux';
 import { fetchAllRecipes } from '@/supabase/services';
-import { RecipeType, } from '@/types';
 import { LoadingComponent, ErrorComponent } from "@/components";
 import { useLanguage, } from '@/contexts';
 import RecipeManagementCard from './RecipeManagementCard';
+import { setRecipes } from '../slice';
+
 
 const RecipeManagementList = () => {
 
   const { language } = useLanguage()
+  const dispatch = useAppDispatch()
 
-  const [recipeList, setRecipeList] = useState<RecipeType[]>([])
+  const recipeList = useAppSelector(state => state.recipeList.recipes)
+  const needsRefresh = useAppSelector(state => state.recipeList.needsRefresh)
+
+  // const [recipeList, setRecipeList] = useState<RecipeType[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
 
+
   useEffect(() => {
+    if (!needsRefresh && recipeList.length > 0) return;
+
     setLoading(true);
     setError(false)
 
     const loadRecipes = async () => {
       try {
         const fetchedRecipes = await fetchAllRecipes(language)
-        setRecipeList(fetchedRecipes)
+        dispatch(setRecipes(fetchedRecipes))
 
       } catch (error) {
         if (error instanceof Error) {
@@ -36,7 +45,7 @@ const RecipeManagementList = () => {
     };
 
     loadRecipes();
-  }, []);
+  }, [needsRefresh, language]);
 
   if (loading) {
     return <LoadingComponent />;

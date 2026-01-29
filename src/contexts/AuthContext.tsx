@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [userRole, setUserRole] = useState<UserRoleType | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const handleSignIn = async (email: string, password: string) => {
     setLoading(true)
@@ -62,6 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   const loadUserState = async () => {
+    setLoading(true)
     try {
       const currentUser = await getCurrentUser()
 
@@ -75,6 +76,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     } catch (error) {
       console.error("AuthContext, loadUserState error:", error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -92,6 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             setUser(null)
             setIsSignedIn(false)
             setUserRole(null)
+            setLoading(false)
           }
           break;
         case 'SIGNED_OUT':

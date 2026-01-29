@@ -122,7 +122,7 @@ const recipeFormSlice = createSlice({
       state.currentSection = action.payload;
     },
     setRecipeDraft: (state, action: PayloadAction<RecipeType>) => {
-      const { id, createdAt, ...draftData } = action.payload;
+      const { createdAt, ...draftData } = action.payload;
       state.recipeDraft = draftData;
     },
     resetState: () => initialState

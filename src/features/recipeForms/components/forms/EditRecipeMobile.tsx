@@ -8,13 +8,17 @@ import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection 
 import { setCurrentSection } from "../../slice";
 import { SECTIONS } from "../../constants";
 
+type Props = {
+  recipeId: string
+}
 
-const EditRecipeMobile = () => {
+
+const EditRecipeMobile = ({ recipeId }: Props) => {
 
   const { language } = useLanguage();
   const currentSection = useAppSelector(state => state.recipeForms.currentSection)
   const dispatch = useAppDispatch()
-  const { handleNavigation, handleUpdate } = useRecipeFormHandlers();
+  const { handleNavigation, handleUpdate } = useRecipeFormHandlers(recipeId);
   const [activeSection, setActiveSection] = useState<(typeof SECTIONS)[number]>('Metadata')
 
   const mobileSlides = [

@@ -1,11 +1,12 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { resetState } from "@/features/recipeForms";
-import { processRecipe } from "@/supabase/services";
-import { useAuthenticatedUser, useNotification } from "@/contexts";
+import { processRecipe, processRecipeUpdate } from "@/supabase/services";
+import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts";
 
-export const useRecipeFormHandlers = () => {
+export const useRecipeFormHandlers = (recipeId?: string) => {
 
   const user = useAuthenticatedUser();
+  const language = useLanguage();
   const { setModalState, resetModalState } = useNotification();
   const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
   const dispatch = useAppDispatch();
@@ -51,8 +52,19 @@ export const useRecipeFormHandlers = () => {
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!recipeId) {
+      setModalState({
+        isOpen: true,
+        title: 'Error Updating Recipe',
+        message: 'Recipe ID is missing.',
+        onConfirm: () => resetModalState()
+      })
+      return
+    }
+
     try {
-      const result = 1
+      const result = await processRecipeUpdate(user.id, recipeId, recipeDraft, language.language)
       if (result) {
         setModalState({
           isOpen: true,
@@ -60,6 +72,15 @@ export const useRecipeFormHandlers = () => {
           message: 'Your recipe has been successfully updated',
           onConfirm: () => {
             dispatch(resetState())
+            resetModalState()
+          }
+        })
+      } else {
+        setModalState({
+          isOpen: true,
+          title: 'TEST MODAL',
+          message: 'Your recipe has NOT been successfully updated',
+          onConfirm: () => {
             resetModalState()
           }
         })
@@ -76,6 +97,8 @@ export const useRecipeFormHandlers = () => {
         message,
         onConfirm: () => resetModalState(),
       })
+
+      // TODO VERIFY ERROR HANDLING
     }
   }
 

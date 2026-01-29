@@ -10,7 +10,6 @@ type Props = {
 
 const ResponsiveSection = ({
   isActive,
-  lgWidth = 'lg:w-1/3',
   fadeDuration = 150,
   children
 }: Props) => {
@@ -35,7 +34,7 @@ const ResponsiveSection = ({
   }, [isActive, fadeDuration]);
 
   return (
-    <div className={`${lgWidth} ${isLargeScreen ? 'block' : ''}`}>
+    <div className={`w-full ${isLargeScreen ? 'block' : ''}`}>
       {isLargeScreen ? (
         children
       ) : (

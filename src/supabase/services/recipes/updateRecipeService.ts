@@ -1,4 +1,4 @@
-import { selectSingleRecipe, updateRecipe, deleteRecipeCuisines, deleteRecipeMainIngredients, insertRecipeCuisines, insertRecipeMainIngredients, selectUserRole} from '@/supabase/queries';
+import { selectSingleRecipe, updateRecipe, deleteRecipeCuisines, deleteRecipeMainIngredients, insertRecipeCuisines, insertRecipeMainIngredients, selectUserRole } from '@/supabase/queries';
 import { LanguageType, RecipeDraftType } from '@/types';
 import { mapRecipeDbToUI, diffRecipes } from './utils';
 
@@ -13,9 +13,10 @@ export const processRecipeUpdate = async (uid: string, recipeId: string, recipeD
     const mappedOriginalRecipe = mapRecipeDbToUI(originalRecipeDb)
 
     const recipeDiffs = diffRecipes(mappedOriginalRecipe, recipeDraft)
+    let updatedId
 
     if (recipeDiffs.recipeUpdates) {
-     const updatedId = await updateRecipe(recipeId, recipeDiffs.recipeUpdates)
+      updatedId = await updateRecipe(recipeId, recipeDiffs.recipeUpdates)
     }
 
     if (recipeDiffs.cuisineChanges.toDelete.length > 0) {
@@ -34,6 +35,7 @@ export const processRecipeUpdate = async (uid: string, recipeId: string, recipeD
       await insertRecipeMainIngredients(recipeId, recipeDiffs.mainIngredientChanges.toInsert)
     }
 
+    return updatedId
   } catch (error) {
     throw error
   }
