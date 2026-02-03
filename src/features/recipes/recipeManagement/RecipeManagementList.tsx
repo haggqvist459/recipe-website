@@ -6,7 +6,6 @@ import { useLanguage, } from '@/contexts';
 import RecipeManagementCard from './RecipeManagementCard';
 import { setRecipes } from '../slice';
 
-
 const RecipeManagementList = () => {
 
   const { language } = useLanguage()

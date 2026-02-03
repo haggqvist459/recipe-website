@@ -6,7 +6,7 @@ import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts";
 export const useRecipeFormHandlers = (recipeId?: string) => {
 
   const user = useAuthenticatedUser();
-  const language = useLanguage();
+  const { language } = useLanguage();
   const { setModalState, resetModalState } = useNotification();
   const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
   const dispatch = useAppDispatch();
@@ -64,7 +64,7 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
     }
 
     try {
-      const result = await processRecipeUpdate(user.id, recipeId, recipeDraft, language.language)
+      const result = await processRecipeUpdate(user.id, recipeId, recipeDraft, language)
       if (result) {
         setModalState({
           isOpen: true,

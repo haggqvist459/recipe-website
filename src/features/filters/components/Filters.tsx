@@ -48,9 +48,7 @@ const Filters = () => {
           setErrorMessage(error.message)
         }
         setError(true);
-      } finally {
-        setError(false)
-      }
+      } 
     };
 
     loadFilters();
