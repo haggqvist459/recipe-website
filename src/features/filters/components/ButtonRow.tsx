@@ -1,37 +1,20 @@
 import { FilterOptionType } from "@/types";
 
-const BG_CLASSES = [
-  "bg-lightblue",
-  "bg-darkblue",
-  "bg-purple",
-  "bg-pink",
-  "bg-orange",
-  "bg-yellow",
-  "bg-green",
-] as const;
-
-const BORDER_CLASSES = [
-  "border-lightblue",
-  "border-darkblue",
-  "border-purple",
-  "border-pink",
-  "border-orange",
-  "border-yellow",
-  "border-green",
-] as const;
+const COLORS = ["lightblue", "darkblue", "purple", "pink", "orange", "yellow", "green"] as const;
 
 type Props = {
   items: FilterOptionType[];
   selected: FilterOptionType[] | null;
-  filterCategory: "types" | "cuisines";
-  onClick: (filterCategory: "types" | "cuisines", filter: FilterOptionType) => void;
-  reverse?: boolean
-  largePattern?: boolean
+  onClick: (filter: FilterOptionType) => void;
+  reverse?: boolean;
+  largePattern?: boolean;
 };
 
-const ButtonRow = ({ items, selected = [], filterCategory, onClick, reverse = false, largePattern = false }: Props) => {
+const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePattern = false }: Props) => {
   const rows: React.ReactNode[] = [];
-  const pattern = largePattern ? [4,5] : [3,4];
+  const pattern = largePattern ? [4, 5] : [3, 4];
+  const colors = reverse ? [...COLORS].reverse() : COLORS;
+  
   let index = 0;
   let patternIndex = 0;
 
@@ -42,17 +25,18 @@ const ButtonRow = ({ items, selected = [], filterCategory, onClick, reverse = fa
     rows.push(
       <div key={index} className="flex flex-wrap justify-center gap-2 my-2">
         {rowItems.map((item, i) => {
-          const colorIndex = (index + i) % BG_CLASSES.length;
-          const bg = (reverse ? [...BG_CLASSES].reverse() : BG_CLASSES)[colorIndex];
-          const border = selected?.some((s) => s.id === item.id)
-            ? "border-primary-text font-medium"
-            : (reverse ? [...BORDER_CLASSES].reverse() : BORDER_CLASSES)[colorIndex];
+          const colorIndex = (index + i) % COLORS.length;
+          const color = colors[colorIndex];
+          const isSelected = selected?.some((s) => s.id === item.id);
+          
+          const bg = `bg-${color}`;
+          const border = isSelected ? "border-primary-text font-medium" : `border-${color}`;
 
           return (
             <button
               key={item.id}
               type="button"
-              onClick={() => onClick(filterCategory, item)}
+              onClick={() => onClick(item)}
               className={`${bg} ${border} text-primary-text text-sm py-1 px-2.5 border-2 rounded-2xl`}
             >
               {item.text}

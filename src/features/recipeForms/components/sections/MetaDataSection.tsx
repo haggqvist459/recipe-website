@@ -130,8 +130,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                   <ButtonRow
                     selected={metadata.types}
                     items={typeFilters}
-                    onClick={handleFilterToggle}
-                    filterCategory="types"
+                    onClick={(filter) => handleFilterToggle("types", filter)}
                     largePattern={true}
                   />
                 </div>
@@ -140,8 +139,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                   <ButtonRow
                     selected={metadata.cuisines}
                     items={cuisineFilters}
-                    onClick={handleFilterToggle}
-                    filterCategory="cuisines"
+                    onClick={(filter) => handleFilterToggle("cuisines", filter)}
                     reverse={true}
                   />
                 </div>
