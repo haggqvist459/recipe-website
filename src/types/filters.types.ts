@@ -5,6 +5,8 @@ export type FilterOptionType = {
   text: string
 }
 
+export type FilterCategoryType = 'types' | 'cuisines'
+
 export type SortingFilterKey =
   | "newest"
   | "oldest"

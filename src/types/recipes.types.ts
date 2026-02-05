@@ -1,6 +1,6 @@
 import { Tables } from "./database.schema"
 import { UNITS } from "@/utils"
-import { FilterOptionType } from "./filters";
+import { FilterOptionType } from "./filters.types";
 
 export type RecipeDbType = Tables<"recipes">
 

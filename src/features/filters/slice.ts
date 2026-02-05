@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { FilterStateType, SortingFilterKey } from "./types";
-import { FilterOptionType } from "@/types";
+import { FilterOptionType, FilterCategoryType } from "@/types";
 
 
 const initialState: FilterStateType = {
@@ -19,7 +19,7 @@ const filterSlice = createSlice({
     setFilterList: (
       state,
       action: PayloadAction<{
-        filterCategory: "types" | "cuisines";
+        filterCategory: FilterCategoryType;
         list: FilterOptionType[];
       }>
     ) => {
@@ -37,7 +37,7 @@ const filterSlice = createSlice({
     },
     setActiveFilter: (
       state,
-      action: PayloadAction<{ filterCategory: "types" | "cuisines"; filter: FilterOptionType }>
+      action: PayloadAction<{ filterCategory: FilterCategoryType, filter: FilterOptionType }>
     ) => {
       const { filterCategory, filter } = action.payload;
 

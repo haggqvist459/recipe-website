@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PageContainer, HorizontalMenuWrapper, HorizontalMenuButton } from "@/components";
 import { RecipeManagementList } from "@/features/recipes/recipeManagement";
-
+import { FilterManagement } from "@/features/filters";
 
 const AdminPage = () => {
 
@@ -19,7 +19,7 @@ const AdminPage = () => {
       </HorizontalMenuWrapper>
 
       {activeSection === 'recipes' && <RecipeManagementList />}
-      {activeSection === 'filters' && <div>{/* filters content */}</div>}
+      {activeSection === 'filters' && <FilterManagement />}
 
     </PageContainer>
   );
