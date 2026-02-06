@@ -90,6 +90,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         case 'INITIAL_SESSION':
           const currentUser = session?.user ?? null
           if (currentUser) {
+            setUser(currentUser)
+            setIsSignedIn(true)
             loadUserState()
           } else {
             setUser(null)

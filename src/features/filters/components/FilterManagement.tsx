@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux';
-import { fetchCuisines, fetchMainIngredients } from '@/supabase/services';
-import { LoadingComponent, ErrorComponent, Heading } from '@/components';
+import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services';
+import { LoadingComponent, ErrorComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper } from '@/components';
 import { useLanguage } from '@/contexts';
-import { setFilterList } from '../slice';
+import { setFilterList, addFilter, deleteFilter } from '../slice';
 import FilterManagementItem from './FilterManagementItem';
+import { FilterCategoryType } from '@/types';
 
 const FilterManagement = () => {
 
@@ -17,6 +18,10 @@ const FilterManagement = () => {
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [newType, setNewType] = useState('')
+  const [newCuisine, setNewCuisine] = useState('')
+
+  const [activeFilter, setActiveFilter] = useState<"types" | "cuisines">("types")
 
   useEffect(() => {
     setError(false);
@@ -46,11 +51,44 @@ const FilterManagement = () => {
     loadFilters();
   }, [language]);
 
-  const handleUpdate = () => {
-
+  const handleUpdate = async (filterCategory: FilterCategoryType, filterId: string, updatedText: string) => {
+    try {
+      await updateFilterService(updatedText, filterCategory, filterId, language)
+    } catch (error) {
+      setError(true)
+      if (error instanceof Error) {
+        setErrorMessage(error.message)
+      } else {
+        setErrorMessage('An unknown error occured while updating a filter.')
+      }
+    }
   }
-  const handleDelete = () => {
-    
+
+  const handleDelete = async (filterCategory: FilterCategoryType, filterId: string) => {
+    try {
+      await deleteFilterService(filterCategory, filterId)
+      dispatch(deleteFilter({ filterCategory, filterId }))
+    } catch (error) {
+      setError(true)
+      if (error instanceof Error) {
+        setErrorMessage(error.message)
+      } else {
+        setErrorMessage('An unknown error occured while deleting a filter.')
+      }
+    }
+  }
+
+  const handleAdd = async () => {
+    try {
+      await insertFilterService()
+    } catch (error) {
+      setError(true)
+      if (error instanceof Error) {
+        setErrorMessage(error.message)
+      } else {
+        setErrorMessage('An unknown error occured while deleting a filter.')
+      }
+    }
   }
 
   if (error) {
@@ -62,35 +100,82 @@ const FilterManagement = () => {
   }
 
   return (
-    <div className='px-5 w-full grid grid-cols-2 gap-2 mt-5 mb-10 justify-center'>
-      <div className="w-full bg-amber-200">
-        <div className="flex justify-center">
-          <Heading title='Main Ingredients' headingType='sub-heading' />
-        </div>
-        {types.map(type => (
-          <FilterManagementItem
-            key={type.id}
-            filter={type}
-            onDelete={() => { }}
-            onUpdate={() => { }}
-          />
-        ))}
-      </div>
-      <div className="w-full bg-amber-200">
-        <div className="flex justify-center">
-          <Heading title='Cuisines' headingType='sub-heading' />
-        </div>
-        {cuisines.map(cuisine => (
-          <FilterManagementItem
-            key={cuisine.id}
-            filter={cuisine}
-            onDelete={() => { }}
-            onUpdate={() => { }}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      <HorizontalMenuWrapper>
+        <HorizontalMenuButton
+          isActive={activeFilter === 'types'}
+          onClick={() => setActiveFilter('types')}
+        >
+          Main Ingredients
+        </HorizontalMenuButton>
+        <HorizontalMenuButton
+          isActive={activeFilter === 'cuisines'}
+          onClick={() => setActiveFilter('cuisines')}
+        >
+          Cuisines
+        </HorizontalMenuButton>
+      </HorizontalMenuWrapper>
 
+      <div className='px-5 w-full mt-5 mb-10'>
+        {activeFilter === 'types' && (
+          <div className="w-full flex flex-col">
+            <div className="flex justify-center">
+              <Heading title='Main Ingredients' headingType='sub-heading' />
+            </div>
+            <div className="flex-grow">
+              {types.map(type => (
+                <FilterManagementItem
+                  key={type.id}
+                  filter={type}
+                  onDelete={() => handleDelete('types', type.id)}
+                  onUpdate={(updatedText) => handleUpdate('types', type.id, updatedText)}
+                />
+              ))}
+            </div>
+            <div className="flex justify-between items-center space-x-2 pt-5 mt-auto mb-2">
+              <Input
+                id='addType'
+                onChange={(e) => setNewType(e.target.value)}
+                placeholder='New type'
+                value={newType}
+              />
+              <button className="" onClick={handleAdd}>
+                <AddListItem size='size-8' />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {activeFilter === 'cuisines' && (
+          <div className="w-full flex flex-col">
+            <div className="flex justify-center">
+              <Heading title='Cuisines' headingType='sub-heading' />
+            </div>
+            <div className="flex-grow">
+              {cuisines.map(cuisine => (
+                <FilterManagementItem
+                  key={cuisine.id}
+                  filter={cuisine}
+                  onDelete={() => handleDelete('cuisines', cuisine.id)}
+                  onUpdate={(updatedText) => handleUpdate('cuisines', cuisine.id, updatedText)}
+                />
+              ))}
+            </div>
+            <div className="flex justify-between items-center space-x-2 pt-5 mb-2 mt-auto">
+              <Input
+                id='addCuisine'
+                onChange={(e) => setNewCuisine(e.target.value)}
+                placeholder='New cuisine'
+                value={newCuisine}
+              />
+              <button className="" onClick={handleAdd}>
+                <AddListItem size='size-8' />
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

@@ -24,6 +24,7 @@
 - [ ] Add new filters
 - [ ] Remove filters
  - [ ] Cascade into join table
+- [ ] Refactor filters and types to always include both languages, and display only selected language 
 
 ## Search function
 - [ ] search function should include matches on recipe titles, descriptions, and from the ingredient lists
@@ -63,6 +64,14 @@
 - [ ] Ensure dynamic time before disappearing
 - [ ] Add on successful favourite marking / removal 
 - [ ] Database actions should have either Modal or Toast confirmation/errors 
+- [ ] Small toast component for success / error messages.
+  - [ ] Finalise the toast styling
+  - [ ] Add undo functionality?
+
+### Error handling: 
+- [ ] Review error handling across pages and components 
+  - [ ] Admin Page must redirect to error in case of non admin roles
+
 
  ### MISC:
  - [x] Language options
@@ -70,6 +79,7 @@
   - [ ] Translate recipes between ENG/SWE
   - [ ] Proper unit translations for ingredients
 - [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
+- [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
 - [ ] Refactor Output.tsx 
  - [ ] Ensure full reusability 
  - [ ] Include FadeInOutWrapper - allow fade effect on language change
@@ -78,11 +88,8 @@
   - [ ] Same try / catch principles 
   - [ ] Same import / export principles
   - [ ] Naming standards 
-- [ ] Review error handling across pages and components 
-  - [ ] Admin Page must redirect to error in case of non admin roles 
-- [ ] Small toast component for success / error messages.
-  - [ ] Finalise the toast styling
-  - [ ] Add undo functionality?
+ 
+
 - [x] Refactor RecipeDetails.tsx - remove double markup
 - [ ] Look into FadeWrappers dubious useEffect 
 - [ ] Look into Fading in / out the recipe list once filters are applied 
@@ -99,7 +106,7 @@
 - [ ] Inspect sync of local and remote grocery lists
 - [ ] Add null checks to grocery list db actions for more precise toast messages
 - [x] Refactor all Modal usage to use the new Context 
-- [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
+
 - [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
 - [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
 

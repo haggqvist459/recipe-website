@@ -72,9 +72,69 @@ const filterSlice = createSlice({
       state.selectedSortingFilter =
         state.selectedSortingFilter === action.payload ? "newest" : action.payload;
     },
+    addFilter: (
+      state,
+      action: PayloadAction<{ filterCategory: FilterCategoryType; filter: FilterOptionType }>
+    ) => {
+      const { filterCategory, filter } = action.payload;
+
+      switch (filterCategory) {
+        case 'types':
+          state.typeFilters.push(filter);
+          break;
+        case 'cuisines':
+          state.cuisineFilters.push(filter);
+          break;
+        default:
+          console.error("filterSlice - addFilter error: incorrect filterCategory");
+          break;
+      }
+    },
+    deleteFilter: (
+      state,
+      action: PayloadAction<{ filterCategory: FilterCategoryType; filterId: string }>
+    ) => {
+      const { filterCategory, filterId } = action.payload;
+
+      switch (filterCategory) {
+        case 'types':
+          state.typeFilters = state.typeFilters.filter(f => f.id !== filterId);
+          break;
+        case 'cuisines':
+          state.cuisineFilters = state.cuisineFilters.filter(f => f.id !== filterId);
+          break;
+        default:
+          console.error("filterSlice - deleteFilter error: incorrect filterCategory");
+          break;
+      }
+    },
+    updateFilter: (
+      state,
+      action: PayloadAction<{ filterCategory: FilterCategoryType; filterId: string; updatedText: string }>
+    ) => {
+      const { filterCategory, filterId, updatedText } = action.payload;
+
+      switch (filterCategory) {
+        case 'types':
+          const typeFilter = state.typeFilters.find(f => f.id === filterId);
+          if (typeFilter) {
+            typeFilter.text = updatedText;
+          }
+          break;
+        case 'cuisines':
+          const cuisineFilter = state.cuisineFilters.find(f => f.id === filterId);
+          if (cuisineFilter) {
+            cuisineFilter.text = updatedText;
+          }
+          break;
+        default:
+          console.error("filterSlice - updateFilter error: incorrect filterCategory");
+          break;
+      }
+    },
     resetState: () => initialState
   }
 })
 
-export const { setFilterList, setActiveFilter, setActiveSorting, resetState } = filterSlice.actions
+export const { setFilterList, setActiveFilter, setActiveSorting, addFilter, deleteFilter, updateFilter, resetState } = filterSlice.actions
 export default filterSlice.reducer

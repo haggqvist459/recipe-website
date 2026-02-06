@@ -6,15 +6,14 @@ import { ModalStateType } from "./types";
 type Props = {
   modalState: ModalStateType
 }
-
 const Modal = ({ modalState }: Props) => {
-
   const { language } = useLanguage()
+
+  if (!modalState.isOpen) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${modalState.isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        } bg-black/20`}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/20"
       onClick={modalState.onCancel}
     >
       <div
@@ -33,5 +32,4 @@ const Modal = ({ modalState }: Props) => {
     </div>
   )
 }
-
 export default Modal;

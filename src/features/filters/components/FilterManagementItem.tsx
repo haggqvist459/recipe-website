@@ -7,7 +7,7 @@ import { Trashcan, EditIcon, CheckSolidCircle, Close, Input } from "@/components
 
 type Props = {
   filter: FilterOptionType
-  onUpdate: () => void 
+  onUpdate: (updatedText: string) => void 
   onDelete: () => void
 }
 
@@ -24,18 +24,24 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
       isOpen: true,
       showCancel: true,
       title: 'Delete Filter',
-      message: 'Are you sure you want to delete this filter?',
+      message: `Are you sure you want to delete the filter ${filter.text}?`,
       onConfirm: () => {
-        // Your delete logic here
-        // deleteFilter(filterId);
+        onDelete()
         resetModalState();
-      }
+      },
+      onCancel: () => resetModalState()
     });
   };
+
+  const cancelUpdate = () => {
+    setEditText(filter.text)
+    setIsEditing(prev => !prev)
+  }
+
   return (
-    <div className="w-full">
+    <div className="w-full my-1.5">
       {isEditing ?
-        <div className="flex justify-between px-5">
+        <div className="flex justify-between">
           <Input
             id="filterText"
             placeholder="..."
@@ -45,20 +51,20 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
           <div className="flex space-x-2">
             <button
               className=""
-              onClick={() => setIsEditing(prev => !prev)}
+              onClick={() => cancelUpdate()}
             >
               <Close />
             </button>
             <button
               className=""
-              onClick={() => {}}
+              onClick={() => onUpdate(editText)}
             >
               <CheckSolidCircle />
             </button>
           </div>
         </div>
         :
-        <div className="flex justify-between px-5">
+        <div className="flex justify-between">
           <span className="text-primary-text">{filter.text}</span>
           <div className="flex space-x-2">
             <button
