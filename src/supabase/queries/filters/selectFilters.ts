@@ -1,13 +1,12 @@
 import { supabase } from '@/supabase/client';
-import { FilterOptionType, LanguageType } from '@/types';
-import { DB_COLUMNS } from '@/utils/constants';
+import { FilterOptionType } from '@/types';
 
-export const selectMainIngredients = async (language: LanguageType): Promise<FilterOptionType[]> => {
+
+export const selectMainIngredients = async (): Promise<FilterOptionType[]> => {
   try {    
-    const selectedColumns = `${DB_COLUMNS.MAIN_INGREDIENTS.ID}, text:${language}_text`
     const { data } = await supabase
       .from('main_ingredients')
-      .select<string, FilterOptionType>(selectedColumns)
+      .select<string, FilterOptionType>('*')
       .throwOnError();
     return data
   } catch (error) {
@@ -15,12 +14,11 @@ export const selectMainIngredients = async (language: LanguageType): Promise<Fil
   }
 };
 
-export const selectCuisines = async (language: LanguageType): Promise<FilterOptionType[]> => {
+export const selectCuisines = async (): Promise<FilterOptionType[]> => {
   try {
-    const selectedColumns = `${DB_COLUMNS.CUISINES.ID}, text:${language}_text`
     const { data } = await supabase
       .from("cuisines")
-      .select<string, FilterOptionType>(selectedColumns)
+      .select<string, FilterOptionType>('*')
       .throwOnError()
     return data;
   } catch (error) {

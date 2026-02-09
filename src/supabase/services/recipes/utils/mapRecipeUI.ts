@@ -11,12 +11,14 @@ export const mapRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): RecipeType
 
     const mappedTypes = safeMainIngredients.map((relation) => ({
       id: relation.main_ingredients.id,
-      text: relation.main_ingredients.text,
+      en_text: relation.main_ingredients.en_text,
+      sv_text: relation.main_ingredients.sv_text,
     }))
 
     const mappedCuisines = safeCuisines.map((relation) => ({
       id: relation.cuisines.id,
-      text: relation.cuisines.text,
+      en_text: relation.cuisines.en_text,
+      sv_text: relation.cuisines.sv_text,
     }))
 
     const mappedInstructions = Array.isArray(dbRecipe.instructions)
@@ -49,14 +51,16 @@ export const mapRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeType => 
     ? dbRecipe.recipe_cuisines
     : [];
 
-  const mappedTypes = safeMainIngredients.map((relation) => ({
+    const mappedTypes = safeMainIngredients.map((relation) => ({
     id: relation.main_ingredients.id,
-    text: relation.main_ingredients.text,
+    en_text: relation.main_ingredients.en_text,
+    sv_text: relation.main_ingredients.sv_text,
   }));
 
-  const mappedCuisines = safeCuisines.map((relation) => ({
+    const mappedCuisines = safeCuisines.map((relation) => ({
     id: relation.cuisines.id,
-    text: relation.cuisines.text,
+    en_text: relation.cuisines.en_text,
+    sv_text: relation.cuisines.sv_text,
   }));
 
   const mappedInstructions = Array.isArray(dbRecipe.instructions)

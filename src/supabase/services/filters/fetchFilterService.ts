@@ -1,18 +1,18 @@
 import { selectMainIngredients, selectCuisines } from '@/supabase/queries';
-import { FilterOptionType, LanguageType } from '@/types';
+import { FilterOptionType } from '@/types';
 
-export const fetchMainIngredients = async (language: LanguageType): Promise<FilterOptionType[]> => {
+export const fetchMainIngredients = async (): Promise<FilterOptionType[]> => {
   try {
-    const data = await selectMainIngredients(language);
+    const data = await selectMainIngredients();
     return data;
   } catch (error) {
     throw error
   }
 };
 
-export const fetchCuisines = async (language: LanguageType): Promise<FilterOptionType[]> => {
+export const fetchCuisines = async (): Promise<FilterOptionType[]> => {
   try {
-    const data = await selectCuisines(language);
+    const data = await selectCuisines();
     return data;
   } catch (error) {
     throw error

@@ -34,7 +34,7 @@ const PreviewSection = () => {
               {metaData.types?.map((type) => (
                 <Output
                   key={type.id}
-                  value={type.text}
+                  value={type[`${language}_text`]}
                 />
               ))}
             </div>
@@ -43,7 +43,7 @@ const PreviewSection = () => {
               {metaData.cuisines?.map((cuisine) => (
                 <Output
                   key={cuisine.id}
-                  value={cuisine.text}
+                  value={cuisine[`${language}_text`]}
                 />
               ))}
             </div>

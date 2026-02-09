@@ -2,7 +2,8 @@ import { LANGUAGES } from '@/utils/constants';
 
 export type FilterOptionType = {
   id: string
-  text: string
+  en_text: string
+  sv_text: string
 }
 
 export type FilterCategoryType = 'types' | 'cuisines'

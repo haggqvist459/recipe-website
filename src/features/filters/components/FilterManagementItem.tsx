@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { FilterOptionType } from "@/types";
-import { useNotification } from '@/contexts';
+import { useNotification, useLanguage } from '@/contexts';
 import { Trashcan, EditIcon, CheckSolidCircle, Close, Input } from "@/components";
 
 
 
 type Props = {
   filter: FilterOptionType
-  onUpdate: (updatedText: string) => void 
+  onUpdate: (updatedText: string) => void
   onDelete: () => void
 }
 
@@ -15,16 +15,18 @@ type Props = {
 const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
 
   const { setModalState, resetModalState } = useNotification();
+  const { language } = useLanguage();
 
+  const filterText = filter[`${language}_text`];
   const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(filter.text);
+  const [editText, setEditText] = useState(filterText);
 
   const handleDelete = () => {
     setModalState({
       isOpen: true,
       showCancel: true,
       title: 'Delete Filter',
-      message: `Are you sure you want to delete the filter ${filter.text}?`,
+      message: `Are you sure you want to delete the filter ${filterText}?`,
       onConfirm: () => {
         onDelete()
         resetModalState();
@@ -34,7 +36,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
   };
 
   const cancelUpdate = () => {
-    setEditText(filter.text)
+    setEditText(filterText)
     setIsEditing(prev => !prev)
   }
 
@@ -65,7 +67,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
         </div>
         :
         <div className="flex justify-between">
-          <span className="text-primary-text">{filter.text}</span>
+          <span className="text-primary-text">{filterText}</span>
           <div className="flex space-x-2">
             <button
               className=""

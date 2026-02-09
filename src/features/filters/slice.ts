@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { FilterStateType, SortingFilterKey } from "./types";
-import { FilterOptionType, FilterCategoryType } from "@/types";
+import { FilterOptionType, FilterCategoryType, LanguageType } from "@/types";
 
 
 const initialState: FilterStateType = {
@@ -110,21 +110,27 @@ const filterSlice = createSlice({
     },
     updateFilter: (
       state,
-      action: PayloadAction<{ filterCategory: FilterCategoryType; filterId: string; updatedText: string }>
+      action: PayloadAction<{
+        filterCategory: FilterCategoryType;
+        filterId: string;
+        updatedText: string,
+        language: LanguageType
+      }>
     ) => {
-      const { filterCategory, filterId, updatedText } = action.payload;
+      const { filterCategory, filterId, updatedText, language } = action.payload;
+      const textField = `${language}_text` as 'en_text' | 'sv_text';
 
       switch (filterCategory) {
         case 'types':
           const typeFilter = state.typeFilters.find(f => f.id === filterId);
           if (typeFilter) {
-            typeFilter.text = updatedText;
+            typeFilter[textField] = updatedText;
           }
           break;
         case 'cuisines':
           const cuisineFilter = state.cuisineFilters.find(f => f.id === filterId);
           if (cuisineFilter) {
-            cuisineFilter.text = updatedText;
+            cuisineFilter[textField] = updatedText;
           }
           break;
         default:

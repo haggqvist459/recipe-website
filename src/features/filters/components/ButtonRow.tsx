@@ -1,4 +1,5 @@
 import { FilterOptionType } from "@/types";
+import { useLanguage } from "@/contexts";
 
 const COLORS = ["lightblue", "darkblue", "purple", "pink", "orange", "yellow", "green"] as const;
 
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePattern = false }: Props) => {
+  const { language } = useLanguage();
   const rows: React.ReactNode[] = [];
   const pattern = largePattern ? [4, 5] : [3, 4];
   const colors = reverse ? [...COLORS].reverse() : COLORS;
@@ -39,7 +41,7 @@ const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePatter
               onClick={() => onClick(item)}
               className={`${bg} ${border} text-primary-text text-sm py-1 px-2.5 border-2 rounded-2xl`}
             >
-              {item.text}
+               {item[`${language}_text`]}
             </button>
           );
         })}

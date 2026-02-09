@@ -35,8 +35,8 @@ const Filters = () => {
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
-          fetchMainIngredients(language),
-          fetchCuisines(language),
+          fetchMainIngredients(),
+          fetchCuisines(),
         ]);
 
         dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
@@ -52,7 +52,7 @@ const Filters = () => {
     };
 
     loadFilters();
-  }, [language]);
+  }, []);
 
   if (error) {
     return <ErrorComponent errorMessage={errorMessage} />;
@@ -112,7 +112,7 @@ const Filters = () => {
               }
               onClick={() => dispatch(setActiveFilter({ filterCategory: "types", filter: typeFilter }))}
             >
-              {typeFilter.text}
+              {typeFilter[`${language}_text`]}
             </span>
           ))}
         </div>
@@ -132,7 +132,7 @@ const Filters = () => {
               }
               onClick={() => dispatch(setActiveFilter({ filterCategory: "cuisines", filter: cuisineFilter }))}
             >
-              {cuisineFilter.text}
+              {cuisineFilter[`${language}_text`]}
             </span>
           ))}
         </div>

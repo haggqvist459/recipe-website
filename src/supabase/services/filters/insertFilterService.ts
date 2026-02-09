@@ -1,15 +1,20 @@
 import { insertCuisine, insertMainIngredient } from "@/supabase/queries"
-import { FilterCategoryType, LanguageType } from "@/types"
+import { FilterCategoryType, LanguageType, FilterOptionType } from "@/types"
 
-export const insertFilterService = async (filterCategory: FilterCategoryType, filterText: string, language: LanguageType) => {
-  
+export const insertFilterService = async (filterCategory: FilterCategoryType, filterText: string, language: LanguageType): Promise<FilterOptionType> => {
   try {
-    if (filterCategory === 'types'){
-      const newFilter = await insertMainIngredient()
+    const newFilterData = language === 'en'
+      ? { en_text: filterText, sv_text: '-' }
+      : { en_text: '-', sv_text: filterText };
+
+    if (filterCategory === 'types') {
+      return await insertMainIngredient(newFilterData);
+    } else {
+      return await insertCuisine(newFilterData);
     }
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
-// TODO ADD TRANSLATION TEXT 
+// TODO ADD TRANSLATED FILTER TEXTS  

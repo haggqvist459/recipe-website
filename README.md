@@ -78,6 +78,8 @@
   - [x] Translate web elements between ENG/SWE (headings, menu labels etc)
   - [ ] Translate recipes between ENG/SWE
   - [ ] Proper unit translations for ingredients
+  - [ ] Add missing translations for static web elements such as headings and buttons
+
 - [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
 - [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
 - [ ] Refactor Output.tsx 

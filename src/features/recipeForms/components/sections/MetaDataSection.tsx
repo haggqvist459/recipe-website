@@ -51,8 +51,8 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
-          fetchMainIngredients(language),
-          fetchCuisines(language),
+          fetchMainIngredients(),
+          fetchCuisines(),
         ]);
         dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
@@ -66,14 +66,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
     };
 
     loadFilters();
-  }, [typeFilters, cuisineFilters]);
-
-  useEffect(() => {
-    setLocalMetadata({
-      title: metadata.title,
-      description: metadata.description,
-    });
-  }, [metadata.title, metadata.description])
+  }, []);
 
   return (
     <SectionWrapper>

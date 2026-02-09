@@ -26,12 +26,13 @@ const FilterManagement = () => {
   useEffect(() => {
     setError(false);
     setLoading(true)
+
     const loadFilters = async () => {
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
-          fetchMainIngredients(language),
-          fetchCuisines(language),
+          fetchMainIngredients(),
+          fetchCuisines(),
         ]);
 
         dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
@@ -49,7 +50,7 @@ const FilterManagement = () => {
     };
 
     loadFilters();
-  }, [language]);
+  }, []);
 
   const handleUpdate = async (filterCategory: FilterCategoryType, filterId: string, updatedText: string) => {
     try {
@@ -78,9 +79,10 @@ const FilterManagement = () => {
     }
   }
 
-  const handleAdd = async () => {
+  const handleAdd = async (filterCategory: FilterCategoryType, filterText: string) => {
     try {
-      await insertFilterService()
+      const newFilter = await insertFilterService(filterCategory, filterText, language)
+      dispatch(addFilter({filterCategory, filter: newFilter}))
     } catch (error) {
       setError(true)
       if (error instanceof Error) {
@@ -139,7 +141,7 @@ const FilterManagement = () => {
                 placeholder='New type'
                 value={newType}
               />
-              <button className="" onClick={handleAdd}>
+              <button className="" onClick={() => handleAdd('types', newType)}>
                 <AddListItem size='size-8' />
               </button>
             </div>
@@ -168,7 +170,7 @@ const FilterManagement = () => {
                 placeholder='New cuisine'
                 value={newCuisine}
               />
-              <button className="" onClick={handleAdd}>
+              <button className="" onClick={() => handleAdd('cuisines', newCuisine)}>
                 <AddListItem size='size-8' />
               </button>
             </div>
