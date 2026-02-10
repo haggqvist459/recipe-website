@@ -1,7 +1,25 @@
 import { FilterOptionType } from "@/types";
 import { useLanguage } from "@/contexts";
 
-const COLORS = ["lightblue", "darkblue", "purple", "pink", "orange", "yellow", "green"] as const;
+const BG_CLASSES = {
+  lightblue: "bg-lightblue",
+  darkblue: "bg-darkblue",
+  purple: "bg-purple",
+  pink: "bg-pink",
+  orange: "bg-orange",
+  yellow: "bg-yellow",
+  green: "bg-green",
+} as const;
+
+const BORDER_CLASSES = {
+  lightblue: "border-lightblue",
+  darkblue: "border-darkblue",
+  purple: "border-purple",
+  pink: "border-pink",
+  orange: "border-orange",
+  yellow: "border-yellow",
+  green: "border-green",
+} as const;
 
 type Props = {
   items: FilterOptionType[];

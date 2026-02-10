@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/redux';
 import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services';
 import { LoadingComponent, ErrorComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper } from '@/components';
 import { useLanguage } from '@/contexts';
-import { setFilterList, addFilter, deleteFilter } from '../slice';
+import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice';
 import FilterManagementItem from './FilterManagementItem';
 import { FilterCategoryType } from '@/types';
 
@@ -55,6 +55,7 @@ const FilterManagement = () => {
   const handleUpdate = async (filterCategory: FilterCategoryType, filterId: string, updatedText: string) => {
     try {
       await updateFilterService(updatedText, filterCategory, filterId, language)
+      dispatch(updateFilter({ filterCategory, filterId, updatedText, language }))
     } catch (error) {
       setError(true)
       if (error instanceof Error) {
@@ -82,7 +83,12 @@ const FilterManagement = () => {
   const handleAdd = async (filterCategory: FilterCategoryType, filterText: string) => {
     try {
       const newFilter = await insertFilterService(filterCategory, filterText, language)
-      dispatch(addFilter({filterCategory, filter: newFilter}))
+      dispatch(addFilter({ filterCategory, filter: newFilter }))
+      if (filterCategory === 'types') {
+        setNewType('')
+      } else {
+        setNewCuisine('')
+      }
     } catch (error) {
       setError(true)
       if (error instanceof Error) {

@@ -18,13 +18,15 @@
 - [ ] Edit, Remove & Add features for ingredients 
 - [ ] Edit, Remove & Add features for instructions 
 - [ ] Delete entire recipe 
+- [ ] Redirect back to Admin Page after succesful edit 
+- [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
 
 ## Filters
-- [ ] Edit existing filter text
-- [ ] Add new filters
-- [ ] Remove filters
- - [ ] Cascade into join table
-- [ ] Refactor filters and types to always include both languages, and display only selected language 
+- [x] Edit existing filter text
+- [x] Add new filters
+- [x] Remove filters
+ - [x] Cascade into join table
+- [x] Refactor filters and types to always include both languages, and display only selected language 
 
 ## Search function
 - [ ] search function should include matches on recipe titles, descriptions, and from the ingredient lists
@@ -55,7 +57,10 @@
 - [x] Re-use previous list project, add here 
  - [x] Localstorage persist grocery list
  - [x] Add new items to list 
- - [ ] share lists
+ - [ ] Share lists
+  - [ ] Share link? Code? 
+  - [ ] Second minor UI for shared list vs personal list? 
+  - [ ] Menu but ton to share list, generate link / code? 
  - [x] Add ingredients from recipes to list 
  - [x] Backup list to database if authenticated 
  - [ ] Finalise null checks 
@@ -85,8 +90,10 @@
 - [ ] Refactor Output.tsx 
  - [ ] Ensure full reusability 
  - [ ] Include FadeInOutWrapper - allow fade effect on language change
+
 - [ ] Include FadeInOutWrapper on Heading.tsx - allow fade effect on language change 
-- [ ] Ensure similar structure on the backend layers 
+
+- [ ] Ensure similar structure on the service and query layers 
   - [ ] Same try / catch principles 
   - [ ] Same import / export principles
   - [ ] Naming standards 
@@ -110,5 +117,5 @@
 - [x] Refactor all Modal usage to use the new Context 
 
 - [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
-- [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
+
 

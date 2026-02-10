@@ -40,6 +40,16 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
     setIsEditing(prev => !prev)
   }
 
+  const handleUpdate = async () => {
+    await onUpdate(editText);
+    setIsEditing(false);
+  }
+
+  const handleEdit = () => {
+    setEditText(filterText);
+    setIsEditing(true);
+  }
+  
   return (
     <div className="w-full my-1.5">
       {isEditing ?
@@ -59,7 +69,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
             </button>
             <button
               className=""
-              onClick={() => onUpdate(editText)}
+              onClick={handleUpdate}
             >
               <CheckSolidCircle />
             </button>
@@ -71,7 +81,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
           <div className="flex space-x-2">
             <button
               className=""
-              onClick={() => setIsEditing(prev => !prev)}
+              onClick={handleEdit}
             >
               <EditIcon />
             </button>
