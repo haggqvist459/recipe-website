@@ -68,6 +68,13 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
     loadFilters();
   }, []);
 
+  useEffect(() => {
+    setLocalMetadata({
+      title: metadata.title,
+      description: metadata.description,
+    });
+  }, [metadata.title, metadata.description]);
+
   return (
     <SectionWrapper>
       <div className="flex justify-between">

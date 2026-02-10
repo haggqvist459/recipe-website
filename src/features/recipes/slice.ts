@@ -7,10 +7,10 @@ import { RecipeType } from "@/types"
 const initialState: RecipeSliceState = {
   needsRefresh: true,
   recipes: []
-} 
+}
 
 const recipeSlice = createSlice({
-  name:'recipeSlice',
+  name: 'recipeSlice',
   initialState,
   reducers: {
     setRecipes: (state, action: PayloadAction<RecipeType[]>) => {
@@ -20,10 +20,13 @@ const recipeSlice = createSlice({
     markNeedsRefresh: (state) => {
       state.needsRefresh = true
     },
-    resetState: () => initialState  
+    removeRecipe: (state, action: PayloadAction<string>) => {
+      state.recipes = state.recipes.filter(recipe => recipe.id !== action.payload);
+    },
+    resetState: () => initialState
   }
 })
 
 
-export const { setRecipes, markNeedsRefresh, resetState } = recipeSlice.actions
+export const { setRecipes, markNeedsRefresh, resetState, removeRecipe } = recipeSlice.actions
 export default recipeSlice.reducer

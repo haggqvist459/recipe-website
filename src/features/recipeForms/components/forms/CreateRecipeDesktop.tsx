@@ -49,7 +49,7 @@ const CreateRecipeDesktop = () => {
             </button>
             <button
               type="submit"
-              form="create-recipe-form"
+              form="recipe-form"
               className="w-1/3 bg-primary font-medium rounded border-primary border-2 text-primary-text hover:border-primary-text"
             >
               {translateText('buttons', 'submit', language)}

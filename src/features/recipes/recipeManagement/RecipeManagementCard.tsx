@@ -5,9 +5,11 @@ import { Trashcan, EditIcon } from "@/components";
 
 type Props = {
   recipe: RecipeType
+  onDelete: () => void
 }
 
-const RecipeManagementCard = ({ recipe }: Props) => {
+
+const RecipeManagementCard = ({ recipe, onDelete }: Props) => {
   return (
     <div className="flex flex-col bg-white p-2 rounded-sm inset-shadow-xs/15 shadow-sm/15">
       <div className="flex justify-between">
@@ -19,7 +21,13 @@ const RecipeManagementCard = ({ recipe }: Props) => {
           >
             <EditIcon />
           </NavLink>
-          <Trashcan />
+          <button
+            className=""
+            onClick={onDelete}
+          >
+            <Trashcan />
+          </button>
+
         </div>
       </div>
       <span className="text-sm">

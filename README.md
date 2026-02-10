@@ -14,9 +14,9 @@
 - [ ] For how many people are the recipe? 
 
 ## Edit Form 
-- [ ] Edit, remove & Add for metadata
-- [ ] Edit, Remove & Add features for ingredients 
-- [ ] Edit, Remove & Add features for instructions 
+- [x] Edit, remove & Add for metadata
+- [x] Edit, Remove & Add features for ingredients 
+- [x] Edit, Remove & Add features for instructions 
 - [ ] Delete entire recipe 
 - [ ] Redirect back to Admin Page after succesful edit 
 - [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
@@ -45,7 +45,7 @@
 - [x] Change email
 - [x] Change password 
 - [x] Edit favorite lists - view / delete
-- [ ] Meal planner settings
+- [ ] Meal planner / weekly list settings
 
 ### Weekly lists: 
 - [ ] Generate lists based on full randomisation 

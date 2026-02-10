@@ -1,3 +1,4 @@
+export * from './deleteRecipe';
 export * from './insertRecipes';
 export * from './selectFilteredRecipes';
 export * from './selectRecipesAndRelations';

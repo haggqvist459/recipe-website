@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FilterOptionType } from "@/types";
-import { useNotification, useLanguage } from '@/contexts';
+import { useLanguage } from '@/contexts';
 import { Trashcan, EditIcon, CheckSolidCircle, Close, Input } from "@/components";
 
 
@@ -14,26 +14,12 @@ type Props = {
 
 const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
 
-  const { setModalState, resetModalState } = useNotification();
   const { language } = useLanguage();
 
   const filterText = filter[`${language}_text`];
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(filterText);
 
-  const handleDelete = () => {
-    setModalState({
-      isOpen: true,
-      showCancel: true,
-      title: 'Delete Filter',
-      message: `Are you sure you want to delete the filter ${filterText}?`,
-      onConfirm: () => {
-        onDelete()
-        resetModalState();
-      },
-      onCancel: () => resetModalState()
-    });
-  };
 
   const cancelUpdate = () => {
     setEditText(filterText)
@@ -87,7 +73,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
             </button>
             <button
               className=""
-              onClick={handleDelete}
+              onClick={onDelete}
             >
               <Trashcan />
             </button>
