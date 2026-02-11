@@ -19,7 +19,7 @@
 - [x] Edit, Remove & Add features for instructions 
 - [x] Delete entire recipe 
 - [ ] Redirect back to Admin Page after succesful edit 
-- [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
+- [x] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
 
 ## Filters
 - [x] Edit existing filter text
