@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux';
 import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services';
-import { LoadingComponent, ErrorComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper } from '@/components';
+import { LoadingComponent, ErrorComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper, IconButton } from '@/components';
 import { useLanguage, useNotification } from '@/contexts';
 import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice';
 import FilterManagementItem from './FilterManagementItem';
@@ -67,30 +67,30 @@ const FilterManagement = () => {
     }
   }
 
-const handleDelete = (filterCategory: FilterCategoryType, filterId: string, filterText: string) => {
-  setModalState({
-    isOpen: true,
-    showCancel: true,
-    title: 'Delete Filter',
-    message: `Are you sure you want to delete the filter "${filterText}"?`,
-    onConfirm: async () => {
-      try {
-        await deleteFilterService(filterCategory, filterId)
-        dispatch(deleteFilter({ filterCategory, filterId }))
-        resetModalState()
-      } catch (error) {
-        setError(true)
-        if (error instanceof Error) {
-          setErrorMessage(error.message)
-        } else {
-          setErrorMessage('An unknown error occured while deleting a filter.')
+  const handleDelete = (filterCategory: FilterCategoryType, filterId: string, filterText: string) => {
+    setModalState({
+      isOpen: true,
+      showCancel: true,
+      title: 'Delete Filter',
+      message: `Are you sure you want to delete the filter "${filterText}"?`,
+      onConfirm: async () => {
+        try {
+          await deleteFilterService(filterCategory, filterId)
+          dispatch(deleteFilter({ filterCategory, filterId }))
+          resetModalState()
+        } catch (error) {
+          setError(true)
+          if (error instanceof Error) {
+            setErrorMessage(error.message)
+          } else {
+            setErrorMessage('An unknown error occured while deleting a filter.')
+          }
+          resetModalState()
         }
-        resetModalState()
-      }
-    },
-    onCancel: () => resetModalState()
-  })
-}
+      },
+      onCancel: () => resetModalState()
+    })
+  }
 
   const handleAdd = async (filterCategory: FilterCategoryType, filterText: string) => {
     try {
@@ -159,9 +159,9 @@ const handleDelete = (filterCategory: FilterCategoryType, filterId: string, filt
                 placeholder='New type'
                 value={newType}
               />
-              <button className="" onClick={() => handleAdd('types', newType)}>
+              <IconButton onClick={() => handleAdd('types', newType)}>
                 <AddListItem size='size-8' />
-              </button>
+              </IconButton>
             </div>
           </div>
         )}
@@ -188,9 +188,9 @@ const handleDelete = (filterCategory: FilterCategoryType, filterId: string, filt
                 placeholder='New cuisine'
                 value={newCuisine}
               />
-              <button className="" onClick={() => handleAdd('cuisines', newCuisine)}>
+              <IconButton onClick={() => handleAdd('cuisines', newCuisine)}>
                 <AddListItem size='size-8' />
-              </button>
+              </IconButton>
             </div>
           </div>
         )}

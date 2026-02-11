@@ -1,6 +1,6 @@
 import { RecipeType, DbRecipeWithRelations, InstructionType, IngredientType } from '@/types'
 
-export const mapRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): RecipeType[] => {
+export const mapMultipleRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): RecipeType[] => {
   return dbRecipes.map((dbRecipe) => {
     const safeMainIngredients = Array.isArray(dbRecipe.recipe_main_ingredients)
       ? dbRecipe.recipe_main_ingredients
@@ -39,11 +39,12 @@ export const mapRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): RecipeType
       cuisines: mappedCuisines,
       instructions: mappedInstructions,
       ingredients: mappedIngredients,
+      servings: dbRecipe.servings
     }
   })
 }
 
-export const mapRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeType => {
+export const mapSingleRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeType => {
   const safeMainIngredients = Array.isArray(dbRecipe.recipe_main_ingredients)
     ? dbRecipe.recipe_main_ingredients
     : [];
@@ -81,5 +82,6 @@ export const mapRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeType => 
     cuisines: mappedCuisines,
     instructions: mappedInstructions,
     ingredients: mappedIngredients,
+    servings: dbRecipe.servings
   };
 };

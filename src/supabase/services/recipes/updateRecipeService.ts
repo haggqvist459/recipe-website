@@ -1,6 +1,6 @@
 import { selectSingleRecipe, updateRecipe, deleteRecipeCuisines, deleteRecipeMainIngredients, insertRecipeCuisines, insertRecipeMainIngredients, selectUserRole } from '@/supabase/queries';
 import { LanguageType, RecipeDraftType } from '@/types';
-import { mapRecipeDbToUI, diffRecipes } from './utils';
+import { mapSingleRecipeDbToUI, diffRecipes } from './utils';
 
 
 export const processRecipeUpdate = async (uid: string, recipeId: string, recipeDraft: RecipeDraftType, language: LanguageType) => {
@@ -10,7 +10,7 @@ export const processRecipeUpdate = async (uid: string, recipeId: string, recipeD
       throw new Error('[updateRecipe] - Error updating recipe, insufficient permissions')
     }
     const originalRecipeDb = await selectSingleRecipe(recipeId, language)
-    const mappedOriginalRecipe = mapRecipeDbToUI(originalRecipeDb)
+    const mappedOriginalRecipe = mapSingleRecipeDbToUI(originalRecipeDb)
 
     const recipeDiffs = diffRecipes(mappedOriginalRecipe, recipeDraft)
     let updatedId

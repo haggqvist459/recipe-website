@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
-import { Circle, CheckSolidCircle, Trashcan } from '@/components';
 import { useAppDispatch } from '@/redux';
 import { VISIBILITY_FILTERS } from '../constants';
 import { deleteItem, toggleCompletion } from '../slice';
 import { ListItemData } from '../types';
+import { Circle, CheckSolidCircle, Trashcan, IconButton } from '@/components';
+
 
 type Props = {
   item: ListItemData
@@ -57,18 +58,17 @@ const GroceryListItem = ({ item, activeFilter }: Props) => {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div
-        className="flex flex-grow space-x-1 items-center"
-        onClick={() => handleToggle(item.id)}
-      >
+      <IconButton onClick={() => handleToggle(item.id)} className="flex flex-grow space-x-1 items-center">
         {item.completed ? <CheckSolidCircle /> : <Circle />}
         <span className={`text-primary-text ${item.completed ? 'line-through' : ''}`}>{item.text}{item.amount && `, ${item.amount} ${item.unit}`}</span>
-      </div>
+      </IconButton>
+
       <div
         className={`transition-all duration-300 overflow-hidden ${showDelete ? 'opacity-100' : 'opacity-0'}`}
-        onClick={() => dispatch(deleteItem(item.id))}
       >
-        <Trashcan />
+        <IconButton onClick={() => dispatch(deleteItem(item.id))}>
+          <Trashcan />
+        </IconButton>
       </div>
     </div>
   );

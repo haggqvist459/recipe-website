@@ -30,6 +30,7 @@ export type RecipeType = {
   ingredients: IngredientType[]
   instructions: InstructionType[]
   createdAt: string
+  servings: string | null
 }
 export type RecipeDraftType = Omit<RecipeType, "id" | "createdAt">
 

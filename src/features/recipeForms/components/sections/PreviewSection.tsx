@@ -83,7 +83,7 @@ const PreviewSection = () => {
         <div className="w-full mt-2 flex space-x-2 lg:hidden">
           <button
             type="button"
-            className="w-1/2 bg-secondary font-medium text-primary-text rounded"
+            className="w-1/2 bg-secondary font-medium text-primary-text rounded button-click"
             onClick={() => dispatch(setCurrentSection('Instructions'))}
           >
             {translateText('buttons', 'back', language)}
@@ -91,7 +91,7 @@ const PreviewSection = () => {
           <button
             type="submit"
             form="recipe-form"
-            className="w-1/2 bg-primary font-medium text-primary-text rounded"
+            className="w-1/2 bg-primary font-medium text-primary-text rounded button-click"
           >
             {translateText('buttons', 'submit', language)}
           </button>

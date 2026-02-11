@@ -28,12 +28,6 @@
  - [x] Cascade into join table
 - [x] Refactor filters and types to always include both languages, and display only selected language 
 
-## Search function
-- [ ] search function should include matches on recipe titles, descriptions, and from the ingredient lists
-
-## Auth: 
-- [x] Move auth from AdminLayout to backend
-
 ### Main Page: 
 - [x] List all recipes 
 - [x] Add the filters as dropdowns 
@@ -77,6 +71,14 @@
 - [ ] Review error handling across pages and components 
   - [ ] Admin Page must redirect to error in case of non admin roles
 
+## Auth: 
+- [x] useContext for authentication 
+- [x] AdminLayout to protect authenticated paths 
+- [x] Use user roles to determine access
+
+
+## Search function
+- [ ] search function should include matches on recipe titles, descriptions, and from the ingredient lists
 
  ### MISC:
  - [x] Language options
@@ -109,9 +111,9 @@
   - [ ] hover: border on buttons in CreateRecipe components 
   - [ ] State is cleared after successful recipe insertion but no re-direct from preview page
   - [ ] Must also trigger a new fetch of recipes 
-- [ ] Button highlights - apply new utility from index.css on buttons
+- [x] Button highlights - apply new utility (button-click) from index.css on buttons
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
-- [ ] Refactor ButtonRow component - use Tailwind instead of JavaScript
+- [x] Refactor ButtonRow component - use Tailwind instead of JavaScript
 - [ ] Inspect sync of local and remote grocery lists
 - [ ] Add null checks to grocery list db actions for more precise toast messages
 - [x] Refactor all Modal usage to use the new Context 

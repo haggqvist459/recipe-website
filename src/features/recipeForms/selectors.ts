@@ -9,6 +9,7 @@ export const selectMetadata = createSelector(
     types: recipeDraft.types,
     cuisines: recipeDraft.cuisines,
     includeWeekly: recipeDraft.includeWeekly,
+    servings: recipeDraft.servings
   })
 );
 

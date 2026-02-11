@@ -5,7 +5,7 @@ import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } 
 import { setFilterList, ButtonRow } from "@/features/filters";
 import { FilterOptionType } from '@/types';
 import SectionWrapper from "../shared/SectionWrapper";
-import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent } from "@/components";
+import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent, CircleMinus, CirclePlus, IconButton } from "@/components";
 import { useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
 
@@ -125,6 +125,15 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                     }
                   }}
                 />
+                <div className="flex justify-between items-center border rounded border-primary-text p-0.5">
+                  <IconButton className="p-1 button-click" onClick={() => { }}>
+                    <CircleMinus size="size-7" />
+                  </IconButton>
+                  <span className="label">Servings: {metadata.servings}</span>
+                  <IconButton className="p-1 button-click" onClick={() => { }}>
+                    <CirclePlus size="size-7" />
+                  </IconButton>
+                </div>
                 <div className="">
                   <Heading title={translateText("metadata", "selectCategory", language)} headingType="sub-heading" />
                   <ButtonRow
@@ -151,7 +160,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
           <button
             type="button"
             disabled={loading || error}
-            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50"
+            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50 button-click"
             onClick={() =>
               handleNavigation(() => dispatch(setCurrentSection("Ingredients")))
             }

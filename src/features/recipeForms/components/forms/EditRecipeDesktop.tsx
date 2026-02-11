@@ -32,7 +32,7 @@ const EditRecipeDesktop = ({ recipeId }: Props) => {
               onClick={() =>
                 handleNavigation(() => setViewMode("Preview"))
               }
-              className="w-1/3 bg-primary font-medium rounded border-primary border-2 hover:border-primary-text"
+              className="w-1/3 bg-primary font-medium rounded border-primary border-2 hover:border-primary-text button-click"
             >
               {translateText('buttons', 'previewRecipe', language)}
             </button>
@@ -48,14 +48,14 @@ const EditRecipeDesktop = ({ recipeId }: Props) => {
             <button
               type="button"
               onClick={() => setViewMode("Edit")}
-              className="w-1/3 bg-secondary font-medium rounded border-secondary border-2 text-primary-text hover:border-primary-text"
+              className="w-1/3 bg-secondary font-medium rounded border-secondary border-2 text-primary-text hover:border-primary-text button-click"
             >
               {translateText('buttons', 'edit', language)}
             </button>
             <button
               type="submit"
               form="recipe-form"
-              className="w-1/3 bg-primary font-medium rounded border-primary border-2 text-primary-text hover:border-primary-text"
+              className="w-1/3 bg-primary font-medium rounded border-primary border-2 text-primary-text hover:border-primary-text button-click"
             >
               {translateText('buttons', 'submit', language)}
             </button>

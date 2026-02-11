@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Heading, Favourite, AddListItem } from "@/components";
+import { setFavourite, removeFavourite } from "@/supabase/services";
+import { useAppDispatch } from "@/redux/hooks";
 import { RecipeType } from "@/types";
 import { useAuth, useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
-import { setFavourite, removeFavourite } from "@/supabase/services";
-import { useAppDispatch } from "@/redux/hooks";
+import { Heading, Favourite, AddListItem, IconButton } from "@/components";
 import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites";
 import { addIngredients } from "@/features/groceryList";
 
@@ -74,11 +74,9 @@ const RecipeDetails = ({ recipe }: Props) => {
             <Heading title={recipe.title} />
             <Heading title={recipe.description ?? ''} headingType="sub-heading" />
           </div>
-          <div className="py-2 self-start"
-            onClick={() => toggleFavourite()}
-          >
+          <IconButton onClick={() => toggleFavourite()}>
             {user && <Favourite isToggled={isFavourite} />}
-          </div>
+          </IconButton>
         </div>
 
         <div className="lg:flex lg:space-x-5 mt-5">
@@ -93,25 +91,25 @@ const RecipeDetails = ({ recipe }: Props) => {
                   </li>
                 ))}
               </ul>
-              <button
+              <IconButton
                 className="absolute bottom-0 right-0 p-1 bg-lightblue rounded-full button-click"
                 onClick={() => dispatch(addIngredients(recipe.ingredients))}
               >
                 <AddListItem size="size-8" />
-              </button>
+              </IconButton>
             </div>
           </div>
           <div className={`lg:w-2/3 ${activeSection === 'instructions' ? 'block' : 'hidden'} lg:block`}>
             {recipe.instructions.map((instruction) => (
-              <div
+              <button
                 key={instruction.id}
-                className={`flex flex-col mt-2 cursor-pointer ${completedIds.has(instruction.id) ? "line-through bg-primary-bg" : ""
-                  }`}
+                type="button"
+                className={`flex flex-col mt-2 text-left ${completedIds.has(instruction.id) ? "line-through bg-primary-bg" : ""}`}
                 onClick={() => toggleCompleted(instruction.id)}
               >
                 <span className="label">{instruction.title}</span>
                 <span>{instruction.text}</span>
-              </div>
+              </button>
             ))}
           </div>
         </div>

@@ -206,6 +206,7 @@ export type Database = {
           include_weekly: boolean
           ingredients: Json[]
           instructions: Json[]
+          servings: string | null
           title: string
         }
         Insert: {
@@ -215,6 +216,7 @@ export type Database = {
           include_weekly?: boolean
           ingredients: Json[]
           instructions: Json[]
+          servings?: string | null
           title: string
         }
         Update: {
@@ -224,6 +226,7 @@ export type Database = {
           include_weekly?: boolean
           ingredients?: Json[]
           instructions?: Json[]
+          servings?: string | null
           title?: string
         }
         Relationships: []

@@ -11,6 +11,7 @@ const initialState: RecipeFormState = {
     cuisines: null,
     types: null,
     includeWeekly: true,
+    servings: "",
     ingredients: [{
       id: uuidv4(),
       name: "",

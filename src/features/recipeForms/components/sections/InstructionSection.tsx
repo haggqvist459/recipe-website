@@ -84,7 +84,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text"
+                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text button-click"
                 onClick={() => handleParsedInstructions()}
               >
                 {translateText('instructions', 'parse', language)}
@@ -111,7 +111,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
                       />
                       <button
                         type="button"
-                        className="mb-0.5 mr-1 disabled:opacity-50"
+                        className="mb-0.5 mr-1 disabled:opacity-50 button-click"
                         disabled={localInstructions.length === 1}
                         onClick={() => dispatch(removeInstruction({ id: instruction.id }))}
                       >
@@ -137,7 +137,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text"
+                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text button-click"
                 onClick={() => dispatch(addInstruction())}
               >
                 {translateText('instructions', 'addInstruction', language)}
@@ -150,7 +150,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
         <div className="w-full flex space-x-2 md:hidden">
           <button
             type="button"
-            className="w-1/2 bg-secondary font-medium text-primary-text rounded"
+            className="w-1/2 bg-secondary font-medium text-primary-text rounded button-click"
             onClick={() => dispatch(setCurrentSection("Ingredients"))}
           >
             {translateText('buttons', 'back', language)}
@@ -158,7 +158,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
           <button
             type="button"
             disabled={!hasValidInstruction(localInstructions)}
-            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50"
+            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50 button-click"
             onClick={() => handleNavigation(() => dispatch(setCurrentSection("Preview")))}
           >
             {translateText('buttons', 'preview', language)}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch } from "@/redux";
 import { addItem } from "../slice";
-import { AddListItem } from "@/components";
+import { AddListItem, IconButton } from "@/components";
 
 const AddItem = () => {
 
@@ -28,9 +28,9 @@ const AddItem = () => {
             }
           }}
       />
-      <div className="" onClick={() => handleAddItemClick(value)}>
+      <IconButton onClick={() => handleAddItemClick(value)}>
         <AddListItem />
-      </div>
+      </IconButton>
     </div>
   );
 }

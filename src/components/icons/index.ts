@@ -5,6 +5,8 @@ export { default as CheckCircle } from './CheckCircle';
 export { default as CheckCross } from './CheckCross';
 export { default as CheckSolidCircle } from './CheckSolidCircle'
 export { default as Circle } from './Circle';
+export { default as CircleMinus } from './CircleMinus';
+export { default as CirclePlus } from './CirclePlus';
 export { default as Close } from './Close';
 export { default as CloudArrowDown } from './CloudArrowDown';
 export { default as CloudArrowUp } from './CloudArrowUp';

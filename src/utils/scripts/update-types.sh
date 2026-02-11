@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # load .env from project root
-if [ -f "$(dirname "$0")/../../.env" ]; then
-  export $(grep -E 'SECRET_KEY|PROJECT_REF|VITE_SUPABASE_URL' "$(dirname "$0")/../../.env" | xargs)
+if [ -f "$(dirname "$0")/../../../.env" ]; then
+  export $(grep -E 'SECRET_KEY|PROJECT_REF|VITE_SUPABASE_URL' "$(dirname "$0")/../../../.env" | xargs)
 fi
 
 # verify required env variables

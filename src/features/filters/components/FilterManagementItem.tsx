@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FilterOptionType } from "@/types";
 import { useLanguage } from '@/contexts';
-import { Trashcan, EditIcon, CheckSolidCircle, Close, Input } from "@/components";
+import { Trashcan, EditIcon, CheckSolidCircle, Close, Input, IconButton } from "@/components";
 
 
 
@@ -47,36 +47,24 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
             value={editText}
           />
           <div className="flex space-x-2">
-            <button
-              className=""
-              onClick={() => cancelUpdate()}
-            >
+            <IconButton onClick={cancelUpdate}>
               <Close />
-            </button>
-            <button
-              className=""
-              onClick={handleUpdate}
-            >
-              <CheckSolidCircle />
-            </button>
+            </IconButton>
+            <IconButton onClick={handleUpdate}>
+              <CheckSolidCircle/>
+            </IconButton>
           </div>
         </div>
         :
         <div className="flex justify-between">
           <span className="text-primary-text">{filterText}</span>
           <div className="flex space-x-2">
-            <button
-              className=""
-              onClick={handleEdit}
-            >
+            <IconButton onClick={handleEdit}>
               <EditIcon />
-            </button>
-            <button
-              className=""
-              onClick={onDelete}
-            >
+            </IconButton>
+            <IconButton onClick={onDelete}>
               <Trashcan />
-            </button>
+            </IconButton>
           </div>
         </div>
       }

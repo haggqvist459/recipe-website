@@ -11,6 +11,7 @@ export const diffRecipes = (original: RecipeType, draft: RecipeDraftType): Recip
     ...(draft.title !== original.title && { title: draft.title }),
     ...(draft.description !== original.description && { description: draft.description }),
     ...(draft.includeWeekly !== original.includeWeekly && { include_weekly: draft.includeWeekly }),
+    ...(draft.servings !== original.servings && { servings: draft.servings }),
     ...(JSON.stringify(draft.ingredients) !== JSON.stringify(original.ingredients) && { ingredients: draft.ingredients }),
     ...(JSON.stringify(draft.instructions) !== JSON.stringify(original.instructions) && { instructions: draft.instructions })
   };

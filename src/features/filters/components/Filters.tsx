@@ -103,7 +103,7 @@ const Filters = () => {
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
         <div className={`flex px-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap space-x-4 duration-300 ease-in-out ${showTypes ? 'translate-y-0 h-[32px]' : '-translate-y-full h-0'}`}>
           {typeFilters.map(typeFilter => (
-            <span
+            <button
               key={typeFilter.id}
               className={
                 selectedTypeFilters.some(selected => selected.id === typeFilter.id)
@@ -113,7 +113,7 @@ const Filters = () => {
               onClick={() => dispatch(setActiveFilter({ filterCategory: "types", filter: typeFilter }))}
             >
               {typeFilter[`${language}_text`]}
-            </span>
+            </button>
           ))}
         </div>
         <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-primary/80 to-transparent" />
@@ -123,7 +123,7 @@ const Filters = () => {
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
         <div className={`flex px-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap space-x-4 duration-300 ease-in-out ${showCuisines ? 'translate-y-0 h-[32px]' : '-translate-y-full h-0'}`}>
           {cuisineFilters.map(cuisineFilter => (
-            <span
+            <button
               key={cuisineFilter.id}
               className={
                 selectedCuisineFilters.some(selected => selected.id === cuisineFilter.id)
@@ -133,7 +133,7 @@ const Filters = () => {
               onClick={() => dispatch(setActiveFilter({ filterCategory: "cuisines", filter: cuisineFilter }))}
             >
               {cuisineFilter[`${language}_text`]}
-            </span>
+            </button>
           ))}
         </div>
         <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-primary/80 to-transparent" />
@@ -143,7 +143,7 @@ const Filters = () => {
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
         <div className={`flex px-2 items-center justify-center overflow-x-auto whitespace-nowrap space-x-4 duration-300 ease-in-out ${showSort ? 'translate-y-0 h-[32px]' : '-translate-y-full h-0'}`}>
           {Object.entries(SORTING_FILTERS).map(([sortingKey, sortingData]) => (
-            <span
+            <button
               key={sortingKey}
               className={
                 selectedSortingFilter === sortingKey
@@ -153,7 +153,7 @@ const Filters = () => {
               onClick={() => dispatch(setActiveSorting(sortingKey as SortingFilterKey))}
             >
               {sortingData[language]}
-            </span>
+            </button>
           ))}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { selectSingleRecipe } from '@/supabase/queries';
-import { mapRecipeDbToUI } from "./utils";
+import { mapSingleRecipeDbToUI } from "./utils";
 import { LanguageType, RecipeType } from '@/types';
 
 
@@ -7,7 +7,7 @@ export const fetchSingleRecipe = async (id: string, language: LanguageType): Pro
 
   try {
     const dbData = await selectSingleRecipe(id, language)
-    return mapRecipeDbToUI(dbData)
+    return mapSingleRecipeDbToUI(dbData)
   } catch (error) {
     throw error
   }

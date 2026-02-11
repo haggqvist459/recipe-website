@@ -1,6 +1,6 @@
 import { FilterOptionType, RecipeType, SortingFilterKey, LanguageType } from '@/types';
 import { selectFilteredRecipes } from '@/supabase/queries';
-import { mapRecipesDbToUI } from './utils'
+import { mapMultipleRecipesDbToUI } from './utils'
 
 export const fetchFilteredRecipes = async ({
   typeFilters,
@@ -19,7 +19,7 @@ export const fetchFilteredRecipes = async ({
 
   try {
     const dbData = await selectFilteredRecipes({ typeIds, cuisineIds, sortingFilter, language });
-    return mapRecipesDbToUI(dbData)
+    return mapMultipleRecipesDbToUI(dbData)
   } catch (error) {
     throw error
   }

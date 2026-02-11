@@ -1,7 +1,7 @@
 import { RecipeType } from "@/types";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "@/utils";
-import { Trashcan, EditIcon } from "@/components";
+import { Trashcan, EditIcon, IconButton } from "@/components";
 
 type Props = {
   recipe: RecipeType
@@ -21,13 +21,9 @@ const RecipeManagementCard = ({ recipe, onDelete }: Props) => {
           >
             <EditIcon />
           </NavLink>
-          <button
-            className=""
-            onClick={onDelete}
-          >
+          <IconButton onClick={onDelete}>
             <Trashcan />
-          </button>
-
+          </IconButton>
         </div>
       </div>
       <span className="text-sm">

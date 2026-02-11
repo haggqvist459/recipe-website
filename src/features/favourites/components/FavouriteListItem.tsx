@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { FavouriteType } from "../types";
-import { Trashcan } from '@/components';
+import { Trashcan, IconButton } from '@/components';
 import { removeFavourite } from '@/supabase/services';
 import { useAppDispatch } from '@/redux/hooks';
 import { deleteFavourite, addFavourite } from '../slice';
@@ -58,9 +58,11 @@ const FavouriteListItem = ({ favourite }: Props) => {
       <div
         className={`self-center transition-all duration-300 ease-out overflow-hidden ${showDelete ? 'w-auto opacity-100 translate-x-0' : 'w-0 opacity-0 translate-x-full'
           }`}
-          onClick={() => handleDelete()}
+        onClick={() => handleDelete()}
       >
-        <Trashcan />
+        <IconButton onClick={() => handleDelete()}>
+          <Trashcan />
+        </IconButton>
       </div>
     </div>
   )

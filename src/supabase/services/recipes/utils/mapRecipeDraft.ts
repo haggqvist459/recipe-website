@@ -6,6 +6,7 @@ export const mapRecipeDraftToDb = (draft: RecipeDraftType) => {
     description: draft.description?.trim() || null,
     include_weekly: draft.includeWeekly,     
     ingredients: draft.ingredients,          
-    instructions: draft.instructions,        
+    instructions: draft.instructions,
+    servings: draft.servings        
   };
 };

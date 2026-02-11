@@ -87,7 +87,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text"
+                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 button-click border-lightblue hover:border-primary-text"
                 onClick={() => handleParsedIngredients()}
               >
                 {translateText('ingredients', 'parse', language)}
@@ -116,7 +116,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                       />
                       <button
                         type="button"
-                        className="mb-0.5 mr-1 disabled:opacity-50"
+                        className="mb-0.5 mr-1 disabled:opacity-50 button-click"
                         onClick={() =>
                           dispatch(removeIngredient({ id: ingredient.id }))
                         }
@@ -163,7 +163,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text"
+                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text button-click"
                 onClick={() => dispatch(addIngredient())}
               >
                 {translateText('ingredients', 'addIngredient', language)}
@@ -176,7 +176,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
         <div className="w-full flex space-x-2 md:hidden">
           <button
             type="button"
-            className="w-1/2 bg-secondary font-medium text-primary-text rounded"
+            className="w-1/2 bg-secondary font-medium text-primary-text rounded button-click"
             onClick={() => dispatch(setCurrentSection("Metadata"))}
           >
             {translateText('buttons', 'back', language)}
@@ -184,7 +184,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
           <button
             type="button"
             disabled={!hasValidIngredient(localIngredients)}
-            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50"
+            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50 button-click"
             onClick={() => handleNavigation(() => dispatch(setCurrentSection("Instructions")))}
           >
             {translateText('buttons', 'next', language)}

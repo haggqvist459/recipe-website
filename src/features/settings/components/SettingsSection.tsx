@@ -133,7 +133,7 @@ const SettingsSection = () => {
         />
       </div>
       <button
-        className="w-full mt-5 rounded bg-primary border border-primary hover:border-primary-text disabled:opacity-50"
+        className="w-full mt-5 rounded bg-primary border border-primary hover:border-primary-text disabled:opacity-50 button-click"
         onClick={() => handleSubmit()}
         disabled={(!currentPassword && (!newEmail || (!newPassword && !confirmPassword)))}
       >
