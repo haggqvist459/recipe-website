@@ -1,15 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { resetState } from "@/features/recipeForms";
 import { processRecipe, processRecipeUpdate } from "@/supabase/services";
 import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts";
+import { ROUTES } from "@/utils";
 
 export const useRecipeFormHandlers = (recipeId?: string) => {
 
+  const navigate = useNavigate()
   const user = useAuthenticatedUser();
   const { language } = useLanguage();
   const { setModalState, resetModalState } = useNotification();
   const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
   const dispatch = useAppDispatch();
+  
 
   const handleNavigation = (action: () => void) => {
     const formElement = document.getElementById("recipe-form") as HTMLFormElement | null;
@@ -73,6 +77,7 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
           onConfirm: () => {
             dispatch(resetState())
             resetModalState()
+            navigate(ROUTES.ADMIN)
           }
         })
       } else {

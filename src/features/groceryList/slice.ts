@@ -69,7 +69,7 @@ const groceryListSlice = createSlice({
     },
     resetState: () => {
       const reset: ListState = {
-        visibilityFilter: VISIBILITY_FILTERS.ALL,
+        visibilityFilter: VISIBILITY_FILTERS.UNMARKED,
         items: [],
         lastModified: ''
       }
