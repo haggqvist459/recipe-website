@@ -17,7 +17,7 @@
 - [x] Edit, remove & Add for metadata
 - [x] Edit, Remove & Add features for ingredients 
 - [x] Edit, Remove & Add features for instructions 
-- [ ] Delete entire recipe 
+- [x] Delete entire recipe 
 - [ ] Redirect back to Admin Page after succesful edit 
 - [ ] Troubleshoot issues with edit form - meta data is lost on page reloads when instructions and ingredients are not, and the filters are not properly selected
 
