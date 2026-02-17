@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { UNITS, translateText } from "@/utils";
-import { Input, Dropdown, createDropdownOptions, Heading, Trashcan, ToggleButton, FadeWrapper } from "@/components";
+import { Input, Dropdown, createDropdownOptions, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components";
 import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/recipeForms";
 import { parseIngredientList } from "../../utils/parseIngredients";
 import SectionWrapper from "../shared/SectionWrapper";
@@ -114,16 +114,13 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         required
                         autoComplete="off"
                       />
-                      <button
-                        type="button"
-                        className="mb-0.5 mr-1 disabled:opacity-50 button-click"
-                        onClick={() =>
-                          dispatch(removeIngredient({ id: ingredient.id }))
-                        }
+                      <IconButton
                         disabled={localIngredients.length === 1}
+                        onClick={() => dispatch(removeIngredient({ id: ingredient.id }))}
+                        className="mb-0.5 mr-1"
                       >
                         <Trashcan />
-                      </button>
+                      </IconButton>
                     </div>
                     <div className="flex flex-col xs:flex-row space-x-1 mt-1">
                       <Input

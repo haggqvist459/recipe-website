@@ -126,11 +126,19 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                   }}
                 />
                 <div className="flex justify-between items-center border rounded border-primary-text p-0.5">
-                  <IconButton className="p-1 button-click" onClick={() => { }}>
+                  <IconButton
+                    className="p-1"
+                    disabled={metadata.servings <= 0}
+                    onClick={() => dispatch(updateMetadataField({ key: "servings", value: Math.max(0, metadata.servings - 1) }))}
+                  >
                     <CircleMinus size="size-7" />
                   </IconButton>
                   <span className="label">Servings: {metadata.servings}</span>
-                  <IconButton className="p-1 button-click" onClick={() => { }}>
+                  <IconButton
+                    className="p-1"
+                    disabled={metadata.servings >= 20}
+                    onClick={() => dispatch(updateMetadataField({ key: "servings", value: Math.min(20, metadata.servings + 1) }))}
+                  >
                     <CirclePlus size="size-7" />
                   </IconButton>
                 </div>

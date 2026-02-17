@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/recipeForms";
-import { Input, Heading, Trashcan, ToggleButton, FadeWrapper } from "@/components";
+import { Input, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components";
 import SectionWrapper from "../shared/SectionWrapper";
 import { parseInstructionList } from "../../utils/parseInstructions";
 import { useLanguage } from "@/contexts";
@@ -109,14 +109,13 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
                         onBlur={() => handleInstructionDispatch(instruction.id, "title")}
                         required={true}
                       />
-                      <button
-                        type="button"
-                        className="mb-0.5 mr-1 disabled:opacity-50 button-click"
+                      <IconButton
                         disabled={localInstructions.length === 1}
                         onClick={() => dispatch(removeInstruction({ id: instruction.id }))}
+                        className="mb-0.5 mr-1"
                       >
                         <Trashcan />
-                      </button>
+                      </IconButton>
                     </div>
                     <div className="mt-2">
                       <Input

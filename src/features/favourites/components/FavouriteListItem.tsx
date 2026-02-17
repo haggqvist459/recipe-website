@@ -58,7 +58,6 @@ const FavouriteListItem = ({ favourite }: Props) => {
       <div
         className={`self-center transition-all duration-300 ease-out overflow-hidden ${showDelete ? 'w-auto opacity-100 translate-x-0' : 'w-0 opacity-0 translate-x-full'
           }`}
-        onClick={() => handleDelete()}
       >
         <IconButton onClick={() => handleDelete()}>
           <Trashcan />
