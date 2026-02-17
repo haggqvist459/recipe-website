@@ -17,8 +17,9 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
 
 
   const { language } = useLanguage()
-  const ingredients = useAppSelector(selectIngredients)
   const dispatch = useAppDispatch()
+  const ingredients = useAppSelector(selectIngredients)
+  const errors = useAppSelector(state => state.recipeForms.errors)
   const [localIngredients, setLocalIngredients] = useState(ingredients)
   const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
   const [pastedText, setPastedText] = useState("");
@@ -83,6 +84,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                   label={translateText('ingredients', 'ingredients', language)}
                   value={pastedText}
                   onChange={(e) => setPastedText(e.target.value)}
+                  error={errors.ingredients && Object.keys(errors.ingredients).length > 0}
                 />
               </div>
               <button
@@ -113,6 +115,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         label={translateText('ingredients', 'ingredient', language)}
                         required
                         autoComplete="off"
+                        error={errors.ingredients?.[ingredient.id]?.name}
                       />
                       <IconButton
                         disabled={localIngredients.length === 1}
@@ -136,6 +139,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         autoComplete="off"
                         inputType="number"
                         allowDecimals
+                        error={errors.ingredients?.[ingredient.id]?.amount}
                       />
                       <Dropdown
                         id={`${ingredient.id}-ingredientUnit`}
@@ -153,6 +157,8 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         defaultValue={'-'}
                         value={ingredient.unit}
                         required={true}
+                        error={errors.ingredients?.[ingredient.id]?.unit}
+
                       />
                     </div>
                   </div>

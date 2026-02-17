@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { resetState } from "@/features/recipeForms";
+import { resetState, setErrors, clearErrors } from "@/features/recipeForms";
 import { processRecipe, processRecipeUpdate } from "@/supabase/services";
 import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts";
 import { ROUTES } from "@/utils";
+import { validateRecipeDraft } from "./utils/formValidation";
 
 export const useRecipeFormHandlers = (recipeId?: string) => {
 
@@ -13,14 +14,18 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
   const { setModalState, resetModalState } = useNotification();
   const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
   const dispatch = useAppDispatch();
-  
+
+
 
   const handleNavigation = (action: () => void) => {
-    const formElement = document.getElementById("recipe-form") as HTMLFormElement | null;
-    if (formElement && !formElement.checkValidity()) {
-      formElement.reportValidity();
+    const errors = validateRecipeDraft(recipeDraft);
+
+    if (Object.keys(errors).length > 0) {
+      dispatch(setErrors(errors));
       return;
     }
+
+    dispatch(clearErrors());
     action();
   };
 
@@ -104,7 +109,7 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
       })
 
       // TODO VERIFY ERROR HANDLING - E.G. MODAL MESSAGE FOR NO CHANGES DETECTED 
-      // TODO ADD REDIRECT AFTER EDITING COMPLETE, REDUX STATE IS RESET - NO POINT IN REMAINING ON PAGE
+      // TODO ADD VALIDATION FOR SERVINGS - ENSURE VALUE HAS BEEN MODIFIED 
 
     }
   }

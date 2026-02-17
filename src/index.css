@@ -91,8 +91,16 @@ span {
     @apply border rounded border-primary-text text-primary-text w-full px-1
   }
 
+  .input-text-error {
+    @apply border-2 rounded border-red-600 text-primary-text w-full px-1
+  }
+
   .dropdown-text {
     @apply border rounded border-primary-text text-primary-text w-full px-1 appearance-none shadow-sm
+  }
+
+  .dropdown-text-error { 
+     @apply border-2 rounded border-red-600 text-primary-text w-full px-1 appearance-none shadow-sm
   }
 
   .output-text {

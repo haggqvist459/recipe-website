@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { RecipeFormState } from "./types";
+import { RecipeFormState, RecipeFormErrors } from "./types";
 import { IngredientType, InstructionType, FilterOptionType, RecipeType } from "@/types";
 import { SECTIONS } from "./constants";
 
@@ -26,6 +26,7 @@ const initialState: RecipeFormState = {
     }]
   },
   currentSection: 'Metadata',
+  errors: {}
 }
 const recipeFormSlice = createSlice({
   name: 'recipeFormSlice',
@@ -126,6 +127,12 @@ const recipeFormSlice = createSlice({
       const { createdAt, ...draftData } = action.payload;
       state.recipeDraft = draftData;
     },
+    setErrors: (state, action: PayloadAction<RecipeFormErrors>) => {
+      state.errors = action.payload;
+    },
+    clearErrors: (state) => {
+      state.errors = {};
+    },
     resetState: () => initialState
   }
 })
@@ -143,6 +150,8 @@ export const {
   removeInstruction,
   setCurrentSection,
   setRecipeDraft,
+  setErrors,
+  clearErrors,
   resetState,
 } = recipeFormSlice.actions
 export default recipeFormSlice.reducer

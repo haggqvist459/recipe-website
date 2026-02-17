@@ -20,6 +20,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
   const metadata = useAppSelector(selectMetadata)
   const typeFilters = useAppSelector(state => state.filters.typeFilters);
   const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters);
+  const errors = useAppSelector(state => state.recipeForms.errors)
 
   const dispatch = useAppDispatch()
 
@@ -109,6 +110,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                       dispatch(updateMetadataField({ key: "title", value: localMetadata.title }));
                     }
                   }}
+                  error={errors.title}
                 />
                 <Input
                   id="recipeDescription"
@@ -125,7 +127,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                     }
                   }}
                 />
-                <div className="flex justify-between items-center border rounded border-primary-text p-0.5">
+                <div className={`flex justify-between items-center  rounded p-0.5 ${errors.servings ? 'border-red-600 border-2' : 'border border-primary-text'}`}>
                   <IconButton
                     className="p-1"
                     disabled={metadata.servings <= 0}
@@ -133,7 +135,19 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                   >
                     <CircleMinus size="size-7" />
                   </IconButton>
-                  <span className="label">Servings: {metadata.servings}</span>
+                  <label className="label flex items-center gap-1">
+                    Servings:
+                    <input
+                      type="number"
+                      name="servings"
+                      required
+                      tabIndex={-1}
+                      value={metadata.servings}
+                      min={1}
+                      onChange={() => { }}
+                      className="w-10 text-center label bg-transparent border-none pointer-events-none"
+                    />
+                  </label>
                   <IconButton
                     className="p-1"
                     disabled={metadata.servings >= 20}

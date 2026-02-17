@@ -21,7 +21,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
   const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
   const [pastedText, setPastedText] = useState("");
   const dispatch = useAppDispatch();
-
+  const errors = useAppSelector(state => state.recipeForms.errors)
 
   useEffect(() => {
     setLocalInstructions(instructions);
@@ -80,6 +80,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
                   label={translateText('instructions', 'instructions', language)}
                   value={pastedText}
                   onChange={(e) => setPastedText(e.target.value)}
+                  error={errors.instructions && Object.keys(errors.instructions).length > 0}
                 />
               </div>
               <button
@@ -108,6 +109,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
                         }
                         onBlur={() => handleInstructionDispatch(instruction.id, "title")}
                         required={true}
+                        error={errors.instructions?.[instruction.id]?.title}
                       />
                       <IconButton
                         disabled={localInstructions.length === 1}
@@ -129,6 +131,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
                           handleInstructionChange(instruction.id, "text", changeEvent.target.value)
                         }
                         onBlur={() => handleInstructionDispatch(instruction.id, "text")}
+                        error={errors.instructions?.[instruction.id]?.text}
                       />
                     </div>
                   </div>

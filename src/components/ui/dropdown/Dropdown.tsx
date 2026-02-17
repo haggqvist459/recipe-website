@@ -9,6 +9,7 @@ type Props = {
   required?: boolean
   options: DropdownOption[]
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  error?: boolean
 }
 
 const Dropdown = ({
@@ -18,7 +19,8 @@ const Dropdown = ({
   value,
   required = false,
   options,
-  onChange
+  onChange,
+  error = false
 }: Props) => {
 
 
@@ -31,7 +33,7 @@ const Dropdown = ({
           id={id}
           value={value}
           onChange={onChange}
-          className="dropdown-text pr-4 truncate"
+          className={`${error ? 'dropdown-text-error': 'dropdown-text'} pr-4 truncate`}
         >
           <option value="">{defaultValue}</option>
           {options.map((opt) => (
