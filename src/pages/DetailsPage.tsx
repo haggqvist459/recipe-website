@@ -1,54 +1,57 @@
 import { useEffect, useState } from "react";
-import { PageContainer, ErrorComponent, LoadingComponent } from "@/components";
 import { useLocation, useParams } from "react-router-dom";
+import { useAppDispatch } from "@/redux";
+import { useLanguage } from "@/contexts";
+import { fetchSingleRecipe } from "@/supabase/services";
+import { PageContainer, ErrorComponent, LoadingComponent } from "@/components";
 import { RecipeType } from "@/types";
 import { RecipeDetails } from "@/features/recipes/recipeList";
-import { fetchSingleRecipe } from "@/supabase/services";
-import { useLanguage } from "@/contexts";
+import { setActiveRecipe, clearActiveRecipe } from '@/features/recipes/slice'
 
 const DetailsPage = () => {
 
   const { language } = useLanguage();
   const location = useLocation();
   const { id } = useParams<{ id: string }>();
-  const [recipe, setRecipe] = useState<RecipeType | null>(
-    location.state?.recipe || null
-  );
+  const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
-    if (recipe) return;
+    const recipeFromState = location.state?.recipe as RecipeType | undefined
 
-    const fetchRecipe = async () => {
-      try {
-        setLoading(true);
-
-        const recipe = await fetchSingleRecipe(id!, language)
-        setRecipe(recipe)
-
-      } catch (error) {
-        if (error instanceof Error){
-          setErrorMessage(error.message)
+    if (recipeFromState) {
+      dispatch(setActiveRecipe(recipeFromState))
+    } else {
+      const fetchRecipe = async () => {
+        try {
+          setLoading(true)
+          const fetched = await fetchSingleRecipe(id!, language)
+          dispatch(setActiveRecipe(fetched))
+        } catch (error) {
+          if (error instanceof Error) {
+            setErrorMessage(error.message)
+          }
+        } finally {
+          setLoading(false)
         }
-      } finally {
-        setLoading(false);
       }
-    };
 
-    fetchRecipe();
-  }, [recipe, id, language]);
+      fetchRecipe()
+    }
 
+    return () => {
+      dispatch(clearActiveRecipe())
+    }
+  }, [id])
 
 
   return (
     <PageContainer>
       {loading ?
         <LoadingComponent />
-        : recipe ?
-          <RecipeDetails recipe={recipe} />
-          :
-          <ErrorComponent errorMessage={errorMessage}/>
+        :
+        <RecipeDetails />
       }
     </PageContainer>
   )

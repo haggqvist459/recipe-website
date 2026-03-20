@@ -40,6 +40,7 @@
 - [x] Change password 
 - [x] Edit favorite lists - view / delete
 - [ ] Meal planner / weekly list settings
+- [ ] Form validation on Inputs, highlight missing information
 
 ### Weekly lists: 
 - [ ] Generate lists based on full randomisation 
@@ -111,7 +112,8 @@
   - [ ] hover: border on buttons in CreateRecipe components 
   - [ ] State is cleared after successful recipe insertion but no re-direct from preview page
   - [ ] Must also trigger a new fetch of recipes 
-  - [ ] Form validation - no validation occuring on the large input fields on ingredients and instructions 
+  - [x] Form validation - no validation occuring on the large input fields on ingredients and instructions 
+    - [x] Highlighting input with missing information 
 - [x] Button highlights - apply new utility (button-click) from index.css on buttons
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [x] Refactor ButtonRow component - use Tailwind instead of JavaScript

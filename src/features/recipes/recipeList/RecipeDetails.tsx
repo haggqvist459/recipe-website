@@ -1,29 +1,26 @@
 import { useState } from "react";
 import { setFavourite, removeFavourite } from "@/supabase/services";
-import { useAppDispatch } from "@/redux/hooks";
-import { RecipeType } from "@/types";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useAuth, useLanguage } from "@/contexts";
 import { translateText } from "@/utils";
-import { Heading, Favourite, AddListItem, IconButton } from "@/components";
+import { updateServings } from "../slice";
+import { Heading, Favourite, AddListItem, IconButton, CirclePlus, CircleMinus } from "@/components";
 import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites";
 import { addIngredients } from "@/features/groceryList";
 
-type Props = {
-  recipe: RecipeType
-}
 
-const RecipeDetails = ({ recipe }: Props) => {
+const RecipeDetails = () => {
 
   const { language } = useLanguage()
   const { user } = useAuth();
-
+  const recipe = useAppSelector(state => state.recipeList.activeRecipe)
   const dispatch = useAppDispatch()
-  const isFavourite = useIsFavourited(recipe.id)
 
+  const isFavourite = useIsFavourited(recipe?.id ?? "")
 
   const [activeSection, setActiveSection] = useState<"ingredients" | "instructions">("ingredients");
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
-
+  if (!recipe) return null
   const toggleCompleted = (instructionId: string) => {
     setCompletedIds((prev) => {
       const next = new Set(prev);
@@ -71,8 +68,29 @@ const RecipeDetails = ({ recipe }: Props) => {
       <div className="w-11/12 bg-white p-1 rounded-sm inset-shadow-xs/15 shadow-sm/15 mx-auto mt-5 mb-10 px-2 pb-5">
         <div className="flex justify-between items-center">
           <div className="">
-            <Heading title={recipe.title} />
-            <Heading title={recipe.description ?? ''} headingType="sub-heading" />
+            <div className="">
+              <Heading title={recipe.title} />
+              <Heading title={recipe.description ?? ''} headingType="sub-heading" />
+            </div>
+            <div className={`flex justify-between items-center rounded p-0.5`}>
+              <IconButton
+                className="p-1"
+                disabled={recipe.servings <= 0}
+                onClick={() => dispatch(updateServings(recipe.modifiedServings - 1))}
+              >
+                <CircleMinus size="size-7" />
+              </IconButton>
+              <span className="label">
+                Servings: {recipe.modifiedServings}
+              </span>
+              <IconButton
+                className="p-1"
+                disabled={recipe.servings >= 20}
+                onClick={() => dispatch(updateServings(recipe.modifiedServings + 1))}
+              >
+                <CirclePlus size="size-7" />
+              </IconButton>
+            </div>
           </div>
           <IconButton onClick={() => toggleFavourite()}>
             {user && <Favourite isToggled={isFavourite} />}
@@ -83,7 +101,7 @@ const RecipeDetails = ({ recipe }: Props) => {
           <div className={`lg:w-1/3 ${activeSection === 'ingredients' ? 'block' : 'hidden'} lg:block`}>
             <div className="relative">
               <ul className="list-disc list-inside px-2">
-                {recipe.ingredients.map((ingredient) => (
+                {recipe.modifiedIngredients.map((ingredient) => (
                   <li
                     className="py-1"
                     key={ingredient.id}>
@@ -93,7 +111,7 @@ const RecipeDetails = ({ recipe }: Props) => {
               </ul>
               <IconButton
                 className="absolute bottom-0 right-0 p-1 bg-lightblue rounded-full button-click"
-                onClick={() => dispatch(addIngredients(recipe.ingredients))}
+                onClick={() => dispatch(addIngredients(recipe.modifiedIngredients))}
               >
                 <AddListItem size="size-8" />
               </IconButton>

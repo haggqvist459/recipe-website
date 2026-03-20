@@ -108,8 +108,7 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
         onConfirm: () => resetModalState(),
       })
 
-      // TODO VERIFY ERROR HANDLING - E.G. MODAL MESSAGE FOR NO CHANGES DETECTED 
-      // TODO ADD VALIDATION FOR SERVINGS - ENSURE VALUE HAS BEEN MODIFIED 
+      // TODO VERIFY ERROR HANDLING - NO CHANGES DETECTED / VALIDATION FAILURE
 
     }
   }
