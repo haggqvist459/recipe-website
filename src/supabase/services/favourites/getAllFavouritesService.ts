@@ -1,3 +1,4 @@
+import { handleError } from '@/errorHandling';
 import { selectAllFavourites } from '@/supabase/queries';
 import { FavouriteType } from '@/types';
 
@@ -14,6 +15,7 @@ export const fetchAllFavourites = async (uid: string): Promise<FavouriteType[]> 
     }))
     return formattedData
   } catch (error) {
-    throw error
+    const errorMessage = handleError(error)
+    throw errorMessage
   }
 }

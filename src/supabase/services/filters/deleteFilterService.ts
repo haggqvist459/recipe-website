@@ -1,3 +1,4 @@
+import { handleError } from "@/errorHandling"
 import { deleteCuisine, deleteMainIngredient } from "@/supabase/queries"
 import { FilterCategoryType } from "@/types"
 
@@ -10,6 +11,7 @@ export const deleteFilterService = async (filterCategory: FilterCategoryType, fi
       await deleteCuisine(filterId)
     }
   } catch (error) {
-    throw (error)
+    const errorMessage = handleError(error)
+    throw errorMessage
   }
 }

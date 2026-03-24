@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { fetchAllRecipes } from '@/supabase/services';
-import { useLanguage } from '@/contexts';
-import { selectFilteredRecipes } from '../selectors';
-import { setRecipes } from '../slice';
-import RecipeCard from './RecipeCard';
-import { LoadingComponent, ErrorComponent } from "@/components";
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { fetchAllRecipes } from '@/supabase/services'
+import { useLanguage } from '@/contexts'
+import { selectFilteredRecipes } from '../selectors'
+import { setRecipes } from '../slice'
+import RecipeCard from './RecipeCard'
+import { LoadingComponent, ErrorComponent } from "@/components"
 
 
 
@@ -21,9 +21,9 @@ const RecipeList = () => {
   const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
-    if (!needsRefresh) return;
+    if (!needsRefresh) return
 
-    setLoading(true);
+    setLoading(true)
     setError(false)
 
     const loadRecipes = async () => {
@@ -33,26 +33,27 @@ const RecipeList = () => {
         dispatch(setRecipes(fetchedRecipes))
 
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Failed to load recipes:", error);
-          setError(true)
-          setErrorMessage(error.message)
+        if (typeof error === 'string'){
+          setErrorMessage(error)
+        } else { 
+          setErrorMessage('An unknown error has occurred that was not properly handled.')
         }
+        
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     };
 
-    loadRecipes();
-  }, [needsRefresh]);
+    loadRecipes()
+  }, [needsRefresh])
 
 
   if (loading) {
-    return <LoadingComponent />;
+    return <LoadingComponent />
   }
 
   if (error) {
-    return <ErrorComponent errorMessage={errorMessage} />;
+    return <ErrorComponent errorMessage={errorMessage} />
   }
 
   return (

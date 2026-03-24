@@ -1,6 +1,7 @@
 import { selectSingleRecipe } from '@/supabase/queries';
 import { mapSingleRecipeDbToUI } from "./utils";
 import { LanguageType, RecipeType } from '@/types';
+import { handleError } from '@/errorHandling';
 
 
 export const fetchSingleRecipe = async (id: string, language: LanguageType): Promise<RecipeType> => {
@@ -9,7 +10,8 @@ export const fetchSingleRecipe = async (id: string, language: LanguageType): Pro
     const dbData = await selectSingleRecipe(id, language)
     return mapSingleRecipeDbToUI(dbData)
   } catch (error) {
-    throw error
+    const errorMessage = handleError(error)
+    throw errorMessage
   }
   
 }

@@ -1,3 +1,4 @@
+import { handleError } from '@/errorHandling';
 import { insertFavourite } from '@/supabase/queries';
 import type { FavouriteType } from "@/types";
 
@@ -13,7 +14,8 @@ export const setFavourite = async (uid: string, recipeId: string): Promise<Favou
     } 
     return formattedData
   } catch (error) {
-    throw error
+    const errorMessage = handleError(error)
+    throw errorMessage
   }
 
 }

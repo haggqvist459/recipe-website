@@ -1,3 +1,4 @@
+import { handleError } from '@/errorHandling';
 import { insertGroceryList, insertGroceryListItems } from '@/supabase/queries';
 import { ListItemData } from '@/types';
 
@@ -13,6 +14,7 @@ export const saveGroceryList = async (uid: string, list: ListItemData[]) => {
     await insertGroceryListItems(uid, parentRecord.id, list)
 
   } catch (error) {
-    throw error
+    const errorMessage = handleError(error)
+    throw errorMessage
   }
 }

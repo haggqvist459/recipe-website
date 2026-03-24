@@ -98,7 +98,7 @@ const RecipeDetails = () => {
         </div>
 
         <div className="lg:flex lg:space-x-5 mt-5">
-          <div className={`lg:w-1/3 ${activeSection === 'ingredients' ? 'block' : 'hidden'} lg:block`}>
+          <div className={`lg:w-1/3 ${activeSection === 'ingredients' ? 'block' : 'hid1den'} lg:block`}>
             <div className="relative">
               <ul className="list-disc list-inside px-2">
                 {recipe.modifiedIngredients.map((ingredient) => (

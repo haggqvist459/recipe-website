@@ -22,7 +22,7 @@ const AuthPage = () => {
     } catch (error) {
       if (error instanceof Error) {
         setError(error)
-        // future error handling will be done in AuthContex.tsx
+        // future error handling will be done in AuthContext.tsx
       }
     } finally {
       setLoading(false);

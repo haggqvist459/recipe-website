@@ -1,6 +1,7 @@
 import { FilterOptionType, RecipeType, SortingFilterKey, LanguageType } from '@/types';
 import { selectFilteredRecipes } from '@/supabase/queries';
 import { mapMultipleRecipesDbToUI } from './utils'
+import { handleError } from '@/errorHandling';
 
 export const fetchFilteredRecipes = async ({
   typeFilters,
@@ -21,6 +22,7 @@ export const fetchFilteredRecipes = async ({
     const dbData = await selectFilteredRecipes({ typeIds, cuisineIds, sortingFilter, language });
     return mapMultipleRecipesDbToUI(dbData)
   } catch (error) {
-    throw error
+    const errorMessage = handleError(error)
+    throw errorMessage
   }
 }
