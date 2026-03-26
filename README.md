@@ -27,7 +27,8 @@
 - [x] Remove filters
  - [x] Cascade into join table
 - [x] Refactor filters and types to always include both languages, and display only selected language 
-
+- [ ] Refactor the Filters component into sub components 
+ 
 ### Main Page: 
 - [x] List all recipes 
 - [x] Add the filters as dropdowns 

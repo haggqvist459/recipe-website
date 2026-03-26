@@ -5,7 +5,7 @@ import { ArrowIcon, HorizontalMenuWrapper, ErrorComponent } from '@/components'
 import { SORTING_FILTERS } from '../constants'
 import { setFilterList, setActiveFilter, setActiveSorting } from '../slice';
 import { SortingFilterKey } from '../types'
-import { useLanguage } from '@/contexts'
+import { useLanguage, useNotification } from '@/contexts'
 import { translateText } from '@/utils'
 
 
@@ -13,7 +13,8 @@ import { translateText } from '@/utils'
 const Filters = () => {
 
   const { language } = useLanguage()
-  const dispatch = useAppDispatch();
+  const { showToast } = useNotification()
+  const dispatch = useAppDispatch()
 
   const [showTypes, setShowTypes] = useState(false)
   const [showCuisines, setShowCuisines] = useState(false)
@@ -25,38 +26,43 @@ const Filters = () => {
   const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters);
   const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter);
 
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [typesError, setTypesError] = useState(false)
+  const [cuisinesError, setCuisinesError] = useState(false)
 
   useEffect(() => {
-    setError(false);
-
-    const loadFilters = async () => {
-
+    const loadTypes = async () => {
       try {
-        const [typesResult, cuisinesResult] = await Promise.all([
-          fetchMainIngredients(),
-          fetchCuisines(),
-        ]);
-
-        dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
-        dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
-
+        const result = await fetchMainIngredients()
+        dispatch(setFilterList({ filterCategory: "types", list: result }))
+        setTypesError(false)
       } catch (error) {
-        console.error("Failed to fetch filter options", error);
-        if (error instanceof Error) {
-          setErrorMessage(error.message)
+        if (typeof error === 'string') {
+          showToast(error, 'error')
+        } else {
+          showToast('Failed to load ingredient filters.', 'error')
         }
-        setError(true);
-      } 
-    };
+        setTypesError(true)
+      }
+    }
 
-    loadFilters();
-  }, []);
+    const loadCuisines = async () => {
+      try {
+        const result = await fetchCuisines()
+        dispatch(setFilterList({ filterCategory: "cuisines", list: result }))
+        setCuisinesError(false)
+      } catch (error) {
+        if (typeof error === 'string') {
+          showToast(error, 'error')
+        } else {
+          showToast('Failed to load cuisine filters.', 'error')
+        }
+        setCuisinesError(true)
+      }
+    }
 
-  if (error) {
-    return <ErrorComponent errorMessage={errorMessage} />;
-  }
+    loadTypes()
+    loadCuisines()
+  }, [])
 
   return (
     <div className="px-3 w-full bg-primary flex flex-col items-center mx-auto">
