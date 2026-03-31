@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { useAppDispatch } from "@/redux";
-import { PageContainer } from "@/components";
+import { ErrorComponent, PageContainer } from "@/components";
 import { EditRecipeMobile, EditRecipeDesktop } from "@/features/recipeForms/components";
 import { setRecipeDraft } from "@/features/recipeForms";
 
@@ -30,12 +30,8 @@ const EditRecipePage = () => {
   }, []);
 
   if (!id) {
-    return (
-      <PageContainer>
-        <div className="">Recipe not Found</div>
-      </PageContainer>
-    )
-  } // TODO PROPER ERROR COMPONENT
+    return <ErrorComponent errorMessage="No recipe found."/>
+  }
 
   return (
     <PageContainer>

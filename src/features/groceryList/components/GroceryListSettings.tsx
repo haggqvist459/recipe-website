@@ -25,8 +25,11 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         showToast(translateText('grocerySettings', 'saveToastSuccess', language), 'success')
       }
     } catch (error) {
-      showToast(translateText('grocerySettings', 'saveToastError', language), 'error')
-      throw error // implement proper error handling with error component
+      if (typeof error === 'string') {
+        showToast(translateText('grocerySettings', 'saveToastError', language), 'error')
+      } else {
+        showToast('an unknown error occurred when trying to save the grocery list.', 'error')
+      }
     }
   }
 
@@ -47,21 +50,28 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         }
       }
     } catch (error) {
-      showToast(translateText('grocerySettings', 'loadToastError', language), 'error')
-      throw error
+      if (typeof error === 'string') {
+        showToast(translateText('grocerySettings', 'loadToastError', language), 'error')
+      } else {
+        showToast('An unknown error occurred when attempting to load the grocery list', 'error')
+      }
     }
   }
 
   const handleDeleteList = async () => {
-    try {
-      if (user) {
+    if (user) {
+      try {
         await deleteGroceryList(user.id)
         dispatch(resetState())
-        showToast(translateText('grocerySettings', 'deleteToastSuccess', language), 'success')
-      }
-    } catch (error) {
-      showToast(translateText('grocerySettings', 'deleteToastError', language), 'error')
-      throw error
+      } catch (error) {
+        if (typeof error === 'string') {
+          showToast(translateText('grocerySettings', 'deleteToastError', language), 'error')
+        } else {
+          showToast('An unknown error occurred when trying to delete the list.', 'error')
+        }
+      } 
+    } else {
+      dispatch(resetState())
     }
   }
 
@@ -80,6 +90,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
             <IconButton
               className="w-full flex justify-between px-2 py-1 border-b-[1px]"
               onClick={() => handleSaveList()}
+              disabled={!user}
             >
               <span className="font-light">{translateText('grocerySettings', 'save', language)}</span>
               <CloudArrowUp />
@@ -87,6 +98,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
             <IconButton
               className="w-full flex justify-between px-2 py-1 border-b-[1px]"
               onClick={() => handleLoadList()}
+              disabled={!user}
             >
               <span className="font-light">{translateText('grocerySettings', 'load', language)}</span>
               <CloudArrowDown />

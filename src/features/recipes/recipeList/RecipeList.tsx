@@ -36,9 +36,9 @@ const RecipeList = () => {
         if (typeof error === 'string'){
           setErrorMessage(error)
         } else { 
-          setErrorMessage('An unknown error has occurred that was not properly handled.')
+          setErrorMessage('An unknown error has occurred')
         }
-        
+        setError(true)
       } finally {
         setLoading(false)
       }
@@ -48,13 +48,9 @@ const RecipeList = () => {
   }, [needsRefresh])
 
 
-  if (loading) {
-    return <LoadingComponent />
-  }
-
-  if (error) {
-    return <ErrorComponent errorMessage={errorMessage} />
-  }
+  if (loading) return <LoadingComponent />
+  if (error) return <ErrorComponent errorMessage={errorMessage} />
+  
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-10'>

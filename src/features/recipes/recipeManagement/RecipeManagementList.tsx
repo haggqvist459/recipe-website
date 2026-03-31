@@ -33,11 +33,12 @@ const RecipeManagementList = () => {
         dispatch(setRecipes(fetchedRecipes))
 
       } catch (error) {
-        if (error instanceof Error) {
-          console.error("Failed to load recipes:", error);
-          setError(true)
-          setErrorMessage(error.message)
+        if (typeof error === 'string') {
+          setErrorMessage(error)
+        } else { 
+          setErrorMessage('An unknown error occurred when loading recipes')
         }
+        setError(true)
       } finally {
         setLoading(false);
       }
@@ -58,12 +59,12 @@ const RecipeManagementList = () => {
           dispatch(removeRecipe(recipeId))
           resetModalState()
         } catch (error) {
-          setError(true)
-          if (error instanceof Error) {
-            setErrorMessage(error.message)
+          if (typeof error === 'string') {
+            setErrorMessage(error)
           } else {
             setErrorMessage("An unknown error occured when deleting a recipe")
           }
+          setError(true)
           resetModalState()
         }
       },

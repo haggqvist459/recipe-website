@@ -40,9 +40,10 @@ const FilterManagement = () => {
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
 
       } catch (error) {
-        console.error("Failed to fetch filter options", error);
-        if (error instanceof Error) {
-          setErrorMessage(error.message)
+        if (typeof error === 'string'){
+          setErrorMessage(error)
+        } else {
+          setErrorMessage('An unknown error occurred while loading filters.')
         }
         setError(true);
       } finally {
@@ -58,12 +59,12 @@ const FilterManagement = () => {
       await updateFilterService(updatedText, filterCategory, filterId, language)
       dispatch(updateFilter({ filterCategory, filterId, updatedText, language }))
     } catch (error) {
-      setError(true)
-      if (error instanceof Error) {
-        setErrorMessage(error.message)
+      if (typeof error === 'string') {
+        setErrorMessage(error)
       } else {
         setErrorMessage('An unknown error occured while updating a filter.')
       }
+      setError(true)
     }
   }
 
@@ -79,13 +80,13 @@ const FilterManagement = () => {
           dispatch(deleteFilter({ filterCategory, filterId }))
           resetModalState()
         } catch (error) {
-          setError(true)
-          if (error instanceof Error) {
-            setErrorMessage(error.message)
+          if (typeof error === 'string') {
+            setErrorMessage(error)
           } else {
             setErrorMessage('An unknown error occured while deleting a filter.')
           }
           resetModalState()
+          setError(true)
         }
       },
       onCancel: () => resetModalState()
@@ -102,12 +103,12 @@ const FilterManagement = () => {
         setNewCuisine('')
       }
     } catch (error) {
-      setError(true)
-      if (error instanceof Error) {
-        setErrorMessage(error.message)
+      if (typeof error === 'string') {
+        setErrorMessage(error)
       } else {
         setErrorMessage('An unknown error occured while deleting a filter.')
       }
+      setError(true)
     }
   }
 

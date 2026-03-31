@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAuth } from '@/contexts';
+import { useAuth, useNotification } from '@/contexts';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setFavourites } from '@/features/favourites';
 import { fetchAllFavourites } from '@/supabase/services';
@@ -9,15 +9,29 @@ export const useFavourites = () => {
   const dispatch = useAppDispatch();
   const favourites = useAppSelector(state => state.favourites.favouriteList);
   const isLoaded = useAppSelector(state => state.favourites.isLoaded);
-  
+
+  const { showToast } = useNotification()
+
   useEffect(() => {
-    if (user && !isLoaded) {
-      fetchAllFavourites(user.id)
-        .then(data => dispatch(setFavourites(data)))
-        .catch(err => console.error('Load favourites error:', err));
+
+    const loadFavourites = async () => {
+      if (user && !isLoaded) {
+        try {
+         const favourites = await fetchAllFavourites(user.id)
+         dispatch(setFavourites(favourites))
+        } catch (error) {
+          if (typeof error === 'string'){
+            showToast(error, 'error')          
+          } else {
+            showToast('An unknown error occurred while fetching favourites.', 'error')
+          }
+        }
+      }
     }
+
+    loadFavourites()
   }, [user, isLoaded]);
-  
+
   return favourites;
 };
 

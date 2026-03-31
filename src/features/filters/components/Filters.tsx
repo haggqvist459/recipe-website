@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '@/redux';
 import { fetchCuisines, fetchMainIngredients } from '@/supabase/services';
-import { ArrowIcon, HorizontalMenuWrapper, ErrorComponent } from '@/components'
+import { ArrowIcon, HorizontalMenuWrapper } from '@/components'
 import { SORTING_FILTERS } from '../constants'
 import { setFilterList, setActiveFilter, setActiveSorting } from '../slice';
 import { SortingFilterKey } from '../types'
@@ -68,9 +68,9 @@ const Filters = () => {
     <div className="px-3 w-full bg-primary flex flex-col items-center mx-auto">
       <HorizontalMenuWrapper>
         <button
-          className="flex space-x-1 items-center"
+          className="flex space-x-1 items-center disabled:opacity-50"
           onClick={() => setShowTypes(prev => !prev)}
-          disabled={typeFilters.length === 0}
+          disabled={typesError}
         >
           {translateText('filter', 'category', language)}
           <div
@@ -81,9 +81,9 @@ const Filters = () => {
           </div>
         </button>
         <button
-          className="flex space-x-1 items-center"
+          className="flex space-x-1 items-center disabled:opacity-50"
           onClick={() => setShowCuisines(prev => !prev)}
-          disabled={cuisineFilters.length === 0}
+          disabled={cuisinesError}
         >
           {translateText('filter', 'cuisines', language)}
           <div
