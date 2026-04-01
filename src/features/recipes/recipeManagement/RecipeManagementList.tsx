@@ -56,11 +56,7 @@ const RecipeManagementList = () => {
           dispatch(removeRecipe(recipeId))
           resetModalState()
         } catch (error) {
-          if (typeof error === 'string') {
-            setError(error)
-          } else {
-            setError("An unknown error occured when deleting a recipe")
-          }
+          setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
           resetModalState()
         }
       },

@@ -39,11 +39,7 @@ const FilterManagement = () => {
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
 
       } catch (error) {
-        if (typeof error === 'string'){
-          setError(error)
-        } else {
-          setError('An unknown error occurred while loading filters.')
-        }
+        setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
       } finally {
         setLoading(false)
       }
@@ -57,11 +53,7 @@ const FilterManagement = () => {
       await updateFilterService(updatedText, filterCategory, filterId, language)
       dispatch(updateFilter({ filterCategory, filterId, updatedText, language }))
     } catch (error) {
-      if (typeof error === 'string') {
-        setError(error)
-      } else {
-        setError('An unknown error occured while updating a filter.')
-      }
+      setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
     }
   }
 
@@ -77,11 +69,7 @@ const FilterManagement = () => {
           dispatch(deleteFilter({ filterCategory, filterId }))
           resetModalState()
         } catch (error) {
-          if (typeof error === 'string') {
-            setError(error)
-          } else {
-            setError('An unknown error occured while deleting a filter.')
-          }
+          setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
           resetModalState()
         }
       },
@@ -99,11 +87,7 @@ const FilterManagement = () => {
         setNewCuisine('')
       }
     } catch (error) {
-      if (typeof error === 'string') {
-        setError(error)
-      } else {
-        setError('An unknown error occured while deleting a filter.')
-      }
+      setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
     }
   }
 

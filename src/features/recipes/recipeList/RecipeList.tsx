@@ -32,11 +32,7 @@ const RecipeList = () => {
         dispatch(setRecipes(fetchedRecipes))
 
       } catch (error) {
-        if (typeof error === 'string'){
-          setError(error)
-        } else { 
-          setError('An unknown error has occurred')
-        }
+        setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
       } finally {
         setLoading(false)
       }

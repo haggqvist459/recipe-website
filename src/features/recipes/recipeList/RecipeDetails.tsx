@@ -46,6 +46,7 @@ const RecipeDetails = () => {
       } else {
         console.error('Unknown error: ', error)
       }
+      // needs error toast 
     }
   }
 
