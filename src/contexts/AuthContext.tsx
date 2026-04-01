@@ -55,11 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUserRole(null)
       setIsSignedIn(false)
     } catch (error) {
-      if (typeof error === 'string') {
-        showToast(error, 'error')
-      } else {
-        showToast('An unknown error occurred while attempting to sign out.', 'error')
-      }
+      showToast(handleError(error), 'error')
     } finally {
       setLoading(false)
     }
@@ -80,11 +76,7 @@ const loadUserState = async (existingUser?: User) => {
     }
 
   } catch (error) {
-    if (typeof error === 'string') {
-      showToast(error, 'error')
-    } else {
-      showToast('An unknown error occurred while loading user data.', 'error')
-    }
+    showToast(handleError(error), 'error')
   } finally {
     setLoading(false)
   }

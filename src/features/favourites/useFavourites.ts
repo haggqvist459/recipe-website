@@ -3,6 +3,7 @@ import { useAuth, useNotification } from '@/contexts';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setFavourites } from '@/features/favourites';
 import { fetchAllFavourites } from '@/supabase/services';
+import { handleError } from '@/errorHandling';
 
 export const useFavourites = () => {
   const { user } = useAuth();
@@ -20,11 +21,7 @@ export const useFavourites = () => {
          const favourites = await fetchAllFavourites(user.id)
          dispatch(setFavourites(favourites))
         } catch (error) {
-          if (typeof error === 'string'){
-            showToast(error, 'error')          
-          } else {
-            showToast('An unknown error occurred while fetching favourites.', 'error')
-          }
+          showToast(handleError(error), 'error')          
         }
       }
     }

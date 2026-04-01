@@ -1,10 +1,9 @@
-import { handleError } from '@/errorHandling'
+
 import { selectGroceryList } from '@/supabase/queries'
 import { GroceryListType, Unit } from '@/types'
 
 export const fetchGroceryList= async (uid: string): Promise<GroceryListType | null> => {
 
-  try {
     const dbData = await selectGroceryList(uid)
     if (dbData) {
       const formattedData: GroceryListType = {
@@ -25,8 +24,4 @@ export const fetchGroceryList= async (uid: string): Promise<GroceryListType | nu
       return null
     }
 
-  } catch (error) {
-    const errorMessage = handleError(error)
-    throw errorMessage
-  }
 } 

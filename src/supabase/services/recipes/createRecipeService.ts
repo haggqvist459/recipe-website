@@ -1,11 +1,9 @@
 import { mapRecipeDraftToDb } from "./utils"
 import { RecipeDraftType } from '@/types'
 import { selectUserRole, insertRecipe, insertRecipeMainIngredients, insertRecipeCuisines } from '@/supabase/queries'
-import { handleError } from "@/errorHandling"
 
 
 export const processRecipe = async (draft: RecipeDraftType, uid: string): Promise<string> => {
-  try {
     if (!draft.title.trim()) throw new Error("Recipe title is required.")
     if (
       draft.ingredients.length === 0 ||
@@ -35,9 +33,6 @@ export const processRecipe = async (draft: RecipeDraftType, uid: string): Promis
     }
 
     return recipeId
-  } catch (error) {
-    const errorMessage = handleError(error)
-    throw errorMessage
-  }
-};
+
+}
 

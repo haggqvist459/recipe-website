@@ -7,6 +7,7 @@ import { setFilterList, setActiveFilter, setActiveSorting } from '../slice';
 import { SortingFilterKey } from '../types'
 import { useLanguage, useNotification } from '@/contexts'
 import { translateText } from '@/utils'
+import { handleError } from '@/errorHandling';
 
 
 
@@ -36,14 +37,9 @@ const Filters = () => {
         dispatch(setFilterList({ filterCategory: "types", list: result }))
         setTypesError(null)
       } catch (error) {
-        if (typeof error === 'string') {
-          showToast(error, 'error')
-          setTypesError(error)
-        } else {
-          showToast('Failed to load ingredient filters.', 'error')
-          setTypesError('Failed to load ingredient filters.')
-        }
-        
+        const errorMessage = handleError(error)
+        setTypesError(errorMessage)
+        showToast(errorMessage, 'error')      
       }
     }
 
@@ -53,13 +49,9 @@ const Filters = () => {
         dispatch(setFilterList({ filterCategory: "cuisines", list: result }))
         setCuisinesError(null)
       } catch (error) {
-        if (typeof error === 'string') {
-          showToast(error, 'error')
-          setCuisinesError(error)
-        } else {
-          showToast('Failed to load cuisine filters.', 'error')
-          setCuisinesError('Failed to load cuisine filters.')
-        }
+        const errorMessage = handleError(error)
+        setCuisinesError(errorMessage)
+        showToast(errorMessage, 'error')
         
       }
     }

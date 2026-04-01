@@ -3,6 +3,7 @@ import { Heading, Input, } from "@/components";
 import { useLanguage, useAuth, useNotification } from "@/contexts";
 import { translateText } from "@/utils";
 import { updateUserCredentials } from "@/supabase/services/auth/updateUserService";
+import { handleError } from "@/errorHandling";
 
 const SettingsSection = () => {
 
@@ -73,11 +74,11 @@ const SettingsSection = () => {
       })
 
     } catch (error) {
-
+      const errorMessage = handleError(error)
       setModalState({
         isOpen: true,
         title: 'Error updating credentials.',
-        message: error instanceof Error ? error.message : 'An unknown error occurred',
+        message: errorMessage,
         showCancel: false,
         onConfirm: () => resetModalState()
       })

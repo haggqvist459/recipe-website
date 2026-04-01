@@ -4,6 +4,7 @@ import { translateText } from "@/utils";
 import { fetchGroceryList, saveGroceryList, deleteGroceryList } from "@/supabase/services";
 import { loadListFromDB, resetState, } from "@/features/groceryList";
 import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle, FadeInOutWrapper, IconButton } from "@/components";
+import { handleError } from "@/errorHandling";
 
 
 type Props = {
@@ -25,11 +26,8 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         showToast(translateText('grocerySettings', 'saveToastSuccess', language), 'success')
       }
     } catch (error) {
-      if (typeof error === 'string') {
-        showToast(translateText('grocerySettings', 'saveToastError', language), 'error')
-      } else {
-        showToast('an unknown error occurred when trying to save the grocery list.', 'error')
-      }
+      const errorMessage = handleError(error)
+      showToast(errorMessage, 'error')
     }
   }
 
@@ -50,11 +48,8 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         }
       }
     } catch (error) {
-      if (typeof error === 'string') {
-        showToast(translateText('grocerySettings', 'loadToastError', language), 'error')
-      } else {
-        showToast('An unknown error occurred when attempting to load the grocery list', 'error')
-      }
+      const errorMessage = handleError(error)
+      showToast(errorMessage, 'error')
     }
   }
 
@@ -64,12 +59,9 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         await deleteGroceryList(user.id)
         dispatch(resetState())
       } catch (error) {
-        if (typeof error === 'string') {
-          showToast(translateText('grocerySettings', 'deleteToastError', language), 'error')
-        } else {
-          showToast('An unknown error occurred when trying to delete the list.', 'error')
-        }
-      } 
+        const errorMessage = handleError(error)
+        showToast(errorMessage, 'error')
+      }
     } else {
       dispatch(resetState())
     }

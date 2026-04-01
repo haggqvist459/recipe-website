@@ -7,6 +7,7 @@ import { updateServings } from "../slice";
 import { Heading, Favourite, AddListItem, IconButton, CirclePlus, CircleMinus } from "@/components";
 import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites";
 import { addIngredients } from "@/features/groceryList";
+import { handleError } from "@/errorHandling";
 
 
 const RecipeDetails = () => {
@@ -41,6 +42,7 @@ const RecipeDetails = () => {
         dispatch(addFavourite(newFavourite))
       }
     } catch (error) {
+      const errorMessage = handleError(error)
       if (error instanceof Error) {
         console.error('toggleFavourite error:', error)
       } else {

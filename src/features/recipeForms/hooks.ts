@@ -1,19 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { resetState, setErrors, clearErrors } from "@/features/recipeForms";
-import { processRecipe, processRecipeUpdate } from "@/supabase/services";
-import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts";
-import { ROUTES } from "@/utils";
-import { validateRecipeDraft } from "./utils/formValidation";
+import { useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { resetState, setErrors, clearErrors } from "@/features/recipeForms"
+import { processRecipe, processRecipeUpdate } from "@/supabase/services"
+import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts"
+import { ROUTES } from "@/utils"
+import { validateRecipeDraft } from "./utils/formValidation"
+import { handleError } from "@/errorHandling"
 
 export const useRecipeFormHandlers = (recipeId?: string) => {
 
   const navigate = useNavigate()
-  const user = useAuthenticatedUser();
-  const { language } = useLanguage();
-  const { setModalState, resetModalState } = useNotification();
-  const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft);
-  const dispatch = useAppDispatch();
+  const user = useAuthenticatedUser()
+  const { language } = useLanguage()
+  const { setModalState, resetModalState } = useNotification()
+  const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft)
+  const dispatch = useAppDispatch()
 
 
 
@@ -21,18 +22,18 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
     const errors = validateRecipeDraft(recipeDraft);
 
     if (Object.keys(errors).length > 0) {
-      dispatch(setErrors(errors));
-      return;
+      dispatch(setErrors(errors))
+      return
     }
 
-    dispatch(clearErrors());
-    action();
+    dispatch(clearErrors())
+    action()
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      const result = await processRecipe(recipeDraft, user.id);
+      const result = await processRecipe(recipeDraft, user.id)
       if (result) {
         setModalState({
           isOpen: true,
@@ -42,22 +43,20 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
             dispatch(resetState());
             resetModalState()
           },
-        });
+        })
       }
     } catch (error) {
-      const message =
-        typeof error === 'string'
-          ? error
-          : "An unexpected error occurred while creating the recipe.";
+      const errorMessage = handleError(error)
+    
 
       setModalState({
         isOpen: true,
         title: "Error Creating Recipe",
-        message,
+        message: errorMessage,
         onConfirm: () => resetModalState(),
-      });
+      })
     }
-  };
+  }
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -85,15 +84,12 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
         }
       })
     } catch (error) {
-      const message =
-        typeof error === 'string'
-          ? error
-          : "An unexpected error occurred while updating the recipe.";
+      const errorMessage = handleError(error)
 
       setModalState({
         isOpen: true,
         title: "Error Updating Recipe",
-        message,
+        message: errorMessage,
         onConfirm: () => resetModalState(),
       })
 
@@ -101,5 +97,5 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
     }
   }
 
-  return { handleNavigation, handleSubmit, handleUpdate };
-};
+  return { handleNavigation, handleSubmit, handleUpdate }
+}

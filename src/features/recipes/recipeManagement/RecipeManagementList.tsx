@@ -5,11 +5,12 @@ import { LoadingComponent, ErrorComponent } from "@/components"
 import { useLanguage, useNotification, } from '@/contexts'
 import RecipeManagementCard from './RecipeManagementCard'
 import { setRecipes, removeRecipe } from '../slice'
+import { handleError } from '@/errorHandling'
 
 const RecipeManagementList = () => {
 
   const { language } = useLanguage()
-  const { setModalState, resetModalState } = useNotification()
+  const { setModalState, resetModalState, showToast } = useNotification()
   const dispatch = useAppDispatch()
 
   const recipeList = useAppSelector(state => state.recipeList.recipes)
@@ -29,13 +30,8 @@ const RecipeManagementList = () => {
       try {
         const fetchedRecipes = await fetchAllRecipes(language)
         dispatch(setRecipes(fetchedRecipes))
-
       } catch (error) {
-        if (typeof error === 'string') {
-          setError(error)
-        } else { 
-          setError('An unknown error occurred when loading recipes')
-        }
+        setError(handleError(error))
       } finally {
         setLoading(false);
       }
@@ -56,7 +52,8 @@ const RecipeManagementList = () => {
           dispatch(removeRecipe(recipeId))
           resetModalState()
         } catch (error) {
-          setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
+          const errorMessage = handleError(error)
+          showToast(errorMessage, 'error')
           resetModalState()
         }
       },

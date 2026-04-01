@@ -7,6 +7,7 @@ import { PageContainer, ErrorComponent, LoadingComponent } from "@/components"
 import { RecipeType } from "@/types"
 import { RecipeDetails } from "@/features/recipes/recipeList"
 import { setActiveRecipe, clearActiveRecipe } from '@/features/recipes/slice'
+import { handleError } from "@/errorHandling"
 
 const DetailsPage = () => {
 
@@ -29,11 +30,7 @@ const DetailsPage = () => {
           const fetched = await fetchSingleRecipe(id!, language)
           dispatch(setActiveRecipe(fetched))
         } catch (error) {
-          if (typeof error === 'string') {
-            setError(error)
-          } else {
-            setError('An unknown error has occurred.')
-          }
+          setError(handleError(error))
         } finally {
           setLoading(false)
         }

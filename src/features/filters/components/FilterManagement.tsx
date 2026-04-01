@@ -6,6 +6,7 @@ import { useLanguage, useNotification } from '@/contexts';
 import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice';
 import FilterManagementItem from './FilterManagementItem';
 import { FilterCategoryType } from '@/types';
+import { handleError } from '@/errorHandling';
 
 const FilterManagement = () => {
 
@@ -16,7 +17,7 @@ const FilterManagement = () => {
   const cuisines = useAppSelector(state => state.filters.cuisineFilters)
   const types = useAppSelector(state => state.filters.typeFilters)
 
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null) 
   const [loading, setLoading] = useState(false)
   const [newType, setNewType] = useState('')
   const [newCuisine, setNewCuisine] = useState('')
@@ -24,7 +25,7 @@ const FilterManagement = () => {
   const [activeFilter, setActiveFilter] = useState<"types" | "cuisines">("types")
 
   useEffect(() => {
-    setError(null);
+    setError(null)
     setLoading(true)
 
     const loadFilters = async () => {
@@ -39,21 +40,21 @@ const FilterManagement = () => {
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
 
       } catch (error) {
-        setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
+        setError(handleError(error)) // need to be toasts 
       } finally {
         setLoading(false)
       }
     };
 
-    loadFilters();
-  }, []);
+    loadFilters()
+  }, [])
 
   const handleUpdate = async (filterCategory: FilterCategoryType, filterId: string, updatedText: string) => {
     try {
       await updateFilterService(updatedText, filterCategory, filterId, language)
       dispatch(updateFilter({ filterCategory, filterId, updatedText, language }))
     } catch (error) {
-      setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
+      setError(handleError(error)) // need to be toasts 
     }
   }
 
@@ -69,7 +70,7 @@ const FilterManagement = () => {
           dispatch(deleteFilter({ filterCategory, filterId }))
           resetModalState()
         } catch (error) {
-          setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
+          setError(handleError(error))
           resetModalState()
         }
       },
@@ -87,7 +88,7 @@ const FilterManagement = () => {
         setNewCuisine('')
       }
     } catch (error) {
-      setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
+      setError(handleError(error))
     }
   }
 

@@ -6,6 +6,7 @@ import { selectFilteredRecipes } from '../selectors'
 import { setRecipes } from '../slice'
 import RecipeCard from './RecipeCard'
 import { LoadingComponent, ErrorComponent } from "@/components"
+import { handleError } from '@/errorHandling'
 
 
 
@@ -32,7 +33,7 @@ const RecipeList = () => {
         dispatch(setRecipes(fetchedRecipes))
 
       } catch (error) {
-        setError(typeof error === 'string' ? error : 'An unknown error has occurred while attempting to load the recipes.')
+        setError(handleError(error))
       } finally {
         setLoading(false)
       }

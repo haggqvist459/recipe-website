@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Heading } from "@/components";
 import { useAuth } from '@/contexts'
 import { ROUTES } from "@/utils";
+import { handleError } from "@/errorHandling";
 
 const AuthPage = () => {
 
@@ -20,11 +21,7 @@ const AuthPage = () => {
     try {
       await handleSignIn(email, password);
     } catch (error) {
-      if (typeof error === 'string') {
-        setError(error)
-      } else {
-        setError('An unknown error occurred while attempting to sign in.')
-      }
+      setError(handleError(error))
     } finally {
       setLoading(false);
     }
