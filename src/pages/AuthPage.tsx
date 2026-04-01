@@ -8,11 +8,11 @@ const AuthPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { user, handleSignIn } = useAuth();
 
-  async function handleSubmit(event: React.FormEvent) {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
     setError(null);
@@ -20,9 +20,10 @@ const AuthPage = () => {
     try {
       await handleSignIn(email, password);
     } catch (error) {
-      if (error instanceof Error) {
+      if (typeof error === 'string') {
         setError(error)
-        // future error handling will be done in AuthContext.tsx
+      } else {
+        setError('An unknown error occurred while attempting to sign in.')
       }
     } finally {
       setLoading(false);
@@ -57,7 +58,7 @@ const AuthPage = () => {
           {loading ? "Authenticating..." : "Authenticate"}
         </button>
       </div>
-      {error && <div className="text-red-500 text-sm">{error.message}</div>}
+      {error && <div className="text-red-500 text-sm">{error}</div>}
     </form>
   );
 };

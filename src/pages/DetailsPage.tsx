@@ -15,8 +15,7 @@ const DetailsPage = () => {
   const { id } = useParams<{ id: string }>()
   const dispatch = useAppDispatch()
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const recipeFromState = location.state?.recipe as RecipeType | undefined
@@ -27,16 +26,14 @@ const DetailsPage = () => {
       const fetchRecipe = async () => {
         try {
           setLoading(true)
-          setError(false)
           const fetched = await fetchSingleRecipe(id!, language)
           dispatch(setActiveRecipe(fetched))
         } catch (error) {
           if (typeof error === 'string') {
-            setErrorMessage(error)
+            setError(error)
           } else {
-            setErrorMessage('An unknown error has occurred.')
+            setError('An unknown error has occurred.')
           }
-          setError(true)
         } finally {
           setLoading(false)
         }
@@ -51,7 +48,7 @@ const DetailsPage = () => {
   }, [id])
 
   if (loading) return <LoadingComponent />
-  if (error) return <ErrorComponent errorMessage={errorMessage} />
+  if (error) return <ErrorComponent errorMessage={error} />
 
   return (
     <PageContainer>

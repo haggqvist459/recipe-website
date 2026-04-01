@@ -16,8 +16,7 @@ const FilterManagement = () => {
   const cuisines = useAppSelector(state => state.filters.cuisineFilters)
   const types = useAppSelector(state => state.filters.typeFilters)
 
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [newType, setNewType] = useState('')
   const [newCuisine, setNewCuisine] = useState('')
@@ -25,7 +24,7 @@ const FilterManagement = () => {
   const [activeFilter, setActiveFilter] = useState<"types" | "cuisines">("types")
 
   useEffect(() => {
-    setError(false);
+    setError(null);
     setLoading(true)
 
     const loadFilters = async () => {
@@ -41,11 +40,10 @@ const FilterManagement = () => {
 
       } catch (error) {
         if (typeof error === 'string'){
-          setErrorMessage(error)
+          setError(error)
         } else {
-          setErrorMessage('An unknown error occurred while loading filters.')
+          setError('An unknown error occurred while loading filters.')
         }
-        setError(true);
       } finally {
         setLoading(false)
       }
@@ -60,11 +58,10 @@ const FilterManagement = () => {
       dispatch(updateFilter({ filterCategory, filterId, updatedText, language }))
     } catch (error) {
       if (typeof error === 'string') {
-        setErrorMessage(error)
+        setError(error)
       } else {
-        setErrorMessage('An unknown error occured while updating a filter.')
+        setError('An unknown error occured while updating a filter.')
       }
-      setError(true)
     }
   }
 
@@ -81,12 +78,11 @@ const FilterManagement = () => {
           resetModalState()
         } catch (error) {
           if (typeof error === 'string') {
-            setErrorMessage(error)
+            setError(error)
           } else {
-            setErrorMessage('An unknown error occured while deleting a filter.')
+            setError('An unknown error occured while deleting a filter.')
           }
           resetModalState()
-          setError(true)
         }
       },
       onCancel: () => resetModalState()
@@ -104,16 +100,15 @@ const FilterManagement = () => {
       }
     } catch (error) {
       if (typeof error === 'string') {
-        setErrorMessage(error)
+        setError(error)
       } else {
-        setErrorMessage('An unknown error occured while deleting a filter.')
+        setError('An unknown error occured while deleting a filter.')
       }
-      setError(true)
     }
   }
 
   if (error) {
-    return <ErrorComponent errorMessage={errorMessage} />;
+    return <ErrorComponent errorMessage={error} />;
   }
 
   if (loading) {

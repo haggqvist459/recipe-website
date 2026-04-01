@@ -17,14 +17,13 @@ const RecipeList = () => {
   const needsRefresh = useAppSelector(state => state.recipeList.needsRefresh)
 
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!needsRefresh) return
 
     setLoading(true)
-    setError(false)
+    setError(null)
 
     const loadRecipes = async () => {
       try {
@@ -34,11 +33,10 @@ const RecipeList = () => {
 
       } catch (error) {
         if (typeof error === 'string'){
-          setErrorMessage(error)
+          setError(error)
         } else { 
-          setErrorMessage('An unknown error has occurred')
+          setError('An unknown error has occurred')
         }
-        setError(true)
       } finally {
         setLoading(false)
       }
@@ -49,7 +47,7 @@ const RecipeList = () => {
 
 
   if (loading) return <LoadingComponent />
-  if (error) return <ErrorComponent errorMessage={errorMessage} />
+  if (error) return <ErrorComponent errorMessage={error} />
   
 
   return (

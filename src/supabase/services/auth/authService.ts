@@ -18,7 +18,10 @@ export const signIn = async (email: string, password: string) => {
 
 export const signOut = async () => {
   const { error } = await supabase.auth.signOut()
-  if (error) throw error
+  if (error) {
+    const errorMessage = handleError(error)
+    throw errorMessage
+  }
 };
 
 export const getSession = async () => {
@@ -31,6 +34,7 @@ export const getSession = async () => {
 };
 
 export const getCurrentUser = async () => {
+  console.log("getCurrentUser start")
   const { data, error } = await supabase.auth.getUser()
   if (error) {
       const errorMessage = handleError(error)

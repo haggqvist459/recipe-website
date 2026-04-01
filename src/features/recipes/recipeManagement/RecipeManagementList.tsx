@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/redux';
-import { deleteRecipeService, fetchAllRecipes, } from '@/supabase/services';
-import { LoadingComponent, ErrorComponent } from "@/components";
-import { useLanguage, useNotification, } from '@/contexts';
-import RecipeManagementCard from './RecipeManagementCard';
-import { setRecipes, removeRecipe } from '../slice';
+import { useAppDispatch, useAppSelector } from '@/redux'
+import { deleteRecipeService, fetchAllRecipes, } from '@/supabase/services'
+import { LoadingComponent, ErrorComponent } from "@/components"
+import { useLanguage, useNotification, } from '@/contexts'
+import RecipeManagementCard from './RecipeManagementCard'
+import { setRecipes, removeRecipe } from '../slice'
 
 const RecipeManagementList = () => {
 
@@ -16,16 +16,14 @@ const RecipeManagementList = () => {
   const needsRefresh = useAppSelector(state => state.recipeList.needsRefresh)
 
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [error, setError] = useState<string | null>(null)
 
 
 
   useEffect(() => {
-    if (!needsRefresh && recipeList.length > 0) return;
+    if (!needsRefresh && recipeList.length > 0) return
 
-    setLoading(true);
-    setError(false)
+    setLoading(true)
 
     const loadRecipes = async () => {
       try {
@@ -34,11 +32,10 @@ const RecipeManagementList = () => {
 
       } catch (error) {
         if (typeof error === 'string') {
-          setErrorMessage(error)
+          setError(error)
         } else { 
-          setErrorMessage('An unknown error occurred when loading recipes')
+          setError('An unknown error occurred when loading recipes')
         }
-        setError(true)
       } finally {
         setLoading(false);
       }
@@ -60,11 +57,10 @@ const RecipeManagementList = () => {
           resetModalState()
         } catch (error) {
           if (typeof error === 'string') {
-            setErrorMessage(error)
+            setError(error)
           } else {
-            setErrorMessage("An unknown error occured when deleting a recipe")
+            setError("An unknown error occured when deleting a recipe")
           }
-          setError(true)
           resetModalState()
         }
       },
@@ -77,7 +73,7 @@ const RecipeManagementList = () => {
   }
 
   if (error) {
-    return <ErrorComponent errorMessage={errorMessage} />;
+    return <ErrorComponent errorMessage={error} />;
   }
 
   return (

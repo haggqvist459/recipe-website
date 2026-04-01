@@ -6,8 +6,6 @@ export const selectSingleRecipe = async (
   id: string,
   language: LanguageType
 ): Promise<DbRecipeWithRelations> => {
-
-  try {
     const { data } = await supabase
       .from(DB_TABLES.RECIPES)
       .select<string, DbRecipeWithRelations>(`
@@ -30,8 +28,4 @@ export const selectSingleRecipe = async (
       .throwOnError()
 
     return data
-
-  } catch (error) {
-    throw error
-  }
 }

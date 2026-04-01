@@ -26,22 +26,24 @@ const Filters = () => {
   const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters);
   const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter);
 
-  const [typesError, setTypesError] = useState(false)
-  const [cuisinesError, setCuisinesError] = useState(false)
+  const [typesError, setTypesError] = useState<string | null>(null)
+  const [cuisinesError, setCuisinesError] = useState<string | null>(null)
 
   useEffect(() => {
     const loadTypes = async () => {
       try {
         const result = await fetchMainIngredients()
         dispatch(setFilterList({ filterCategory: "types", list: result }))
-        setTypesError(false)
+        setTypesError(null)
       } catch (error) {
         if (typeof error === 'string') {
           showToast(error, 'error')
+          setTypesError(error)
         } else {
           showToast('Failed to load ingredient filters.', 'error')
+          setTypesError('Failed to load ingredient filters.')
         }
-        setTypesError(true)
+        
       }
     }
 
@@ -49,14 +51,16 @@ const Filters = () => {
       try {
         const result = await fetchCuisines()
         dispatch(setFilterList({ filterCategory: "cuisines", list: result }))
-        setCuisinesError(false)
+        setCuisinesError(null)
       } catch (error) {
         if (typeof error === 'string') {
           showToast(error, 'error')
+          setCuisinesError(error)
         } else {
           showToast('Failed to load cuisine filters.', 'error')
+          setCuisinesError('Failed to load cuisine filters.')
         }
-        setCuisinesError(true)
+        
       }
     }
 
@@ -70,7 +74,7 @@ const Filters = () => {
         <button
           className="flex space-x-1 items-center disabled:opacity-50"
           onClick={() => setShowTypes(prev => !prev)}
-          disabled={typesError}
+          disabled={typesError === null}
         >
           {translateText('filter', 'category', language)}
           <div
@@ -83,7 +87,7 @@ const Filters = () => {
         <button
           className="flex space-x-1 items-center disabled:opacity-50"
           onClick={() => setShowCuisines(prev => !prev)}
-          disabled={cuisinesError}
+          disabled={cuisinesError === null}
         >
           {translateText('filter', 'cuisines', language)}
           <div

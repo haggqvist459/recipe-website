@@ -46,8 +46,8 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
       }
     } catch (error) {
       const message =
-        error instanceof Error
-          ? error.message
+        typeof error === 'string'
+          ? error
           : "An unexpected error occurred while creating the recipe.";
 
       setModalState({
@@ -73,33 +73,22 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
     }
 
     try {
-      const result = await processRecipeUpdate(user.id, recipeId, recipeDraft, language)
-      if (result) {
-        setModalState({
-          isOpen: true,
-          title: 'Recipe Updated',
-          message: 'Your recipe has been successfully updated',
-          onConfirm: () => {
-            dispatch(resetState())
-            resetModalState()
-            navigate(ROUTES.ADMIN)
-          }
-        })
-      } else {
-        setModalState({
-          isOpen: true,
-          title: 'TEST MODAL',
-          message: 'Your recipe has NOT been successfully updated',
-          onConfirm: () => {
-            resetModalState()
-          }
-        })
-      }
+      await processRecipeUpdate(user.id, recipeId, recipeDraft, language)
+      setModalState({
+        isOpen: true,
+        title: 'Recipe Updated',
+        message: 'Your recipe has been successfully updated',
+        onConfirm: () => {
+          dispatch(resetState())
+          resetModalState()
+          navigate(ROUTES.ADMIN)
+        }
+      })
     } catch (error) {
       const message =
-        error instanceof Error
-          ? error.message
-          : "An unexpected error occurred while creating the recipe.";
+        typeof error === 'string'
+          ? error
+          : "An unexpected error occurred while updating the recipe.";
 
       setModalState({
         isOpen: true,
@@ -108,7 +97,6 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
         onConfirm: () => resetModalState(),
       })
 
-      // TODO VERIFY ERROR HANDLING - NO CHANGES DETECTED / VALIDATION FAILURE
 
     }
   }
