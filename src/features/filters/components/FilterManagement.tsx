@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/redux';
 import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services';
-import { LoadingComponent, ErrorComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper, IconButton } from '@/components';
+import { LoadingComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper, IconButton } from '@/components';
 import { useLanguage, useNotification } from '@/contexts';
 import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice';
 import FilterManagementItem from './FilterManagementItem';
@@ -11,13 +11,12 @@ import { handleError } from '@/errorHandling';
 const FilterManagement = () => {
 
   const { language } = useLanguage();
-  const { setModalState, resetModalState } = useNotification();
+  const { setModalState, resetModalState, showToast } = useNotification();
   const dispatch = useAppDispatch();
 
   const cuisines = useAppSelector(state => state.filters.cuisineFilters)
   const types = useAppSelector(state => state.filters.typeFilters)
 
-  const [error, setError] = useState<string | null>(null) 
   const [loading, setLoading] = useState(false)
   const [newType, setNewType] = useState('')
   const [newCuisine, setNewCuisine] = useState('')
@@ -25,7 +24,6 @@ const FilterManagement = () => {
   const [activeFilter, setActiveFilter] = useState<"types" | "cuisines">("types")
 
   useEffect(() => {
-    setError(null)
     setLoading(true)
 
     const loadFilters = async () => {
@@ -40,7 +38,7 @@ const FilterManagement = () => {
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
 
       } catch (error) {
-        setError(handleError(error)) // need to be toasts 
+        showToast(handleError(error), 'error')
       } finally {
         setLoading(false)
       }
@@ -54,7 +52,7 @@ const FilterManagement = () => {
       await updateFilterService(updatedText, filterCategory, filterId, language)
       dispatch(updateFilter({ filterCategory, filterId, updatedText, language }))
     } catch (error) {
-      setError(handleError(error)) // need to be toasts 
+      showToast(handleError(error), 'error')
     }
   }
 
@@ -70,7 +68,7 @@ const FilterManagement = () => {
           dispatch(deleteFilter({ filterCategory, filterId }))
           resetModalState()
         } catch (error) {
-          setError(handleError(error))
+          showToast(handleError(error), 'error')
           resetModalState()
         }
       },
@@ -88,12 +86,8 @@ const FilterManagement = () => {
         setNewCuisine('')
       }
     } catch (error) {
-      setError(handleError(error))
+      showToast(handleError(error), 'error')
     }
-  }
-
-  if (error) {
-    return <ErrorComponent errorMessage={error} />;
   }
 
   if (loading) {

@@ -1,27 +1,41 @@
-import { useState } from "react";
-import { setFavourite, removeFavourite } from "@/supabase/services";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useAuth, useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
-import { updateServings } from "../slice";
-import { Heading, Favourite, AddListItem, IconButton, CirclePlus, CircleMinus } from "@/components";
-import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites";
-import { addIngredients } from "@/features/groceryList";
-import { handleError } from "@/errorHandling";
+import { useState } from "react"
+import { setFavourite, removeFavourite } from "@/supabase/services"
+import { useAppDispatch } from "@/redux/hooks"
+import { useAuth, useLanguage, useNotification } from "@/contexts"
+import { RecipeType } from "@/types"
+import { translateText } from "@/utils"
+import { Heading, Favourite, AddListItem, IconButton, CirclePlus, CircleMinus } from "@/components"
+import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites"
+import { addIngredients } from "@/features/groceryList"
+import { handleError } from "@/errorHandling"
 
 
-const RecipeDetails = () => {
+type Props = {
+  recipe: RecipeType
+}
+const RecipeDetails = ({ recipe }: Props) => {
 
   const { language } = useLanguage()
-  const { user } = useAuth();
-  const recipe = useAppSelector(state => state.recipeList.activeRecipe)
+  const { user } = useAuth()
+  const { showToast } = useNotification()
+
   const dispatch = useAppDispatch()
 
   const isFavourite = useIsFavourited(recipe?.id ?? "")
-
   const [activeSection, setActiveSection] = useState<"ingredients" | "instructions">("ingredients");
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
-  if (!recipe) return null
+  const [modifiedIngredients, setModifiedIngredients] = useState(recipe.ingredients)
+  const [modifiedServings, setModifiedServings] = useState(recipe.servings)
+
+  const updateServings = (newServings: number) => {
+    const ratio = newServings / recipe.servings
+    setModifiedServings(newServings)
+    setModifiedIngredients(recipe.ingredients.map(ingredient => ({
+      ...ingredient,
+      amount: parseFloat((parseFloat(ingredient.amount) * ratio).toFixed(2)).toString()
+    })))
+  }
+
   const toggleCompleted = (instructionId: string) => {
     setCompletedIds((prev) => {
       const next = new Set(prev);
@@ -42,13 +56,7 @@ const RecipeDetails = () => {
         dispatch(addFavourite(newFavourite))
       }
     } catch (error) {
-      const errorMessage = handleError(error)
-      if (error instanceof Error) {
-        console.error('toggleFavourite error:', error)
-      } else {
-        console.error('Unknown error: ', error)
-      }
-      // needs error toast 
+      showToast(handleError(error), 'error')
     }
   }
 
@@ -79,17 +87,17 @@ const RecipeDetails = () => {
               <IconButton
                 className="p-1"
                 disabled={recipe.servings <= 0}
-                onClick={() => dispatch(updateServings(recipe.modifiedServings - 1))}
+                onClick={() => updateServings(modifiedServings - 1)}
               >
                 <CircleMinus size="size-7" />
               </IconButton>
               <span className="label">
-                Servings: {recipe.modifiedServings}
+                Servings: {modifiedServings}
               </span>
               <IconButton
                 className="p-1"
                 disabled={recipe.servings >= 20}
-                onClick={() => dispatch(updateServings(recipe.modifiedServings + 1))}
+                onClick={() => updateServings(modifiedServings + 1)}
               >
                 <CirclePlus size="size-7" />
               </IconButton>
@@ -101,10 +109,10 @@ const RecipeDetails = () => {
         </div>
 
         <div className="lg:flex lg:space-x-5 mt-5">
-          <div className={`lg:w-1/3 ${activeSection === 'ingredients' ? 'block' : 'hid1den'} lg:block`}>
+          <div className={`lg:w-1/3 ${activeSection === 'ingredients' ? 'block' : 'hidden'} lg:block`}>
             <div className="relative">
               <ul className="list-disc list-inside px-2">
-                {recipe.modifiedIngredients.map((ingredient) => (
+                {modifiedIngredients.map((ingredient) => (
                   <li
                     className="py-1"
                     key={ingredient.id}>
@@ -114,7 +122,7 @@ const RecipeDetails = () => {
               </ul>
               <IconButton
                 className="absolute bottom-0 right-0 p-1 bg-lightblue rounded-full button-click"
-                onClick={() => dispatch(addIngredients(recipe.modifiedIngredients))}
+                onClick={() => dispatch(addIngredients(modifiedIngredients))}
               >
                 <AddListItem size="size-8" />
               </IconButton>
