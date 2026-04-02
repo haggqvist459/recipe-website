@@ -6,7 +6,6 @@ import { PageContainer, ErrorComponent, LoadingComponent } from "@/components"
 import { RecipeType } from "@/types"
 import { RecipeDetails } from "@/features/recipes/recipeList"
 import { handleError } from "@/errorHandling"
-import { setActiveRecipe } from "@/features/recipes"
 
 const DetailsPage = () => {
 
@@ -39,7 +38,7 @@ const DetailsPage = () => {
     }
 
     return () => {
-      setActiveRecipe(null)
+      setRecipe(null)
     }
   }, [id])
 
