@@ -11,7 +11,7 @@
 - [x] Preview section output validation
 - [x] Simplify ingredients and instruction input - copy paste friendly
 - [x] Form validation, ensure non-empty fields are not left empty for required inputs
-- [ ] For how many people are the recipe? 
+- [x] For how many people are the recipe? 
 
 ## Edit Form 
 - [x] Edit, remove & Add for metadata
@@ -34,7 +34,7 @@
 - [x] Add the filters as dropdowns 
 - [x] Details view 
 - [x] Mark recipe as favorite for users 
-- [ ] Modify the number of people the recipe is for 
+- [x] Modify the number of people the recipe is for 
 
 ### Profile Page: 
 - [x] Change email
@@ -51,26 +51,26 @@
  
 ### Grocery list: 
 - [x] Re-use previous list project, add here 
- - [x] Localstorage persist grocery list
- - [x] Add new items to list 
- - [ ] Share lists
+- [x] Localstorage persist grocery list
+- [x] Add new items to list 
+- [ ] Share lists
   - [ ] Share link? Code? 
   - [ ] Second minor UI for shared list vs personal list? 
   - [ ] Menu but ton to share list, generate link / code? 
- - [x] Add ingredients from recipes to list 
- - [x] Backup list to database if authenticated 
- - [ ] Finalise null checks 
+- [x] Add ingredients from recipes to list 
+- [x] Backup list to database if authenticated 
+- [ ] Finalise null checks 
+- [ ] Inspect sync of local and remote grocery lists
+- [ ] Add null checks to grocery list db actions for more precise toast messages
 
 ### Success / Error Toast & Modal
 - [ ] Ensure dynamic time before disappearing
-- [ ] Add on successful favourite marking / removal 
 - [ ] Database actions should have either Modal or Toast confirmation/errors 
-- [ ] Small toast component for success / error messages.
-  - [ ] Finalise the toast styling
-  - [ ] Add undo functionality?
+- [x] Small toast component for success / error messages.
+  - [x] Finalise the toast styling
 
 ### Error handling: 
-- [ ] Review error handling across pages and components 
+- [x] Review error handling across pages and components 
   - [ ] Admin Page must redirect to error in case of non admin roles
 
 ## Auth: 
@@ -118,8 +118,6 @@
 - [x] Button highlights - apply new utility (button-click) from index.css on buttons
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [x] Refactor ButtonRow component - use Tailwind instead of JavaScript
-- [ ] Inspect sync of local and remote grocery lists
-- [ ] Add null checks to grocery list db actions for more precise toast messages
 - [x] Refactor all Modal usage to use the new Context 
 
 - [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
