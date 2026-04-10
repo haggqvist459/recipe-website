@@ -27,7 +27,7 @@
 - [x] Remove filters
  - [x] Cascade into join table
 - [x] Refactor filters and types to always include both languages, and display only selected language 
-- [ ] Refactor the Filters component into sub components 
+- [ ] Refactor the Filters component into sub components (???)
  
 ### Main Page: 
 - [x] List all recipes 
@@ -64,10 +64,12 @@
 - [ ] Add null checks to grocery list db actions for more precise toast messages
 
 ### Success / Error Toast & Modal
-- [ ] Ensure dynamic time before disappearing
-- [ ] Database actions should have either Modal or Toast confirmation/errors 
+- [x] Ensure dynamic time before disappearing
+  - Close button good enough
+- [x] Database actions should have either Modal or Toast confirmation/errors 
+ - Everything covered in try/catches with error handling. 
 - [x] Small toast component for success / error messages.
-  - [x] Finalise the toast styling
+- [x] Finalise the toast styling
 
 ### Error handling: 
 - [x] Review error handling across pages and components 
