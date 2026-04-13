@@ -90,9 +90,8 @@ const FilterManagement = () => {
     }
   }
 
-  if (loading) {
-    return <LoadingComponent />
-  }
+  if (loading) return <LoadingComponent />
+
 
   return (
     <>
