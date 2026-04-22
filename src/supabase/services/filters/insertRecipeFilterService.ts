@@ -26,3 +26,5 @@ export const attachRecipeCuisines = async (
   await insertRecipeCuisines(recipeId, cuisineIds)
 
 };
+
+//TODO Decide whether to translate those errors or not 

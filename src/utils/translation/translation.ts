@@ -1,12 +1,16 @@
+import { ERROR_TEXT } from "./errors"
+import { COMPONENTS_TEXT } from "./components"
+import { LAYOUT_TEXT } from "./layout"
+
 export const translateText = <
   Lang extends keyof typeof UIText,
-  Component extends keyof typeof UIText[Lang],
-  Label extends keyof typeof UIText[Lang][Component]
+  Category extends keyof typeof UIText[Lang],
+  Label extends keyof typeof UIText[Lang][Category]
 >(
-  component: Component,
+  category: Category,
   label: Label,
   lang: Lang
-) => UIText[lang][component][label];
+) => ALL_TEXT[lang][category][label]
 
 export const UIText = {
   en: {
@@ -269,3 +273,8 @@ export const UIText = {
   }
 } as const
 
+
+export const ALL_TEXT = {
+  en: { ...UIText.en, ...ERROR_TEXT.en, ...LAYOUT_TEXT.en, ...COMPONENTS_TEXT.en },
+  sv: { ...UIText.sv, ...ERROR_TEXT.sv, ...LAYOUT_TEXT.sv, ...COMPONENTS_TEXT.sv }
+} as const
