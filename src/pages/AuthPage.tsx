@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Heading } from "@/components";
-import { useAuth } from '@/contexts'
-import { ROUTES } from "@/utils";
+import { useAuth, useLanguage } from '@/contexts'
+import { ROUTES, translateText } from "@/utils";
 import { handleError } from "@/errorHandling";
+
 
 const AuthPage = () => {
 
+  const { language } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -34,12 +36,12 @@ const AuthPage = () => {
   return (
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-10">
       <div className="border rounded border-neutral-800 bg-white shadow-sm flex flex-col gap-3 p-5 items-center">
-        <Heading title="Sign In" />
+        <Heading title={translateText('authPage', 'signIn', language)} />
         <input
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          placeholder="Email"
+          placeholder={translateText('authPage', 'email', language)}
           required
           className="input-text"
         />
@@ -47,12 +49,12 @@ const AuthPage = () => {
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          placeholder="Password"
+          placeholder={translateText('authPage', 'password', language)}
           required
           className="input-text"
         />
         <button type="submit" disabled={loading} className="primary-button">
-          {loading ? "Authenticating..." : "Authenticate"}
+          {loading ? translateText('authPage', 'authenticating', language) : translateText('authPage', 'authenticate', language)}
         </button>
       </div>
       {error && <div className="text-red-500 text-sm">{error}</div>}

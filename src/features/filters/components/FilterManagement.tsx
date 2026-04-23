@@ -7,6 +7,7 @@ import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice';
 import FilterManagementItem from './FilterManagementItem';
 import { FilterCategoryType } from '@/types';
 import { handleError } from '@/errorHandling';
+import { translateText } from '@/utils';
 
 const FilterManagement = () => {
 
@@ -60,8 +61,8 @@ const FilterManagement = () => {
     setModalState({
       isOpen: true,
       showCancel: true,
-      title: 'Delete Filter',
-      message: `Are you sure you want to delete the filter "${filterText}"?`,
+      title: translateText('filterManagement', 'deleteFilterTitle', language),
+      message: `${translateText('filterManagement', 'deleteFilterMessage', language)}"${filterText}"?`,
       onConfirm: async () => {
         try {
           await deleteFilterService(filterCategory, filterId)
@@ -100,13 +101,13 @@ const FilterManagement = () => {
           isActive={activeFilter === 'types'}
           onClick={() => setActiveFilter('types')}
         >
-          Main Ingredients
+          {translateText('filterManagement', 'filterManagementMainIngredients', language)}
         </HorizontalMenuButton>
         <HorizontalMenuButton
           isActive={activeFilter === 'cuisines'}
           onClick={() => setActiveFilter('cuisines')}
         >
-          Cuisines
+          {translateText('filterManagement', 'filterManagementCuisines', language)}
         </HorizontalMenuButton>
       </HorizontalMenuWrapper>
 
@@ -114,7 +115,7 @@ const FilterManagement = () => {
         {activeFilter === 'types' && (
           <div className="w-full flex flex-col">
             <div className="flex justify-center">
-              <Heading title='Main Ingredients' headingType='sub-heading' />
+              <Heading title={translateText('filterManagement', 'filterManagementMainIngredients', language)} headingType='sub-heading' />
             </div>
             <div className="flex-grow">
               {types.map(type => (
@@ -130,7 +131,7 @@ const FilterManagement = () => {
               <Input
                 id='addType'
                 onChange={(e) => setNewType(e.target.value)}
-                placeholder='New type'
+                placeholder={translateText('filterManagement', 'newMainIngredient', language)}
                 value={newType}
               />
               <IconButton onClick={() => handleAdd('types', newType)}>
@@ -143,7 +144,7 @@ const FilterManagement = () => {
         {activeFilter === 'cuisines' && (
           <div className="w-full flex flex-col">
             <div className="flex justify-center">
-              <Heading title='Cuisines' headingType='sub-heading' />
+              <Heading title={translateText('filterManagement', 'filterManagementCuisines', language)} headingType='sub-heading' />
             </div>
             <div className="flex-grow">
               {cuisines.map(cuisine => (
@@ -159,7 +160,7 @@ const FilterManagement = () => {
               <Input
                 id='addCuisine'
                 onChange={(e) => setNewCuisine(e.target.value)}
-                placeholder='New cuisine'
+                placeholder={translateText('filterManagement', 'newCuisine', language)}
                 value={newCuisine}
               />
               <IconButton onClick={() => handleAdd('cuisines', newCuisine)}>

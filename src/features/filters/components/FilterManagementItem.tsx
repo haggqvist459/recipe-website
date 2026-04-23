@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { FilterOptionType } from "@/types";
-import { useLanguage } from '@/contexts';
-import { Trashcan, EditIcon, CheckSolidCircle, Close, Input, IconButton } from "@/components";
+import { useState } from "react"
+import { FilterOptionType } from "@/types"
+import { useLanguage } from '@/contexts'
+import { Trashcan, EditIcon, CheckSolidCircle, Close, Input, IconButton } from "@/components"
 
 
 
@@ -16,9 +16,9 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
 
   const { language } = useLanguage();
 
-  const filterText = filter[`${language}_text`];
-  const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(filterText);
+  const filterText = filter[`${language}_text`]
+  const [isEditing, setIsEditing] = useState(false)
+  const [editText, setEditText] = useState(filterText)
 
 
   const cancelUpdate = () => {
@@ -27,13 +27,13 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
   }
 
   const handleUpdate = async () => {
-    await onUpdate(editText);
-    setIsEditing(false);
+    await onUpdate(editText)
+    setIsEditing(false)
   }
 
   const handleEdit = () => {
-    setEditText(filterText);
-    setIsEditing(true);
+    setEditText(filterText)
+    setIsEditing(true)
   }
   
   return (
@@ -72,4 +72,4 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
   );
 }
 
-export default FilterManagementItem;
+export default FilterManagementItem

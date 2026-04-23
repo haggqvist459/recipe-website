@@ -136,7 +136,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                     <CircleMinus size="size-7" />
                   </IconButton>
                   <label className="label flex items-center gap-1">
-                    Servings:
+                    <span>{translateText('metadata', 'servings', language)}</span>
                     <input
                       type="number"
                       name="servings"
