@@ -60,6 +60,7 @@ export const COMPONENTS_TEXT = {
       instructions: 'Instructions',
       of: 'of',
       addGroceries: 'Add to grocery list',
+      servings: 'Servings: ',
     },
     homePage: {
       recipe: 'Recipes'
@@ -183,6 +184,7 @@ export const COMPONENTS_TEXT = {
       instructions: 'Instruktioner',
       of: '',
       addGroceries: 'Lägg till i inköpslistan',
+      servings: 'Portioner: ',
     },
     homePage: {
       recipe: 'Recept'

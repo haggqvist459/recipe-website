@@ -48,8 +48,8 @@ const PreviewSection = () => {
               ))}
             </div>
             <Output
-              label="Include in weekly suggestions"
-              value={metaData.includeWeekly ? "Yes" : "No"}
+              label={translateText('preview', 'includeWeekly', language)}
+              value={metaData.includeWeekly ? translateText('preview', 'yes', language) : translateText('preview', 'no', language)}
             />
           </div>
           <div className="space-y-2 w-full">

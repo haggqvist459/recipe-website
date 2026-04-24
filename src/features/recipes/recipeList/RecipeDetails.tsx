@@ -92,7 +92,7 @@ const RecipeDetails = ({ recipe }: Props) => {
                 <CircleMinus size="size-7" />
               </IconButton>
               <span className="label">
-                Servings: {modifiedServings}
+                {translateText('recipeDetailCard', 'servings', language)}{modifiedServings}
               </span>
               <IconButton
                 className="p-1"
