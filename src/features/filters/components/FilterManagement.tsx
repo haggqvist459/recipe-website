@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/redux';
-import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services';
-import { LoadingComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper, IconButton } from '@/components';
-import { useLanguage, useNotification } from '@/contexts';
-import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice';
-import FilterManagementItem from './FilterManagementItem';
-import { FilterCategoryType } from '@/types';
-import { handleError } from '@/errorHandling';
-import { translateText } from '@/utils';
+import { useAppDispatch, useAppSelector } from '@/redux'
+import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services'
+import { LoadingComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper, IconButton } from '@/components'
+import { useLanguage, useNotification } from '@/contexts'
+import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice'
+import FilterManagementItem from './FilterManagementItem'
+import { FilterCategoryType } from '@/types'
+import { handleError } from '@/errorHandling'
+import { translateText } from '@/utils'
 
 const FilterManagement = () => {
 

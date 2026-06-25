@@ -1,31 +1,23 @@
 import { useState } from "react"
 import { useAppSelector } from "@/redux"
 import { useLanguage } from "@/contexts"
-import { PageContainer, Heading, HorizontalMenuWrapper, HorizontalMenuButton } from "@/components"
+import { PageContainer, Heading } from "@/components"
 import { VisibilityFilters, GroceryListItem, AddItem, GroceryListSettings, selectItems } from "@/features/groceryList"
 import { translateText } from "@/utils"
 
 
-const GroceryPage = () => {
+type Props = {}
+
+const PersonalList = (props: Props) => {
 
   const { language } = useLanguage()
   const groceryList = useAppSelector(selectItems)
   const activeFilter = useAppSelector(state => state.groceryList.visibilityFilter)
   const [showListSettings, setShowListSettings] = useState(false)
-  const [activeSection, setActiveSection] = useState<'personal' | 'shared'>('personal')
 
   return (
     <PageContainer>
-      <HorizontalMenuWrapper>
-        <HorizontalMenuButton isActive={activeSection === 'personal'} onClick={() => setActiveSection('personal')}>
-          Personal
-        </HorizontalMenuButton>
-        <HorizontalMenuButton isActive={activeSection === 'shared'} onClick={() => setActiveSection('shared')}>
-          Shared
-        </HorizontalMenuButton>
-      </HorizontalMenuWrapper>
       <VisibilityFilters />
-      
       {showListSettings && (
         <div
           className="absolute inset-0 z-40"
@@ -36,7 +28,7 @@ const GroceryPage = () => {
         <div className="mt-5 px-5 flex justify-between relative">
           <Heading title={translateText('groceryPage', 'title', language)} />
           <GroceryListSettings
-            showListSettings={showListSettings} 
+            showListSettings={showListSettings}
             setShowListSettings={() => setShowListSettings(prev => !prev)}
           />
         </div>
@@ -61,4 +53,4 @@ const GroceryPage = () => {
   )
 }
 
-export default GroceryPage; 
+export default PersonalList;
