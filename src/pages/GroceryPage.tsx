@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { useAppSelector } from "@/redux"
+import { useAppSelector } from "@/integrations/redux"
 import { useLanguage } from "@/contexts"
 import { PageContainer, Heading, HorizontalMenuWrapper, HorizontalMenuButton } from "@/components"
 import { VisibilityFilters, GroceryListItem, AddItem, GroceryListSettings, selectItems } from "@/features/groceryList"
-import { translateText } from "@/utils"
+import { translateText } from "@/shared"
 
 
 const GroceryPage = () => {

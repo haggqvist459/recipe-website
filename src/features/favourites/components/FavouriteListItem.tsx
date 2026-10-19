@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react'
-import { FavouriteType } from "../types";
-import { Trashcan, IconButton } from '@/components';
-import { removeFavourite } from '@/supabase/services';
-import { useAppDispatch } from '@/redux/hooks';
-import { deleteFavourite, addFavourite } from '../slice';
+import { FavouriteType } from "../types"
+import { Trashcan, IconButton } from '@/components'
+import { removeFavourite } from '@/integrations/supabase/services'
+import { useAppDispatch } from '@/integrations/redux/hooks'
+import { deleteFavourite, addFavourite } from '../slice'
 
 type Props = {
   favourite: FavouriteType
@@ -13,24 +13,24 @@ const FavouriteListItem = ({ favourite }: Props) => {
 
   const dispatch = useAppDispatch()
   const [showDelete, setShowDelete] = useState(false)
-  const touchStartX = useRef(0);
+  const touchStartX = useRef(0)
 
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
+    touchStartX.current = e.touches[0].clientX
+  }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    const SWIPE_THRESHOLD = 30;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current
+    const SWIPE_THRESHOLD = 30
 
     if (deltaX < -SWIPE_THRESHOLD) {
-      setShowDelete(true);
+      setShowDelete(true)
     } else if (deltaX > SWIPE_THRESHOLD) {
-      setShowDelete(false);
+      setShowDelete(false)
     }
-    touchStartX.current = 0;
-  };
+    touchStartX.current = 0
+  }
 
   const handleDelete = async () => {
     try {
@@ -67,4 +67,4 @@ const FavouriteListItem = ({ favourite }: Props) => {
   )
 }
 
-export default FavouriteListItem;
+export default FavouriteListItem

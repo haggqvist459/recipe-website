@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useAppDispatch } from '@/redux';
+import { useAppDispatch } from '@/integrations/redux';
 import { VISIBILITY_FILTERS } from '../constants';
 import { deleteItem, toggleCompletion } from '../slice';
 import { ListItemData } from '../types';

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAppDispatch } from "@/redux";
+import { useAppDispatch } from "@/integrations/redux";
 import { addItem } from "../slice";
 import { AddListItem, IconButton } from "@/components";
 

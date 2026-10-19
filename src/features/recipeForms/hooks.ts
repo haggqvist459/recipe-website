@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/integrations/redux/hooks"
 import { resetState, setErrors, clearErrors } from "@/features/recipeForms"
-import { processRecipe, processRecipeUpdate } from "@/supabase/services"
+import { processRecipe, processRecipeUpdate } from "@/integrations/supabase/services"
 import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts"
-import { ROUTES } from "@/utils"
+import { ROUTES } from "@/shared"
 import { validateRecipeDraft } from "./utils/formValidation"
 import { handleError } from "@/errorHandling"
 

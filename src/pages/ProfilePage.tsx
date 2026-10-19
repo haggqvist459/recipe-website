@@ -3,7 +3,7 @@ import { PageContainer, Heading, LoadingComponent, SignOut, HorizontalMenuWrappe
 import { FavouriteListItem } from "@/features/favourites";
 import { SettingsSection } from "@/features/settings";
 import { useLanguage, useAuth } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 import { useFavourites } from "@/features/favourites";
 
 

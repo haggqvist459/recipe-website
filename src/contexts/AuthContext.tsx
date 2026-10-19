@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
 import { User } from "@supabase/supabase-js"
-import { signIn, signOut, getCurrentUser, getUserRole, onAuthStateChange } from "@/supabase/services"
+import { signIn, signOut, getCurrentUser, getUserRole, onAuthStateChange } from "@/integrations/supabase/services"
 import { useNotification } from "./NotificationContext"
 import { handleError } from "@/errorHandling"
 

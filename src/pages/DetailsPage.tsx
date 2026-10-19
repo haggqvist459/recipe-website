@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation, useParams } from "react-router-dom"
 import { useLanguage } from "@/contexts"
-import { fetchSingleRecipe } from "@/supabase/services"
+import { fetchSingleRecipe } from "@/integrations/supabase/services"
 import { PageContainer, ErrorComponent, LoadingComponent } from "@/components"
 import { RecipeType } from "@/types"
 import { RecipeDetails } from "@/features/recipes/recipeList"

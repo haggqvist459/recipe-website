@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/store";
+import { RootState } from "@/integrations/redux/store";
 
 export const selectMetadata = createSelector(
   (state: RootState) => state.recipeForms.recipeDraft,

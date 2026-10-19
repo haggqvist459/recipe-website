@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
-import { loadData, LOCALSTORAGE_KEYS, saveData } from '@/utils'
+import { loadData, LOCALSTORAGE_KEYS, saveData } from '@/shared'
 import { VISIBILITY_FILTERS } from './constants'
 import type { ListItemData, ListState, VisibilityFilterData } from './types'
 import type { IngredientType } from '@/types'

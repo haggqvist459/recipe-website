@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
-import { useAppSelector, useAppDispatch } from '@/redux';
-import { fetchCuisines, fetchMainIngredients } from '@/supabase/services';
+import { useAppSelector, useAppDispatch } from '@/integrations/redux'
+import { fetchCuisines, fetchMainIngredients } from '@/integrations/supabase/services'
 import { ArrowIcon, HorizontalMenuWrapper } from '@/components'
 import { SORTING_FILTERS } from '../constants'
-import { setFilterList, setActiveFilter, setActiveSorting } from '../slice';
+import { setFilterList, setActiveFilter, setActiveSorting } from '../slice'
 import { SortingFilterKey } from '../types'
 import { useLanguage, useNotification } from '@/contexts'
-import { translateText } from '@/utils'
-import { handleError } from '@/errorHandling';
+import { translateText } from '@/shared'
+import { handleError } from '@/errorHandling'
 
 
 
@@ -21,11 +21,11 @@ const Filters = () => {
   const [showCuisines, setShowCuisines] = useState(false)
   const [showSort, setShowSort] = useState(false)
 
-  const typeFilters = useAppSelector(state => state.filters.typeFilters);
-  const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters);
-  const selectedTypeFilters = useAppSelector(state => state.filters.selectedTypeFilters);
-  const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters);
-  const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter);
+  const typeFilters = useAppSelector(state => state.filters.typeFilters)
+  const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters)
+  const selectedTypeFilters = useAppSelector(state => state.filters.selectedTypeFilters)
+  const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters)
+  const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter)
 
   useEffect(() => {
     const loadTypes = async () => {
@@ -156,4 +156,4 @@ const Filters = () => {
   )
 }
 
-export default Filters;
+export default Filters

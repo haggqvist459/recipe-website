@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { UNITS, translateText } from "@/utils";
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks";
+import { UNITS, translateText } from "@/shared";
 import { Input, Dropdown, createDropdownOptions, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components";
 import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/recipeForms";
 import { parseIngredientList } from "../../utils/parseIngredients";

@@ -1,6 +1,6 @@
-type Props = {}
 
-const SharedList = (props: Props) => {
+
+const SharedList = () => {
   return (
     <div>SharedList</div>
   )

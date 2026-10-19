@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/redux'
-import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/supabase/services'
+import { useAppDispatch, useAppSelector } from '@/integrations/redux'
+import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/integrations/supabase/services'
 import { LoadingComponent, Heading, AddListItem, Input, HorizontalMenuButton, HorizontalMenuWrapper, IconButton } from '@/components'
 import { useLanguage, useNotification } from '@/contexts'
 import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice'
 import FilterManagementItem from './FilterManagementItem'
 import { FilterCategoryType } from '@/types'
 import { handleError } from '@/errorHandling'
-import { translateText } from '@/utils'
+import { translateText } from '@/shared'
 
 const FilterManagement = () => {
 
-  const { language } = useLanguage();
-  const { setModalState, resetModalState, showToast } = useNotification();
-  const dispatch = useAppDispatch();
+  const { language } = useLanguage()
+  const { setModalState, resetModalState, showToast } = useNotification()
+  const dispatch = useAppDispatch()
 
   const cuisines = useAppSelector(state => state.filters.cuisineFilters)
   const types = useAppSelector(state => state.filters.typeFilters)
@@ -33,17 +33,17 @@ const FilterManagement = () => {
         const [typesResult, cuisinesResult] = await Promise.all([
           fetchMainIngredients(),
           fetchCuisines(),
-        ]);
+        ])
 
-        dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
-        dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
+        dispatch(setFilterList({ filterCategory: "types", list: typesResult }))
+        dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }))
 
       } catch (error) {
         showToast(handleError(error), 'error')
       } finally {
         setLoading(false)
       }
-    };
+    }
 
     loadFilters()
   }, [])
@@ -171,7 +171,7 @@ const FilterManagement = () => {
         )}
       </div>
     </>
-  );
+  )
 }
 
-export default FilterManagement;
+export default FilterManagement

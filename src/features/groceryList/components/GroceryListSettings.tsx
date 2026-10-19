@@ -1,10 +1,10 @@
-import { useLanguage, useAuth, useNotification } from "@/contexts";
-import { useAppSelector, useAppDispatch } from "@/redux";
-import { translateText } from "@/utils";
-import { fetchGroceryList, saveGroceryList, deleteGroceryList } from "@/supabase/services";
-import { loadListFromDB, resetState, } from "@/features/groceryList";
-import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle, FadeInOutWrapper, IconButton } from "@/components";
-import { handleError } from "@/errorHandling";
+import { useLanguage, useAuth, useNotification } from "@/contexts"
+import { useAppSelector, useAppDispatch } from "@/integrations/redux"
+import { translateText } from "@/shared"
+import { fetchGroceryList, saveGroceryList, deleteGroceryList } from "@/integrations/supabase/services"
+import { loadListFromDB, resetState, } from "@/features/groceryList"
+import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle, FadeInOutWrapper, IconButton } from "@/components"
+import { handleError } from "@/errorHandling"
 
 
 type Props = {
@@ -106,7 +106,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
         </div>
       </FadeInOutWrapper>
     </div>
-  );
+  )
 }
 
-export default GroceryListSettings;
+export default GroceryListSettings

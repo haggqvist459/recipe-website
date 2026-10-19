@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { useAppDispatch } from "@/redux";
+import { useAppDispatch } from "@/integrations/redux";
 import { ErrorComponent, PageContainer } from "@/components";
 import { EditRecipeMobile, EditRecipeDesktop } from "@/features/recipeForms/components";
 import { setRecipeDraft } from "@/features/recipeForms";

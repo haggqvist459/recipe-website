@@ -2,7 +2,7 @@ import { PageContainer, Heading, } from "@/components";
 import { RecipeList } from "@/features/recipes/recipeList";
 import { Filters} from '@/features/filters';
 import { useLanguage, } from '@/contexts';
-import { translateText } from '@/utils';
+import { translateText } from '@/shared';
 
 
 

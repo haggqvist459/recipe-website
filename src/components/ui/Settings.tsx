@@ -1,6 +1,6 @@
 import { Heading, Close } from "@/components";
 import { LANGUAGES, useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 
 type Props = {
   isOpen: boolean

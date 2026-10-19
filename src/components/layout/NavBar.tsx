@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import { ROUTES } from '@/utils'
+import { ROUTES } from '@/shared'
 import { NavMenu, NavButton } from '@/components';
 
 const NavBar = () => {

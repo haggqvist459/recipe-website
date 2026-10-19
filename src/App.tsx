@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ROUTES } from '@/utils';
+import { ROUTES } from '@/shared';
 import { MainLayout, AuthLayout } from '@/layouts';
 import { HomePage, AdminPage, ErrorPage, DetailsPage, ProfilePage, 
   AuthPage, GroceryPage, CreateRecipePage, EditRecipePage } from '@/pages';

@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '@/redux' 
+import { RootState } from '@/integrations/redux' 
 import { VISIBILITY_FILTERS } from './constants'
 import { ListItemData } from './types';
 

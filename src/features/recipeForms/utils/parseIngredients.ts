@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { UNITS } from "@/utils";
+import { UNITS } from "@/shared";
 import { IngredientType } from "@/types";
 
 const unicodeFractionMap: Record<string, string> = { "½": "1/2", "¼": "1/4", "¾": "3/4" };

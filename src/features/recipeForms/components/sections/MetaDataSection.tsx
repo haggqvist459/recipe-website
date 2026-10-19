@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { fetchMainIngredients, fetchCuisines } from "@/supabase/services";
-import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/recipeForms";
-import { setFilterList, ButtonRow } from "@/features/filters";
-import { FilterOptionType } from '@/types';
-import SectionWrapper from "../shared/SectionWrapper";
-import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent, CircleMinus, CirclePlus, IconButton } from "@/components";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { useState, useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
+import { fetchMainIngredients, fetchCuisines } from "@/integrations/supabase/services"
+import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/recipeForms"
+import { setFilterList, ButtonRow } from "@/features/filters"
+import { FilterOptionType } from '@/types'
+import SectionWrapper from "../shared/SectionWrapper"
+import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent, CircleMinus, CirclePlus, IconButton } from "@/components"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
 
 type Props = {
   handleNavigation?: (action: () => void) => void
-};
+}
 
 const MetaDataSection = ({ handleNavigation }: Props) => {
 
   const { language } = useLanguage()
 
   const metadata = useAppSelector(selectMetadata)
-  const typeFilters = useAppSelector(state => state.filters.typeFilters);
-  const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters);
+  const typeFilters = useAppSelector(state => state.filters.typeFilters)
+  const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters)
   const errors = useAppSelector(state => state.recipeForms.errors)
 
   const dispatch = useAppDispatch()
@@ -27,54 +27,54 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
   const [localMetadata, setLocalMetadata] = useState({
     title: metadata.title,
     description: metadata.description,
-  });
+  })
 
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   const handleFilterToggle = (filterCategory: "types" | "cuisines", filter: FilterOptionType) => {
-    dispatch(toggleFilter({ filterCategory, filter }));
-  };
+    dispatch(toggleFilter({ filterCategory, filter }))
+  }
 
   useEffect(() => {
-    const shouldFetchTypes = typeFilters.length === 0;
-    const shouldFetchCuisines = cuisineFilters.length === 0;
+    const shouldFetchTypes = typeFilters.length === 0
+    const shouldFetchCuisines = cuisineFilters.length === 0
 
     if (!shouldFetchTypes && !shouldFetchCuisines) {
-      setLoading(false);
-      return;
+      setLoading(false)
+      return
     }
 
     const loadFilters = async () => {
-      setError(false);
-      setLoading(true);
+      setError(false)
+      setLoading(true)
 
       try {
         const [typesResult, cuisinesResult] = await Promise.all([
           fetchMainIngredients(),
           fetchCuisines(),
-        ]);
-        dispatch(setFilterList({ filterCategory: "types", list: typesResult }));
-        dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }));
+        ])
+        dispatch(setFilterList({ filterCategory: "types", list: typesResult }))
+        dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }))
 
       } catch (err) {
-        console.error("Failed to fetch filter options", err);
-        setError(true);
+        console.error("Failed to fetch filter options", err)
+        setError(true)
       }
 
-      setLoading(false);
-    };
+      setLoading(false)
+    }
 
-    loadFilters();
-  }, []);
+    loadFilters()
+  }, [])
 
   useEffect(() => {
     setLocalMetadata({
       title: metadata.title,
       description: metadata.description,
-    });
-  }, [metadata.title, metadata.description]);
+    })
+  }, [metadata.title, metadata.description])
 
   return (
     <SectionWrapper>
@@ -107,7 +107,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                   }
                   onBlur={() => {
                     if (localMetadata.title !== metadata.title) {
-                      dispatch(updateMetadataField({ key: "title", value: localMetadata.title }));
+                      dispatch(updateMetadataField({ key: "title", value: localMetadata.title }))
                     }
                   }}
                   error={errors.title}
@@ -123,7 +123,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                   }
                   onBlur={() => {
                     if (localMetadata.description !== metadata.description) {
-                      dispatch(updateMetadataField({ key: "description", value: localMetadata.description }));
+                      dispatch(updateMetadataField({ key: "description", value: localMetadata.description }))
                     }
                   }}
                 />
@@ -192,7 +192,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
         </div>
       )}
     </SectionWrapper>
-  );
+  )
 }
 
-export default MetaDataSection;
+export default MetaDataSection

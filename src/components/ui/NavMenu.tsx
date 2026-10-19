@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { NAVBAR_OPTIONS } from "@/utils";
+import { NAVBAR_OPTIONS } from "@/shared";
 import { useLanguage, useAuth } from "@/contexts";
-import { translateText } from "@/utils/";
+import { translateText } from "@/shared";
 
 
 type Props = {

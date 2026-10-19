@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { fetchAllRecipes } from '@/supabase/services'
-import { useLanguage } from '@/contexts'
+import { useAppDispatch, useAppSelector } from '@/integrations/redux/hooks'
+import { fetchAllRecipes } from '@/integrations/supabase/services'
 import { selectFilteredRecipes } from '../selectors'
 import { setRecipes } from '../slice'
 import RecipeCard from './RecipeCard'
@@ -12,7 +11,6 @@ import { handleError } from '@/errorHandling'
 
 const RecipeList = () => {
 
-  const { language } = useLanguage()
   const dispatch = useAppDispatch()
   const filteredRecipes = useAppSelector(selectFilteredRecipes)
   const needsRefresh = useAppSelector(state => state.recipeList.needsRefresh)
@@ -28,7 +26,7 @@ const RecipeList = () => {
 
     const loadRecipes = async () => {
       try {
-        const fetchedRecipes = await fetchAllRecipes(language)
+        const fetchedRecipes = await fetchAllRecipes()
 
         dispatch(setRecipes(fetchedRecipes))
 
@@ -48,7 +46,7 @@ const RecipeList = () => {
   
 
   return (
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-10'>
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-10'>
       {filteredRecipes.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}

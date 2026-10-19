@@ -1,6 +1,6 @@
 import { Heading } from "@/components";
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 import { ModalStateType } from "./types";
 
 type Props = {

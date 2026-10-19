@@ -1,7 +1,7 @@
-import { useAppSelector, useAppDispatch } from "@/redux";
+import { useAppSelector, useAppDispatch } from "@/integrations/redux";
 import { VISIBILITY_FILTERS } from "../constants";
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 import { setVisibilityFilter } from "../slice";
 import { HorizontalMenuWrapper } from "@/components";
 

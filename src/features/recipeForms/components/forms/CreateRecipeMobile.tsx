@@ -1,4 +1,4 @@
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/integrations/redux/hooks";
 import { SlideWrapper } from "@/components";
 import { useRecipeFormHandlers } from "@/features/recipeForms/hooks";
 import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks";
 import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/recipeForms";
 import { Input, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components";
 import SectionWrapper from "../shared/SectionWrapper";
 import { parseInstructionList } from "../../utils/parseInstructions";
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 
 type Props = {
   handleNavigation?: (action: () => void) => void;

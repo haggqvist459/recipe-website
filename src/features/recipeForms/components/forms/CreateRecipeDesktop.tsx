@@ -3,7 +3,7 @@ import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection 
 import { SlideWrapper } from "@/components";
 import { useRecipeFormHandlers } from "../../hooks";
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 
 const CreateRecipeDesktop = () => {
 

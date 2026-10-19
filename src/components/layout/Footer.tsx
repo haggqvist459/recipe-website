@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils/";
+import { translateText } from "@/shared";
 import { Settings, CogWheel } from "@/components/";
 
 const Footer = () => {

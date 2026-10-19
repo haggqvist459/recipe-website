@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Heading } from "@/components";
 import { useAuth, useLanguage } from '@/contexts'
-import { ROUTES, translateText } from "@/utils";
+import { ROUTES, translateText } from "@/shared";
 import { handleError } from "@/errorHandling";
 
 

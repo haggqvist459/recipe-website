@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { loadData, saveData, LOCALSTORAGE_KEYS } from "@/utils";
+import { loadData, saveData, LOCALSTORAGE_KEYS } from "@/shared";
 
 export const LANGUAGES = [
   { code: 'sv', label: 'Svenska' },

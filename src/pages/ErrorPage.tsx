@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ROUTES, translateText } from "@/utils"
+import { ROUTES, translateText } from "@/shared"
 import { PageContainer, Heading } from "@/components"
 import { useLanguage } from "@/contexts"
 

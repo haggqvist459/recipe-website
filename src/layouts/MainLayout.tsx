@@ -1,5 +1,5 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { NavBar, Footer, FadeWrapper, } from '@/components';
+import { Outlet, useLocation } from "react-router-dom"
+import { NavBar, Footer, FadeWrapper, } from '@/components'
 
 
 const MainLayout = () => {
@@ -20,4 +20,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout;
+export default MainLayout

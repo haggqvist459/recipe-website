@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Heading, Input, } from "@/components";
-import { useLanguage, useAuth, useNotification } from "@/contexts";
-import { translateText } from "@/utils";
-import { updateUserCredentials } from "@/supabase/services/auth/updateUserService";
-import { handleError } from "@/errorHandling";
+import { useState } from "react"
+import { Heading, Input, } from "@/components"
+import { useLanguage, useAuth, useNotification } from "@/contexts"
+import { translateText } from "@/shared"
+import { updateUserCredentials } from "@/integrations/supabase/services/auth/updateUserService"
+import { handleError } from "@/errorHandling"
 
 const SettingsSection = () => {
 
@@ -144,4 +144,4 @@ const SettingsSection = () => {
   )
 }
 
-export default SettingsSection;
+export default SettingsSection

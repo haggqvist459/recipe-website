@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/integrations/redux/hooks";
 import { HorizontalMenuWrapper, HorizontalMenuButton, SlideWrapper } from "@/components";
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 import { useRecipeFormHandlers } from "@/features/recipeForms/hooks";
 import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";
 import { setCurrentSection } from "../../slice";

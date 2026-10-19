@@ -1,14 +1,11 @@
 import { useState } from "react"
-import { useAppSelector } from "@/redux"
+import { useAppSelector } from "@/integrations/redux"
 import { useLanguage } from "@/contexts"
 import { PageContainer, Heading } from "@/components"
 import { VisibilityFilters, GroceryListItem, AddItem, GroceryListSettings, selectItems } from "@/features/groceryList"
-import { translateText } from "@/utils"
+import { translateText } from "@/shared"
 
-
-type Props = {}
-
-const PersonalList = (props: Props) => {
+const PersonalList = () => {
 
   const { language } = useLanguage()
   const groceryList = useAppSelector(selectItems)

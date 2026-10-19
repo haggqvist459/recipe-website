@@ -1,9 +1,9 @@
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks";
 import { selectIngredients, selectInstructions, selectMetadata, setCurrentSection } from "@/features/recipeForms";
 import SectionWrapper from "../shared/SectionWrapper";
 import { Heading, Output } from '@/components'
 import { useLanguage } from "@/contexts";
-import { translateText } from "@/utils";
+import { translateText } from "@/shared";
 
 
 const PreviewSection = () => {

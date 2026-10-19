@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '@/redux'
-import { deleteRecipeService, fetchAllRecipes, } from '@/supabase/services'
+import { useAppDispatch, useAppSelector } from '@/integrations/redux'
+import { deleteRecipeService, fetchAllRecipes, } from '@/integrations/supabase/services'
 import { LoadingComponent, ErrorComponent } from "@/components"
 import { useLanguage, useNotification, } from '@/contexts'
 import RecipeManagementCard from './RecipeManagementCard'
@@ -28,7 +28,7 @@ const RecipeManagementList = () => {
 
     const loadRecipes = async () => {
       try {
-        const fetchedRecipes = await fetchAllRecipes(language)
+        const fetchedRecipes = await fetchAllRecipes()
         dispatch(setRecipes(fetchedRecipes))
       } catch (error) {
         setError(handleError(error))

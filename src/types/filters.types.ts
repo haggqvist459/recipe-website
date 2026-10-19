@@ -1,4 +1,4 @@
-import { LANGUAGES } from '@/utils/constants';
+import { LANGUAGES } from '@/shared/constants';
 
 export type FilterOptionType = {
   id: string

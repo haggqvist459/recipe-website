@@ -3,7 +3,7 @@ import { PageContainer, HorizontalMenuWrapper, HorizontalMenuButton } from "@/co
 import { RecipeManagementList } from "@/features/recipes/recipeManagement"
 import { FilterManagement } from "@/features/filters"
 import { useLanguage } from "@/contexts"
-import { translateText } from "@/utils"
+import { translateText } from "@/shared"
 
 const AdminPage = () => {
 

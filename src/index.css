@@ -18,10 +18,10 @@ textarea {
   box-sizing: border-box;
 }
 
-p,
+/* p,
 span {
   color: #262626;
-}
+} */
 
 @font-face {
   font-family: 'Rubik';
@@ -44,19 +44,26 @@ span {
 
   --font-rubik: Rubik, sans-serif;
 
-  /* Default theme primary color */
-  --color-primary: #AEDCAE;
+  /* Default theme primary color, light green */
+  --color-primary: #AEDCAE; 
 
-  /* Default theme secondary color */
+  /* Default theme secondary color, light grey */
   --color-secondary: #A3A3A3;
 
-  /* Default theme tertiary, color */
-  --color-tertiary: #1E3A8A;
+  /* Default theme tertiary color, replace */
+  --color-tertiary: #F2EFE3;
 
+  /* Default background colour, */
   --color-primary-bg: #FCFBF4;
 
-  --color-primary-text: #262626;
+  /* Primary colour for text, very dark grey  */
+  --color-primary-text: #494949;
 
+  /* Secondary colour for text and icons  */
+  --color-secondary-text: #590B0C;
+
+
+  /* Colours for the categories in the recipe creation form */
   --color-green: #AEDCAE;
   --color-lightblue: #AEDCD5;
   --color-darkblue: #AEBBDC;
@@ -65,6 +72,12 @@ span {
   --color-orange: #DCBBAE;
   --color-yellow: #D5DCAE;
 
+  /* Colour references */
+  --color-deepred: #590B0C;
+  --color-lightred: #91393A;
+  --color-darkgreen: #474D19;
+  --color-middlegreen: #5B6739;
+  --color-lightgreen: #96A766;
 
 
 }
