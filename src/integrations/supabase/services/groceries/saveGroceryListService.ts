@@ -1,5 +1,5 @@
 import { insertGroceryList, insertGroceryListItems } from '@/integrations/supabase/queries'
-import { ListItemData } from '@/types'
+import { ListItemData } from '@/shared/types'
 
 export const saveGroceryList = async (uid: string, list: ListItemData[]) => {
 

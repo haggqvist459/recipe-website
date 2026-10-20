@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
 import { fetchMainIngredients, fetchCuisines } from "@/integrations/supabase/services"
 import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } from "@/features/recipeForms"
 import { setFilterList, ButtonRow } from "@/features/filters"
-import { FilterOptionType } from '@/types'
+import { FilterOptionType } from '@/shared/types'
 import SectionWrapper from "../shared/SectionWrapper"
 import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent, CircleMinus, CirclePlus, IconButton } from "@/components"
 import { useLanguage } from "@/contexts"

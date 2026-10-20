@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client'
 import { DB_TABLES, DB_COLUMNS } from '@/shared/constants'
-import { DbRecipeWithRelations, LanguageType } from '@/types'
+import { DbRecipeWithRelations, LanguageType } from '@/shared/types'
 
 export const selectSingleRecipe = async (
   id: string,

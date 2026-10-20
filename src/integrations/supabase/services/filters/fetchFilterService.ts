@@ -1,5 +1,5 @@
 import { selectMainIngredients, selectCuisines } from '@/integrations/supabase/queries'
-import { FilterOptionType } from '@/types'
+import { FilterOptionType } from '@/shared/types'
 
 export const fetchMainIngredients = async (): Promise<FilterOptionType[]> => {
 

@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 import { FilterStateType, SortingFilterKey } from "./types"
-import { FilterOptionType, FilterCategoryType, LanguageType } from "@/types"
+import { FilterOptionType, FilterCategoryType, LanguageType } from "@/shared/types"
 
 
 const initialState: FilterStateType = {

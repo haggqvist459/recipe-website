@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client.ts'
 import { DB_COLUMNS } from '@/shared/constants'
-import { UserRoleType } from '@/types'
+import { UserRoleType } from '@/shared/types'
 
 
 export const selectUserRole = async (uid: string): Promise<UserRoleType> => {

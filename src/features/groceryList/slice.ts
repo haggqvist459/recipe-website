@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { loadData, LOCALSTORAGE_KEYS, saveData } from '@/shared'
 import { VISIBILITY_FILTERS } from './constants'
 import type { ListItemData, ListState, VisibilityFilterData } from './types'
-import type { IngredientType } from '@/types'
+import type { IngredientType } from '@/shared/types'
 
 const initialState: ListState = loadData<ListState>(LOCALSTORAGE_KEYS.GROCERY_LIST) ?? {
   visibilityFilter: VISIBILITY_FILTERS.UNMARKED,

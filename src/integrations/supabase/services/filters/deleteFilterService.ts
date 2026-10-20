@@ -1,5 +1,5 @@
 import { deleteCuisine, deleteMainIngredient } from "@/integrations/supabase/queries"
-import { FilterCategoryType } from "@/types"
+import { FilterCategoryType } from "@/shared/types"
 
 export const deleteFilterService = async (filterCategory: FilterCategoryType, filterId: string) => {
 

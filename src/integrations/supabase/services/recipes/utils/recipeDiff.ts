@@ -1,10 +1,10 @@
-import { RecipeType, RecipeDraftType, TablesUpdate } from '@/types';
+import { RecipeType, RecipeDraftType, TablesUpdate } from '@/shared/types'
 
 type RecipeDiff = {
-  recipeUpdates: TablesUpdate<"recipes"> | null;
-  cuisineChanges: { toDelete: string[], toInsert: string[] };
-  mainIngredientChanges: { toDelete: string[], toInsert: string[] };
-};
+  recipeUpdates: TablesUpdate<"recipes"> | null
+  cuisineChanges: { toDelete: string[], toInsert: string[] }
+  mainIngredientChanges: { toDelete: string[], toInsert: string[] }
+}
 
 export const diffRecipes = (original: RecipeType, draft: RecipeDraftType): RecipeDiff => {
   const recipeUpdates: TablesUpdate<"recipes"> = {
@@ -14,7 +14,7 @@ export const diffRecipes = (original: RecipeType, draft: RecipeDraftType): Recip
     ...(draft.servings !== original.servings && { servings: draft.servings }),
     ...(JSON.stringify(draft.ingredients) !== JSON.stringify(original.ingredients) && { ingredients: draft.ingredients }),
     ...(JSON.stringify(draft.instructions) !== JSON.stringify(original.instructions) && { instructions: draft.instructions })
-  };
+  }
 
   const cuisineChanges = {
     toDelete: (original.cuisines ?? [])
@@ -23,7 +23,7 @@ export const diffRecipes = (original: RecipeType, draft: RecipeDraftType): Recip
     toInsert: (draft.cuisines ?? [])
       .filter(draftCuisine => !(original.cuisines ?? []).some(originalCuisine => originalCuisine.id === draftCuisine.id))
       .map(cuisine => cuisine.id)
-  };
+  }
 
   const mainIngredientChanges = {
     toDelete: (original.types ?? [])
@@ -32,12 +32,12 @@ export const diffRecipes = (original: RecipeType, draft: RecipeDraftType): Recip
     toInsert: (draft.types ?? [])
       .filter(draftIngredient => !(original.types ?? []).some(originalIngredient => originalIngredient.id === draftIngredient.id))
       .map(ingredient => ingredient.id)
-  };
+  }
 
   return {
     recipeUpdates: Object.keys(recipeUpdates).length > 0 ? recipeUpdates : null,
     cuisineChanges,
     mainIngredientChanges
-  };
+  }
   
-};
+}

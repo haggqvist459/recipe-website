@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom"
 import { useLanguage } from "@/contexts"
 import { fetchSingleRecipe } from "@/integrations/supabase/services"
 import { PageContainer, ErrorComponent, LoadingComponent } from "@/components"
-import { RecipeType } from "@/types"
+import { RecipeType } from "@/shared/types"
 import { RecipeDetails } from "@/features/recipes/recipeList"
 import { handleError } from "@/errorHandling"
 

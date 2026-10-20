@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client'
-import { FilterOptionType } from '@/types'
+import { FilterOptionType } from '@/shared/types'
 
 
 export const selectMainIngredients = async (): Promise<FilterOptionType[]> => {

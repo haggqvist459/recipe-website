@@ -1,6 +1,6 @@
 import type { AuthChangeEvent, Session } from "@supabase/supabase-js"
 import { supabase } from "@/integrations/supabase/client"
-import { UserRoleType } from '@/types'
+import { UserRoleType } from '@/shared/types'
 import { selectUserRole } from '@/integrations/supabase/queries'
 
 

@@ -1,4 +1,4 @@
-import { UpdateRecipeType } from '@/types'
+import { UpdateRecipeType } from '@/shared/types'
 import { supabase } from '@/integrations/supabase/client'
 import { DB_COLUMNS } from '@/shared/constants'
 

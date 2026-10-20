@@ -1,5 +1,5 @@
 import { selectSingleRecipe, updateRecipe, deleteRecipeCuisines, deleteRecipeMainIngredients, insertRecipeCuisines, insertRecipeMainIngredients, selectUserRole } from '@/integrations/supabase/queries'
-import { LanguageType, RecipeDraftType } from '@/types'
+import { LanguageType, RecipeDraftType } from '@/shared/types'
 import { mapSingleRecipeDbToUI, diffRecipes } from './utils'
 
 

@@ -4,7 +4,7 @@ import { ROUTES } from "@/shared"
 import { Favourite } from "@/components"
 import { useIsFavourited } from "@/features/favourites"
 import { useLanguage } from "@/contexts"
-import { FilterOptionType, RecipeType } from "@/types"
+import { FilterOptionType, RecipeType } from "@/shared/types"
 import { FilterPill } from "@/features/filters"
 
 type Props = {
@@ -43,7 +43,7 @@ const RecipeCard = ({ recipe }: Props) => {
       <div className="flex mt-2 w-full">
         <div className="flex-1 flex gap-2">
           {mergedFilters.map((filter) => (
-            <FilterPill key={filter.id} text={filter[`${language}_text`]} backgroundColour={'bg-primary'}/>
+            <FilterPill key={filter.id} text={filter[`${language}_text`]} backgroundColour={'bg-dustyrose'}/>
           ))}
         </div>
         <Favourite isToggled={isFavourite} />

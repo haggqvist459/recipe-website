@@ -1,6 +1,6 @@
 import { selectSingleRecipe } from '@/integrations/supabase/queries'
 import { mapSingleRecipeDbToUI } from "./utils"
-import { LanguageType, RecipeType } from '@/types'
+import { LanguageType, RecipeType } from '@/shared/types'
 
 
 

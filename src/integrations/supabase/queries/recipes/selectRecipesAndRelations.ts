@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client'
 import { DB_TABLES} from '@/shared/constants'
-import { DbRecipeWithRelations } from '@/types'
+import { DbRecipeWithRelations } from '@/shared/types'
 
 
 export const fetchRecipesWithRelationsFromDB = async (): Promise<DbRecipeWithRelations[]> => {

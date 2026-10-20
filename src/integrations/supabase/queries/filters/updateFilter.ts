@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client"
-import { LanguageType } from "@/types"
+import { LanguageType } from "@/shared/types"
 import { DB_COLUMNS } from "@/shared"
 
 export const updateMainIngredient = async (filterId: string, updatedText: string, language: LanguageType) => {

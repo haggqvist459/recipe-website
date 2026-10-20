@@ -45,7 +45,7 @@ span {
   --font-rubik: Rubik, sans-serif;
 
   /* Default theme primary color, light green */
-  --color-primary: #AEDCAE; 
+  --color-primary: #AEDCAE;
 
   /* Default theme secondary color, light grey */
   --color-secondary: #A3A3A3;
@@ -61,6 +61,81 @@ span {
 
   /* Secondary colour for text and icons  */
   --color-secondary-text: #590B0C;
+
+
+  /* 1 */
+  --color-ochre: #C08D4A;
+  --color-ochre-pale1: #F5EEE4;
+  --color-ochre-pale2: #EBD9C2;
+  --color-ochre-pale3: #DFC29E;
+
+  /* 2 */
+  --color-terracotta: #975349;
+  --color-terracotta-pale1: #F2E8E6;
+  --color-terracotta-pale2: #E5CBC6;
+  --color-terracotta-pale3: #D5AAA2;
+
+  /* 3 */
+  --color-clay: #AA6A47;
+  --color-clay-pale1: #F5EBE5;
+  --color-clay-pale2: #EBD5C7;
+  --color-clay-pale3: #DDBAA5;
+
+  /* 4 */
+  --color-olive: #818E4A;
+  --color-olive-pale1: #EFF0E5;
+  --color-olive-pale2: #DEE2C9;
+  --color-olive-pale3: #CAD2A7;
+
+  /* 5 */
+  --color-sage: #688B7E;
+  --color-sage-pale1: #E9EDE7;
+  --color-sage-pale2: #D3E0D9;
+  --color-sage-pale3: #BBD2C8;
+
+  /* 6 */
+  --color-mustard: #978C4F;
+  --color-mustard-pale1: #F1EEE3;
+  --color-mustard-pale2: #E5DFC7;
+  --color-mustard-pale3: #D6CCA4;
+
+  /* 7 */
+  --color-moss: #789A6F;
+  --color-moss-pale1: #EAF0E7;
+  --color-moss-pale2: #D7E5D1;
+  --color-moss-pale3: #BED4B5;
+
+  /* 8 */
+  --color-dustyrose: #B77B68;
+  --color-dustyrose-pale1: #F6EAE6;
+  --color-dustyrose-pale2: #EBCFC5;
+  --color-dustyrose-pale3: #DDB0A1;
+
+  /* 9 */
+  --color-plum: #7D6A8F;
+  --color-plum-pale1: #EEE9F2;
+  --color-plum-pale2: #DCD2E5;
+  --color-plum-pale3: #C6B5D6;
+
+  /* 10 */
+  --color-slateblue: #526580;
+  --color-slateblue-pale1: #E8ECF2;
+  --color-slateblue-pale2: #CDD6E4;
+  --color-slateblue-pale3: #AFBED3;
+
+  /* 11 */
+  --color-slate: #526D78;
+  --color-slate-pale1: #E7ECEE;
+  --color-slate-pale2: #CAD9DD;
+  --color-slate-pale3: #AFC6CD;
+
+  /* 12 */
+  --color-sand: #C0A36B;
+  --color-sand-pale1: #F5F0E3;
+  --color-sand-pale2: #EBDDBD;
+  --color-sand-pale3: #DDC895;
+
+
 
 
   /* Colours for the categories in the recipe creation form */
@@ -112,8 +187,8 @@ span {
     @apply border rounded border-primary-text text-primary-text w-full px-1 appearance-none shadow-sm
   }
 
-  .dropdown-text-error { 
-     @apply border-2 rounded border-red-600 text-primary-text w-full px-1 appearance-none shadow-sm
+  .dropdown-text-error {
+    @apply border-2 rounded border-red-600 text-primary-text w-full px-1 appearance-none shadow-sm
   }
 
   .output-text {

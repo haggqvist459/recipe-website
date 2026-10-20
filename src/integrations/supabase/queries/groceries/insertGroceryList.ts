@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client'
-import { ListItemData } from '@/types'
+import { ListItemData } from '@/shared/types'
 import { DB_TABLES, DB_COLUMNS } from '@/shared/constants'
 
 export const insertGroceryList = async (uid: string) => {

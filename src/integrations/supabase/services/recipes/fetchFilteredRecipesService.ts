@@ -1,5 +1,5 @@
-import { FilterOptionType, RecipeType, SortingFilterKey, LanguageType } from '@/types';
-import { selectFilteredRecipes } from '@/integrations/supabase/queries';
+import { FilterOptionType, RecipeType, SortingFilterKey, LanguageType } from '@/shared/types'
+import { selectFilteredRecipes } from '@/integrations/supabase/queries'
 import { mapMultipleRecipesDbToUI } from './utils'
 
 export const fetchFilteredRecipes = async ({
@@ -14,10 +14,10 @@ export const fetchFilteredRecipes = async ({
   language: LanguageType
 }): Promise<RecipeType[]> => {
 
-  const typeIds = typeFilters?.map((type) => type.id);
-  const cuisineIds = cuisineFilters?.map((cuisine) => cuisine.id);
+  const typeIds = typeFilters?.map((type) => type.id)
+  const cuisineIds = cuisineFilters?.map((cuisine) => cuisine.id)
 
-  const dbData = await selectFilteredRecipes({ typeIds, cuisineIds, sortingFilter, language });
+  const dbData = await selectFilteredRecipes({ typeIds, cuisineIds, sortingFilter, language })
   return mapMultipleRecipesDbToUI(dbData)
 
 }

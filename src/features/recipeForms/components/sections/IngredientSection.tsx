@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks";
-import { UNITS, translateText } from "@/shared";
-import { Input, Dropdown, createDropdownOptions, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components";
-import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/recipeForms";
-import { parseIngredientList } from "../../utils/parseIngredients";
-import SectionWrapper from "../shared/SectionWrapper";
-import { useLanguage } from "@/contexts";
+import { useState, useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
+import { UNITS, translateText } from "@/shared"
+import { Input, Dropdown, createDropdownOptions, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components"
+import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/recipeForms"
+import { parseIngredientList } from "../../utils/parseIngredients"
+import SectionWrapper from "../shared/SectionWrapper"
+import { useLanguage } from "@/contexts"
 
 
 type Props = {
   handleNavigation?: (action: () => void) => void,
   toggleButtonState?: boolean
-};
+}
 
 const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props) => {
 
@@ -22,13 +22,13 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
   const errors = useAppSelector(state => state.recipeForms.errors)
   const [localIngredients, setLocalIngredients] = useState(ingredients)
   const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
-  const [pastedText, setPastedText] = useState("");
+  const [pastedText, setPastedText] = useState("")
 
   const unitOptions = createDropdownOptions(UNITS)
 
   useEffect(() => {
-    setLocalIngredients(ingredients);
-  }, [ingredients]);
+    setLocalIngredients(ingredients)
+  }, [ingredients])
 
   const handleIngredientChange = (
     id: string,
@@ -39,14 +39,14 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
       prev.map((ingredient) =>
         ingredient.id === id ? { ...ingredient, [key]: value } : ingredient
       )
-    );
-  };
+    )
+  }
 
   const handleIngredientDispatch = (id: string, key: keyof (typeof localIngredients)[number]) => {
-    const ingredient = localIngredients.find(item => item.id === id);
-    if (!ingredient) return;
-    dispatch(updateIngredientField({ id, key, value: ingredient[key] }));
-  };
+    const ingredient = localIngredients.find(item => item.id === id)
+    if (!ingredient) return
+    dispatch(updateIngredientField({ id, key, value: ingredient[key] }))
+  }
 
   const handleParsedIngredients = () => {
     const ingredientList = parseIngredientList(pastedText)
@@ -59,8 +59,8 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
       ingredient.name.trim() !== "" &&
       ingredient.amount.trim() !== "" &&
       ingredient.unit.trim() !== ""
-    );
-  };
+    )
+  }
 
   return (
     <SectionWrapper>
@@ -195,7 +195,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
         </div>
       )}
     </SectionWrapper>
-  );
+  )
 }
 
-export default IngredientSection;
+export default IngredientSection

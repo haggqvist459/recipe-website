@@ -1,21 +1,21 @@
 import { supabase } from '@/integrations/supabase/client'
 import { DB_TABLES, DB_COLUMNS } from '@/shared/constants'
-import { InsertRecipeType } from '@/types'
+import { InsertRecipeType } from '@/shared/types'
 
 export const insertRecipe = async (recipe: InsertRecipeType): Promise<string> => {
 
   try {
     const {
       data: { session },
-    } = await supabase.auth.getSession();
-    if (!session) throw new Error("No active Supabase session");
+    } = await supabase.auth.getSession()
+    if (!session) throw new Error("No active Supabase session")
 
     const { data } = await supabase
       .from(DB_TABLES.RECIPES)
       .insert([recipe])
       .select(DB_COLUMNS.RECIPES.ID)
       .single()
-      .throwOnError();
+      .throwOnError()
 
     return data.id
 
@@ -24,4 +24,4 @@ export const insertRecipe = async (recipe: InsertRecipeType): Promise<string> =>
   }
 
 
-};
+}

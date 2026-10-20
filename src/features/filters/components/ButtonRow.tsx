@@ -1,5 +1,5 @@
-import { FilterOptionType } from "@/types";
-import { useLanguage } from "@/contexts";
+import { FilterOptionType } from "@/shared/types"
+import { useLanguage } from "@/contexts"
 
 const BG_CLASSES = [
   "bg-lightblue",
@@ -9,7 +9,7 @@ const BG_CLASSES = [
   "bg-orange",
   "bg-yellow",
   "bg-green",
-] as const;
+] as const
 
 const BORDER_CLASSES = [
   "border-lightblue",
@@ -19,36 +19,36 @@ const BORDER_CLASSES = [
   "border-orange",
   "border-yellow",
   "border-green",
-] as const;
+] as const
 
 type Props = {
-  items: FilterOptionType[];
-  selected: FilterOptionType[] | null;
-  onClick: (filter: FilterOptionType) => void;
-  reverse?: boolean;
-  largePattern?: boolean;
-};
+  items: FilterOptionType[]
+  selected: FilterOptionType[] | null
+  onClick: (filter: FilterOptionType) => void
+  reverse?: boolean
+  largePattern?: boolean
+}
 
 const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePattern = false }: Props) => {
-  const { language } = useLanguage();
-  const rows: React.ReactNode[] = [];
-  const pattern = largePattern ? [4, 5] : [3, 4];
+  const { language } = useLanguage()
+  const rows: React.ReactNode[] = []
+  const pattern = largePattern ? [4, 5] : [3, 4]
 
-  let index = 0;
-  let patternIndex = 0;
+  let index = 0
+  let patternIndex = 0
 
   while (index < items.length) {
-    const rowSize = pattern[patternIndex % pattern.length];
-    const rowItems = items.slice(index, index + rowSize);
+    const rowSize = pattern[patternIndex % pattern.length]
+    const rowItems = items.slice(index, index + rowSize)
 
     rows.push(
       <div key={index} className="flex flex-wrap justify-center gap-2 my-2">
         {rowItems.map((item, i) => {
-          const colorIndex = (index + i) % BG_CLASSES.length;
-          const bg = (reverse ? [...BG_CLASSES].reverse() : BG_CLASSES)[colorIndex];
+          const colorIndex = (index + i) % BG_CLASSES.length
+          const bg = (reverse ? [...BG_CLASSES].reverse() : BG_CLASSES)[colorIndex]
           const border = selected?.some((s) => s.id === item.id)
             ? "border-primary-text font-medium"
-            : (reverse ? [...BORDER_CLASSES].reverse() : BORDER_CLASSES)[colorIndex];
+            : (reverse ? [...BORDER_CLASSES].reverse() : BORDER_CLASSES)[colorIndex]
 
 
           return (
@@ -60,16 +60,16 @@ const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePatter
             >
               {item[`${language}_text`]}
             </button>
-          );
+          )
         })}
       </div>
-    );
+    )
 
-    index += rowSize;
-    patternIndex++;
+    index += rowSize
+    patternIndex++
   }
 
-  return <>{rows}</>;
-};
+  return <>{rows}</>
+}
 
-export default ButtonRow;
+export default ButtonRow

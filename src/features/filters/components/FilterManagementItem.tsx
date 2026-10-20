@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FilterOptionType } from "@/types"
+import { FilterOptionType } from "@/shared/types"
 import { useLanguage } from '@/contexts'
 import { Trashcan, EditIcon, CheckSolidCircle, Close, Input, IconButton } from "@/components"
 

@@ -1,6 +1,6 @@
 import { handleError } from "@/errorHandling"
 import { updateCuisine, updateMainIngredient } from "@/integrations/supabase/queries"
-import { FilterCategoryType, LanguageType } from "@/types"
+import { FilterCategoryType, LanguageType } from "@/shared/types"
 
 export const updateFilterService = async (updatedText: string, filterCategory: FilterCategoryType, filterId: string, language: LanguageType) => {
   

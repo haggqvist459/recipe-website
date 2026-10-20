@@ -1,4 +1,4 @@
-import { RecipeType } from "@/types"
+import { RecipeType } from "@/shared/types"
 import { SECTIONS } from "./constants"
 
 export type RecipeDraftType = Omit<RecipeType, "id" | "createdAt">

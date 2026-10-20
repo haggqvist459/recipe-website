@@ -1,7 +1,7 @@
-import { RecipeType } from "@/types";
-import { NavLink } from "react-router-dom";
-import { ROUTES } from "@/shared";
-import { Trashcan, EditIcon, IconButton } from "@/components";
+import { RecipeType } from "@/shared/types"
+import { NavLink } from "react-router-dom"
+import { ROUTES } from "@/shared"
+import { Trashcan, EditIcon, IconButton } from "@/components"
 
 type Props = {
   recipe: RecipeType
@@ -30,7 +30,7 @@ const RecipeManagementCard = ({ recipe, onDelete }: Props) => {
         {new Date(recipe.createdAt).toLocaleDateString()}
       </span>
     </div>
-  );
+  )
 }
 
-export default RecipeManagementCard;
+export default RecipeManagementCard

@@ -1,6 +1,6 @@
 
 import { selectGroceryList } from '@/integrations/supabase/queries'
-import { GroceryListType, Unit } from '@/types'
+import { GroceryListType, Unit } from '@/shared/types'
 
 export const fetchGroceryList= async (uid: string): Promise<GroceryListType | null> => {
 

@@ -1,4 +1,4 @@
-import { RecipeType } from "@/types"
+import { RecipeType } from "@/shared/types"
 
 type ActiveRecipeType = RecipeType & {
   modifiedServings: number,

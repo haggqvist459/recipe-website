@@ -5,7 +5,7 @@ import { LoadingComponent, Heading, AddListItem, Input, HorizontalMenuButton, Ho
 import { useLanguage, useNotification } from '@/contexts'
 import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice'
 import FilterManagementItem from './FilterManagementItem'
-import { FilterCategoryType } from '@/types'
+import { FilterCategoryType } from '@/shared/types'
 import { handleError } from '@/errorHandling'
 import { translateText } from '@/shared'
 

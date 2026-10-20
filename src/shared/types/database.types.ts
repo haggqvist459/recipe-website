@@ -1,9 +1,9 @@
-import type { TablesInsert, Tables } from "@/types/database.schema";
-import { TablesUpdate } from "./database.schema";
+import type { TablesInsert, Tables } from "@/shared/types/database.schema"
+import { TablesUpdate } from "./database.schema"
 
-export type InsertRecipeType = TablesInsert<"recipes">;
-export type InsertRecipeCuisine = TablesInsert<"recipe_cuisines">;
-export type InsertRecipeMainIngredient = TablesInsert<"recipe_main_ingredients">;
+export type InsertRecipeType = TablesInsert<"recipes">
+export type InsertRecipeCuisine = TablesInsert<"recipe_cuisines">
+export type InsertRecipeMainIngredient = TablesInsert<"recipe_main_ingredients">
 
 export type UpdateRecipeType = TablesUpdate<'recipes'>
 export type UpdateRecipeCuisine = TablesUpdate<'cuisines'>

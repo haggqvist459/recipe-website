@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client'
 import { DB_TABLES, DB_COLUMNS } from '@/shared/constants'
-import { DbRecipeWithRelations, SortingFilterKey, LanguageType } from '@/types'
+import { DbRecipeWithRelations, SortingFilterKey, LanguageType } from '@/shared/types'
 
 const sortConfigMap: Record<SortingFilterKey, { column?: string, ascending?: boolean }> = {
   "a_z": { column: DB_COLUMNS.RECIPES.TITLE, ascending: true },

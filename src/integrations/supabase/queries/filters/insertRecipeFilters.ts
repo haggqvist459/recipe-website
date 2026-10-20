@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client.ts'
 import { DB_TABLES } from '@/shared/constants'
-import { InsertRecipeCuisine, InsertRecipeMainIngredient } from '@/types'
+import { InsertRecipeCuisine, InsertRecipeMainIngredient } from '@/shared/types'
 
 export const insertRecipeMainIngredients = async (
   recipeId: string,

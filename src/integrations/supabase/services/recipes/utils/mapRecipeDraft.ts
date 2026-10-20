@@ -1,4 +1,4 @@
-import type { RecipeDraftType } from '@/types';
+import type { RecipeDraftType } from '@/shared/types'
 
 export const mapRecipeDraftToDb = (draft: RecipeDraftType) => {
   return {
@@ -8,5 +8,5 @@ export const mapRecipeDraftToDb = (draft: RecipeDraftType) => {
     ingredients: draft.ingredients,          
     instructions: draft.instructions,
     servings: draft.servings        
-  };
-};
+  }
+}

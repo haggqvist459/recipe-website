@@ -1,5 +1,5 @@
 import { insertFavourite } from '@/integrations/supabase/queries'
-import type { FavouriteType } from "@/types"
+import type { FavouriteType } from "@/shared/types"
 
 export const setFavourite = async (uid: string, recipeId: string): Promise<FavouriteType> => {
 

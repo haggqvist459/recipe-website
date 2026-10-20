@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client"
-import { FilterOptionType, TablesInsert } from "@/types"
+import { FilterOptionType, TablesInsert } from "@/shared/types"
 
 export const insertMainIngredient = async (
   mainIngredient: TablesInsert<'main_ingredients'>,

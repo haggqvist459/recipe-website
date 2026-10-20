@@ -1,5 +1,5 @@
 import { selectAllFavourites } from '@/integrations/supabase/queries'
-import { FavouriteType } from '@/types'
+import { FavouriteType } from '@/shared/types'
 
 export const fetchAllFavourites = async (uid: string): Promise<FavouriteType[]> => {
 

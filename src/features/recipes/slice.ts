@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RecipeSliceState } from "./types"
-import { RecipeType } from "@/types"
+import { RecipeType } from "@/shared/types"
 
 
 

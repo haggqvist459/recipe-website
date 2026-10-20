@@ -1,5 +1,5 @@
 import { mapRecipeDraftToDb } from "./utils"
-import { RecipeDraftType } from '@/types'
+import { RecipeDraftType } from '@/shared/types'
 import { selectUserRole, insertRecipe, insertRecipeMainIngredients, insertRecipeCuisines } from '@/integrations/supabase/queries'
 
 

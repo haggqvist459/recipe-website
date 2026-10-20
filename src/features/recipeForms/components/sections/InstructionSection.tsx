@@ -1,31 +1,31 @@
-import { useState, useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks";
-import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/recipeForms";
-import { Input, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components";
-import SectionWrapper from "../shared/SectionWrapper";
-import { parseInstructionList } from "../../utils/parseInstructions";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
+import { useState, useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
+import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/recipeForms"
+import { Input, Heading, Trashcan, ToggleButton, FadeWrapper, IconButton } from "@/components"
+import SectionWrapper from "../shared/SectionWrapper"
+import { parseInstructionList } from "../../utils/parseInstructions"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
 
 type Props = {
-  handleNavigation?: (action: () => void) => void;
+  handleNavigation?: (action: () => void) => void
   toggleButtonState?: boolean
-};
+}
 
 
 const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Props) => {
 
   const { language } = useLanguage()
-  const instructions = useAppSelector(selectInstructions);
-  const [localInstructions, setLocalInstructions] = useState(instructions);
+  const instructions = useAppSelector(selectInstructions)
+  const [localInstructions, setLocalInstructions] = useState(instructions)
   const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
-  const [pastedText, setPastedText] = useState("");
-  const dispatch = useAppDispatch();
+  const [pastedText, setPastedText] = useState("")
+  const dispatch = useAppDispatch()
   const errors = useAppSelector(state => state.recipeForms.errors)
 
   useEffect(() => {
-    setLocalInstructions(instructions);
-  }, [instructions]);
+    setLocalInstructions(instructions)
+  }, [instructions])
 
   const handleInstructionChange = (
     id: string,
@@ -36,14 +36,14 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
       prev.map((instruction) =>
         instruction.id === id ? { ...instruction, [key]: value } : instruction
       )
-    );
-  };
+    )
+  }
 
   const handleInstructionDispatch = (id: string, key: keyof (typeof localInstructions)[number]) => {
-    const instruction = localInstructions.find(item => item.id === id);
-    if (!instruction) return;
-    dispatch(updateInstructionField({ id, key, value: instruction[key] }));
-  };
+    const instruction = localInstructions.find(item => item.id === id)
+    if (!instruction) return
+    dispatch(updateInstructionField({ id, key, value: instruction[key] }))
+  }
 
   const handleParsedInstructions = () => {
     const instructionList = parseInstructionList(pastedText)
@@ -55,8 +55,8 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
     return ingredients.some(instruction =>
       instruction.title.trim() !== "" &&
       instruction.text.trim() !== ""
-    );
-  };
+    )
+  }
 
   return (
     <SectionWrapper>
@@ -168,7 +168,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
         </div>
       )}
     </SectionWrapper>
-  );
+  )
 }
 
-export default InstructionSection;
+export default InstructionSection

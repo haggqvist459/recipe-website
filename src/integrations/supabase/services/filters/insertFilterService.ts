@@ -1,5 +1,5 @@
 import { insertCuisine, insertMainIngredient } from "@/integrations/supabase/queries"
-import { FilterCategoryType, LanguageType, FilterOptionType } from "@/types"
+import { FilterCategoryType, LanguageType, FilterOptionType } from "@/shared/types"
 
 export const insertFilterService = async (filterCategory: FilterCategoryType, filterText: string, language: LanguageType): Promise<FilterOptionType> => {
 

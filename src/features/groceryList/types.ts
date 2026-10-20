@@ -1,5 +1,5 @@
-import { VISIBILITY_FILTERS } from "./constants";
-import type { Unit } from "@/types";
+import { VISIBILITY_FILTERS } from "./constants"
+import type { Unit } from "@/shared/types"
 
 export type ListItemData = {
   id: string
@@ -16,4 +16,4 @@ export type ListState = {
   lastModified: string
 }
 
-export type VisibilityFilterData = typeof VISIBILITY_FILTERS[keyof typeof VISIBILITY_FILTERS];
+export type VisibilityFilterData = typeof VISIBILITY_FILTERS[keyof typeof VISIBILITY_FILTERS]
