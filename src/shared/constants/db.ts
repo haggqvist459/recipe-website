@@ -11,14 +11,16 @@ export const DB_TABLES = {
   GROCERY_LIST_ITEMS: 'grocery_list_items',
 } as const
 
+
 export const DB_COLUMNS = {
   RECIPES: {
     ID: 'id',
     TITLE: 'title',
-    SUBTITLE: 'subtitle',
+    DESCRIPTION: 'description',
     INGREDIENTS: 'ingredients',
     CREATED_AT: 'created_at',
     INSTRUCTIONS: 'instructions',
+    SERVINGS: 'servings',
     INCLUDE_WEEKLY: 'include_weekly',
   },
   RECIPE_MAIN_INGREDIENTS: {
@@ -31,11 +33,13 @@ export const DB_COLUMNS = {
   },
   CUISINES: {
     ID: 'id',
+    CATEGORY_COUNTER: 'category_counter',
     SV_TEXT: 'sv_text',
     EN_TEXT: 'en_text',
   },
   MAIN_INGREDIENTS: {
     ID: 'id',
+    CATEGORY_COUNTER: 'category_counter',
     SV_TEXT: 'sv_text',
     EN_TEXT: 'en_text',
   },
@@ -64,8 +68,7 @@ export const DB_COLUMNS = {
     USER_ID: 'user_id',
     AMOUNT: 'amount',
     TEXT: 'text',
-    UNIT: 'unit', 
+    UNIT: 'unit',
     COMPLETED: 'completed'
   }
 } as const
-

@@ -1,25 +1,6 @@
 import { FilterOptionType } from "@/shared/types"
 import { useLanguage } from "@/contexts"
-
-const BG_CLASSES = [
-  "bg-lightblue",
-  "bg-darkblue",
-  "bg-purple",
-  "bg-pink",
-  "bg-orange",
-  "bg-yellow",
-  "bg-green",
-] as const
-
-const BORDER_CLASSES = [
-  "border-lightblue",
-  "border-darkblue",
-  "border-purple",
-  "border-pink",
-  "border-orange",
-  "border-yellow",
-  "border-green",
-] as const
+import { getCategoryColourClasses } from "../helpers/categoryColours"
 
 type Props = {
   items: FilterOptionType[]
@@ -29,7 +10,7 @@ type Props = {
   largePattern?: boolean
 }
 
-const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePattern = false }: Props) => {
+const ButtonRow = ({ items, selected = [], onClick, largePattern = false }: Props) => {
   const { language } = useLanguage()
   const rows: React.ReactNode[] = []
   const pattern = largePattern ? [4, 5] : [3, 4]
@@ -43,20 +24,16 @@ const ButtonRow = ({ items, selected = [], onClick, reverse = false, largePatter
 
     rows.push(
       <div key={index} className="flex flex-wrap justify-center gap-2 my-2">
-        {rowItems.map((item, i) => {
-          const colorIndex = (index + i) % BG_CLASSES.length
-          const bg = (reverse ? [...BG_CLASSES].reverse() : BG_CLASSES)[colorIndex]
-          const border = selected?.some((s) => s.id === item.id)
-            ? "border-primary-text font-medium"
-            : (reverse ? [...BORDER_CLASSES].reverse() : BORDER_CLASSES)[colorIndex]
-
+        {rowItems.map((item) => {
+          const { bg, bgPale2 } = getCategoryColourClasses(item.categoryCounter)
+          const backGroundColour = selected?.some((s) => s.id === item.id) ? bg : bgPale2
 
           return (
             <button
               key={item.id}
               type="button"
               onClick={() => onClick(item)}
-              className={`${bg} ${border} text-primary-text text-sm py-1 px-2.5 border-2 rounded-2xl`}
+              className={`${backGroundColour} text-white text-sm py-1 px-2.5 border-2 rounded-2xl`}
             >
               {item[`${language}_text`]}
             </button>

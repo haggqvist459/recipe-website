@@ -1,14 +1,16 @@
 type Props = {
   title: string,
   headingType?: 'section-heading' | 'main-heading' | 'sub-heading'
+  textColourOverride?: string
 }
 
-const Heading = ({ 
+const Heading = ({
   title,
-  headingType = 'main-heading'
+  headingType = 'main-heading',
+  textColourOverride = ''
 }: Props) => {
   return (
-    <h3 className={headingType}>
+    <h3 className={`${headingType} ${textColourOverride}`}>
       {title || '\u00A0'}
     </h3>
   )

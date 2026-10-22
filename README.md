@@ -69,11 +69,18 @@
 - [x] Database actions should have either Modal or Toast confirmation/errors 
  - Everything covered in try/catches with error handling. 
 - [x] Small toast component for success / error messages.
-- [x] Finalise the toast styling
+- [ ] Finalise the toast styling
 
 ### Error handling: 
 - [x] Review error handling across pages and components 
   - [ ] Admin Page must redirect to error in case of non admin roles
+
+### Queries / service layer 
+- [ ] Standardise naming conventions 
+- [ ] Standardise query syntax
+- [ ] Standardise types 
+- [ ] Fix the recipe mapping functions - remove as casts, enforce type safety 
+- [ ] Migrate the ingredients and instruction jsonb[] to separate tables 
 
 ## Auth: 
 - [x] useContext for authentication 

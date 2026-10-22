@@ -1,24 +1,25 @@
-import { useState, useEffect } from "react";
-import { ToastType } from "./types";
-import { Close, IconButton } from '@/components'
+import { useState, useEffect } from "react"
+import { ToastType } from "./types"
+import { Close } from "@/components/icons"
+import IconButton from "../IconButton"
 
 const Toast = ({ toast, onClose }: { toast: ToastType, onClose: () => void }) => {
-  const [isExiting, setIsExiting] = useState(false);
+  const [isExiting, setIsExiting] = useState(false)
 
   useEffect(() => {
     // Start exit animation before removal
     const exitTimeout = setTimeout(() => {
-      setIsExiting(true);
-    }, 2700); // Start exit 300ms before the 3000ms timeout
+      setIsExiting(true)
+    }, 2700) // Start exit 300ms before the 3000ms timeout
 
-    return () => clearTimeout(exitTimeout);
-  }, []);
+    return () => clearTimeout(exitTimeout)
+  }, [])
 
   const bgColor = {
     success: 'bg-lightblue',
     error: 'bg-orange',
     info: 'bg-darkblue',
-  }[toast.type];
+  }[toast.type]
 
   const handleClose = () => {
     setIsExiting(true)
@@ -36,7 +37,7 @@ const Toast = ({ toast, onClose }: { toast: ToastType, onClose: () => void }) =>
         <Close />
       </IconButton>
     </div>
-  );
-};
+  )
+}
 
-export default Toast;
+export default Toast

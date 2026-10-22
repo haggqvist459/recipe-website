@@ -1,10 +1,10 @@
 import { Tables } from "./database.schema"
 import { UNITS } from "@/shared"
-import { FilterOptionType } from "./filters.types";
+import { FilterOptionType } from "./filters.types"
 
 export type RecipeDbType = Tables<"recipes">
 
-export type Unit = (typeof UNITS)[number];
+export type Unit = (typeof UNITS)[number]
 
 export type IngredientType = {
   id: string
@@ -24,8 +24,8 @@ export type RecipeType = {
   id: string
   title: string
   description: string | null
-  cuisines: FilterOptionType[] | null
-  types: FilterOptionType[] | null
+  cuisines: FilterOptionType[]
+  mainIngredients: FilterOptionType[]
   includeWeekly: boolean
   ingredients: IngredientType[]
   instructions: InstructionType[]

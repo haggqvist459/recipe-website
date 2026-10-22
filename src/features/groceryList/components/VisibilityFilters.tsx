@@ -1,13 +1,13 @@
-import { useAppSelector, useAppDispatch } from "@/integrations/redux";
-import { VISIBILITY_FILTERS } from "../constants";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
-import { setVisibilityFilter } from "../slice";
-import { HorizontalMenuWrapper } from "@/components";
+import { useAppSelector, useAppDispatch } from "@/integrations/redux"
+import { VISIBILITY_FILTERS } from "../constants"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
+import { setVisibilityFilter } from "../slice"
+import { HorizontalMenuWrapper } from "@/components/layout"
 
 const VisibilityFilters = () => {
 
-  const activeFilter = useAppSelector(state => state.groceryList.visibilityFilter);
+  const activeFilter = useAppSelector(state => state.groceryList.visibilityFilter)
   const dispatch = useAppDispatch()
   const { language } = useLanguage()
 
@@ -23,7 +23,7 @@ const VisibilityFilters = () => {
         </button>
       ))}
     </HorizontalMenuWrapper>
-  );
+  )
 }
 
-export default VisibilityFilters;
+export default VisibilityFilters

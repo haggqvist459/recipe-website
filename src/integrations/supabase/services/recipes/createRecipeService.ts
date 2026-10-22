@@ -23,8 +23,8 @@ export const processRecipe = async (draft: RecipeDraftType, uid: string): Promis
       throw new Error('You do not have permission to create a recipe. If this is wrong, contact the webmaster.')
     }
     const recipeId = await insertRecipe(dbRecipe)
-    if (draft.types && draft.types.length > 0) {
-      const typeIds = draft.types.map(type => type.id)
+    if (draft.mainIngredients && draft.mainIngredients.length > 0) {
+      const typeIds = draft.mainIngredients.map(mainIngredient => mainIngredient.id)
       await insertRecipeMainIngredients(recipeId, typeIds)
     }
     if (draft.cuisines && draft.cuisines.length > 0) {

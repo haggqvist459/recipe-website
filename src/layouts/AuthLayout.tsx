@@ -1,13 +1,13 @@
-import { Outlet, useLocation } from "react-router-dom";
-import { AuthPage } from "@/pages";
-import { FadeWrapper } from "@/components";
-import { useAuth } from "@/contexts";
+import { Outlet, useLocation } from "react-router-dom"
+import { AuthPage } from "@/pages"
+import { FadeWrapper } from "@/components/layout"
+import { useAuth } from "@/contexts"
 
 const AuthLayout = () => {
-  const location = useLocation();
+  const location = useLocation()
   const { isSignedIn, loading } = useAuth()
   
-  if (loading) return null; // TODO proper loading UI 
+  if (loading) return null // TODO proper loading UI 
 
   return (
     <div className="bg-primary-bg min-h-screen flex flex-col relative">
@@ -17,7 +17,7 @@ const AuthLayout = () => {
         </FadeWrapper>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AuthLayout;
+export default AuthLayout

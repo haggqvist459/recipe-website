@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { PageContainer, HorizontalMenuWrapper, HorizontalMenuButton } from "@/components"
+import { PageContainer, HorizontalMenuWrapper } from "@/components/layout"
+import { HorizontalMenuButton } from "@/components/ui"
 import { RecipeManagementList } from "@/features/recipes/recipeManagement"
 import { FilterManagement } from "@/features/filters"
 import { useLanguage } from "@/contexts"

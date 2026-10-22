@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
-import { Settings, CogWheel } from "@/components/";
+import { useState } from "react"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
+import { Settings } from "../ui"
+import { CogWheel } from "../icons"
 
 const Footer = () => {
 
-  const { language } = useLanguage();
+  const { language } = useLanguage()
   const [showSettings, setShowSettings] = useState(false)
 
   const isStandalone =
     window.matchMedia('(display-mode: standalone)').matches ||
     (typeof window.navigator !== 'undefined' &&
-      (window.navigator as any).standalone === true);
+      (window.navigator as any).standalone === true)
 
   return (
     <footer id='footer' className={`bg-primary relative ${isStandalone ? 'h-15 pb-2' : 'h-10'}`}>
@@ -26,10 +27,10 @@ const Footer = () => {
         >
           <CogWheel />
         </div>
-        <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-primary-text'>{translateText("footer", "codeGitHub", language)}</a>
+        <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-white-text'>{translateText("footer", "codeGitHub", language)}</a>
       </div>
     </footer>
   )
 }
 
-export default Footer;
+export default Footer

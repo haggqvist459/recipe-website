@@ -1,7 +1,9 @@
 import { RecipeType } from "@/shared/types"
 import { NavLink } from "react-router-dom"
 import { ROUTES } from "@/shared"
-import { Trashcan, EditIcon, IconButton } from "@/components"
+import { Trashcan, EditIcon } from "@/components/icons"
+import { IconButton } from "@/components/ui"
+
 
 type Props = {
   recipe: RecipeType

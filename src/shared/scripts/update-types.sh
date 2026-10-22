@@ -48,7 +48,7 @@ if [ -z "$types_value" ] || [ "$types_value" = "undefined" ]; then
 fi
 
 # write types to file
-printf '%s\n' "$types_value" > src/types/database.schema.ts
+printf '%s\n' "$types_value" > src/shared/types/database.schema.ts
 
 # done
-echo "✅ Types updated → src/types/database.schema.ts"
+echo "✅ Types updated → src/shared/types/database.schema.ts"

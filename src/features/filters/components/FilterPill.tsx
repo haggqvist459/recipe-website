@@ -4,8 +4,8 @@ type Props = {
 }
 const FilterPill = ({text, backgroundColour}: Props) => {
   return (
-    <div className={`${backgroundColour} rounded-4xl px-3 py-1`}>
-      <span className="uppercase text-sm font-semibold">{text}</span>
+    <div className={`${backgroundColour} rounded-full px-2 py-0.5`}>
+      <span className="uppercase text-xs font-semibold text-white">{text}</span>
     </div>
   )
 }

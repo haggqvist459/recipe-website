@@ -8,8 +8,8 @@ const initialState: RecipeFormState = {
   recipeDraft: {
     title: "",
     description: "",
-    cuisines: null,
-    types: null,
+    cuisines: [],
+    mainIngredients: [],
     includeWeekly: true,
     servings: 0,
     ingredients: [{
@@ -42,7 +42,7 @@ const recipeFormSlice = createSlice({
     },
     toggleFilter: (
       state,
-      action: PayloadAction<{ filterCategory: "types" | "cuisines", filter: FilterOptionType }>
+      action: PayloadAction<{ filterCategory: "mainIngredients" | "cuisines", filter: FilterOptionType }>
     ) => {
       const { filterCategory, filter } = action.payload
       const existing = state.recipeDraft[filterCategory] ?? []

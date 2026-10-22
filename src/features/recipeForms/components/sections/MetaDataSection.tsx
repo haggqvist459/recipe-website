@@ -5,7 +5,8 @@ import { updateMetadataField, selectMetadata, setCurrentSection, toggleFilter } 
 import { setFilterList, ButtonRow } from "@/features/filters"
 import { FilterOptionType } from '@/shared/types'
 import SectionWrapper from "../shared/SectionWrapper"
-import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent, CircleMinus, CirclePlus, IconButton } from "@/components"
+import { Input, ToggleButton, Heading, LoadingComponent, ErrorComponent, IconButton } from "@/components/ui"
+import { CircleMinus, CirclePlus } from "@/components/icons"
 import { useLanguage } from "@/contexts"
 import { translateText } from "@/shared"
 
@@ -33,7 +34,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  const handleFilterToggle = (filterCategory: "types" | "cuisines", filter: FilterOptionType) => {
+  const handleFilterToggle = (filterCategory: "mainIngredients" | "cuisines", filter: FilterOptionType) => {
     dispatch(toggleFilter({ filterCategory, filter }))
   }
 
@@ -159,9 +160,9 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                 <div className="">
                   <Heading title={translateText("metadata", "selectCategory", language)} headingType="sub-heading" />
                   <ButtonRow
-                    selected={metadata.types}
+                    selected={metadata.mainIngredients}
                     items={typeFilters}
-                    onClick={(filter) => handleFilterToggle("types", filter)}
+                    onClick={(filter) => handleFilterToggle("mainIngredients", filter)}
                     largePattern={true}
                   />
                 </div>

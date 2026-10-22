@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";
-import { SlideWrapper } from "@/components";
-import { useRecipeFormHandlers } from "../../hooks";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
+import { useState } from "react"
+import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections"
+import { SlideWrapper } from "@/components/layout"
+import { useRecipeFormHandlers } from "../../hooks"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
 
 const CreateRecipeDesktop = () => {
 
 
   const { language } = useLanguage()
-  const { handleNavigation, handleSubmit } = useRecipeFormHandlers();
-  const [viewMode, setViewMode] = useState<"Edit" | "Preview">("Edit");
+  const { handleNavigation, handleSubmit } = useRecipeFormHandlers()
+  const [viewMode, setViewMode] = useState<"Edit" | "Preview">("Edit")
 
   const desktopSlides = [
     {
@@ -58,7 +58,7 @@ const CreateRecipeDesktop = () => {
         </div>
       )
     },
-  ];
+  ]
 
 
   return (
@@ -70,7 +70,7 @@ const CreateRecipeDesktop = () => {
         />
       </form>
     </div>
-  );
+  )
 }
 
-export default CreateRecipeDesktop;
+export default CreateRecipeDesktop

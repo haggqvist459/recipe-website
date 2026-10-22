@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --debug hmr",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "update-types": "./src/utils/scripts/update-types.sh",
+    "update-types": "./src/shared/scripts/update-types.sh",
     "error-check": "npx tsc --noEmit -p tsconfig.app.json"
   },
   "dependencies": {

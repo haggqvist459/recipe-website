@@ -1,37 +1,38 @@
-import { ReactNode, useState, useEffect } from 'react';
-import { FadeInOutWrapper } from '@/components';
+import { ReactNode, useState, useEffect } from 'react'
+import { FadeInOutWrapper } from '@/components/layout'
+
 
 type Props = {
-  isActive: boolean;
-  lgWidth?: string;
-  fadeDuration?: number;
-  children: ReactNode;
-};
+  isActive: boolean
+  lgWidth?: string
+  fadeDuration?: number
+  children: ReactNode
+}
 
 const ResponsiveSection = ({
   isActive,
   fadeDuration = 150,
   children
 }: Props) => {
-  const [shouldShow, setShouldShow] = useState(isActive);
+  const [shouldShow, setShouldShow] = useState(isActive)
   const [isLargeScreen, setIsLargeScreen] = useState(
     () => window.matchMedia('(min-width: 1024px)').matches
-  );
+  )
 
   useEffect(() => {
-    const handler = () => setIsLargeScreen(window.matchMedia('(min-width: 1024px)').matches);
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-  }, []);
+    const handler = () => setIsLargeScreen(window.matchMedia('(min-width: 1024px)').matches)
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
 
   useEffect(() => {
     if (isActive) {
-      const timeout = setTimeout(() => setShouldShow(true), fadeDuration);
-      return () => clearTimeout(timeout);
+      const timeout = setTimeout(() => setShouldShow(true), fadeDuration)
+      return () => clearTimeout(timeout)
     } else {
-      setShouldShow(false);
+      setShouldShow(false)
     }
-  }, [isActive, fadeDuration]);
+  }, [isActive, fadeDuration])
 
   return (
     <div className={`w-full ${isLargeScreen ? 'block' : ''}`}>
@@ -43,7 +44,7 @@ const ResponsiveSection = ({
         </FadeInOutWrapper>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ResponsiveSection;
+export default ResponsiveSection

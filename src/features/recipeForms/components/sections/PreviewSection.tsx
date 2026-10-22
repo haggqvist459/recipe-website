@@ -1,17 +1,17 @@
-import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks";
-import { selectIngredients, selectInstructions, selectMetadata, setCurrentSection } from "@/features/recipeForms";
-import SectionWrapper from "../shared/SectionWrapper";
-import { Heading, Output } from '@/components'
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
+import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
+import { selectIngredients, selectInstructions, selectMetadata, setCurrentSection } from "@/features/recipeForms"
+import SectionWrapper from "../shared/SectionWrapper"
+import { Heading, Output } from '@/components/ui'
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
 
 
 const PreviewSection = () => {
 
-  const { language } = useLanguage();
+  const { language } = useLanguage()
 
   const dispatch = useAppDispatch()
-  const metaData = useAppSelector(selectMetadata);
+  const metaData = useAppSelector(selectMetadata)
   const ingredients = useAppSelector(selectIngredients)
   const instructions = useAppSelector(selectInstructions)
 
@@ -31,10 +31,10 @@ const PreviewSection = () => {
             />
             <Heading title={translateText('preview', 'categories', language)} headingType="sub-heading" />
             <div className="flex">
-              {metaData.types?.map((type) => (
+              {metaData.mainIngredients?.map((mainIngredient) => (
                 <Output
-                  key={type.id}
-                  value={type[`${language}_text`]}
+                  key={mainIngredient.id}
+                  value={mainIngredient[`${language}_text`]}
                 />
               ))}
             </div>
@@ -98,7 +98,7 @@ const PreviewSection = () => {
         </div>
       </div>
     </SectionWrapper>
-  );
+  )
 }
 
-export default PreviewSection;
+export default PreviewSection

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { FilterOptionType } from "@/shared/types"
 import { useLanguage } from '@/contexts'
-import { Trashcan, EditIcon, CheckSolidCircle, Close, Input, IconButton } from "@/components"
-
+import { Trashcan, EditIcon, CheckSolidCircle, Close } from "@/components/icons"
+import { Input, IconButton } from "@/components/ui"
 
 
 type Props = {
@@ -35,7 +35,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
     setEditText(filterText)
     setIsEditing(true)
   }
-  
+
   return (
     <div className="w-full my-1.5">
       {isEditing ?
@@ -51,7 +51,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
               <Close />
             </IconButton>
             <IconButton onClick={handleUpdate}>
-              <CheckSolidCircle/>
+              <CheckSolidCircle />
             </IconButton>
           </div>
         </div>

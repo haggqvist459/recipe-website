@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useAppSelector } from "@/integrations/redux"
 import { useLanguage } from "@/contexts"
-import { PageContainer, Heading } from "@/components"
+import { PageContainer } from "@/components/layout"
+import { Heading } from "@/components/ui"
 import { VisibilityFilters, GroceryListItem, AddItem, GroceryListSettings, selectItems } from "@/features/groceryList"
 import { translateText } from "@/shared"
 

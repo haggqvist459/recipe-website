@@ -1,14 +1,16 @@
-import { useState, useRef } from 'react';
-import { useAppDispatch } from '@/integrations/redux';
-import { VISIBILITY_FILTERS } from '../constants';
-import { deleteItem, toggleCompletion } from '../slice';
-import { ListItemData } from '../types';
-import { Circle, CheckSolidCircle, Trashcan, IconButton } from '@/components';
+import { useState, useRef } from 'react'
+import { useAppDispatch } from '@/integrations/redux'
+import { VISIBILITY_FILTERS } from '../constants'
+import { deleteItem, toggleCompletion } from '../slice'
+import { ListItemData } from '../types'
+import { Circle, CheckSolidCircle, Trashcan } from '@/components/icons'
+import { IconButton } from '@/components/ui'
+
 
 
 type Props = {
   item: ListItemData
-  activeFilter: (typeof VISIBILITY_FILTERS)[keyof typeof VISIBILITY_FILTERS];
+  activeFilter: (typeof VISIBILITY_FILTERS)[keyof typeof VISIBILITY_FILTERS]
 }
 
 const GroceryListItem = ({ item, activeFilter }: Props) => {
@@ -17,34 +19,34 @@ const GroceryListItem = ({ item, activeFilter }: Props) => {
   const dispatch = useAppDispatch()
   const [showDelete, setShowDelete] = useState(false)
   const [isSliding, setIsSliding] = useState(false)
-  const touchStartX = useRef(0);
+  const touchStartX = useRef(0)
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
+    touchStartX.current = e.touches[0].clientX
+  }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    const SWIPE_THRESHOLD = 30;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current
+    const SWIPE_THRESHOLD = 30
 
     if (deltaX < -SWIPE_THRESHOLD) {
-      setShowDelete(true);
+      setShowDelete(true)
     } else if (deltaX > SWIPE_THRESHOLD) {
-      setShowDelete(false);
+      setShowDelete(false)
     }
-    touchStartX.current = 0;
-  };
+    touchStartX.current = 0
+  }
 
 
   const handleToggle = (id: string) => {
-    setIsSliding(true);
+    setIsSliding(true)
 
     // wait for animation to complete before toggling state
     setTimeout(() => {
-      setIsSliding(false);
+      setIsSliding(false)
       dispatch(toggleCompletion(id))
-    }, 300); // match transition duration
-  };
+    }, 300) // match transition duration
+  }
 
   return (
     <div className={`flex justify-between items-baseline w-full my-1 py-1 transition-transform duration-300 ease-in-out ${isSliding
@@ -71,7 +73,7 @@ const GroceryListItem = ({ item, activeFilter }: Props) => {
         </IconButton>
       </div>
     </div>
-  );
+  )
 }
 
-export default GroceryListItem;
+export default GroceryListItem

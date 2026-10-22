@@ -1,7 +1,7 @@
-import { Heading } from "@/components";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
-import { ModalStateType } from "./types";
+import { Heading } from "@/components/ui"
+import { useLanguage } from "@/contexts/LanguageContext"
+import { translateText } from "@/shared"
+import { ModalStateType } from "./types"
 
 type Props = {
   modalState: ModalStateType
@@ -9,7 +9,7 @@ type Props = {
 const Modal = ({ modalState }: Props) => {
   const { language } = useLanguage()
 
-  if (!modalState.isOpen) return null;
+  if (!modalState.isOpen) return null
 
   return (
     <div
@@ -32,4 +32,4 @@ const Modal = ({ modalState }: Props) => {
     </div>
   )
 }
-export default Modal;
+export default Modal

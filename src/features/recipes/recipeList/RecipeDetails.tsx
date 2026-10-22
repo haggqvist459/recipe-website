@@ -5,10 +5,12 @@ import { useAuth, useLanguage, useNotification } from "@/contexts"
 import { handleError } from "@/errorHandling"
 import { RecipeType } from "@/shared/types"
 import { translateText } from "@/shared"
-import { Heading, Favourite, IconButton, CirclePlus, CircleMinus } from "@/components"
+import { Heading, IconButton } from "@/components/ui"
+import { Favourite, CircleMinus, CirclePlus } from "@/components/icons"
 import { addFavourite, deleteFavourite, useIsFavourited } from "@/features/favourites"
 import { FilterPill } from "@/features/filters"
 import { addIngredients } from "@/features/groceryList"
+import { getCategoryColourClasses } from "@/features/filters/helpers/categoryColours"
 
 
 
@@ -76,12 +78,13 @@ const RecipeDetails = ({ recipe }: Props) => {
         <div className="w-full md:w-1/3">
           {/* top section - titles, servings, categories */}
           <div className="">
-            {/* FilterPill, Favorute */}
+            {/* FilterPill, Favorite */}
             <div className="flex mt-5">
               <div className="flex flex-1 gap-2">
-                {recipe.types?.map((filter) => (
-                  <FilterPill key={filter.id} text={filter[`${language}_text`]} backgroundColour={'bg-primary'} />
-                ))}
+                {recipe.mainIngredients.map((filter) => {
+                  const { bg } = getCategoryColourClasses(filter.categoryCounter ?? 1)
+                  return <FilterPill key={filter.id} text={filter[`${language}_text`]} backgroundColour={bg} />
+                })}
               </div>
               <IconButton onClick={() => toggleFavourite()}>
                 {user && <Favourite isToggled={isFavourite} />}
@@ -91,7 +94,7 @@ const RecipeDetails = ({ recipe }: Props) => {
             <div className="mt-4 flex flex-col space-y-2">
               <Heading title={recipe.title} headingType="section-heading" />
               <span className="label">{recipe.description}</span>
-              {recipe.cuisines?.map((cuisine) => (
+              {recipe.cuisines.map((cuisine) => (
                 <div key={cuisine.id}>
                   <span className="text-sm">{cuisine[`${language}_text`]}</span>
                   {(recipe.cuisines?.length ?? 0) > 1 ? <span>•</span> : null}
@@ -149,7 +152,7 @@ const RecipeDetails = ({ recipe }: Props) => {
                   {modifiedIngredients.map((ingredient, index) => (
                     <li
                       className={`py-3 border-b-1 border-secondary flex justify-between ${index === modifiedIngredients.length - 1 ? "border-none" : ""}`}
-                      key={ingredient.id}
+                      key={index}
                     >
                       <span className="text-primary-text">{ingredient.name}</span>
                       <span className="text-secondary-text font-medium">{ingredient.amount} {ingredient.unit}</span>
@@ -173,9 +176,12 @@ const RecipeDetails = ({ recipe }: Props) => {
           </div>
           <div className={`my-5 rounded-2xl ${activeSection === 'instructions' ? 'block' : 'hidden'} md:block`}>
             {recipe.instructions.map((instruction, index) => (
-              <div className="bg-tertiary px-4 py-2 my-4 rounded-2xl">
+              <div
+                className="bg-tertiary px-4 py-2 my-4 rounded-2xl"
+                key={instruction.id + index}
+              >
                 <button
-                  key={instruction.id}
+
                   type="button"
                   className={`flex flex-col mt-2 text-left ${completedIds.has(instruction.id) ? "line-through" : ""}`}
                   onClick={() => toggleCompleted(instruction.id)}

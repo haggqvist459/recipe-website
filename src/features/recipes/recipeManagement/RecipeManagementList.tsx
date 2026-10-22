@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/integrations/redux'
 import { deleteRecipeService, fetchAllRecipes, } from '@/integrations/supabase/services'
-import { LoadingComponent, ErrorComponent } from "@/components"
+import { LoadingComponent, ErrorComponent } from "@/components/ui"
 import { useLanguage, useNotification, } from '@/contexts'
 import RecipeManagementCard from './RecipeManagementCard'
 import { setRecipes, removeRecipe } from '../slice'

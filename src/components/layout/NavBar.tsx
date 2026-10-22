@@ -1,18 +1,18 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 import { ROUTES } from '@/shared'
-import { NavMenu, NavButton } from '@/components';
+import { NavMenu, NavButton } from '../ui'
 
 const NavBar = () => {
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <header className='bg-primary' id='navBar'>
       <div className='flex items-center justify-between px-5'>
         <NavLink className='py-3' to={ROUTES.HOME}>
-          <div className='flex flex-col text-primary-text'>
-            <span className='text-xl lg:text-2xl font-bold'>Recipes</span>
+          <div className='flex flex-col'>
+            <span className='text-xl lg:text-2xl font-bold text-white-text'>Recipes</span>
           </div>
         </NavLink>
         <NavButton isExpanded={isExpanded} onClick={() => setIsExpanded(prev => !prev)} />
@@ -22,4 +22,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar;
+export default NavBar

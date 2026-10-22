@@ -1,36 +1,36 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
-import { Heading } from "@/components";
+import { useState } from "react"
+import { Navigate } from "react-router-dom"
+import { Heading } from "@/components/ui"
 import { useAuth, useLanguage } from '@/contexts'
-import { ROUTES, translateText } from "@/shared";
-import { handleError } from "@/errorHandling";
+import { ROUTES, translateText } from "@/shared"
+import { handleError } from "@/errorHandling"
 
 
 const AuthPage = () => {
 
-  const { language } = useLanguage();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const { user, handleSignIn } = useAuth();
+  const { language } = useLanguage()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const { user, handleSignIn } = useAuth()
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setLoading(true);
-    setError(null);
+    event.preventDefault()
+    setLoading(true)
+    setError(null)
 
     try {
-      await handleSignIn(email, password);
+      await handleSignIn(email, password)
     } catch (error) {
       setError(handleError(error))
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
 
   if (user) {
-    return <Navigate to={ROUTES.PROFILE} replace />;
+    return <Navigate to={ROUTES.PROFILE} replace />
   }
 
   return (
@@ -59,7 +59,7 @@ const AuthPage = () => {
       </div>
       {error && <div className="text-red-500 text-sm">{error}</div>}
     </form>
-  );
-};
+  )
+}
 
-export default AuthPage;
+export default AuthPage

@@ -1,33 +1,34 @@
-import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useAppDispatch } from "@/integrations/redux";
-import { ErrorComponent, PageContainer } from "@/components";
-import { EditRecipeMobile, EditRecipeDesktop } from "@/features/recipeForms/components";
-import { setRecipeDraft } from "@/features/recipeForms";
+import { useEffect, useState } from "react"
+import { useLocation, useParams } from "react-router-dom"
+import { useAppDispatch } from "@/integrations/redux"
+import { PageContainer } from "@/components/layout"
+import { ErrorComponent } from "@/components/ui"
+import { EditRecipeMobile, EditRecipeDesktop } from "@/features/recipeForms/components"
+import { setRecipeDraft } from "@/features/recipeForms"
 
 const EditRecipePage = () => {
 
   const location = useLocation()
   const dispatch = useAppDispatch()
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
   const [isLargeScreen, setIsLargeScreen] = useState(() =>
     window.matchMedia('(min-width: 1024px)').matches
-  );
+  )
 
   useEffect(() => {
     const handler = () =>
-      setIsLargeScreen(window.matchMedia('(min-width: 1024px)').matches);
+      setIsLargeScreen(window.matchMedia('(min-width: 1024px)').matches)
 
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-  }, []);
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
 
   useEffect(() => {
     if (location.state) {
-      dispatch(setRecipeDraft(location.state));
+      dispatch(setRecipeDraft(location.state))
     }
-  }, []);
+  }, [])
 
   if (!id) {
     return <ErrorComponent errorMessage="No recipe found."/>
@@ -40,7 +41,7 @@ const EditRecipePage = () => {
         : <EditRecipeMobile recipeId={id} />
       }
     </PageContainer>
-  );
+  )
 }
 
-export default EditRecipePage;
+export default EditRecipePage

@@ -1,6 +1,7 @@
-import { Heading, Close } from "@/components";
-import { LANGUAGES, useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
+import Heading from "./Heading"
+import { Close } from "../icons"
+import { LANGUAGES, useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
 
 type Props = {
   isOpen: boolean
@@ -17,9 +18,9 @@ const Settings = ({ isOpen, handleClose }: Props) => {
       onClick={handleClose}
     >
       <div className="flex justify-between mt-2">
-        <Heading title={translateText('settings', "title", language)} headingType="sub-heading" />
+        <Heading title={translateText('settings', "title", language)} headingType="sub-heading" textColourOverride="text-white-text" />
         <div onClick={handleClose}>
-          <Close />
+          <Close colour="text-white-text"/>
         </div>
       </div>
       <div className="w-full flex justify-start space-x-2">
@@ -27,7 +28,7 @@ const Settings = ({ isOpen, handleClose }: Props) => {
           <button
             key={code}
             onClick={() => setLanguage(code)}
-            className={`py-2 font-light ${language === code ? 'font-normal underline decoration-1' : ''}`}
+            className={`py-2 font-light text-white-text ${language === code ? 'font-normal underline decoration-1' : ''}`}
           >
             {label}
           </button>
@@ -37,4 +38,4 @@ const Settings = ({ isOpen, handleClose }: Props) => {
   )
 }
 
-export default Settings;
+export default Settings

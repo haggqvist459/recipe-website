@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";
-import { SlideWrapper } from "@/components";
-import { useRecipeFormHandlers } from "../../hooks";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
+import { useState } from "react"
+import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections"
+import { SlideWrapper } from "@/components/layout"
+import { useRecipeFormHandlers } from "../../hooks"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
 
 
 type Props = {
@@ -14,8 +14,8 @@ type Props = {
 const EditRecipeDesktop = ({ recipeId }: Props) => {
 
   const { language } = useLanguage()
-  const { handleNavigation, handleUpdate } = useRecipeFormHandlers(recipeId);
-  const [viewMode, setViewMode] = useState<"Edit" | "Preview">("Edit");
+  const { handleNavigation, handleUpdate } = useRecipeFormHandlers(recipeId)
+  const [viewMode, setViewMode] = useState<"Edit" | "Preview">("Edit")
 
   const desktopSlides = [
     {
@@ -63,7 +63,7 @@ const EditRecipeDesktop = ({ recipeId }: Props) => {
         </div>
       )
     },
-  ];
+  ]
 
 
   return (
@@ -75,7 +75,7 @@ const EditRecipeDesktop = ({ recipeId }: Props) => {
         />
       </form>
     </div>
-  );
+  )
 }
 
-export default EditRecipeDesktop;
+export default EditRecipeDesktop

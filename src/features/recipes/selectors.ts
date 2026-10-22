@@ -16,7 +16,7 @@ export const selectFilteredRecipes = createSelector(
 
     if (typeFilters.length > 0) {
       filtered = filtered.filter(recipe =>
-        recipe.types?.some(recipeType =>
+        recipe.mainIngredients.some(recipeType =>
           typeFilters.some(filter => filter.id === recipeType.id)
         )
       )
@@ -24,7 +24,7 @@ export const selectFilteredRecipes = createSelector(
 
     if (cuisineFilters.length > 0) {
       filtered = filtered.filter(recipe =>
-        recipe.cuisines?.some(recipeCuisine =>
+        recipe.cuisines.some(recipeCuisine =>
           cuisineFilters.some(filter => filter.id === recipeCuisine.id)
         )
       )

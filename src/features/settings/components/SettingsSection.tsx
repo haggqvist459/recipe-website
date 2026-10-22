@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Heading, Input, } from "@/components"
+import { Heading, Input, } from "@/components/ui"
 import { useLanguage, useAuth, useNotification } from "@/contexts"
 import { translateText } from "@/shared"
 import { updateUserCredentials } from "@/integrations/supabase/services/auth/updateUserService"

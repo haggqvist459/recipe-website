@@ -3,7 +3,9 @@ import { useAppSelector, useAppDispatch } from "@/integrations/redux"
 import { translateText } from "@/shared"
 import { fetchGroceryList, saveGroceryList, deleteGroceryList } from "@/integrations/supabase/services"
 import { loadListFromDB, resetState, } from "@/features/groceryList"
-import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle, FadeInOutWrapper, IconButton } from "@/components"
+import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle} from "@/components/icons"
+import { FadeInOutWrapper } from "@/components/layout"
+import { IconButton } from "@/components/ui"
 import { handleError } from "@/errorHandling"
 
 

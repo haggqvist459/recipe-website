@@ -4,8 +4,10 @@ import './index.css'
 import App from './App.tsx'
 import { Provider } from "react-redux";
 import { store } from "./integrations/redux/store.ts";
-import { AuthProvider, LanguageProvider, NotificationProvider } from '@/contexts';
-
+// import { AuthProvider, LanguageProvider, NotificationProvider } from '@/contexts';
+import { AuthProvider } from '@/contexts/AuthContext'
+import { LanguageProvider } from '@/contexts/LanguageContext'
+import { NotificationProvider } from '@/contexts/NotificationContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

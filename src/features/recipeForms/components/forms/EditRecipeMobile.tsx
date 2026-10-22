@@ -1,12 +1,13 @@
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/integrations/redux/hooks";
-import { HorizontalMenuWrapper, HorizontalMenuButton, SlideWrapper } from "@/components";
-import { useLanguage } from "@/contexts";
-import { translateText } from "@/shared";
-import { useRecipeFormHandlers } from "@/features/recipeForms/hooks";
-import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections";
-import { setCurrentSection } from "../../slice";
-import { SECTIONS } from "../../constants";
+import { useState } from "react"
+import { useAppDispatch, useAppSelector } from "@/integrations/redux/hooks"
+import { HorizontalMenuWrapper, SlideWrapper } from "@/components/layout"
+import { HorizontalMenuButton } from "@/components/ui"
+import { useLanguage } from "@/contexts"
+import { translateText } from "@/shared"
+import { useRecipeFormHandlers } from "@/features/recipeForms/hooks"
+import { MetaDataSection, IngredientSection, InstructionSection, PreviewSection } from "../sections"
+import { setCurrentSection } from "../../slice"
+import { SECTIONS } from "../../constants"
 
 type Props = {
   recipeId: string
@@ -15,10 +16,10 @@ type Props = {
 
 const EditRecipeMobile = ({ recipeId }: Props) => {
 
-  const { language } = useLanguage();
+  const { language } = useLanguage()
   const currentSection = useAppSelector(state => state.recipeForms.currentSection)
   const dispatch = useAppDispatch()
-  const { handleNavigation, handleUpdate } = useRecipeFormHandlers(recipeId);
+  const { handleNavigation, handleUpdate } = useRecipeFormHandlers(recipeId)
   const [activeSection, setActiveSection] = useState<(typeof SECTIONS)[number]>('Metadata')
 
   const mobileSlides = [
@@ -26,7 +27,7 @@ const EditRecipeMobile = ({ recipeId }: Props) => {
     { key: "Ingredients", component: <IngredientSection toggleButtonState={false} /> },
     { key: "Instructions", component: <InstructionSection toggleButtonState={false} /> },
     { key: "Preview", component: <PreviewSection /> },
-  ];
+  ]
 
 
   return (
@@ -77,7 +78,7 @@ const EditRecipeMobile = ({ recipeId }: Props) => {
         />
       </form>
     </div>
-  );
+  )
 }
 
-export default EditRecipeMobile;
+export default EditRecipeMobile

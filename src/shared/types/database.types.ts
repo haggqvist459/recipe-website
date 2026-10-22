@@ -14,14 +14,16 @@ export type DbRecipeWithRelations = Tables<'recipes'> & {
     cuisines: {
       id: string,
       en_text: string,
-      sv_text: string
+      sv_text: string,
+      category_counter: number
     }
   }[]
   recipe_main_ingredients: {
     main_ingredients: {
       id: string,
       en_text: string,
-      sv_text: string
+      sv_text: string,
+      category_counter: number
     }
   }[]
 }

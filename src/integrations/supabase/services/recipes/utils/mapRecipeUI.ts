@@ -9,16 +9,18 @@ export const mapMultipleRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): Re
       ? dbRecipe.recipe_cuisines
       : []
 
-    const mappedTypes = safeMainIngredients.map((relation) => ({
+    const mappedMainIngredients = safeMainIngredients.map((relation) => ({
       id: relation.main_ingredients.id,
       en_text: relation.main_ingredients.en_text,
       sv_text: relation.main_ingredients.sv_text,
+      categoryCounter: relation.main_ingredients.category_counter
     }))
 
     const mappedCuisines = safeCuisines.map((relation) => ({
       id: relation.cuisines.id,
       en_text: relation.cuisines.en_text,
       sv_text: relation.cuisines.sv_text,
+      categoryCounter: relation.cuisines.category_counter
     }))
 
     const mappedInstructions = Array.isArray(dbRecipe.instructions)
@@ -33,9 +35,9 @@ export const mapMultipleRecipesDbToUI = (dbRecipes: DbRecipeWithRelations[]): Re
       id: dbRecipe.id,
       createdAt: dbRecipe.created_at,
       title: dbRecipe.title,
-      description: dbRecipe.description ?? '',
+      description: dbRecipe.description,
       includeWeekly: dbRecipe.include_weekly,
-      types: mappedTypes,
+      mainIngredients: mappedMainIngredients,
       cuisines: mappedCuisines,
       instructions: mappedInstructions,
       ingredients: mappedIngredients,
@@ -52,16 +54,18 @@ export const mapSingleRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeTy
     ? dbRecipe.recipe_cuisines
     : [];
 
-    const mappedTypes = safeMainIngredients.map((relation) => ({
+  const mappedMainIngredients = safeMainIngredients.map((relation) => ({
     id: relation.main_ingredients.id,
     en_text: relation.main_ingredients.en_text,
     sv_text: relation.main_ingredients.sv_text,
+    categoryCounter: relation.main_ingredients.category_counter
   }));
 
-    const mappedCuisines = safeCuisines.map((relation) => ({
+  const mappedCuisines = safeCuisines.map((relation) => ({
     id: relation.cuisines.id,
     en_text: relation.cuisines.en_text,
     sv_text: relation.cuisines.sv_text,
+    categoryCounter: relation.cuisines.category_counter
   }));
 
   const mappedInstructions = Array.isArray(dbRecipe.instructions)
@@ -76,9 +80,9 @@ export const mapSingleRecipeDbToUI = (dbRecipe: DbRecipeWithRelations): RecipeTy
     id: dbRecipe.id,
     createdAt: dbRecipe.created_at,
     title: dbRecipe.title,
-    description: dbRecipe.description ?? '',
+    description: dbRecipe.description,
     includeWeekly: dbRecipe.include_weekly,
-    types: mappedTypes,
+    mainIngredients: mappedMainIngredients,
     cuisines: mappedCuisines,
     instructions: mappedInstructions,
     ingredients: mappedIngredients,

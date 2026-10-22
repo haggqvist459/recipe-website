@@ -1,9 +1,10 @@
-import { LANGUAGES } from '@/shared/constants';
+import { LANGUAGES } from '@/shared/constants'
 
 export type FilterOptionType = {
   id: string
   en_text: string
   sv_text: string
+  categoryCounter: number
 }
 
 export type FilterCategoryType = 'types' | 'cuisines'
@@ -12,8 +13,8 @@ export type SortingFilterKey =
   | "newest"
   | "oldest"
   | "a_z"
-  | "z_a";
+  | "z_a"
 
 
-export type LanguageType = (typeof LANGUAGES)[number]['code'];
+export type LanguageType = (typeof LANGUAGES)[number]['code']
 

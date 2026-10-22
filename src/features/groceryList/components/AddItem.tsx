@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { useAppDispatch } from "@/integrations/redux";
-import { addItem } from "../slice";
-import { AddListItem, IconButton } from "@/components";
+import { useState } from "react"
+import { useAppDispatch } from "@/integrations/redux"
+import { addItem } from "../slice"
+import { AddListItem } from "@/components/icons"
+import { IconButton } from "@/components/ui"
 
 const AddItem = () => {
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const [value, setValue] = useState('')
 
   const handleAddItemClick = (value: string) => {
-    const trimmed = value.trim();
-    if (!trimmed) return;
-    dispatch(addItem(trimmed));
-    setValue('');
+    const trimmed = value.trim()
+    if (!trimmed) return
+    dispatch(addItem(trimmed))
+    setValue('')
   }
 
   return (
@@ -24,7 +25,7 @@ const AddItem = () => {
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              handleAddItemClick(value);
+              handleAddItemClick(value)
             }
           }}
       />
@@ -32,7 +33,7 @@ const AddItem = () => {
         <AddListItem />
       </IconButton>
     </div>
-  );
+  )
 }
 
-export default AddItem;
+export default AddItem

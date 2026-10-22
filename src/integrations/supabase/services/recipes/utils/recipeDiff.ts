@@ -26,11 +26,11 @@ export const diffRecipes = (original: RecipeType, draft: RecipeDraftType): Recip
   }
 
   const mainIngredientChanges = {
-    toDelete: (original.types ?? [])
-      .filter(originalIngredient => !(draft.types ?? []).some(draftIngredient => draftIngredient.id === originalIngredient.id))
+    toDelete: (original.mainIngredients ?? [])
+      .filter(originalIngredient => !(draft.mainIngredients ?? []).some(draftIngredient => draftIngredient.id === originalIngredient.id))
       .map(ingredient => ingredient.id),
-    toInsert: (draft.types ?? [])
-      .filter(draftIngredient => !(original.types ?? []).some(originalIngredient => originalIngredient.id === draftIngredient.id))
+    toInsert: (draft.mainIngredients ?? [])
+      .filter(draftIngredient => !(original.mainIngredients ?? []).some(originalIngredient => originalIngredient.id === draftIngredient.id))
       .map(ingredient => ingredient.id)
   }
 

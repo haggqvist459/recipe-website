@@ -1,8 +1,9 @@
-import { PageContainer, Heading, } from "@/components";
-import { RecipeList } from "@/features/recipes/recipeList";
-import { Filters} from '@/features/filters';
-import { useLanguage, } from '@/contexts';
-import { translateText } from '@/shared';
+import { PageContainer } from "@/components/layout"
+import { Heading } from "@/components/ui"
+import { RecipeList } from "@/features/recipes/recipeList"
+import { Filters} from '@/features/filters'
+import { useLanguage, } from '@/contexts'
+import { translateText } from '@/shared'
 
 
 
@@ -19,8 +20,8 @@ const HomePage = () => {
         <RecipeList />
       </div>
     </PageContainer>
-  );
+  )
 
 }
 
-export default HomePage;
+export default HomePage

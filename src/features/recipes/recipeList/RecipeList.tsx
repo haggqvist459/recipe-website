@@ -4,7 +4,7 @@ import { fetchAllRecipes } from '@/integrations/supabase/services'
 import { selectFilteredRecipes } from '../selectors'
 import { setRecipes } from '../slice'
 import RecipeCard from './RecipeCard'
-import { LoadingComponent, ErrorComponent } from "@/components"
+import { LoadingComponent, ErrorComponent } from "@/components/ui"
 import { handleError } from '@/errorHandling'
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAppDispatch } from "@/integrations/redux"
-import { PageContainer } from "@/components"
+import { PageContainer } from "@/components/layout"
 import { CreateRecipeMobile, CreateRecipeDesktop } from "@/features/recipeForms/components"
 import { resetState } from "@/features/recipeForms" 
 

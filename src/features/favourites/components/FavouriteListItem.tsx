@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { FavouriteType } from "../types"
-import { Trashcan, IconButton } from '@/components'
+import { IconButton } from '@/components/ui'
+import { Trashcan } from '@/components/icons'
 import { removeFavourite } from '@/integrations/supabase/services'
 import { useAppDispatch } from '@/integrations/redux/hooks'
 import { deleteFavourite, addFavourite } from '../slice'
