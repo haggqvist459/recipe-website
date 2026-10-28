@@ -51,7 +51,7 @@ const NavButton = ({ isExpanded, onClick }: Props) => {
       onClick={onClick}
     >
       <div
-        className="w-full h-0.5 bg-primary-text rounded-sm transition-all duration-500 ease-in-out origin-right"
+        className="w-full h-0.5 bg-ceramic rounded-sm transition-all duration-500 ease-in-out origin-right"
         style={{
           transform: isExpanded
             ? `rotate(-${rotation}deg) scale(${scale})`
@@ -59,11 +59,11 @@ const NavButton = ({ isExpanded, onClick }: Props) => {
         }}
       />
       <div
-        className={`w-full h-0.5 bg-primary-text rounded-sm transition-all duration-500 ease-in-out
+        className={`w-full h-0.5 bg-ceramic rounded-sm transition-all duration-500 ease-in-out
           ${isExpanded ? "opacity-0" : "opacity-100"}`}
       />
       <div
-        className="w-full h-0.5 bg-primary-text rounded-sm transition-all duration-500 ease-in-out origin-right"
+        className="w-full h-0.5 bg-ceramic rounded-sm transition-all duration-500 ease-in-out origin-right"
         style={{
           transform: isExpanded
             ? `rotate(${rotation}deg) scale(${scale})`

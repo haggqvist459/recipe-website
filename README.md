@@ -128,7 +128,11 @@
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [x] Refactor ButtonRow component - use Tailwind instead of JavaScript
 - [x] Refactor all Modal usage to use the new Context 
+- [ ] Fix the 'add to grocery list' CSS in recipe details, add hover effect and text when clicked   
 
 - [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
+- [ ] Separate contexts. E.g, AuthContext should not reference NotificationContext but rather return a value to AuthPage.tsx and let it display the toast 
 
+- [ ] Sort out circular imports mess 
 
+- [ ] Have title in nav bar show the current page instead of just 'recipes' 

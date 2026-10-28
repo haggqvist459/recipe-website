@@ -1,10 +1,9 @@
 import { ReactNode, useState, useEffect } from 'react'
-import { FadeInOutWrapper } from '@/components/layout'
+import { FadeInOutWrapper, FadeWrapper } from '@/components/layout'
 
 
 type Props = {
   isActive: boolean
-  lgWidth?: string
   fadeDuration?: number
   children: ReactNode
 }
@@ -35,11 +34,13 @@ const ResponsiveSection = ({
   }, [isActive, fadeDuration])
 
   return (
-    <div className={`w-full ${isLargeScreen ? 'block' : ''}`}>
+    <div className={`w-full`}>
       {isLargeScreen ? (
-        children
+        <FadeWrapper>
+          {children}
+        </FadeWrapper>
       ) : (
-        <FadeInOutWrapper isVisible={shouldShow} duration={fadeDuration}>
+        <FadeInOutWrapper isVisible={shouldShow}>
           {children}
         </FadeInOutWrapper>
       )}

@@ -13,7 +13,8 @@ const FadeInOutWrapper = ({ isVisible, children, duration = 300 }: Props) => {
   useEffect(() => {
     if (isVisible) {
       setShouldRender(true)
-      setTimeout(() => setIsAnimating(true), 10)
+      const timeout = setTimeout(() => setIsAnimating(true), 10)
+      return () => clearTimeout(timeout)
     } else {
       setIsAnimating(false)
       const timeout = setTimeout(() => setShouldRender(false), duration)

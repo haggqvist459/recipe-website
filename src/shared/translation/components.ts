@@ -84,6 +84,8 @@ export const COMPONENTS_TEXT = {
     },
     profile: {
       title: 'Profile',
+      email: 'Email',
+      password: 'Password',
       changeEmail: 'Change email',
       newEmail: 'New email',
       updatePassword: 'Update password',
@@ -91,7 +93,7 @@ export const COMPONENTS_TEXT = {
       confirmPassword: 'Confirm password',
       currentPassword: 'Current password',
       validateChanges: 'Validate changes',
-      favouriteRecipes: 'Favourite recipes',
+      favouriteRecipes: 'Favourites',
       settings: 'Settings',
     },
     visibilityFilters: {
@@ -208,6 +210,8 @@ export const COMPONENTS_TEXT = {
     },
     profile: {
       title: 'Profil',
+      email: 'Epost',
+      password: 'Lösenord',
       changeEmail: 'Byt e-post',
       newEmail: 'Ny e-post',
       updatePassword: 'Ändra lösenord',

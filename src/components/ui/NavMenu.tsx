@@ -1,7 +1,10 @@
-import { NavLink } from "react-router-dom";
-import { NAVBAR_OPTIONS } from "@/shared";
-import { useLanguage, useAuth } from "@/contexts";
-import { translateText } from "@/shared";
+import { NavLink } from "react-router-dom"
+import { NAVBAR_OPTIONS } from "@/shared"
+// import { useLanguage, useAuth } from "@/contexts"
+import { useLanguage } from "@/contexts/LanguageContext"
+import { useAuth } from "@/contexts/AuthContext"
+
+import { translateText } from "@/shared"
 
 
 type Props = {
@@ -12,31 +15,31 @@ type Props = {
 const NavMenu = ({ isExpanded, onClick }: Props) => {
 
   const { language } = useLanguage()
-  const { userRole } = useAuth();
+  const { userRole } = useAuth()
   const linkClass = ({ isActive }: { isActive: boolean }) => isActive
-    ? 'underline decoration-2' //active link classes 
+    ? 'underline decoration-2 text-ceramic' //active link classes 
     : '' //inactive link classes 
 
-  let menuOptions;
+  let menuOptions
 
   switch (userRole?.role) {
     case 'webmaster':
       menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.CREATE_RECIPE, NAVBAR_OPTIONS.ADMIN]
-      break;
+      break
     case 'admin':
       menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE, NAVBAR_OPTIONS.CREATE_RECIPE]
-      break;
+      break
     case 'user':
       menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.PROFILE]
-      break;
+      break
     default:
       menuOptions = [NAVBAR_OPTIONS.RECIPES, NAVBAR_OPTIONS.GROCERY_LIST, NAVBAR_OPTIONS.SIGN_IN]
-      break;
+      break
   }
 
   const menuItems = menuOptions.map(({ route, id, labelKey, end }) => (
     <NavLink to={route} key={id} className={linkClass} onClick={onClick} end={end}>
-      <span className="font-semibold hover:font-bold">{translateText('navMenu', labelKey, language)}</span>
+      <span className="font-semibold text-ceramic hover:font-bold">{translateText('navMenu', labelKey, language)}</span>
     </NavLink>
   ))
 
@@ -53,7 +56,7 @@ const NavMenu = ({ isExpanded, onClick }: Props) => {
         <div className="md:hidden pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-primary/90 to-transparent" />
       </div>
     </div>
-  );
+  )
 }
 
-export default NavMenu;
+export default NavMenu

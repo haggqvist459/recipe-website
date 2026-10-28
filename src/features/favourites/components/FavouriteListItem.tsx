@@ -1,10 +1,12 @@
-import { useState, useRef } from 'react'
 import { FavouriteType } from "../types"
 import { IconButton } from '@/components/ui'
-import { Trashcan } from '@/components/icons'
 import { removeFavourite } from '@/integrations/supabase/services'
 import { useAppDispatch } from '@/integrations/redux/hooks'
-import { deleteFavourite, addFavourite } from '../slice'
+import { deleteFavourite } from '../slice'
+import { handleError } from '@/errorHandling'
+import { getCategoryColourClasses } from '@/features/filters/helpers/categoryColours'
+import { Close } from "@/components/icons"
+import { useLanguage, useNotification } from "@/contexts"
 
 type Props = {
   favourite: FavouriteType
@@ -13,57 +15,61 @@ type Props = {
 const FavouriteListItem = ({ favourite }: Props) => {
 
   const dispatch = useAppDispatch()
-  const [showDelete, setShowDelete] = useState(false)
-  const touchStartX = useRef(0)
+  const { bg, border } = getCategoryColourClasses(favourite.mainIngredients[0].categoryCounter)
+  const { showToast, setModalState, resetModalState } = useNotification()
+  const { language } = useLanguage()
 
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current
-    const SWIPE_THRESHOLD = 30
-
-    if (deltaX < -SWIPE_THRESHOLD) {
-      setShowDelete(true)
-    } else if (deltaX > SWIPE_THRESHOLD) {
-      setShowDelete(false)
-    }
-    touchStartX.current = 0
+  const showDeleteModal = async () => {
+    setModalState({
+      isOpen: true,
+      title: 'Remove favourite',
+      message: 'Are you sure you want to remove this recipe from your favourites?',
+      onConfirm: () => handleDelete(),
+      onCancel: () => resetModalState()
+    })
   }
 
   const handleDelete = async () => {
     try {
-
-      dispatch(deleteFavourite(favourite.recipeId))
-
       await removeFavourite(favourite.userId, favourite.recipeId)
+      dispatch(deleteFavourite(favourite.recipeId))
     } catch (error) {
-      console.error('Failed to delete favourite:', error)
-      dispatch(addFavourite(favourite))
+      const errorMessage = handleError(error)
+      showToast(errorMessage, 'error')
     }
   }
 
+
   return (
-    <div className="w-full flex justify-between border-b"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div className="w-full flex flex-col my-2">
-        <span className="font-medium text-primary-text">{favourite.title}</span>
-        <span className="font-light text-primary-text">
-          {new Date(favourite.createdAt).toLocaleDateString()}
-        </span>
+    <div className={`w-full  flex justify-between items-center ${border} border-b-1 border-r-1 rounded-xl bg-marblewhite p-2 my-2`}>
+      <div className="flex space-x-2 items-center">
+        <div className={`h-2 w-2 rounded-full ${bg}`} />
+        <div className="flex flex-col space-x-2">
+          <div className="w-full flex">
+            <span className="font-medium text-primary-text">{`${favourite.title} \u00A0`}</span>
+            <span className="font-extralight text-primary-text">
+              ({new Date(favourite.createdAt).toLocaleDateString()})
+            </span>
+          </div>
+          <div className="flex space-x-1">
+            {favourite.mainIngredients.map(mainIngredient => (
+              <span key={mainIngredient.id} className="font-light text-shadow-primary-text">{mainIngredient[`${language}_text`]}</span>
+            ))}
+            {favourite.cuisines.map(cuisine => (
+              <span key={cuisine.id} className="font-light text-primary-text">{`• ${cuisine[`${language}_text`]}`}</span>
+            ))}
+          </div>
+        </div>
+
       </div>
-      <div
-        className={`self-center transition-all duration-300 ease-out overflow-hidden ${showDelete ? 'w-auto opacity-100 translate-x-0' : 'w-0 opacity-0 translate-x-full'
-          }`}
-      >
-        <IconButton onClick={() => handleDelete()}>
-          <Trashcan />
+      <div className="flex p-1 border-1 rounded-full border-secondary-text hover:bg-secondary-text">
+        <IconButton onClick={() => showDeleteModal()}>
+          <Close colour="text-secondary-text" size="size-4" />
         </IconButton>
       </div>
+
     </div>
   )
 }

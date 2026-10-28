@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
-import { Modal, type ModalStateType } from '@/components/ui/modal'
-import { Toast, type ToastType } from '@/components/ui/toast'
+import Modal from '@/components/ui/modal/Modal'
+import Toast from '@/components/ui/toast/Toast'
+import { ModalStateType } from '@/components/ui/modal/types'
+import { ToastType } from '@/components/ui/toast/types'
 
 
 type NotificationContextType = {

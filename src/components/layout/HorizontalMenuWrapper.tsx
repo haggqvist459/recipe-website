@@ -1,31 +1,33 @@
 import { useState, useEffect, useRef } from 'react'
+
 type Props = {
   children: React.ReactNode,
   lgHidden?: boolean
   justify?: 'justify-start' | 'justify-center' | 'justify-end'
+  bg?: string
 }
 
-const HorizontalMenuWrapper = ({ children, lgHidden = false, justify = 'justify-center' }: Props) => {
+const HorizontalMenuWrapper = ({ children, lgHidden = false, justify = 'justify-center', bg = 'bg-primary' }: Props) => {
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isOverflowing, setIsOverflowing] = useState(false)
 
   useEffect(() => {
     const checkOverflow = () => {
       if (containerRef.current) {
-        const hasOverflow = containerRef.current.scrollWidth > containerRef.current.clientWidth;
-        setIsOverflowing(hasOverflow);
+        const hasOverflow = containerRef.current.scrollWidth > containerRef.current.clientWidth
+        setIsOverflowing(hasOverflow)
       }
-    };
+    }
 
-    checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-    return () => window.removeEventListener('resize', checkOverflow);
-  }, [children]);
+    checkOverflow()
+    window.addEventListener('resize', checkOverflow)
+    return () => window.removeEventListener('resize', checkOverflow)
+  }, [children])
 
   return (
-    <div className="relative h-9 w-full">
-      <div className={`px-5 h-9 bg-primary flex items-center space-x-5 font-medium overflow-y-auto ${justify} ${lgHidden ? 'lg:hidden' : ''}`}>
+    <div className={`relative h-9 w-full ${lgHidden ? 'lg:hidden' : ''}`}>
+      <div className={`px-5 h-9 ${bg} flex items-center ${justify} space-x-5 font-medium overflow-y-auto`}>
         {children}
       </div>
       {isOverflowing &&
@@ -36,7 +38,7 @@ const HorizontalMenuWrapper = ({ children, lgHidden = false, justify = 'justify-
       }
 
     </div>
-  );
+  )
 }
 
-export default HorizontalMenuWrapper;
+export default HorizontalMenuWrapper

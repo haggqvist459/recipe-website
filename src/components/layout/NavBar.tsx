@@ -12,7 +12,7 @@ const NavBar = () => {
       <div className='flex items-center justify-between px-5'>
         <NavLink className='py-3' to={ROUTES.HOME}>
           <div className='flex flex-col'>
-            <span className='text-xl lg:text-2xl font-bold text-white-text'>Recipes</span>
+            <span className='text-xl lg:text-2xl font-bold text-ceramic'>Recipes</span>
           </div>
         </NavLink>
         <NavButton isExpanded={isExpanded} onClick={() => setIsExpanded(prev => !prev)} />

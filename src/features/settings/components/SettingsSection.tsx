@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { Heading, Input, } from "@/components/ui"
-import { useLanguage, useAuth, useNotification } from "@/contexts"
+import { Heading, Input, Output, } from "@/components/ui"
+import { useLanguage, useAuth, useNotification, useAuthenticatedUser } from "@/contexts"
 import { translateText } from "@/shared"
 import { updateUserCredentials } from "@/integrations/supabase/services/auth/updateUserService"
 import { handleError } from "@/errorHandling"
@@ -8,12 +8,16 @@ import { handleError } from "@/errorHandling"
 const SettingsSection = () => {
 
   const { user } = useAuth()
+  const authenticatedUser = useAuthenticatedUser()
+
   const { language } = useLanguage()
   const { setModalState, resetModalState } = useNotification()
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [currentPassword, setCurrentPassword] = useState('')
+  const [showEmailFields, setShowEmailFields] = useState(false)
+  const [showPasswordFields, setShowPasswordFields] = useState(false)
 
 
   const validateEmail = (email: string): void => {
@@ -86,60 +90,113 @@ const SettingsSection = () => {
   }
 
   return (
-    <div className="">
+    <div className="w-full pt-5 px-5">
       <Heading title={translateText('profile', 'settings', language)} headingType="sub-heading" />
       <div className="space-y-1 mt-5">
-        <Heading title={translateText('profile', 'changeEmail', language)} headingType="sub-heading" />
-        <Input
-          id="newEmail"
-          label={translateText('profile', 'newEmail', language)}
-          placeholder="..."
-          inputType="email"
-          autoComplete="email"
-          onChange={(e) => setNewEmail(e.target.value)}
-          value={newEmail}
-        />
+        <div className="p-2 bg-ceramic rounded-lg border-1 border-secondary">
+          <div className="flex justify-between">
+            <Output label={translateText('profile', 'email', language)} value={authenticatedUser.email} />
+            <button className="text-primary text-sm font-semibold" onClick={() => setShowEmailFields(prev => !prev)}>Change</button>
+          </div>
+
+          <div className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${showEmailFields ? 'max-h-80' : 'max-h-0'}`}>
+            <div className="mt-2 space-y-3">
+              <Input
+                id="newEmail"
+                // label={translateText('profile', 'newEmail', language)}
+                placeholder={translateText('profile', 'newEmail', language)}
+                inputType="email"
+                autoComplete="email"
+                onChange={(e) => setNewEmail(e.target.value)}
+                value={newEmail}
+              />
+              <Input
+                id="currentPassword"
+                // label={translateText('profile', 'currentPassword', language)}
+                placeholder={translateText('profile', 'currentPassword', language)}
+                inputType="password"
+                autoComplete="current-password"
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                value={currentPassword}
+              />
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => handleSubmit()}
+                  disabled={!currentPassword && !newEmail}
+                  className="w-3/4 bg-primary border-1 border-primary text-marblewhite font-semibold rounded-lg p-1 disabled:opacity-50">
+                  Save Email
+                </button>
+                <button
+                  onClick={() => {
+                    setNewEmail('')
+                    setCurrentPassword('')
+                    setShowEmailFields(prev => !prev)
+                  }}
+                  className="w-1/4 border-1 border-primary-text text-primary-text font-semibold rounded-lg p-1">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="p-2 bg-ceramic rounded-lg border-1 border-secondary">
+          <div className="flex justify-between">
+            <Output label={translateText('profile', 'password', language)} value={'********'} />
+            <button className="text-primary text-sm font-semibold" onClick={() => setShowPasswordFields(prev => !prev)}>Change</button>
+          </div>
+          <div className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${showPasswordFields ? 'max-h-80' : 'max-h-0'}`}>
+            <div className="mt-2 space-y-3">
+              <Input
+                id="newPassword"
+                // label={translateText('profile', 'newPassword', language)}
+                placeholder={translateText('profile', 'newPassword', language)}
+                inputType="password"
+                autoComplete="new-password"
+                onChange={(e) => setNewPassword(e.target.value)}
+                value={newPassword}
+              />
+              <Input
+                id="confirmPassword"
+                // label={translateText('profile', 'confirmPassword', language)}
+                placeholder={translateText('profile', 'confirmPassword', language)}
+                inputType="password"
+                autoComplete="new-password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+              />
+              <Input
+                id="currentPassword"
+                // label={translateText('profile', 'currentPassword', language)}
+                placeholder={translateText('profile', 'currentPassword', language)}
+                inputType="password"
+                autoComplete="current-password"
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                value={currentPassword}
+              />
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => handleSubmit()}
+                  disabled={!currentPassword && !newEmail}
+                  className="w-3/4 bg-primary border-1 border-primary text-marblewhite font-semibold rounded-lg p-1 disabled:opacity-50">
+                  Save Password
+                </button>
+                <button
+                  onClick={() => {
+                    setNewPassword('')
+                    setConfirmPassword('')
+                    setCurrentPassword('')
+                    setShowEmailFields(prev => !prev)
+                  }}
+                  className="w-1/4 border-1 border-primary-text text-primary-text font-semibold rounded-lg p-1">
+                  Cancel
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
       </div>
-      <div className="space-y-1 mt-5">
-        <Heading title={translateText('profile', 'updatePassword', language)} headingType="sub-heading" />
-        <Input
-          id="newPassword"
-          label={translateText('profile', 'newPassword', language)}
-          placeholder="..."
-          inputType="password"
-          autoComplete="new-password"
-          onChange={(e) => setNewPassword(e.target.value)}
-          value={newPassword}
-        />
-        <Input
-          id="confirmPassword"
-          label={translateText('profile', 'confirmPassword', language)}
-          placeholder="..."
-          inputType="password"
-          autoComplete="new-password"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          value={confirmPassword}
-        />
-      </div>
-      <div className="space-y-1 mt-5">
-        <Heading title={translateText('profile', 'validateChanges', language)} headingType="sub-heading" />
-        <Input
-          id="currentPassword"
-          label={translateText('profile', 'currentPassword', language)}
-          placeholder="..."
-          inputType="password"
-          autoComplete="current-password"
-          onChange={(e) => setCurrentPassword(e.target.value)}
-          value={currentPassword}
-        />
-      </div>
-      <button
-        className="w-full mt-5 rounded bg-primary border border-primary hover:border-primary-text disabled:opacity-50 button-click"
-        onClick={() => handleSubmit()}
-        disabled={(!currentPassword && (!newEmail || (!newPassword && !confirmPassword)))}
-      >
-        {translateText('buttons', 'confirm', language)}
-      </button>
     </div>
   )
 }

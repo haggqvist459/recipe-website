@@ -1,7 +1,7 @@
 
 type Props = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 const PageContainer = ({
   children,
@@ -13,6 +13,6 @@ const PageContainer = ({
       {children}
     </section>
   )
-};
+}
 
-export default PageContainer;
+export default PageContainer

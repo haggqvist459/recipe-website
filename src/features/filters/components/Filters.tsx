@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '@/integrations/redux'
 import { fetchCuisines, fetchMainIngredients } from '@/integrations/supabase/services'
 import { HorizontalMenuWrapper } from '@/components/layout'
-import { ArrowIcon } from '@/components/icons'
 import { SORTING_FILTERS } from '../constants'
 import { setFilterList, setActiveFilter, setActiveSorting } from '../slice'
 import { SortingFilterKey } from '../types'
@@ -10,6 +9,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useNotification } from '@/contexts/NotificationContext'
 import { translateText } from '@/shared'
 import { handleError } from '@/errorHandling'
+import ChevronRight from '@/components/icons/ChevronRight'
 
 
 
@@ -36,7 +36,7 @@ const Filters = () => {
         dispatch(setFilterList({ filterCategory: "types", list: result }))
       } catch (error) {
         const errorMessage = handleError(error)
-        showToast(errorMessage, 'error')      
+        showToast(errorMessage, 'error')
       }
     }
 
@@ -47,7 +47,7 @@ const Filters = () => {
       } catch (error) {
         const errorMessage = handleError(error)
         showToast(errorMessage, 'error')
-        
+
       }
     }
 
@@ -59,41 +59,41 @@ const Filters = () => {
     <div className="px-3 w-full bg-primary flex flex-col items-center mx-auto">
       <HorizontalMenuWrapper>
         <button
-          className="flex space-x-1 items-center disabled:opacity-50"
+          className="flex space-x-1 items-center disabled:opacity-50 text-ceramic"
           onClick={() => setShowTypes(prev => !prev)}
           disabled={typeFilters.length === 0}
         >
           {translateText('filter', 'category', language)}
           <div
-            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showTypes ? 'rotate-0' : '-rotate-90'
+            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showTypes ? 'rotate-90' : 'rotate-0'
               }`}
           >
-            <ArrowIcon strokeWidth={3} />
+            <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
           </div>
         </button>
         <button
-          className="flex space-x-1 items-center disabled:opacity-50"
+          className="flex space-x-1 items-center disabled:opacity-50 text-ceramic"
           onClick={() => setShowCuisines(prev => !prev)}
           disabled={cuisineFilters.length === 0}
         >
           {translateText('filter', 'cuisines', language)}
           <div
-            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showCuisines ? 'rotate-0' : '-rotate-90'
+            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showCuisines ? 'rotate-90' : 'rotate-0'
               }`}
           >
-            <ArrowIcon strokeWidth={3} />
+            <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
           </div>
         </button>
         <button
-          className="flex space-x-1 items-center"
+          className="flex space-x-1 items-center text-ceramic"
           onClick={() => setShowSort(prev => !prev)}
         >
           {translateText('filter', 'sort', language)}
           <div
-            className={`transform transition-transform duration-300 ease-in-out ${showSort ? 'rotate-0' : '-rotate-90'
+            className={`transform transition-transform duration-300 ease-in-out ${showSort ? 'rotate-90' : 'rotate-0'
               }`}
           >
-            <ArrowIcon strokeWidth={3} />
+            <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
           </div>
         </button>
       </HorizontalMenuWrapper>
@@ -102,11 +102,9 @@ const Filters = () => {
           {typeFilters.map(typeFilter => (
             <button
               key={typeFilter.id}
-              className={
-                selectedTypeFilters.some(selected => selected.id === typeFilter.id)
-                  ? 'text-primary-text underline decoration-2'
-                  : 'text-primary-text font-light'
-              }
+              className={`text-ceramic ${selectedTypeFilters.some(selected => selected.id === typeFilter.id)
+                ? 'underline decoration-2'
+                : 'font-light'}`}
               onClick={() => dispatch(setActiveFilter({ filterCategory: "types", filter: typeFilter }))}
             >
               {typeFilter[`${language}_text`]}
@@ -122,11 +120,9 @@ const Filters = () => {
           {cuisineFilters.map(cuisineFilter => (
             <button
               key={cuisineFilter.id}
-              className={
-                selectedCuisineFilters.some(selected => selected.id === cuisineFilter.id)
-                  ? 'text-primary-text underline decoration-2'
-                  : 'text-primary-text font-light'
-              }
+              className={`text-ceramic ${selectedCuisineFilters.some(selected => selected.id === cuisineFilter.id)
+                ? 'underline decoration-2'
+                : 'font-light'}`}
               onClick={() => dispatch(setActiveFilter({ filterCategory: "cuisines", filter: cuisineFilter }))}
             >
               {cuisineFilter[`${language}_text`]}
@@ -142,11 +138,9 @@ const Filters = () => {
           {Object.entries(SORTING_FILTERS).map(([sortingKey, sortingData]) => (
             <button
               key={sortingKey}
-              className={
-                selectedSortingFilter === sortingKey
-                  ? 'text-primary-text underline decoration-2'
-                  : 'text-primary-text font-light'
-              }
+              className={`text-ceramic ${selectedSortingFilter === sortingKey
+                  ? 'underline decoration-2'
+                  : 'font-light'}`}
               onClick={() => dispatch(setActiveSorting(sortingKey as SortingFilterKey))}
             >
               {sortingData[language]}

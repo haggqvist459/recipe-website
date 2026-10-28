@@ -1,16 +1,19 @@
 import { supabase } from '@/integrations/supabase/client'
-import { DB_COLUMNS, DB_TABLES } from '@/shared/constants'
+import { DB_COLUMNS } from '@/shared/constants'
 
 export const selectAllFavourites = async (uid: string) => {
   const { data } = await supabase
     .from('favourites')
     .select(`
-    *,
-    ${DB_TABLES.RECIPES}:${DB_COLUMNS.FAVOURITES.RECIPE_ID}(
-      ${DB_COLUMNS.RECIPES.TITLE}
-    )
+      *,
+      recipes(
+        ${DB_COLUMNS.RECIPES.TITLE},
+        cuisines(*),
+        main_ingredients(*)
+      )
     `)
     .eq(DB_COLUMNS.FAVOURITES.USER_ID, uid)
+    .order('created_at', { ascending: false})
     .throwOnError()
 
   return data

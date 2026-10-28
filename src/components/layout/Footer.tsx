@@ -27,7 +27,7 @@ const Footer = () => {
         >
           <CogWheel />
         </div>
-        <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-white-text'>{translateText("footer", "codeGitHub", language)}</a>
+        <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-ceramic'>{translateText("footer", "codeGitHub", language)}</a>
       </div>
     </footer>
   )

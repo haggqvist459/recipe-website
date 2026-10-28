@@ -85,13 +85,13 @@ const loadUserState = async (existingUser?: User) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChange((event, session) => {
-      console.log('AUTH EVENT:', event, 'User ID:', session?.user?.id)
+      // console.log('AUTH EVENT:', event, 'User ID:', session?.user?.id)
 
       switch (event) {
         case 'INITIAL_SESSION':
           const currentUser = session?.user ?? null
           if (currentUser) {
-            console.log("INITIAL_SESSION, found currentUser")
+            // console.log("INITIAL_SESSION, found currentUser")
             loadUserState(currentUser)
           } else {
             setUser(null)

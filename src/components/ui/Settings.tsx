@@ -18,9 +18,9 @@ const Settings = ({ isOpen, handleClose }: Props) => {
       onClick={handleClose}
     >
       <div className="flex justify-between mt-2">
-        <Heading title={translateText('settings', "title", language)} headingType="sub-heading" textColourOverride="text-white-text" />
+        <Heading title={translateText('settings', "title", language)} headingType="sub-heading" textColourOverride="text-ceramic" />
         <div onClick={handleClose}>
-          <Close colour="text-white-text"/>
+          <Close colour="text-ceramic"/>
         </div>
       </div>
       <div className="w-full flex justify-start space-x-2">
@@ -28,7 +28,7 @@ const Settings = ({ isOpen, handleClose }: Props) => {
           <button
             key={code}
             onClick={() => setLanguage(code)}
-            className={`py-2 font-light text-white-text ${language === code ? 'font-normal underline decoration-1' : ''}`}
+            className={`py-2 font-light text-ceramic ${language === code ? 'font-normal underline decoration-1' : ''}`}
           >
             {label}
           </button>
