@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/integrations/redux'
 import { deleteRecipeService, fetchAllRecipes, } from '@/integrations/supabase/services'
-import { LoadingComponent, ErrorComponent } from "@/components/ui"
+import { LoadingComponent, ErrorComponent, Heading } from "@/components/ui"
 import { useLanguage, useNotification, } from '@/contexts'
 import RecipeManagementCard from './RecipeManagementCard'
 import { setRecipes, removeRecipe } from '../slice'
@@ -22,7 +22,7 @@ const RecipeManagementList = () => {
 
 
   useEffect(() => {
-    if (!needsRefresh && recipeList.length > 0) return
+    if (!needsRefresh && Object.keys(recipeList).length > 0) return
 
     setLoading(true)
 
@@ -33,12 +33,12 @@ const RecipeManagementList = () => {
       } catch (error) {
         setError(handleError(error))
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    loadRecipes();
-  }, [needsRefresh, language]);
+    loadRecipes()
+  }, [needsRefresh, language])
 
   const handleDelete = (recipeId: string, recipeTitle: string) => {
     setModalState({
@@ -62,24 +62,27 @@ const RecipeManagementList = () => {
   }
 
   if (loading) {
-    return <LoadingComponent />;
+    return <LoadingComponent />
   }
 
   if (error) {
-    return <ErrorComponent errorMessage={error} />;
+    return <ErrorComponent errorMessage={error} />
   }
 
   return (
-    <div className='px-5 w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-5 mb-10'>
-      {recipeList.map(recipe => (
+    <div className='px-5 w-full grid grid-cols-1 gap-2 mt-5 mb-10'>
+      <div className="hidden lg:block">
+        <Heading title={`Recipes (${Object.values(recipeList).length})`} headingType='sub-heading'/>
+      </div>
+      {Object.values(recipeList).map(recipe => (
         <RecipeManagementCard
-          key={recipe.id} 
-          recipe={recipe} 
+          key={recipe.id}
+          recipe={recipe}
           onDelete={() => handleDelete(recipe.id, recipe.title)}
-          />
+        />
       ))}
     </div>
-  );
+  )
 }
 
-export default RecipeManagementList;
+export default RecipeManagementList

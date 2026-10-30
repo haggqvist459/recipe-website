@@ -3,7 +3,7 @@ import { RootState } from '@/integrations/redux/store'
 
 
 const selectRecipes = (state: RootState) => state.recipeList.recipes
-const selectSelectedTypeFilters = (state: RootState) => state.filters.selectedTypeFilters
+const selectSelectedTypeFilters = (state: RootState) => state.filters.selectedMainIngredientFilters
 const selectSelectedCuisineFilters = (state: RootState) => state.filters.selectedCuisineFilters
 const selectSelectedSortingFilter = (state: RootState) => state.filters.selectedSortingFilter
 
@@ -11,7 +11,7 @@ const selectSelectedSortingFilter = (state: RootState) => state.filters.selected
 export const selectFilteredRecipes = createSelector(
   [selectRecipes, selectSelectedTypeFilters, selectSelectedCuisineFilters, selectSelectedSortingFilter],
   (recipes, typeFilters, cuisineFilters, sortingFilter) => {
-    let filtered = recipes
+    let filtered = Object.values(recipes)
 
 
     if (typeFilters.length > 0) {

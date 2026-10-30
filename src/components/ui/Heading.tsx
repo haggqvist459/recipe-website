@@ -1,6 +1,6 @@
 type Props = {
   title: string,
-  headingType?: 'section-heading' | 'main-heading' | 'sub-heading'
+  headingType?: 'section-heading' | 'main-heading' | 'sub-heading' | 'small-heading'
   textColourOverride?: string
 }
 

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/integrations/redux/hooks"
 import { resetState, setErrors, clearErrors } from "@/features/recipeForms"
 import { processRecipe, processRecipeUpdate } from "@/integrations/supabase/services"
-import { useAuthenticatedUser, useLanguage, useNotification } from "@/contexts"
+import { useAuthenticatedUser, useNotification } from "@/contexts"
 import { ROUTES } from "@/shared"
 import { validateRecipeDraft } from "./utils/formValidation"
 import { handleError } from "@/errorHandling"
@@ -11,7 +11,6 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
 
   const navigate = useNavigate()
   const user = useAuthenticatedUser()
-  const { language } = useLanguage()
   const { setModalState, resetModalState } = useNotification()
   const recipeDraft = useAppSelector(state => state.recipeForms.recipeDraft)
   const dispatch = useAppDispatch()
@@ -72,7 +71,7 @@ export const useRecipeFormHandlers = (recipeId?: string) => {
     }
 
     try {
-      await processRecipeUpdate(user.id, recipeId, recipeDraft, language)
+      await processRecipeUpdate(user.id, recipeId, recipeDraft)
       setModalState({
         isOpen: true,
         title: 'Recipe Updated',

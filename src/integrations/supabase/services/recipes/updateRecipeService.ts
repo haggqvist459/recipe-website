@@ -1,16 +1,16 @@
 import { selectSingleRecipe, updateRecipe, deleteRecipeCuisines, deleteRecipeMainIngredients, insertRecipeCuisines, insertRecipeMainIngredients, selectUserRole } from '@/integrations/supabase/queries'
-import { LanguageType, RecipeDraftType } from '@/shared/types'
+import { RecipeDraftType } from '@/shared/types'
 import { mapSingleRecipeDbToUI, diffRecipes } from './utils'
 
 
 
-export const processRecipeUpdate = async (uid: string, recipeId: string, recipeDraft: RecipeDraftType, language: LanguageType) => {
+export const processRecipeUpdate = async (uid: string, recipeId: string, recipeDraft: RecipeDraftType) => {
   
     const userRole = await selectUserRole(uid);
     if (userRole.rank != 3) {
       throw new Error('You do not have permission to edit a recipe. If this is wrong, contact the webmaster. ')
     }
-    const originalRecipeDb = await selectSingleRecipe(recipeId, language)
+    const originalRecipeDb = await selectSingleRecipe(recipeId)
     const mappedOriginalRecipe = mapSingleRecipeDbToUI(originalRecipeDb)
 
     const recipeDiffs = diffRecipes(mappedOriginalRecipe, recipeDraft)

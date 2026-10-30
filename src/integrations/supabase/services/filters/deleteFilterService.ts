@@ -3,7 +3,7 @@ import { FilterCategoryType } from "@/shared/types"
 
 export const deleteFilterService = async (filterCategory: FilterCategoryType, filterId: string) => {
 
-    if (filterCategory === 'types') {
+    if (filterCategory === 'mainIngredients') {
       await deleteMainIngredient(filterId)
     } else if (filterCategory === 'cuisines') {
       await deleteCuisine(filterId)

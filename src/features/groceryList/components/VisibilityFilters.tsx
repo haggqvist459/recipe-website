@@ -4,6 +4,7 @@ import { useLanguage } from "@/contexts"
 import { translateText } from "@/shared"
 import { setVisibilityFilter } from "../slice"
 import { HorizontalMenuWrapper } from "@/components/layout"
+import { HorizontalMenuButton } from "@/components/ui"
 
 const VisibilityFilters = () => {
 
@@ -14,13 +15,9 @@ const VisibilityFilters = () => {
   return (
     <HorizontalMenuWrapper>
       {Object.values(VISIBILITY_FILTERS).map(filter => (
-        <button
-          key={filter}
-          className={`text-primary-text ${filter === activeFilter ? 'underline' : ''}`}
-          onClick={() => dispatch(setVisibilityFilter(filter))}
-        >
+        <HorizontalMenuButton key={filter} onClick={() => dispatch(setVisibilityFilter(filter))} isActive={filter === activeFilter}>
           {translateText('visibilityFilters', filter, language)}
-        </button>
+        </HorizontalMenuButton>
       ))}
     </HorizontalMenuWrapper>
   )

@@ -12,7 +12,7 @@ export const fetchFilteredRecipes = async ({
   cuisineFilters?: FilterOptionType[]
   sortingFilter: SortingFilterKey
   language: LanguageType
-}): Promise<RecipeType[]> => {
+}): Promise<Record<string, RecipeType>> => {
 
   const typeIds = typeFilters?.map((type) => type.id)
   const cuisineIds = cuisineFilters?.map((cuisine) => cuisine.id)

@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
 import { UNITS, translateText } from "@/shared"
 import { FadeWrapper, } from "@/components/layout"
 import { Input, Dropdown, createDropdownOptions, Heading, ToggleButton, IconButton } from "@/components/ui"
-import { Trashcan } from "@/components/icons"
+import { TrashOutline } from "@/components/icons"
 import { addIngredient, updateIngredientField, removeIngredient, selectIngredients, setCurrentSection, setIngredients } from "@/features/recipeForms"
 import { parseIngredientList } from "../../utils/parseIngredients"
 import SectionWrapper from "../shared/SectionWrapper"
@@ -124,7 +124,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         onClick={() => dispatch(removeIngredient({ id: ingredient.id }))}
                         className="mb-0.5 mr-1"
                       >
-                        <Trashcan />
+                        <TrashOutline />
                       </IconButton>
                     </div>
                     <div className="flex flex-col xs:flex-row space-x-1 mt-1">

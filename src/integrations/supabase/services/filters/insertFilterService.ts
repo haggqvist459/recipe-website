@@ -7,7 +7,7 @@ export const insertFilterService = async (filterCategory: FilterCategoryType, fi
       ? { en_text: filterText, sv_text: '-' }
       : { en_text: '-', sv_text: filterText }
 
-    if (filterCategory === 'types') {
+    if (filterCategory === 'mainIngredients') {
       return await insertMainIngredient(newFilterData)
     } else if (filterCategory === 'cuisines') {
       return await insertCuisine(newFilterData)

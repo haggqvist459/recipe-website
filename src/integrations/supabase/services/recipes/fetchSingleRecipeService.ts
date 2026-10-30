@@ -1,10 +1,10 @@
 import { selectSingleRecipe } from '@/integrations/supabase/queries'
 import { mapSingleRecipeDbToUI } from "./utils"
-import { LanguageType, RecipeType } from '@/shared/types'
+import { RecipeType } from '@/shared/types'
 
 
 
-export const fetchSingleRecipe = async (id: string, language: LanguageType): Promise<RecipeType> => {
-    const dbData = await selectSingleRecipe(id, language)
+export const fetchSingleRecipe = async (id: string): Promise<RecipeType> => {
+    const dbData = await selectSingleRecipe(id)
     return mapSingleRecipeDbToUI(dbData)  
 }

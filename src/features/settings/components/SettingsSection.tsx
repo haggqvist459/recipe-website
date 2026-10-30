@@ -91,7 +91,7 @@ const SettingsSection = () => {
 
   return (
     <div className="w-full pt-5 px-5">
-      <Heading title={translateText('profile', 'settings', language)} headingType="sub-heading" />
+      <Heading title={`Account Details`} headingType="sub-heading" />
       <div className="space-y-1 mt-5">
         <div className="p-2 bg-ceramic rounded-lg border-1 border-secondary">
           <div className="flex justify-between">
@@ -111,7 +111,7 @@ const SettingsSection = () => {
                 value={newEmail}
               />
               <Input
-                id="currentPassword"
+                id="currentPassword-Email"
                 // label={translateText('profile', 'currentPassword', language)}
                 placeholder={translateText('profile', 'currentPassword', language)}
                 inputType="password"
@@ -165,7 +165,7 @@ const SettingsSection = () => {
                 value={confirmPassword}
               />
               <Input
-                id="currentPassword"
+                id="currentPassword-Password"
                 // label={translateText('profile', 'currentPassword', language)}
                 placeholder={translateText('profile', 'currentPassword', language)}
                 inputType="password"
@@ -185,7 +185,7 @@ const SettingsSection = () => {
                     setNewPassword('')
                     setConfirmPassword('')
                     setCurrentPassword('')
-                    setShowEmailFields(prev => !prev)
+                    setShowPasswordFields(prev => !prev)
                   }}
                   className="w-1/4 border-1 border-primary-text text-primary-text font-semibold rounded-lg p-1">
                   Cancel

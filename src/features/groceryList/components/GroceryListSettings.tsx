@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "@/integrations/redux"
 import { translateText } from "@/shared"
 import { fetchGroceryList, saveGroceryList, deleteGroceryList } from "@/integrations/supabase/services"
 import { loadListFromDB, resetState, } from "@/features/groceryList"
-import { CloudArrowDown, CloudArrowUp, Trashcan, SettingsCircle} from "@/components/icons"
+import { CloudArrowDown, CloudArrowUp, SettingsCircle, TrashOutline} from "@/components/icons"
 import { FadeInOutWrapper } from "@/components/layout"
 import { IconButton } from "@/components/ui"
 import { handleError } from "@/errorHandling"
@@ -102,7 +102,7 @@ const GroceryListSettings = ({ setShowListSettings, showListSettings }: Props) =
               onClick={() => handleDeleteList()}
             >
               <span className="font-light">{translateText('grocerySettings', 'delete', language)}</span>
-              <Trashcan />
+              <TrashOutline/>
             </IconButton>
           </div>
         </div>

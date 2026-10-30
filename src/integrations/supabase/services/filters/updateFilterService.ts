@@ -5,7 +5,7 @@ import { FilterCategoryType, LanguageType } from "@/shared/types"
 export const updateFilterService = async (updatedText: string, filterCategory: FilterCategoryType, filterId: string, language: LanguageType) => {
   
   try {
-    if (filterCategory === 'types') {
+    if (filterCategory === 'mainIngredients') {
       await updateMainIngredient(filterId, updatedText, language)
     } else if (filterCategory === 'cuisines') {
       await updateCuisine(filterId, updatedText, language)

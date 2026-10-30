@@ -19,7 +19,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
   const { language } = useLanguage()
 
   const metadata = useAppSelector(selectMetadata)
-  const typeFilters = useAppSelector(state => state.filters.typeFilters)
+  const typeFilters = useAppSelector(state => state.filters.mainIngredientFilters)
   const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters)
   const errors = useAppSelector(state => state.recipeForms.errors)
 
@@ -56,7 +56,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
           fetchMainIngredients(),
           fetchCuisines(),
         ])
-        dispatch(setFilterList({ filterCategory: "types", list: typesResult }))
+        dispatch(setFilterList({ filterCategory: "mainIngredients", list: typesResult }))
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }))
 
       } catch (err) {

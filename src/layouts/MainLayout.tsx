@@ -1,19 +1,13 @@
-import { Outlet, useLocation } from "react-router-dom"
-import { NavBar, Footer, FadeWrapper } from "@/components/layout"
+import { Outlet } from "react-router-dom"
+import { NavBar, Footer } from "@/components/layout"
 
 
 const MainLayout = () => {
-
-  const location = useLocation()
-  
-
   return (
-    <div className="bg-primary-bg min-h-screen flex flex-col relative">
+    <div className="bg-primary-bg h-dvh overflow-hidden flex flex-col">
       <NavBar />
-      <div className="flex-grow">
-        <FadeWrapper key={location.pathname}>
-          <Outlet />
-        </FadeWrapper>
+      <div className="flex-1 min-h-0 flex flex-col">
+        <Outlet/>
       </div>
       <Footer />
     </div>

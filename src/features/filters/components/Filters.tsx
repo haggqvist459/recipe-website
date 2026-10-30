@@ -19,13 +19,13 @@ const Filters = () => {
   const { showToast } = useNotification()
   const dispatch = useAppDispatch()
 
-  const [showTypes, setShowTypes] = useState(false)
+  const [showMainIngredients, setShowMainIngredients] = useState(false)
   const [showCuisines, setShowCuisines] = useState(false)
   const [showSort, setShowSort] = useState(false)
 
-  const typeFilters = useAppSelector(state => state.filters.typeFilters)
+  const mainIngredientFilters = useAppSelector(state => state.filters.mainIngredientFilters)
   const cuisineFilters = useAppSelector(state => state.filters.cuisineFilters)
-  const selectedTypeFilters = useAppSelector(state => state.filters.selectedTypeFilters)
+  const selectedTypeFilters = useAppSelector(state => state.filters.selectedMainIngredientFilters)
   const selectedCuisineFilters = useAppSelector(state => state.filters.selectedCuisineFilters)
   const selectedSortingFilter = useAppSelector(state => state.filters.selectedSortingFilter)
 
@@ -33,7 +33,7 @@ const Filters = () => {
     const loadTypes = async () => {
       try {
         const result = await fetchMainIngredients()
-        dispatch(setFilterList({ filterCategory: "types", list: result }))
+        dispatch(setFilterList({ filterCategory: "mainIngredients", list: result }))
       } catch (error) {
         const errorMessage = handleError(error)
         showToast(errorMessage, 'error')
@@ -60,12 +60,12 @@ const Filters = () => {
       <HorizontalMenuWrapper>
         <button
           className="flex space-x-1 items-center disabled:opacity-50 text-ceramic"
-          onClick={() => setShowTypes(prev => !prev)}
-          disabled={typeFilters.length === 0}
+          onClick={() => setShowMainIngredients(prev => !prev)}
+          disabled={mainIngredientFilters.length === 0}
         >
           {translateText('filter', 'category', language)}
           <div
-            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showTypes ? 'rotate-90' : 'rotate-0'
+            className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showMainIngredients ? 'rotate-90' : 'rotate-0'
               }`}
           >
             <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
@@ -98,16 +98,16 @@ const Filters = () => {
         </button>
       </HorizontalMenuWrapper>
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
-        <div className={`flex px-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap space-x-4 duration-300 ease-in-out ${showTypes ? 'translate-y-0 h-[32px]' : '-translate-y-full h-0'}`}>
-          {typeFilters.map(typeFilter => (
+        <div className={`flex px-2 items-center justify-start md:justify-center overflow-x-auto whitespace-nowrap space-x-4 duration-300 ease-in-out ${showMainIngredients ? 'translate-y-0 h-[32px]' : '-translate-y-full h-0'}`}>
+          {mainIngredientFilters.map(mainIngredient => (
             <button
-              key={typeFilter.id}
-              className={`text-ceramic ${selectedTypeFilters.some(selected => selected.id === typeFilter.id)
+              key={mainIngredient.id}
+              className={`text-ceramic ${selectedTypeFilters.some(selected => selected.id === mainIngredient.id)
                 ? 'underline decoration-2'
                 : 'font-light'}`}
-              onClick={() => dispatch(setActiveFilter({ filterCategory: "types", filter: typeFilter }))}
+              onClick={() => dispatch(setActiveFilter({ filterCategory: "mainIngredients", filter: mainIngredient }))}
             >
-              {typeFilter[`${language}_text`]}
+              {mainIngredient[`${language}_text`]}
             </button>
           ))}
         </div>

@@ -7,6 +7,6 @@ type ActiveRecipeType = RecipeType & {
 
 export type RecipeSliceState = { 
   needsRefresh: boolean,
-  recipes: RecipeType[],
+  recipes: Record<string, RecipeType>
   activeRecipe: ActiveRecipeType | null
 }

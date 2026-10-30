@@ -7,7 +7,7 @@ export type FilterOptionType = {
   categoryCounter: number
 }
 
-export type FilterCategoryType = 'types' | 'cuisines'
+export type FilterCategoryType = 'mainIngredients' | 'cuisines'
 
 export type SortingFilterKey =
   | "newest"

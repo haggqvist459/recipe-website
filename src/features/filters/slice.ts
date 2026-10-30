@@ -4,9 +4,9 @@ import { FilterOptionType, FilterCategoryType, LanguageType } from "@/shared/typ
 
 
 const initialState: FilterStateType = {
-  typeFilters: [],
+  mainIngredientFilters: [],
   cuisineFilters: [],
-  selectedTypeFilters: [],
+  selectedMainIngredientFilters: [],
   selectedCuisineFilters: [],
   selectedSortingFilter: 'newest'
 }
@@ -24,8 +24,8 @@ const filterSlice = createSlice({
       }>
     ) => {
       switch (action.payload.filterCategory) {
-        case 'types':
-          state.typeFilters = action.payload.list
+        case 'mainIngredients':
+          state.mainIngredientFilters = action.payload.list
           break
         case 'cuisines':
           state.cuisineFilters = action.payload.list
@@ -42,14 +42,14 @@ const filterSlice = createSlice({
       const { filterCategory, filter } = action.payload
 
       switch (filterCategory) {
-        case 'types':
-          const typeSelected = state.selectedTypeFilters.some(
+        case 'mainIngredients':
+          const typeSelected = state.selectedMainIngredientFilters.some(
             selected => selected.id === filter.id
           )
 
-          state.selectedTypeFilters = typeSelected
-            ? state.selectedTypeFilters.filter(selected => selected.id !== filter.id)
-            : [...state.selectedTypeFilters, filter]
+          state.selectedMainIngredientFilters = typeSelected
+            ? state.selectedMainIngredientFilters.filter(selected => selected.id !== filter.id)
+            : [...state.selectedMainIngredientFilters, filter]
           break
         case 'cuisines':
           const cuisineSelected = state.selectedCuisineFilters.some(
@@ -79,8 +79,8 @@ const filterSlice = createSlice({
       const { filterCategory, filter } = action.payload
 
       switch (filterCategory) {
-        case 'types':
-          state.typeFilters.push(filter)
+        case 'mainIngredients':
+          state.mainIngredientFilters.push(filter)
           break
         case 'cuisines':
           state.cuisineFilters.push(filter)
@@ -97,11 +97,11 @@ const filterSlice = createSlice({
       const { filterCategory, filterId } = action.payload
 
       switch (filterCategory) {
-        case 'types':
-          state.typeFilters = state.typeFilters.filter(f => f.id !== filterId)
+        case 'mainIngredients':
+          state.mainIngredientFilters = state.mainIngredientFilters.filter(m => m.id !== filterId)
           break
         case 'cuisines':
-          state.cuisineFilters = state.cuisineFilters.filter(f => f.id !== filterId)
+          state.cuisineFilters = state.cuisineFilters.filter(m => m.id !== filterId)
           break
         default:
           console.error("filterSlice - deleteFilter error: incorrect filterCategory")
@@ -121,14 +121,14 @@ const filterSlice = createSlice({
       const textField = `${language}_text` as 'en_text' | 'sv_text'
 
       switch (filterCategory) {
-        case 'types':
-          const typeFilter = state.typeFilters.find(f => f.id === filterId)
+        case 'mainIngredients':
+          const typeFilter = state.mainIngredientFilters.find(m => m.id === filterId)
           if (typeFilter) {
             typeFilter[textField] = updatedText
           }
           break
         case 'cuisines':
-          const cuisineFilter = state.cuisineFilters.find(f => f.id === filterId)
+          const cuisineFilter = state.cuisineFilters.find(m => m.id === filterId)
           if (cuisineFilter) {
             cuisineFilter[textField] = updatedText
           }

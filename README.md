@@ -12,6 +12,12 @@
 - [x] Simplify ingredients and instruction input - copy paste friendly
 - [x] Form validation, ensure non-empty fields are not left empty for required inputs
 - [x] For how many people are the recipe? 
+- [ ] Finalise CreateRecipe forms:
+  - [ ] hover: border on buttons in CreateRecipe components 
+  - [ ] State is cleared after successful recipe insertion but no re-direct from preview page
+  - [ ] Must also trigger a new fetch of recipes 
+  - [x] Form validation - no validation occuring on the large input fields on ingredients and instructions 
+    - [x] Highlighting input with missing information 
 
 ## Edit Form 
 - [x] Edit, remove & Add for metadata
@@ -33,8 +39,15 @@
 - [x] List all recipes 
 - [x] Add the filters as dropdowns 
 - [x] Details view 
+- [x] Lock favourite icon size on RecipeCard.tsx
+
+
+### Details Page: 
+- [x] Refactor RecipeDetails.tsx - remove double markup
 - [x] Mark recipe as favorite for users 
 - [x] Modify the number of people the recipe is for 
+- [ ] Fix the 'add to grocery list' CSS in recipe details, add hover effect and text when clicked   
+- [x] Fix placement of favourite icon on RecipeDetail.tsx
 
 ### Profile Page: 
 - [x] Change email
@@ -42,6 +55,7 @@
 - [x] Edit favorite lists - view / delete
 - [ ] Meal planner / weekly list settings
 - [ ] Form validation on Inputs, highlight missing information
+- [x] Fix the empty favourite list use case on profile page 
 
 ### Weekly lists: 
 - [ ] Generate lists based on full randomisation 
@@ -62,6 +76,7 @@
 - [ ] Finalise null checks 
 - [ ] Inspect sync of local and remote grocery lists
 - [ ] Add null checks to grocery list db actions for more precise toast messages
+- [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
 
 ### Success / Error Toast & Modal
 - [x] Ensure dynamic time before disappearing
@@ -81,58 +96,48 @@
 - [ ] Standardise types 
 - [ ] Fix the recipe mapping functions - remove as casts, enforce type safety 
 - [ ] Migrate the ingredients and instruction jsonb[] to separate tables 
+- [ ] Ensure similar structure on the service and query layers 
+  - [ ] Same try / catch principles 
+  - [ ] Same import / export principles
+  - [ ] Naming standards 
 
-## Auth: 
+### Contexts: 
+- [ ] Separate contexts. E.g, AuthContext should not reference NotificationContext but rather return a value to AuthPage.tsx and let it display the toast 
+- [x] Refactor all Modal usage to use the new Context 
+
+### Auth / Auth Context: 
 - [x] useContext for authentication 
 - [x] AdminLayout to protect authenticated paths 
 - [x] Use user roles to determine access
+- [ ] Troubleshoot sign out issues
 
+### NotificationContext:
+- [ ] Review button colours, bg and text. 
 
-## Search function
+### Search function
 - [ ] search function should include matches on recipe titles, descriptions, and from the ingredient lists
 
- ### MISC:
- - [x] Language options
+### Language Options: 
+- [x] Language options
   - [x] Translate web elements between ENG/SWE (headings, menu labels etc)
   - [ ] Translate recipes between ENG/SWE
   - [ ] Proper unit translations for ingredients
   - [ ] Add missing translations for static web elements such as headings and buttons
 
+### Project wide components: 
 - [ ] Clean up horizontal menu styles in NavMenu - follow Filters.tsx
 - [ ] Look into the horizontal menu wrapper, see if the active section state can be repeated less 
 - [ ] Refactor Output.tsx 
- - [ ] Ensure full reusability 
- - [ ] Include FadeInOutWrapper - allow fade effect on language change
-
+  - [ ] Ensure full reusability 
+  - [ ] Include FadeInOutWrapper - allow fade effect on language change
 - [ ] Include FadeInOutWrapper on Heading.tsx - allow fade effect on language change 
-
-- [ ] Ensure similar structure on the service and query layers 
-  - [ ] Same try / catch principles 
-  - [ ] Same import / export principles
-  - [ ] Naming standards 
- 
-
-- [x] Refactor RecipeDetails.tsx - remove double markup
-- [ ] Look into FadeWrappers dubious useEffect 
+- [ ] Look into FadeWrappers useEffects 
 - [ ] Look into Fading in / out the recipe list once filters are applied 
-- [x] Fix the empty favourite list use case on profile page 
-- [x] Fix placement of favourite icon on RecipeDetail.tsx
-- [x] Lock favourite icon size on RecipeCard.tsx
-- [ ] Finalise CreateRecipe forms:
-  - [ ] hover: border on buttons in CreateRecipe components 
-  - [ ] State is cleared after successful recipe insertion but no re-direct from preview page
-  - [ ] Must also trigger a new fetch of recipes 
-  - [x] Form validation - no validation occuring on the large input fields on ingredients and instructions 
-    - [x] Highlighting input with missing information 
-- [x] Button highlights - apply new utility (button-click) from index.css on buttons
-- [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [x] Refactor ButtonRow component - use Tailwind instead of JavaScript
-- [x] Refactor all Modal usage to use the new Context 
-- [ ] Fix the 'add to grocery list' CSS in recipe details, add hover effect and text when clicked   
+- [ ] Button highlights - apply new utility (button-click) from index.css on buttons
 
-- [ ] Ensure that grocery list ingredient aggregation can identify 'tomato', 'Tomatoes' and 'tomatoes' etc as the same ingredient. 
-- [ ] Separate contexts. E.g, AuthContext should not reference NotificationContext but rather return a value to AuthPage.tsx and let it display the toast 
+### MISC:
 
+- [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [ ] Sort out circular imports mess 
-
 - [ ] Have title in nav bar show the current page instead of just 'recipes' 

@@ -10,7 +10,7 @@ type Props = {
 
 const ResponsiveSection = ({
   isActive,
-  fadeDuration = 150,
+  fadeDuration = 200,
   children
 }: Props) => {
   const [shouldShow, setShouldShow] = useState(isActive)
@@ -40,7 +40,7 @@ const ResponsiveSection = ({
           {children}
         </FadeWrapper>
       ) : (
-        <FadeInOutWrapper isVisible={shouldShow}>
+        <FadeInOutWrapper isVisible={shouldShow} duration={fadeDuration}>
           {children}
         </FadeInOutWrapper>
       )}

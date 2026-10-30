@@ -6,7 +6,7 @@ import { RecipeType } from "@/shared/types"
 
 const initialState: RecipeSliceState = {
   needsRefresh: true,
-  recipes: [],
+  recipes: {},
   activeRecipe: null
 }
 
@@ -14,7 +14,7 @@ const recipeSlice = createSlice({
   name: 'recipeSlice',
   initialState,
   reducers: {
-    setRecipes: (state, action: PayloadAction<RecipeType[]>) => {
+    setRecipes: (state, action: PayloadAction<Record<string, RecipeType>>) => {
       state.recipes = action.payload
       state.needsRefresh = false
     },
@@ -22,7 +22,9 @@ const recipeSlice = createSlice({
       state.needsRefresh = true
     },
     removeRecipe: (state, action: PayloadAction<string>) => {
-      state.recipes = state.recipes.filter(recipe => recipe.id !== action.payload);
+      const id = action.payload
+      const { [id]: removedRecipe, ...remainingRecipes } = state.recipes
+      state.recipes = remainingRecipes
     },
     resetState: () => initialState
   }

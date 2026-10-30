@@ -24,9 +24,6 @@ const ProfilePage = () => {
               <button className="text-sm font-light text-ceramic hover:underline" onClick={async () => await handleSignOut()}>
                 Sign Out
               </button>
-              {/* <IconButton onClick={async () => await handleSignOut()}>
-                <SignOut colour="text-ceramic" />
-              </IconButton> */}
             </HorizontalMenuWrapper>
           </div>
         </div>
@@ -68,3 +65,4 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
+

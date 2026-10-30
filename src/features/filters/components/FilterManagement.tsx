@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/integrations/redux'
 import { fetchCuisines, fetchMainIngredients, deleteFilterService, insertFilterService, updateFilterService } from '@/integrations/supabase/services'
 import { LoadingComponent, Heading, Input, HorizontalMenuButton, IconButton } from '@/components/ui'
 import { AddListItem } from '@/components/icons'
-import { HorizontalMenuWrapper } from '@/components/layout'
+import { HorizontalMenuWrapper, ResponsiveWrapper } from '@/components/layout'
 import { useLanguage, useNotification } from '@/contexts'
 import { setFilterList, addFilter, deleteFilter, updateFilter } from '../slice'
 import FilterManagementItem from './FilterManagementItem'
@@ -18,13 +18,13 @@ const FilterManagement = () => {
   const dispatch = useAppDispatch()
 
   const cuisines = useAppSelector(state => state.filters.cuisineFilters)
-  const types = useAppSelector(state => state.filters.typeFilters)
+  const mainIngredients = useAppSelector(state => state.filters.mainIngredientFilters)
 
   const [loading, setLoading] = useState(false)
-  const [newType, setNewType] = useState('')
+  const [newMainIngredient, setNewMainIngredient] = useState('')
   const [newCuisine, setNewCuisine] = useState('')
 
-  const [activeFilter, setActiveFilter] = useState<"types" | "cuisines">("types")
+  const [activeFilter, setActiveFilter] = useState<"mainIngredients" | "cuisines">("mainIngredients")
 
   useEffect(() => {
     setLoading(true)
@@ -37,7 +37,7 @@ const FilterManagement = () => {
           fetchCuisines(),
         ])
 
-        dispatch(setFilterList({ filterCategory: "types", list: typesResult }))
+        dispatch(setFilterList({ filterCategory: "mainIngredients", list: typesResult }))
         dispatch(setFilterList({ filterCategory: "cuisines", list: cuisinesResult }))
 
       } catch (error) {
@@ -83,8 +83,8 @@ const FilterManagement = () => {
     try {
       const newFilter = await insertFilterService(filterCategory, filterText, language)
       dispatch(addFilter({ filterCategory, filter: newFilter }))
-      if (filterCategory === 'types') {
-        setNewType('')
+      if (filterCategory === 'mainIngredients') {
+        setNewMainIngredient('')
       } else {
         setNewCuisine('')
       }
@@ -97,11 +97,11 @@ const FilterManagement = () => {
 
 
   return (
-    <>
-      <HorizontalMenuWrapper>
+    <div className=''>
+      <HorizontalMenuWrapper lgHidden={true}>
         <HorizontalMenuButton
-          isActive={activeFilter === 'types'}
-          onClick={() => setActiveFilter('types')}
+          isActive={activeFilter === 'mainIngredients'}
+          onClick={() => setActiveFilter('mainIngredients')}
         >
           {translateText('filterManagement', 'filterManagementMainIngredients', language)}
         </HorizontalMenuButton>
@@ -112,53 +112,47 @@ const FilterManagement = () => {
           {translateText('filterManagement', 'filterManagementCuisines', language)}
         </HorizontalMenuButton>
       </HorizontalMenuWrapper>
-
-      <div className='px-5 w-full mt-5 mb-10'>
-        {activeFilter === 'types' && (
-          <div className="w-full flex flex-col">
-            <div className="flex justify-center">
-              <Heading title={translateText('filterManagement', 'filterManagementMainIngredients', language)} headingType='sub-heading' />
-            </div>
-            <div className="flex-grow">
-              {types.map(type => (
-                <FilterManagementItem
-                  key={type.id}
-                  filter={type}
-                  onDelete={() => handleDelete('types', type.id, type[`${language}_text`])}
-                  onUpdate={(updatedText) => handleUpdate('types', type.id, updatedText)}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between items-center space-x-2 pt-5 mt-auto mb-2">
-              <Input
-                id='addType'
-                onChange={(e) => setNewType(e.target.value)}
-                placeholder={translateText('filterManagement', 'newMainIngredient', language)}
-                value={newType}
+      <div className="min-h-screen overflow-y-auto space-y-2 bg-marblewhite p-2">
+        <ResponsiveWrapper isActive={activeFilter === 'mainIngredients'}>
+          <div className="hidden lg:block lg:py-2">
+            <Heading title='Categories' headingType='sub-heading' />
+          </div>
+          <div className="bg-ceramic rounded-lg border-secondary p-5 space-y-5">
+            {mainIngredients.map(mainIngredient => (
+              <FilterManagementItem
+                key={mainIngredient.id}
+                filter={mainIngredient}
+                onDelete={() => handleDelete('mainIngredients', mainIngredient.id, mainIngredient[`${language}_text`])}
+                onUpdate={(updatedText) => handleUpdate('mainIngredients', mainIngredient.id, updatedText)}
               />
-              <IconButton onClick={() => handleAdd('types', newType)}>
+            ))}
+            <div className="flex justify-between items-center space-x-2 mt-5">
+              <Input
+                id='addMainIngredient'
+                onChange={(e) => setNewMainIngredient(e.target.value)}
+                placeholder={translateText('filterManagement', 'newMainIngredient', language)}
+                value={newMainIngredient}
+              />
+              <IconButton onClick={() => handleAdd('mainIngredients', newMainIngredient)}>
                 <AddListItem size='size-8' />
               </IconButton>
             </div>
           </div>
-        )}
-
-        {activeFilter === 'cuisines' && (
-          <div className="w-full flex flex-col">
-            <div className="flex justify-center">
-              <Heading title={translateText('filterManagement', 'filterManagementCuisines', language)} headingType='sub-heading' />
-            </div>
-            <div className="flex-grow">
-              {cuisines.map(cuisine => (
-                <FilterManagementItem
-                  key={cuisine.id}
-                  filter={cuisine}
-                  onDelete={() => handleDelete('cuisines', cuisine.id, cuisine[`${language}_text`])}
-                  onUpdate={(updatedText) => handleUpdate('cuisines', cuisine.id, updatedText)}
-                />
-              ))}
-            </div>
-            <div className="flex justify-between items-center space-x-2 pt-5 mb-2 mt-auto">
+        </ResponsiveWrapper>
+        <ResponsiveWrapper isActive={activeFilter === 'cuisines'}>
+          <div className="hidden lg:block lg:py-2">
+            <Heading title='Cuisines' headingType='sub-heading' />
+          </div>
+          <div className="bg-ceramic rounded-lg border-secondary p-5 space-y-5">
+            {cuisines.map(cuisine => (
+              <FilterManagementItem
+                key={cuisine.id}
+                filter={cuisine}
+                onDelete={() => handleDelete('cuisines', cuisine.id, cuisine[`${language}_text`])}
+                onUpdate={(updatedText) => handleUpdate('cuisines', cuisine.id, updatedText)}
+              />
+            ))}
+            <div className="flex justify-between items-center space-x-2 mt-5">
               <Input
                 id='addCuisine'
                 onChange={(e) => setNewCuisine(e.target.value)}
@@ -170,9 +164,9 @@ const FilterManagement = () => {
               </IconButton>
             </div>
           </div>
-        )}
+        </ResponsiveWrapper>
       </div>
-    </>
+    </div>
   )
 }
 

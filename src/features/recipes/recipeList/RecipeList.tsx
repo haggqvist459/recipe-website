@@ -46,7 +46,7 @@ const RecipeList = () => {
   
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-10'>
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10'>
       {filteredRecipes.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}

@@ -45,7 +45,7 @@ const NavMenu = ({ isExpanded, onClick }: Props) => {
 
 
   return (
-    <div className="overflow-hidden transition-all duration-500 ease-in-out" style={{ height: isExpanded ? '36px' : '0px' }}>
+    <div className="overflow-hidden transition-all duration-200 ease-in-out" style={{ height: isExpanded ? '36px' : '0px' }}>
       <div className="relative w-full mx-auto">
         <div className={`flex px-5 items-center justify-start md:justify-end overflow-x-auto whitespace-nowrap space-x-4 duration-500 ease-in-out ${isExpanded ? "translate-y-0" : "-translate-y-full"
           }`}

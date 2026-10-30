@@ -13,28 +13,28 @@ const Settings = ({ isOpen, handleClose }: Props) => {
   const { language, setLanguage } = useLanguage()
 
   return (
-    <div
-      className={`overflow-hidden px-5 w-full bg-primary transition-all duration-500 ease-in-out ${isOpen ? 'h-20' : 'h-0'}`}
-      onClick={handleClose}
-    >
+    <div className={`overflow-hidden px-5 w-full bg-primary transition-all duration-500 ease-in-out ${isOpen ? 'h-20' : 'h-0'}`}>
       <div className="flex justify-between mt-2">
         <Heading title={translateText('settings', "title", language)} headingType="sub-heading" textColourOverride="text-ceramic" />
         <div onClick={handleClose}>
-          <Close colour="text-ceramic"/>
+          <Close colour="text-ceramic" />
         </div>
       </div>
       <div className="w-full flex justify-start space-x-2">
         {LANGUAGES.map(({ code, label }) => (
           <button
             key={code}
-            onClick={() => setLanguage(code)}
+            onClick={() => {
+              setLanguage(code)
+              handleClose()
+            }}
             className={`py-2 font-light text-ceramic ${language === code ? 'font-normal underline decoration-1' : ''}`}
           >
             {label}
           </button>
         ))}
       </div>
-    </div>
+    </div >
   )
 }
 

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useLocation, useParams } from "react-router-dom"
-import { useLanguage } from "@/contexts"
 import { fetchSingleRecipe } from "@/integrations/supabase/services"
 import { ErrorComponent, LoadingComponent } from "@/components/ui"
 import { PageContainer } from "@/components/layout"
@@ -10,7 +9,6 @@ import { handleError } from "@/errorHandling"
 
 const DetailsPage = () => {
 
-  const { language } = useLanguage()
   const location = useLocation()
   const { id } = useParams<{ id: string }>()
   const [loading, setLoading] = useState(false)
@@ -23,19 +21,23 @@ const DetailsPage = () => {
     if (recipeFromState) {
       setRecipe(recipeFromState)
     } else {
-      const fetchRecipe = async () => {
-        try {
-          setLoading(true)
-          const fetched = await fetchSingleRecipe(id!, language)
-          setRecipe(fetched)
-        } catch (error) {
-          setError(handleError(error))
-        } finally {
-          setLoading(false)
+      if (id) {
+        const fetchRecipe = async () => {
+          try {
+            setLoading(true)
+            const fetched = await fetchSingleRecipe(id)
+            setRecipe(fetched)
+          } catch (error) {
+            setError(handleError(error))
+          } finally {
+            setLoading(false)
+          }
         }
+        fetchRecipe()
+      } else {
+        setError('No valid ID for a recipe found.')
       }
 
-      fetchRecipe()
     }
 
     return () => {
@@ -48,7 +50,7 @@ const DetailsPage = () => {
 
   return (
     <PageContainer>
-      <RecipeDetails recipe={recipe}/>
+      <RecipeDetails recipe={recipe} />
     </PageContainer>
   )
 }

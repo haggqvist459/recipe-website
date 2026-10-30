@@ -26,7 +26,7 @@ const HorizontalMenuWrapper = ({ children, lgHidden = false, justify = 'justify-
   }, [children])
 
   return (
-    <div className={`relative h-9 w-full ${lgHidden ? 'lg:hidden' : ''}`}>
+    <div className={`relative h-9 w-full overflow-hidden animate-roll-down ${lgHidden ? 'lg:hidden' : ''}`}>
       <div className={`px-5 h-9 ${bg} flex items-center ${justify} space-x-5 font-medium overflow-y-auto`}>
         {children}
       </div>

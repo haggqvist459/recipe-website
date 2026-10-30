@@ -4,8 +4,8 @@ import { FilterOptionType } from "@/shared/types"
 export type SortingFilterKey = keyof typeof SORTING_FILTERS
 
 export type FilterStateType = {
-  typeFilters: FilterOptionType[]
-  selectedTypeFilters: FilterOptionType[]
+  mainIngredientFilters: FilterOptionType[]
+  selectedMainIngredientFilters: FilterOptionType[]
   cuisineFilters: FilterOptionType[]
   selectedCuisineFilters: FilterOptionType[]
   selectedSortingFilter: SortingFilterKey

@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { FilterOptionType } from "@/shared/types"
 import { useLanguage } from '@/contexts'
-import { Trashcan, EditIcon, CheckSolidCircle, Close } from "@/components/icons"
+import { EditIcon, Close, TrashOutline, CheckOutlineCircle } from "@/components/icons"
 import { Input, IconButton } from "@/components/ui"
+import { getCategoryColourClasses } from "../helpers/categoryColours"
 
 
 type Props = {
@@ -19,7 +20,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
   const filterText = filter[`${language}_text`]
   const [isEditing, setIsEditing] = useState(false)
   const [editText, setEditText] = useState(filterText)
-
+  const { bg } = getCategoryColourClasses(filter.categoryCounter)
 
   const cancelUpdate = () => {
     setEditText(filterText)
@@ -37,7 +38,7 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
   }
 
   return (
-    <div className="w-full my-1.5">
+    <div className="w-full border-b-1 border-marblewhite pb-1">
       {isEditing ?
         <div className="flex justify-between">
           <Input
@@ -46,24 +47,28 @@ const FilterManagementItem = ({ filter, onUpdate, onDelete }: Props) => {
             onChange={(e) => setEditText(e.target.value)}
             value={editText}
           />
-          <div className="flex space-x-2">
+          <div className="flex w-1/2 justify-end space-x-2">
             <IconButton onClick={cancelUpdate}>
-              <Close />
+              <Close size="size-7" colour="text-secondary-text"/>
             </IconButton>
             <IconButton onClick={handleUpdate}>
-              <CheckSolidCircle />
+              <CheckOutlineCircle size="size-7" colour="text-primary"/>
             </IconButton>
           </div>
         </div>
         :
         <div className="flex justify-between">
-          <span className="text-primary-text">{filterText}</span>
-          <div className="flex space-x-2">
+          <div className="flex items-center space-x-2">
+            <div className={`h-2 w-2 rounded-full flex-none ${bg}`}/>
+            <span className="text-primary-text text-lg">{filterText}</span>
+          </div>
+
+          <div className="flex space-x-4">
             <IconButton onClick={handleEdit}>
-              <EditIcon />
+              <EditIcon size="size-7" colour="text-primary" />
             </IconButton>
             <IconButton onClick={onDelete}>
-              <Trashcan />
+              <TrashOutline size="size-7" colour="text-secondary-text"/>
             </IconButton>
           </div>
         </div>

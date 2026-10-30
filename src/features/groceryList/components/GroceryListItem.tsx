@@ -3,7 +3,7 @@ import { useAppDispatch } from '@/integrations/redux'
 import { VISIBILITY_FILTERS } from '../constants'
 import { deleteItem, toggleCompletion } from '../slice'
 import { ListItemData } from '../types'
-import { Circle, CheckSolidCircle, Trashcan } from '@/components/icons'
+import { Circle, CheckSolidCircle, TrashOutline } from '@/components/icons'
 import { IconButton } from '@/components/ui'
 
 
@@ -69,7 +69,7 @@ const GroceryListItem = ({ item, activeFilter }: Props) => {
         className={`transition-all duration-300 overflow-hidden ${showDelete ? 'opacity-100' : 'opacity-0'}`}
       >
         <IconButton onClick={() => dispatch(deleteItem(item.id))}>
-          <Trashcan />
+          <TrashOutline />
         </IconButton>
       </div>
     </div>

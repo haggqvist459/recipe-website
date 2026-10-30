@@ -48,7 +48,7 @@ const GroceryPage = () => {
               <div className="mt-5 flex justify-center">
                 <span>{translateText('groceryPage', 'emptyList', language)}</span>
               </div>
-              :
+              : 
               <>
                 {groceryList.map(item => <GroceryListItem key={item.id} item={item} activeFilter={activeFilter} />)}
               </>}
@@ -62,4 +62,4 @@ const GroceryPage = () => {
   )
 }
 
-export default GroceryPage; 
+export default GroceryPage

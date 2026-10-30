@@ -25,15 +25,16 @@ const ButtonRow = ({ items, selected = [], onClick, largePattern = false }: Prop
     rows.push(
       <div key={index} className="flex flex-wrap justify-center gap-2 my-2">
         {rowItems.map((item) => {
-          const { bg, bgPale2 } = getCategoryColourClasses(item.categoryCounter)
-          const backGroundColour = selected?.some((s) => s.id === item.id) ? bg : bgPale2
+          const { bg, bgPale1 } = getCategoryColourClasses(item.categoryCounter)
+          const backGroundColour = selected?.some((s) => s.id === item.id) ? bg : bgPale1
+          const textColour = selected?.some((s) => s.id === item.id ) ? 'text-ceramic' : 'text-primary-text'
 
           return (
             <button
               key={item.id}
               type="button"
               onClick={() => onClick(item)}
-              className={`${backGroundColour} text-white text-sm py-1 px-2.5 border-2 rounded-2xl`}
+              className={`${backGroundColour} ${textColour} text-sm py-1 px-2.5 rounded-2xl`}
             >
               {item[`${language}_text`]}
             </button>

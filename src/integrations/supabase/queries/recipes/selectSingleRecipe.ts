@@ -1,31 +1,29 @@
 import { supabase } from '@/integrations/supabase/client'
 import { DB_TABLES, DB_COLUMNS } from '@/shared/constants'
-import { DbRecipeWithRelations, LanguageType } from '@/shared/types'
 
 export const selectSingleRecipe = async (
   id: string,
-  language: LanguageType
-): Promise<DbRecipeWithRelations> => {
-    const { data } = await supabase
-      .from(DB_TABLES.RECIPES)
-      .select<string, DbRecipeWithRelations>(`
+) => {
+  const { data } = await supabase
+    .from(DB_TABLES.RECIPES)
+    .select(`
         *,
         ${DB_TABLES.RECIPE_MAIN_INGREDIENTS} (
         ${DB_TABLES.MAIN_INGREDIENTS} (
         ${DB_COLUMNS.MAIN_INGREDIENTS.ID},
-          text:${language}_text
+          *
           )
         ),
         ${DB_TABLES.RECIPE_CUISINES} (
         ${DB_TABLES.CUISINES} (
         ${DB_COLUMNS.CUISINES.ID},
-          text:${language}_text
+          *
           )
         )     
       `)
-      .eq(DB_COLUMNS.RECIPES.ID, id)
-      .single()
-      .throwOnError()
+    .eq(DB_COLUMNS.RECIPES.ID, id)
+    .single()
+    .throwOnError()
 
-    return data
+  return data
 }

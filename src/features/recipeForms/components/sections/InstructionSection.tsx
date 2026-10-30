@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "@/integrations/redux/hooks"
 import { addInstruction, updateInstructionField, removeInstruction, selectInstructions, setCurrentSection, setInstructions } from "@/features/recipeForms"
 import { FadeWrapper, } from "@/components/layout"
 import { Input, Heading, ToggleButton, IconButton } from "@/components/ui"
-import { Trashcan } from "@/components/icons"
+import { TrashOutline } from "@/components/icons"
 import SectionWrapper from "../shared/SectionWrapper"
 import { parseInstructionList } from "../../utils/parseInstructions"
 import { useLanguage } from "@/contexts"
@@ -118,7 +118,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
                         onClick={() => dispatch(removeInstruction({ id: instruction.id }))}
                         className="mb-0.5 mr-1"
                       >
-                        <Trashcan />
+                        <TrashOutline />
                       </IconButton>
                     </div>
                     <div className="mt-2">
