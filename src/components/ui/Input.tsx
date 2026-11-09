@@ -14,6 +14,7 @@ type Props = {
   multiline?: boolean
   rows?: number
   error?: boolean
+  classnameOverride?: string
 }
 
 const Input = ({
@@ -30,7 +31,8 @@ const Input = ({
   autoComplete,
   multiline = false,
   rows,
-  error = false
+  error = false, 
+  classnameOverride = ''
 }: Props) => {
   return (
     <div className="flex flex-col w-full">
@@ -42,7 +44,7 @@ const Input = ({
       {multiline ? (
         <textarea
           rows={rows}
-          className={`${error ? 'input-text-error' : 'input-text'} no-spinner`}
+          className={`${error ? 'input-text-error' : 'input-text'} no-spinner resize-y ${classnameOverride}`}
           id={id}
           placeholder={placeholder}
           required={required}
@@ -54,7 +56,7 @@ const Input = ({
         />
       ) : (
         <input
-          className={`${error ? 'input-text-error' : 'input-text'} no-spinner`}
+          className={`${error ? 'input-text-error' : 'input-text'} no-spinner ${classnameOverride}`}
           id={id}
           placeholder={placeholder}
           inputMode={inputType === "number" ? (allowDecimals ? "decimal" : "numeric") : undefined}

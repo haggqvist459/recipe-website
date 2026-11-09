@@ -8,10 +8,8 @@ const AuthLayout = () => {
   if (loading) return null // TODO proper loading UI 
 
   return (
-    <div className="bg-primary-bg min-h-screen flex flex-col relative">
-      <div className="flex-grow">
+    <div className="flex flex-col flex-1 min-h-0">
         {isSignedIn ? <Outlet /> : <AuthPage />}
-      </div>
     </div>
   )
 }

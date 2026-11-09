@@ -73,46 +73,44 @@ const RecipeDetails = ({ recipe }: Props) => {
 
 
   return (
-    <div className="px-5 mb-5">
-      <div className="flex flex-col md:flex-row md:space-x-5">
-        <div className="w-full md:w-1/3">
-          {/* top section - titles, servings, categories */}
+    <div className="px-5 mb-5 flex-1 overflow-y-auto md:flex md:flex-col md:overflow-hidden">
+      <div className="flex flex-col md:flex-row md:space-x-5 md:flex-1 md:min-h-0">
+        <div className="md:w-1/3 md:flex md:flex-col">
+           {/* top section - titles, servings, categories   */}
           <div className="">
-            {/* FilterPill, Favorite */}
+              {/* FilterPill, Favorite   */}
             <div className="flex mt-5">
               <div className="flex flex-1 gap-2">
-                {recipe.mainIngredients.map((filter) => {
-                  const { bg } = getCategoryColourClasses(filter.categoryCounter ?? 1)
-                  return <FilterPill key={filter.id} text={filter[`${language}_text`]} backgroundColour={bg} />
+                {recipe.mainIngredients.map((mainIngredient) => {
+                  const { bg } = getCategoryColourClasses(mainIngredient.categoryCounter ?? 1)
+                  return <FilterPill key={mainIngredient.id} text={mainIngredient[`${language}_text`]} backgroundColour={bg} />
+                })}
+                {recipe.cuisines.map((cuisine) => {
+                  const { bg } = getCategoryColourClasses(cuisine.categoryCounter ?? 1)
+                  return <FilterPill key={cuisine.id} text={cuisine[`${language}_text`]} backgroundColour={bg}/>
                 })}
               </div>
               <IconButton onClick={() => toggleFavourite()}>
                 {user && <Favourite isToggled={isFavourite} />}
               </IconButton>
             </div>
-            {/* Title, description */}
+             {/* {/* Title, description   */}
             <div className="mt-4 flex flex-col space-y-2">
               <Heading title={recipe.title} headingType="section-heading" />
               <span className="label">{recipe.description}</span>
-              {recipe.cuisines.map((cuisine) => (
-                <div key={cuisine.id}>
-                  <span className="text-sm">{cuisine[`${language}_text`]}</span>
-                  {(recipe.cuisines?.length ?? 0) > 1 ? <span>•</span> : null}
-                </div>
-              ))}
             </div>
-            {/* Servings */}
-            <div className={`flex mt-5 justify-between items-center rounded`}>
+             {/* Servings   */}
+            <div className={`flex mt-2 justify-between items-center`}>
               <span className="label">
                 {translateText('recipeDetailCard', 'servings', language)}
               </span>
               <div className="flex items-center gap-5">
                 <IconButton
                   className="p-1"
-                  disabled={recipe.servings <= 0}
+                  disabled={modifiedServings <= 0}
                   onClick={() => updateServings(modifiedServings - 1)}
                 >
-                  <CircleMinus size="size-7" />
+                  <CircleMinus size="size-7" colour="text-primary"/>
                 </IconButton>
                 <span className="label">{modifiedServings}</span>
                 <IconButton
@@ -120,12 +118,12 @@ const RecipeDetails = ({ recipe }: Props) => {
                   disabled={recipe.servings >= 20}
                   onClick={() => updateServings(modifiedServings + 1)}
                 >
-                  <CirclePlus size="size-7" />
+                  <CirclePlus size="size-7" colour="text-primary" />
                 </IconButton>
               </div>
             </div>
-            {/* Ingredients / instructions toggle */}
-            <div className="md:hidden h-9 border-b-1 border-secondary flex justify-center space-x-5 font-medium mt-5">
+             {/* Ingredients / instructions toggle   */}
+            <div className="md:hidden h-9 border-b-1 border-secondary flex space-x-5 font-medium mt-5">
               <button
                 className={`text-primary-text w-full ${activeSection === 'ingredients' ? 'border-b-deepred border-b-2' : 'font-light'}`}
                 onClick={() => setActiveSection('ingredients')}
@@ -140,15 +138,15 @@ const RecipeDetails = ({ recipe }: Props) => {
               </button>
             </div>
           </div>
-          {/* End of top section */}
-          {/* Ingredients section */}
-          <div className="hidden md:block mt-5">
+           {/* End of top section   */}
+           {/* Ingredients section   */}
+          <div className="hidden md:block md:mt-5">
             <Heading title={translateText('recipeDetailCard', 'ingredients', language)} headingType="sub-heading" />
           </div>
-          <div className={`${activeSection === 'ingredients' ? 'block' : 'hidden'} md:block`}>
+          <div className={`${activeSection === 'ingredients' ? '' : 'hidden'} md:block md:flex-1 md:overflow-y-auto`}>
             <div className={`bg-tertiary my-5 rounded-2xl p-2`}>
-              <div className="relative">
-                <ul className="list-inside px-2">
+              <div className="">
+                <ul className="px-2">
                   {modifiedIngredients.map((ingredient, index) => (
                     <li
                       className={`py-3 border-b-1 border-secondary flex justify-between ${index === modifiedIngredients.length - 1 ? "border-none" : ""}`}
@@ -163,25 +161,24 @@ const RecipeDetails = ({ recipe }: Props) => {
             </div>
 
             <button
-              className="w-full rounded-2xl border-lightred border-2 py-3 active:border-primary-bg active:bg-lightred active:text-primary-bg"
+              className="w-full rounded-2xl border-lightred border-2 py-3 active:border-primary-bg active:bg-lightred"
               onClick={handleAddToGroceryClick}
             >
-              <span className="font-semibold text-lightred flex space-x-2 justify-center">Add to grocery list</span>
+              <span className="font-semibold text-lightred flex justify-center">Add to grocery list</span>
             </button>
           </div>
         </div>
-        <div className="md:w-2/3 md:border-l-1 border-secondary md:pl-5 md:my-5">
+        <div className="md:w-2/3 md:border-l-1 border-secondary md:pl-5 md:my-5 md:flex md:flex-col">
           <div className="hidden md:block">
             <Heading title={translateText('recipeDetailCard', 'instructions', language)} headingType="sub-heading" />
           </div>
-          <div className={`my-5 rounded-2xl ${activeSection === 'instructions' ? 'block' : 'hidden'} md:block`}>
+          <div className={`my-5 rounded-2xl ${activeSection === 'instructions' ? '' : 'hidden'} md:block md:flex-1 md:overflow-y-auto`}>
             {recipe.instructions.map((instruction, index) => (
               <div
                 className="bg-tertiary px-4 py-2 my-4 rounded-2xl"
                 key={instruction.id + index}
               >
                 <button
-
                   type="button"
                   className={`flex flex-col mt-2 text-left ${completedIds.has(instruction.id) ? "line-through" : ""}`}
                   onClick={() => toggleCompleted(instruction.id)}
@@ -203,3 +200,5 @@ const RecipeDetails = ({ recipe }: Props) => {
 }
 
 export default RecipeDetails
+
+

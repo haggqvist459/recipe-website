@@ -4,12 +4,16 @@ import { NavBar, Footer } from "@/components/layout"
 
 const MainLayout = () => {
   return (
-    <div className="bg-primary-bg h-dvh overflow-hidden flex flex-col">
+    <div className="bg-primary-bg h-dvh flex flex-col">
       <NavBar />
-      <div className="flex-1 min-h-0 flex flex-col">
-        <Outlet/>
+      <div className="flex-1 overflow-y-auto">
+        <div className="min-h-full flex flex-col">
+          <div className="flex-1">
+            <Outlet />
+          </div>
+          <Footer />
+        </div>
       </div>
-      <Footer />
     </div>
   )
 }

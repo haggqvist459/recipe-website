@@ -77,11 +77,11 @@ const SlideWrapper = ({ activeKey, slides, allowSwipe = false, onSwipe }: Props)
     const distance = touchStart - touchEnd;
     const currentIndex = slides.findIndex(s => s.key === activeKey);
 
-    if (distance > 50 && currentIndex < slides.length - 1) {
+    if (distance > 100 && currentIndex < slides.length - 1) {
       onSwipe?.(slides[currentIndex + 1].key);
     }
 
-    if (distance < -50 && currentIndex > 0) {
+    if (distance < -100 && currentIndex > 0) {
       onSwipe?.(slides[currentIndex - 1].key);
     }
   };

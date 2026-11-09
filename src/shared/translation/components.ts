@@ -13,7 +13,7 @@ export const COMPONENTS_TEXT = {
       preview: 'Preview',
     },
     metadata: {
-      create: 'Create recipe',
+      create: 'Recipe Basics',
       weekly: 'Weekly list inclusion',
       title: 'Recipe title',
       description: 'Short description',
@@ -139,7 +139,7 @@ export const COMPONENTS_TEXT = {
       preview: 'Förhandsgranskning',
     },
     metadata: {
-      create: 'Skapa recept',
+      create: 'Grunderna',
       weekly: 'Inkludera i veckolistor:',
       title: 'Recepttitel',
       description: 'Kort beskrivning',

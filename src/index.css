@@ -5,17 +5,23 @@
   html,
   body,
   #root {
-    height: 100%;
-    overflow: hidden;
+    /* height: 100%; */
+    /* overflow: hidden;  */
+  }
+
+  body::before {
+    content: "";
+    display: block;
+    height: env(safe-area-inset-top, 0px);
+    background-color: #7c3aed;
   }
 
   body {
     @apply font-rubik;
     /* change the colour in the status bar and behind address bar */
-    background-color: var(--color-primary);
+    /* background-color: var(--color-primary); */
   }
 }
-
 
 /* Prevent auto-zoom on input-fields in iOS Safari */
 input,
@@ -26,6 +32,8 @@ textarea {
   min-width: 0;
   max-width: 100%;
   box-sizing: border-box;
+  resize: vertical;
+  /* background-color: var(--color-marblewhite); */
 }
 
 /* p,
@@ -183,7 +191,7 @@ span {
 @layer components {
 
   .section-heading {
-    @apply text-xl xs:text-2xl md:text-3xl font-bold text-primary-text
+    @apply text-xl xs:text-2xl md:text-3xl font-medium text-primary-text
   }
 
   .main-heading {
@@ -203,7 +211,7 @@ span {
   }
 
   .input-text {
-    @apply border rounded border-primary-text text-primary-text w-full px-1
+    @apply bg-marblewhite rounded-lg border-1 border-secondary text-primary-text w-full px-1
   }
 
   .input-text-error {
@@ -211,7 +219,7 @@ span {
   }
 
   .dropdown-text {
-    @apply border rounded border-primary-text text-primary-text w-full px-1 appearance-none shadow-sm
+    @apply border rounded-lg border-secondary text-primary-text w-full px-1 appearance-none shadow-sm
   }
 
   .dropdown-text-error {

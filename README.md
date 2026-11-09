@@ -41,6 +41,8 @@
 - [x] Details view 
 - [x] Lock favourite icon size on RecipeCard.tsx
 
+### Admin Page: 
+- [ ] Fix the inconsistent background colours in FilterManagement
 
 ### Details Page: 
 - [x] Refactor RecipeDetails.tsx - remove double markup
@@ -56,6 +58,7 @@
 - [ ] Meal planner / weekly list settings
 - [ ] Form validation on Inputs, highlight missing information
 - [x] Fix the empty favourite list use case on profile page 
+- [ ] Background colours needs fixed 
 
 ### Weekly lists: 
 - [ ] Generate lists based on full randomisation 
@@ -141,3 +144,4 @@
 - [ ] add invalid: classes on form elements for CreateRecipe, Auth page, Profile page settings etc
 - [ ] Sort out circular imports mess 
 - [ ] Have title in nav bar show the current page instead of just 'recipes' 
+- [ ] Remove onBlur dispatches, local states etc - dispatch directly to redux with onChange 

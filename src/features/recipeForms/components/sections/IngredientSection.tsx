@@ -12,10 +12,9 @@ import { useLanguage } from "@/contexts"
 
 type Props = {
   handleNavigation?: (action: () => void) => void,
-  toggleButtonState?: boolean
 }
 
-const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props) => {
+const IngredientSection = ({ handleNavigation,}: Props) => {
 
 
   const { language } = useLanguage()
@@ -23,7 +22,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
   const ingredients = useAppSelector(selectIngredients)
   const errors = useAppSelector(state => state.recipeForms.errors)
   const [localIngredients, setLocalIngredients] = useState(ingredients)
-  const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
+  const [displayPasteView, setDisplayPasteView] = useState(false)
   const [pastedText, setPastedText] = useState("")
 
   const unitOptions = createDropdownOptions(UNITS)
@@ -74,13 +73,13 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
         </div>
       </div>
       <FadeWrapper key={displayPasteView ? "paste" : "manual"}>
-        <div className="h-[60vh] flex flex-col">
+        <div className="max-h-[60vh] flex flex-col">
           {displayPasteView ? (
             <>
-              <div className="flex-grow overflow-y-auto space-y-2">
+              <div className="overflow-y-auto space-y-2">
                 <Input
                   multiline={true}
-                  rows={15}
+                  rows={12}
                   id="pasteIngredientField"
                   placeholder={translateText('ingredients', 'paste', language)}
                   label={translateText('ingredients', 'ingredients', language)}
@@ -91,7 +90,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 button-click border-lightblue hover:border-primary-text"
+                className="my-2 w-full bg-primary text-ceramic font-medium rounded border-2 button-click border-primary hover:border-primary-text"
                 onClick={() => handleParsedIngredients()}
               >
                 {translateText('ingredients', 'parse', language)}
@@ -99,10 +98,10 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
             </>
           ) : (
             <>
-              <div className="flex-grow overflow-y-auto space-y-2">
+              <div className="overflow-y-auto space-y-2">
                 {localIngredients.map((ingredient) => (
                   <div
-                    className="flex flex-col w-full space-x-1 mb-4"
+                    className="flex flex-col md:flex-row w-full space-x-1 space-y-1 md:space-y-0 mb-4"
                     key={`${ingredient.id}-ingredient`}
                   >
                     <div className="flex items-end w-full space-x-1">
@@ -114,18 +113,13 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         onBlur={() => handleIngredientDispatch(ingredient.id, "name")}
                         placeholder="..."
                         value={ingredient.name}
-                        label={translateText('ingredients', 'ingredient', language)}
+                        // label={translateText('ingredients', 'ingredient', language)}
                         required
                         autoComplete="off"
                         error={errors.ingredients?.[ingredient.id]?.name}
+                        classnameOverride=""
                       />
-                      <IconButton
-                        disabled={localIngredients.length === 1}
-                        onClick={() => dispatch(removeIngredient({ id: ingredient.id }))}
-                        className="mb-0.5 mr-1"
-                      >
-                        <TrashOutline />
-                      </IconButton>
+
                     </div>
                     <div className="flex flex-col xs:flex-row space-x-1 mt-1">
                       <Input
@@ -136,7 +130,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         onBlur={() => handleIngredientDispatch(ingredient.id, "amount")}
                         placeholder="0"
                         value={ingredient.amount}
-                        label={translateText('ingredients', 'amount', language)}
+                        // label={translateText('ingredients', 'amount', language)}
                         required
                         autoComplete="off"
                         inputType="number"
@@ -145,7 +139,7 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                       />
                       <Dropdown
                         id={`${ingredient.id}-ingredientUnit`}
-                        label={translateText('ingredients', 'unit', language)}
+                        // label={translateText('ingredients', 'unit', language)}
                         onChange={(e) =>
                           dispatch(
                             updateIngredientField({
@@ -162,13 +156,20 @@ const IngredientSection = ({ handleNavigation, toggleButtonState = true }: Props
                         error={errors.ingredients?.[ingredient.id]?.unit}
 
                       />
+                      <IconButton
+                        disabled={localIngredients.length === 1}
+                        onClick={() => dispatch(removeIngredient({ id: ingredient.id }))}
+                        className="mb-0.5 mr-1"
+                      >
+                        <TrashOutline />
+                      </IconButton>
                     </div>
                   </div>
                 ))}
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text button-click"
+                className="my-2 w-full bg-primary text-ceramic font-medium rounded border-2 border-primary hover:border-primary-text button-click"
                 onClick={() => dispatch(addIngredient())}
               >
                 {translateText('ingredients', 'addIngredient', language)}

@@ -24,8 +24,8 @@ const EditRecipeMobile = ({ recipeId }: Props) => {
 
   const mobileSlides = [
     { key: "Metadata", component: <MetaDataSection /> },
-    { key: "Ingredients", component: <IngredientSection toggleButtonState={false} /> },
-    { key: "Instructions", component: <InstructionSection toggleButtonState={false} /> },
+    { key: "Ingredients", component: <IngredientSection /> },
+    { key: "Instructions", component: <InstructionSection /> },
     { key: "Preview", component: <PreviewSection /> },
   ]
 
@@ -66,7 +66,7 @@ const EditRecipeMobile = ({ recipeId }: Props) => {
           {translateText('createRecipe', 'preview', language)}
         </HorizontalMenuButton>
       </HorizontalMenuWrapper>
-      <form onSubmit={handleUpdate} id="recipe-form">
+      <form onSubmit={handleUpdate} id="edit-recipe-form">
         <SlideWrapper
           activeKey={currentSection}
           slides={mobileSlides}

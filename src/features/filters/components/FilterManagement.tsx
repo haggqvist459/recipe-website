@@ -112,7 +112,7 @@ const FilterManagement = () => {
           {translateText('filterManagement', 'filterManagementCuisines', language)}
         </HorizontalMenuButton>
       </HorizontalMenuWrapper>
-      <div className="min-h-screen overflow-y-auto space-y-2 bg-marblewhite p-2">
+      <div className="space-y-2 bg-marblewhite p-2">
         <ResponsiveWrapper isActive={activeFilter === 'mainIngredients'}>
           <div className="hidden lg:block lg:py-2">
             <Heading title='Categories' headingType='sub-heading' />

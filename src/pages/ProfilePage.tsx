@@ -39,7 +39,7 @@ const ProfilePage = () => {
         </div>
       </div>
 
-      <div className="lg:flex justify-start">
+      <div className="flex min-h-0 flex-col lg:flex-row">
         <div className="w-full lg:w-1/3 lg:min-h-screen lg:bg-marblewhite">
           <ResponsiveWrapper isActive={activeSection === "settings"}>
             <SettingsSection />
@@ -52,7 +52,7 @@ const ProfilePage = () => {
             ) : (
               <div className="px-5 mt-5">
                 <Heading title={`${translateText('profile', 'favouriteRecipes', language)} (${favourites.length})`} headingType="sub-heading" />
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2">
                   {favourites.map(favourite => <FavouriteListItem favourite={favourite} key={favourite.recipeId} />)}
                 </div>
               </div>

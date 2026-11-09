@@ -90,15 +90,14 @@ const SettingsSection = () => {
   }
 
   return (
-    <div className="w-full pt-5 px-5">
+    <div className="w-full bg-marblewhite pt-5 px-5">
       <Heading title={`Account Details`} headingType="sub-heading" />
-      <div className="space-y-1 mt-5">
-        <div className="p-2 bg-ceramic rounded-lg border-1 border-secondary">
-          <div className="flex justify-between">
+      <div className="space-y-5 mt-5">
+        <div className="">
+          <div className="flex bg-ceramic justify-between rounded-lg border-1 border-secondary p-2">
             <Output label={translateText('profile', 'email', language)} value={authenticatedUser.email} />
             <button className="text-primary text-sm font-semibold" onClick={() => setShowEmailFields(prev => !prev)}>Change</button>
           </div>
-
           <div className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${showEmailFields ? 'max-h-80' : 'max-h-0'}`}>
             <div className="mt-2 space-y-3">
               <Input
@@ -109,6 +108,7 @@ const SettingsSection = () => {
                 autoComplete="email"
                 onChange={(e) => setNewEmail(e.target.value)}
                 value={newEmail}
+                classnameOverride="bg-ceramic rounded-lg border-secondary p-2"
               />
               <Input
                 id="currentPassword-Email"
@@ -118,6 +118,7 @@ const SettingsSection = () => {
                 autoComplete="current-password"
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 value={currentPassword}
+                classnameOverride="bg-ceramic rounded-lg border-secondary p-2"
               />
               <div className="flex space-x-2">
                 <button
@@ -139,13 +140,13 @@ const SettingsSection = () => {
             </div>
           </div>
         </div>
-        <div className="p-2 bg-ceramic rounded-lg border-1 border-secondary">
-          <div className="flex justify-between">
+        <div className="">
+          <div className="flex bg-ceramic justify-between rounded-lg border-1 border-secondary p-2">
             <Output label={translateText('profile', 'password', language)} value={'********'} />
             <button className="text-primary text-sm font-semibold" onClick={() => setShowPasswordFields(prev => !prev)}>Change</button>
           </div>
           <div className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${showPasswordFields ? 'max-h-80' : 'max-h-0'}`}>
-            <div className="mt-2 space-y-3">
+            <div className="my-2 space-y-3">
               <Input
                 id="newPassword"
                 // label={translateText('profile', 'newPassword', language)}
@@ -154,6 +155,7 @@ const SettingsSection = () => {
                 autoComplete="new-password"
                 onChange={(e) => setNewPassword(e.target.value)}
                 value={newPassword}
+                classnameOverride="bg-ceramic rounded-lg border-secondary p-2"
               />
               <Input
                 id="confirmPassword"
@@ -163,6 +165,7 @@ const SettingsSection = () => {
                 autoComplete="new-password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={confirmPassword}
+                classnameOverride="bg-ceramic rounded-lg border-secondary p-2"
               />
               <Input
                 id="currentPassword-Password"
@@ -172,6 +175,7 @@ const SettingsSection = () => {
                 autoComplete="current-password"
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 value={currentPassword}
+                classnameOverride="bg-ceramic rounded-lg border-secondary p-2"
               />
               <div className="flex space-x-2">
                 <button

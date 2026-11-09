@@ -3,7 +3,7 @@ import { ArrowIcon } from '@/components/icons';
 
 type Props = {
   id: string
-  label: string
+  label?: string
   defaultValue?: string
   value: string | number
   required?: boolean
@@ -14,7 +14,7 @@ type Props = {
 
 const Dropdown = ({
   id,
-  label,
+  label = '',
   defaultValue = '',
   value,
   required = false,
@@ -25,7 +25,7 @@ const Dropdown = ({
 
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-marblewhite rounded-lg">
       <label htmlFor={id} className="label">{label}</label>
       <div className='w-full relative'>
         <select

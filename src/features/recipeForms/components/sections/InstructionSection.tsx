@@ -15,12 +15,12 @@ type Props = {
 }
 
 
-const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Props) => {
+const InstructionSection = ({ handleNavigation, }: Props) => {
 
   const { language } = useLanguage()
   const instructions = useAppSelector(selectInstructions)
   const [localInstructions, setLocalInstructions] = useState(instructions)
-  const [displayPasteView, setDisplayPasteView] = useState(toggleButtonState)
+  const [displayPasteView, setDisplayPasteView] = useState(false)
   const [pastedText, setPastedText] = useState("")
   const dispatch = useAppDispatch()
   const errors = useAppSelector(state => state.recipeForms.errors)
@@ -70,7 +70,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
         </div>
       </div>
       <FadeWrapper key={displayPasteView ? "paste" : "manual"}>
-        <div className="h-[60vh] flex flex-col">
+        <div className="max-h-[60vh] flex flex-col">
           {displayPasteView ? (
             <>
               <div className="flex-grow overflow-y-auto space-y-2">
@@ -87,7 +87,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text button-click"
+                className="my-2 w-full bg-primary text-ceramic font-medium rounded border-2 border-primary hover:border-primary-text button-click"
                 onClick={() => handleParsedInstructions()}
               >
                 {translateText('instructions', 'parse', language)}
@@ -141,7 +141,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
               </div>
               <button
                 type="button"
-                className="my-2 w-full bg-lightblue text-primary-text font-medium rounded border-2 border-lightblue hover:border-primary-text button-click"
+                className="my-2 w-full bg-primary text-ceramic font-medium rounded border-2 border-primary hover:border-primary-text button-click"
                 onClick={() => dispatch(addInstruction())}
               >
                 {translateText('instructions', 'addInstruction', language)}
@@ -162,7 +162,7 @@ const InstructionSection = ({ handleNavigation, toggleButtonState = true }: Prop
           <button
             type="button"
             disabled={!hasValidInstruction(localInstructions)}
-            className="w-1/2 bg-primary font-medium text-primary-text rounded disabled:opacity-50 button-click"
+            className="w-1/2 bg-primary font-medium text-ceramic rounded disabled:opacity-50 button-click"
             onClick={() => handleNavigation(() => dispatch(setCurrentSection("Preview")))}
           >
             {translateText('buttons', 'preview', language)}
