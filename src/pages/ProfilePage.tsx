@@ -40,7 +40,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="flex min-h-0 flex-col lg:flex-row">
-        <div className="w-full lg:w-1/3 lg:min-h-screen lg:bg-marblewhite">
+        <div className="w-full lg:w-1/3 lg:min-h-screen lg:bg-linear-to-b from-90% from-marblewhite to-ceramic">
           <ResponsiveWrapper isActive={activeSection === "settings"}>
             <SettingsSection />
           </ResponsiveWrapper>

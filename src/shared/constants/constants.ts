@@ -9,7 +9,8 @@ export const ROUTES = {
   GROCERY_LIST: '/groceries',
   CREATE_RECIPE: '/create',
   EDIT_RECIPE: ':id',
-} as const;
+  MEAL_PLANNER: '/mealPlanner'
+} as const
 
 export const NAVBAR_OPTIONS = {
   HOME: {
@@ -53,17 +54,23 @@ export const NAVBAR_OPTIONS = {
     id: 7,
     labelKey: 'createRecipe',
     end: true,
+  },
+  MEAL_PLANNER: {
+    route: ROUTES.MEAL_PLANNER,
+    id: 8,
+    labelKey: 'mealPlanner',
+    end: true
   }
 
-} as const;
+} as const
 
 
 export const LOCALSTORAGE_KEYS = {
   LANGUAGE_OPTION: 'languageOption',
   GROCERY_LIST: 'groceryList'
-} as const;
+} as const
 
 export const LANGUAGES = [
   { code: 'sv', label: 'Svenska' },
   { code: 'en', label: 'English' }
-] as const;
+] as const

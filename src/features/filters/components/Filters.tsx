@@ -56,10 +56,10 @@ const Filters = () => {
   }, [])
 
   return (
-    <div className="px-3 w-full bg-primary flex flex-col items-center mx-auto">
+    <div className="w-full bg-marblewhite flex flex-col items-center mx-auto">
       <HorizontalMenuWrapper>
         <button
-          className="flex space-x-1 items-center disabled:opacity-50 text-ceramic"
+          className="flex space-x-1 items-center disabled:opacity-50 text-primary-text"
           onClick={() => setShowMainIngredients(prev => !prev)}
           disabled={mainIngredientFilters.length === 0}
         >
@@ -68,11 +68,11 @@ const Filters = () => {
             className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showMainIngredients ? 'rotate-90' : 'rotate-0'
               }`}
           >
-            <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
+            <ChevronRight colour='text-primary-text' size='size-5' strokeWidth={3} />
           </div>
         </button>
         <button
-          className="flex space-x-1 items-center disabled:opacity-50 text-ceramic"
+          className="flex space-x-1 items-center disabled:opacity-50 text-primary-text"
           onClick={() => setShowCuisines(prev => !prev)}
           disabled={cuisineFilters.length === 0}
         >
@@ -81,11 +81,11 @@ const Filters = () => {
             className={`transform transition-transform duration-300 ease-in-out disabled:opacity-50 ${showCuisines ? 'rotate-90' : 'rotate-0'
               }`}
           >
-            <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
+            <ChevronRight colour='text-primary-text' size='size-5' strokeWidth={3} />
           </div>
         </button>
         <button
-          className="flex space-x-1 items-center text-ceramic"
+          className="flex space-x-1 items-center text-primary-text"
           onClick={() => setShowSort(prev => !prev)}
         >
           {translateText('filter', 'sort', language)}
@@ -93,7 +93,7 @@ const Filters = () => {
             className={`transform transition-transform duration-300 ease-in-out ${showSort ? 'rotate-90' : 'rotate-0'
               }`}
           >
-            <ChevronRight colour='text-ceramic' size='size-5' strokeWidth={3} />
+            <ChevronRight colour='text-primary-text' size='size-5' strokeWidth={3} />
           </div>
         </button>
       </HorizontalMenuWrapper>
@@ -102,7 +102,7 @@ const Filters = () => {
           {mainIngredientFilters.map(mainIngredient => (
             <button
               key={mainIngredient.id}
-              className={`text-ceramic ${selectedTypeFilters.some(selected => selected.id === mainIngredient.id)
+              className={`text-primary-text ${selectedTypeFilters.some(selected => selected.id === mainIngredient.id)
                 ? 'underline decoration-2'
                 : 'font-light'}`}
               onClick={() => dispatch(setActiveFilter({ filterCategory: "mainIngredients", filter: mainIngredient }))}
@@ -111,8 +111,8 @@ const Filters = () => {
             </button>
           ))}
         </div>
-        <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-primary/80 to-transparent" />
-        <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-primary/80 to-transparent" />
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-marblewhite/90 to-transparent" />
+        <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-marblewhite/90 to-transparent" />
       </div>
 
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
@@ -120,7 +120,7 @@ const Filters = () => {
           {cuisineFilters.map(cuisineFilter => (
             <button
               key={cuisineFilter.id}
-              className={`text-ceramic ${selectedCuisineFilters.some(selected => selected.id === cuisineFilter.id)
+              className={`text-primary-text ${selectedCuisineFilters.some(selected => selected.id === cuisineFilter.id)
                 ? 'underline decoration-2'
                 : 'font-light'}`}
               onClick={() => dispatch(setActiveFilter({ filterCategory: "cuisines", filter: cuisineFilter }))}
@@ -129,8 +129,8 @@ const Filters = () => {
             </button>
           ))}
         </div>
-        <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-primary/80 to-transparent" />
-        <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-primary/80 to-transparent" />
+        <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-marblewhite/90 to-transparent" />
+        <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-10 bg-gradient-to-l from-marblewhite/90 to-transparent" />
       </div>
 
       <div className="relative w-full overflow-hidden transition-all duration-300 ease-in-out">
@@ -138,7 +138,7 @@ const Filters = () => {
           {Object.entries(SORTING_FILTERS).map(([sortingKey, sortingData]) => (
             <button
               key={sortingKey}
-              className={`text-ceramic ${selectedSortingFilter === sortingKey
+              className={`text-primary-text ${selectedSortingFilter === sortingKey
                   ? 'underline decoration-2'
                   : 'font-light'}`}
               onClick={() => dispatch(setActiveSorting(sortingKey as SortingFilterKey))}

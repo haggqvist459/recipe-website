@@ -9,13 +9,6 @@
     /* overflow: hidden;  */
   }
 
-  body::before {
-    content: "";
-    display: block;
-    height: env(safe-area-inset-top, 0px);
-    background-color: #7c3aed;
-  }
-
   body {
     @apply font-rubik;
     /* change the colour in the status bar and behind address bar */
@@ -41,6 +34,7 @@ span {
   color: #262626;
 } */
 
+/* Normal font */
 @font-face {
   font-family: 'Rubik';
   src: url('./assets/fonts/Rubik-VariableFont_wght.ttf') format('truetype');
@@ -49,6 +43,7 @@ span {
   font-display: swap;
 }
 
+/* Italic font */
 @font-face {
   font-family: 'Rubik';
   src: url('./assets/fonts/Rubik-Italic-VariableFont_wght.ttf') format('truetype');
@@ -72,7 +67,7 @@ span {
   --color-tertiary: #F2EFE3;
 
   /* Default background colour, */
-  --color-primary-bg: #FCFBF4;
+  --color-primary-bg: #FCFFF9;
 
   /* Primary colour for text, very dark grey  */
   --color-primary-text: #494949;

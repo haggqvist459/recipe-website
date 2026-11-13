@@ -1,4 +1,4 @@
-import { Heading } from "@/components/ui"
+import Heading from "../Heading"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { translateText } from "@/shared"
 import { ModalStateType } from "./types"

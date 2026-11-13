@@ -61,10 +61,11 @@
 - [ ] Background colours needs fixed 
 
 ### Weekly lists: 
-- [ ] Generate lists based on full randomisation 
+- [ ] Generate lists based on full randomisation or categories
  - [ ] Pick number of days  
  - [ ] Change number of people
- - [ ] Add filter options here too 
+- [ ] localStorage to save the list 
+- [ ] DB backup for user
  
 ### Grocery list: 
 - [x] Re-use previous list project, add here 

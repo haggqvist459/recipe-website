@@ -10,7 +10,7 @@ const HorizontalMenuButton = ({ isActive, onClick, children }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={`text-ceramic ${isActive ? "underline decoration-1" : "font-light"}`}
+      className={`text-primary-text ${isActive ? "underline decoration-1" : "font-light"}`}
     >
       {children}
     </button>

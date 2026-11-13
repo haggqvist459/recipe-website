@@ -9,6 +9,7 @@ export const LAYOUT_TEXT = {
       signIn: 'Sign in',
       groceries: 'Grocery List',
       createRecipe: 'Add Recipe',
+      mealPlanner: 'Meal Planner',
     },
     buttons: {
       next: "Next",
@@ -43,6 +44,7 @@ export const LAYOUT_TEXT = {
       signIn: 'Logga in',
       groceries: 'Inköpslista',
       createRecipe: 'Skapa Recept',
+      mealPlanner: 'Måltidsplanering',
     },
     buttons: {
       next: "Nästa",

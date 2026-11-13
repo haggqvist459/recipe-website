@@ -8,11 +8,11 @@ const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <header className='bg-primary' id='navBar'>
+    <header className='bg-linear-to-t from-marblewhite to-white' id='navBar'>
       <div className='flex items-center justify-between px-5'>
         <NavLink className='py-3' to={ROUTES.HOME}>
           <div className='flex flex-col'>
-            <span className='text-xl lg:text-2xl font-bold text-ceramic'>Recipes</span>
+            <span className='text-xl lg:text-2xl font-bold text-primary-text'>Recipes</span>
           </div>
         </NavLink>
         <NavButton isExpanded={isExpanded} onClick={() => setIsExpanded(prev => !prev)} />

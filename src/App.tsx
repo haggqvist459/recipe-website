@@ -3,6 +3,7 @@ import { ROUTES } from '@/shared'
 import { MainLayout, AuthLayout } from '@/layouts'
 import { HomePage, AdminPage, ErrorPage, DetailsPage, ProfilePage, 
   AuthPage, GroceryPage, CreateRecipePage, EditRecipePage } from '@/pages'
+import MealPlannerPage from './pages/MealPlannerPage'
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path={ROUTES.ERROR} element={<ErrorPage />} />
           <Route path={ROUTES.SIGN_IN} element={<AuthPage />} />
           <Route path={ROUTES.GROCERY_LIST} element={<GroceryPage />} />
+          <Route path={ROUTES.MEAL_PLANNER} element={<MealPlannerPage />} />
           <Route element={<AuthLayout />}>
             <Route path={ROUTES.ADMIN}>
               <Route index element={<AdminPage />} />

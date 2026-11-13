@@ -6,7 +6,6 @@ type Props = {
   items: FilterOptionType[]
   selected: FilterOptionType[] | null
   onClick: (filter: FilterOptionType) => void
-  reverse?: boolean
   largePattern?: boolean
 }
 

@@ -90,7 +90,7 @@ const SettingsSection = () => {
   }
 
   return (
-    <div className="w-full bg-marblewhite pt-5 px-5">
+    <div className="w-full bg-marblewhite min-h-[80dvh] pt-5 px-5">
       <Heading title={`Account Details`} headingType="sub-heading" />
       <div className="space-y-5 mt-5">
         <div className="">

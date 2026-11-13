@@ -13,11 +13,11 @@ const Settings = ({ isOpen, handleClose }: Props) => {
   const { language, setLanguage } = useLanguage()
 
   return (
-    <div className={`overflow-hidden px-5 w-full bg-primary transition-all duration-500 ease-in-out ${isOpen ? 'h-20' : 'h-0'}`}>
+    <div className={`overflow-hidden px-5 w-full bg-ceramic transition-all duration-500 ease-in-out ${isOpen ? 'h-20' : 'h-0'}`}>
       <div className="flex justify-between mt-2">
-        <Heading title={translateText('settings', "title", language)} headingType="sub-heading" textColourOverride="text-ceramic" />
+        <Heading title={translateText('settings', "title", language)} headingType="sub-heading" textColourOverride="text-primary-text" />
         <div onClick={handleClose}>
-          <Close colour="text-ceramic" />
+          <Close colour="text-primary-text" />
         </div>
       </div>
       <div className="w-full flex justify-start space-x-2">
@@ -28,7 +28,7 @@ const Settings = ({ isOpen, handleClose }: Props) => {
               setLanguage(code)
               handleClose()
             }}
-            className={`py-2 font-light text-ceramic ${language === code ? 'font-normal underline decoration-1' : ''}`}
+            className={`py-2 font-light text-primary-text ${language === code ? 'font-normal underline decoration-1' : ''}`}
           >
             {label}
           </button>

@@ -43,7 +43,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
     const shouldFetchTypes = typeFilters.length === 0
     const shouldFetchCuisines = cuisineFilters.length === 0
 
-    if (!shouldFetchTypes && !shouldFetchCuisines) {
+    if (!shouldFetchTypes && !shouldFetchCuisines) {   
       setLoading(false)
       return
     }
@@ -80,6 +80,7 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
 
   if (loading) return (<SectionWrapper><LoadingComponent /></SectionWrapper>)
   if (error) return (<SectionWrapper><ErrorComponent errorMessage={error} /></SectionWrapper>)
+
   return (
     <SectionWrapper>
       <div className="flex justify-between">
@@ -170,7 +171,6 @@ const MetaDataSection = ({ handleNavigation }: Props) => {
                 selected={metadata.cuisines}
                 items={cuisineFilters}
                 onClick={(filter) => handleFilterToggle("cuisines", filter)}
-                reverse={true}
               />
             </div>
           </div>

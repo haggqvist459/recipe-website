@@ -15,7 +15,7 @@ const Footer = () => {
       (window.navigator as any).standalone === true)
 
 return (
-    <footer id='footer' className={`bg-primary relative ${isStandalone ? 'h-15 pb-2' : 'h-9'}`}>
+    <footer id='footer' className={`bg-linear-to-b from-ceramic to-white relative ${isStandalone ? 'h-15 pb-2' : 'h-9'}`}>
       <div className="absolute bottom-full w-full">
         <Settings handleClose={() => setShowSettings(!showSettings)} isOpen={showSettings} />
       </div>
@@ -27,7 +27,7 @@ return (
         >
           <CogWheel />
         </div>
-        <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-ceramic'>{translateText("footer", "codeGitHub", language)}</a>
+        <a href="https://github.com/haggqvist459/ubiquitous-doodle" target='_blank' className='underline text-sm text-primary-text'>{translateText("footer", "codeGitHub", language)}</a>
       </div>
     </footer>
   )

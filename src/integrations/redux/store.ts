@@ -1,10 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { saveData, LOCALSTORAGE_KEYS } from "@/shared";
-import recipeForms from '@/features/recipeForms';
-import filters from '@/features/filters';
-import favourites from '@/features/favourites';
-import groceryList from '@/features/groceryList';
-import recipeList from '@/features/recipes';
+import { configureStore } from "@reduxjs/toolkit"
+import { saveData, LOCALSTORAGE_KEYS } from "@/shared"
+import recipeForms from '@/features/recipeForms'
+import filters from '@/features/filters'
+import favourites from '@/features/favourites'
+import groceryList from '@/features/groceryList'
+import recipeList from '@/features/recipes'
 
 export const store = configureStore({
   reducer: {
@@ -17,16 +17,16 @@ export const store = configureStore({
 })
 
 store.subscribe(() => {
-  const state = store.getState();
+  const state = store.getState()
 
   // Object.values(LOCALSTORAGE_KEYS).forEach((key) => {
-  //   saveData(key, state.appState[key]);
-  // });
+  //   saveData(key, state.appState[key])
+  // })
 
   saveData(LOCALSTORAGE_KEYS.GROCERY_LIST, state.groceryList)
 
-});
+})
 
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
