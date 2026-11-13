@@ -21,8 +21,8 @@ const Planner = () => {
   const [selectedMainIngredientFilters, setSelectedMainIngredientFilters] = useState<FilterOptionType[]>([])
   const [selectedCuisineFilters, setSelectedCuisineFilters] = useState<FilterOptionType[]>([])
   const [loading, setLoading] = useState(false)
-  // const [days, setDays] = useState(0)
-  // const [servings, setServing] = useState(0)
+  const [days, setDays] = useState(0)
+  const [servings, setServing] = useState(0)
 
   useEffect(() => {
 
